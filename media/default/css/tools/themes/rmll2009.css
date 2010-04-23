@@ -1,0 +1,55 @@
+html {
+    font: normal 12px "Trebuchet MS", Verdana, "Lucida Grande", Georgia, Sans-Serif;
+    text-align: center;
+}
+
+/* Links */
+a, a:link, a:visited {
+    color: #333;
+    text-decoration: none;
+}
+
+a:hover, a:active {
+    color: #222;
+    text-decoration: underline;
+}
+
+/* Elements */
+img {
+    border: none;
+}
+
+span.info {
+    color: #6e6e6e;
+}
+
+/* Form */
+label {
+    font-weight:normal;
+    color: #666;
+}
+
+input {
+    border-color:#82B521;
+    border-style:solid;
+    border-width:1px 1px 3px;
+    color:#555555;
+    margin:0;
+}
+
+input.form_button {
+    border: 1px solid #666;
+    color: #666;
+    background:  #333 url( ../../../img/tools/themes/rmll2009/bgButton.png) repeat-x left top;
+}
+input.form_button:hover {
+    color: #666;
+    background:  #333 url( ../../../img/tools/themes/rmll2009/bgButton_over.png) repeat-x left top;
+    border: 1px solid #666;
+}
+
+/* Calendar */
+.calendar td.selected a { background-color: #444; }
+.calendar td a:hover, .timelist a:hover { background-color: #444; color:white; }
+.calendarbox .calendarnav-previous, .calendarbox .calendarnav-next { background-color:#444; color:white; }
+.calendarnav-previous:hover, .calendarnav-next:hover { background-color:#444; }

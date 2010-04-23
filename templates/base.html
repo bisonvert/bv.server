@@ -1,0 +1,93 @@
+{% load i18n site_extras pages_utils %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="en">
+
+<head>
+    <title>{{ PROJECT_NAME }}</title>
+    <meta http-equiv="content-language" content="fr" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="audience" content="public" />
+    <meta name="author" content="Makina Corpus" />
+    <meta name="distribution" content="global" />
+    <meta name="rating" content="general" />
+    <meta name="revisit-after" content="7 days" />
+    <meta name="robots" content="all,index,follow" />
+    <meta name="description" content="Service de covoiturage proposé par Makina Corpus" />
+    <meta name="keywords" content="covoiturage,covoiturer,co-voiturer,co voiturer,écologie,environnement,développement durable,bisonvert,bison vert,autostop,auto-stop,partage,voiture,automobile,déplacement,mobilité,pdu,pde,plan de déplacement,grève,embouteillage,transport en commun" />
+    <link rel="shortcut icon" href="{{ MEDIA_URL }}img/favicon.ico" />
+    {% block css %}
+    <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}{{ media_specific }}css/screen.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}{{ media_specific }}css/theme.css" media="screen" />
+    <!--[if lt ie 7]><link rel="stylesheet" type="text/css" media="screen" href="{{ MEDIA_URL }}{{ media_specific }}css/ie-win.css" /><![endif]-->
+    <!--[if ie 7]><link rel="stylesheet" type="text/css" media="screen" href="{{ MEDIA_URL }}{{ media_specific }}css/ie7-win.css" /><![endif]-->
+    {% endblock %}
+    {% block headers %}{% endblock %}
+</head>
+
+<body>
+    <div id="container">
+
+        <div id="page-header">
+            <h1 id="header"><span>{{ PROJECT_NAME }}</span></a></h1>
+            <ul id="navigation">
+                {% if user.is_authenticated %}
+                <li><a{% ifequal current_item 13 %} class="current"{% endifequal %} href="{% url talks:list_talks %}">{% trans "My talks" %}</a></li>
+                <li><a{% ifequal current_item 14 %} class="current"{% endifequal %} href="{% url rating:list_user_reports %}">{% trans "My reports" %}</a></li>
+                <li><a{% ifequal current_item 11 %} class="current"{% endifequal %} href="{% url accounts:show_user_account %}">{% trans "My account" %}</a></li>
+                {% comment %}<li><a{% ifequal current_item 12 %} class="current"{% endifequal %} href="{% url accounts:edit_user_contacts %}">{% trans "My contacts" %}</a></li>{% endcomment %}
+                {% else %}
+                <li><a{% ifequal current_item 2 %} class="current"{% endifequal %} href="{% url accounts:login %}">{% trans "My account" %}</a></li>
+                {% endif %}
+            </ul>
+
+            <div id="user_connected">
+                {% flatpages 'top' as toppages %}
+                {% for page in toppages %}
+                <a href='{{ page.url }}'>{{ page.link_name|default:page.title }}</a> | 
+                {% endfor %}
+
+                {% if user.is_authenticated %}
+                <a href="{% url accounts:logout %}">{% trans "Logout" %}</a> |
+                {% trans "Connected" %}: {{ user.username }}
+                {% else %}
+                <a href="{% url accounts:login %}">{% trans "Login" %}</a> |
+                <a href="{% url accounts:register %}">{% trans "Registration" %}</a>
+                {% endif %}
+            </div>
+        </div>
+
+        <div id="wrapper">
+            {% block content %}{% endblock %}
+        </div>
+
+        <div id="footer">
+            <p>
+            &copy; {{ PROJECT_NAME }} est un service proposé par <a href="http://www.makina-corpus.com/">Makina Corpus</a>
+            </p>
+            <p id="footer_links">
+                {% flatpages 'bottom' as toppages %}
+                {% for page in toppages %}
+                <a href='{{ page.url }}'>{{ page.link_name|default:page.title }}</a> | 
+                {% endfor %}
+                <a href="{% url pages:contact_us %}">{% trans "Contact" %}</a>
+            </p>
+        </div>
+
+    </div>
+
+    <script src="{{ MEDIA_URL }}js/prototype.js" type="text/javascript"></script>
+    <script src="{{ MEDIA_URL }}js/utils{{ JS_EXT }}" type="text/javascript"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/jsi18n/{{ LANGUAGE_CODE }}{{ JS_EXT }}"></script>
+{% block endscript %}{% endblock %}
+
+    {% if GOOGLE_ANALYTICS_ENABLE %}
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        _uacct = "{{ GOOGLE_ANALYTICS_KEY }}";
+        urchinTracker();
+    </script>
+    {% endif %}
+</body>
+
+</html>

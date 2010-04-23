@@ -1,0 +1,50 @@
+html {
+    font: normal 12px "Trebuchet MS", Verdana, "Lucida Grande", Georgia, Sans-Serif;
+    text-align: center;
+}
+
+/* Links */
+a, a:link, a:visited {
+    color: #336699;
+    text-decoration: none;
+}
+
+a:hover, a:active {
+    color: #ad5b1e;
+    text-decoration: underline;
+}
+
+/* Elements */
+img {
+    border: none;
+}
+
+span.info {
+    color: #6e6e6e;
+}
+
+/* Form */
+input {
+    border: 1px solid #999999;
+    background-color: #f5f5f5;
+}
+input:hover {
+    background-color: #e5e5e5;
+    border: 1px solid #777777;
+}
+
+input.form_button {
+    border: 1px solid #374462;
+    background-color: #485573;
+    color: white;
+}
+input.form_button:hover {
+    background-color: #374462;
+    color: #eff8ff;
+}
+
+/* Calendar */
+.calendar td.selected a { background-color: #C9DBED; }
+.calendar td a:hover, .timelist a:hover { background-color: #5b80b2; color:white; }
+.calendarbox .calendarnav-previous, .calendarbox .calendarnav-next { background-color:#C9DBED; color:white; }
+.calendarnav-previous:hover, .calendarnav-next:hover { background-color:#036; }

@@ -1,0 +1,4 @@
+{% load i18n %}
+                <li><a{% ifequal current_nav_item 3 %} class="selected"{% endifequal %} href="{% url rating:list_temp_reports 1 %}">{% trans "My reports in progress" %}</a></li>
+                <li><a{% ifequal current_nav_item 1 %} class="selected"{% endifequal %} href="{% url rating:list_user_reports 1 %}">{% trans "Received reports" %}</a></li>
+                <li><a{% ifequal current_nav_item 2 %} class="selected"{% endifequal %} href="{% url rating:list_other_reports 1 %}">{% trans "Given reports" %}</a></li>

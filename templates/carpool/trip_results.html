@@ -1,0 +1,231 @@
+{% extends "base_openlayers.html" %}
+{% load i18n %}
+
+{% block content %}
+                <div id="trip_results" class="{% if trip.offer %}search_demand{% else %}search_offer{% endif %}">
+                    <p id="ariane">
+                        {% trans "My account" %} &raquo; 
+                        <a href="{% url carpool:list_user_trips %}">{% trans "My trips" %}</a> &raquo; 
+                        <a href="{% url carpool:edit_trip trip.id %}">{{ trip.name }}</a> &raquo; 
+                        <a href="{% url carpool:show_trip_results trip.id %}">{% trans "Trip results" %}</a>
+                        <a href="/feeds/rss/resultats_annonce/{{ trip.id }}/" title="{% trans "RSS feed for this trip" %}"><img src="{{ MEDIA_URL }}img/rss.gif" alt="{% trans "RSS feed" %}" /></a>
+                    </p>
+
+                    <div id="permalink">
+                        <input type="text" value="{{ PROJECT_ROOT_URL }}{{ trip.get_absolute_url }}" id="permalink_field"/>
+                        <img id="help_permalink" class="help" src="{{ MEDIA_URL }}img/icon_help.png" alt="{% trans "Help" %}" />
+                    </div>
+
+                    <div id="param_radius">
+                        {% if not trip.regular %}
+                        <div id="date_radius">
+                            <br />
+                            <div id="slider_interval_min_left" class="slider_left"> </div>
+                            <div id="track_interval_min_radius" class="slider_bar">
+                                <div id="handle_interval_min_radius" class="slider"> </div>
+                            </div>
+                            <div id="slider_interval_min_right" class="slider_right"> </div>
+                            <div id="slider_interval_max_left" class="slider_left"> </div>
+                            <div id="track_interval_max_radius" class="slider_bar">
+                                <div id="handle_interval_max_radius" class="slider"> </div>
+                            </div>
+                            <div id="slider_interval_max_right" class="slider_right"> </div>
+                            <div id="verbose_interval_radius" class="slider_verbose">
+                                <span id="verbose_interval_min_radius" class="slider_radius_verbose">-{{ trip.interval_min }}j</span>
+                                <span>&nbsp;&nbsp;{% trans "date interval" %}&nbsp;&nbsp;</span>
+                                <span id="verbose_interval_max_radius" class="slider_radius_verbose">+{{ trip.interval_max }}j</span>
+                            </div>
+                        </div>
+                        <div id="help_date_slider">
+                            <br />
+                            <img id="help_slider_date" class="help" src="{{ MEDIA_URL }}img/icon_help.png" alt="{% trans "Help" %}" />
+                        </div>
+                        {% endif %}
+                        {% if trip.demand %}
+                        <div id="param_radius_passenger">
+                            {% trans "Passenger" %}:<br />
+                            <div id="slider_demand_left" class="slider_left"> </div>
+                            <div id="track_demand_radius" class="slider_bar">
+                                <div id="handle_demand_radius" class="slider"> </div>
+                            </div>
+                            <div id="slider_demand_right" class="slider_right"> </div>
+                            <div class="slider_verbose">{% trans "area around trip" %}: <span id="verbose_demand_radius" class="slider_radius_verbose">{{ trip.print_demand_radius }}</span></div>
+                        </div>
+                        <div id="help_radius_passenger_slider">
+                            <br />
+                            <img id="help_slider_radius_passenger" class="help" src="{{ MEDIA_URL }}img/icon_help.png" alt="{% trans "Help" %}" />
+                        </div>
+                        {% endif %}
+                        {% if trip.offer %}
+                        <div id="param_radius_driver">
+                            {% trans "Driver" %}:<br />
+                            <div id="slider_offer_left" class="slider_left"> </div>
+                            <div id="track_offer_radius" class="slider_bar">
+                                <div id="handle_offer_radius" class="slider"> </div>
+                            </div>
+                            <div id="slider_offer_right" class="slider_right"> </div>
+                            <div class="slider_verbose">{% trans "area around trip" %}: <span id="verbose_offer_radius" class="slider_radius_verbose">{{ trip.print_offer_radius }}</span></div>
+                        </div>
+                        <div id="help_radius_driver_slider">
+                            <br />
+                            <img id="help_slider_radius_driver" class="help" src="{{ MEDIA_URL }}img/icon_help.png" alt="{% trans "Help" %}" />
+                        </div>
+                        {% endif %}
+                     </div>
+                </div>
+
+                <div id="trip_container">
+                    <div id="trip_list_headers" class="result_title">
+                        {% trans "Trip results" %}:
+                        {% if trip.offer %}<a id="res_d" class="current">{% trans "Demands" %}</a>{% endif %}
+                        {% if trip.demand %}<a id="res_o"{% if not trip.offer %} class="current"{% endif %}>{% trans "Offers" %}</a>{% endif %}
+                    </div>
+                    <div id="trip_list">
+                        {% if trip.offer %}<div id="trip_list_content_d" class="trip_list_content"> </div>{% endif %}
+                        {% if trip.demand %}<div id="trip_list_content_o" class="trip_list_content"{% if trip.offer %} style="display:none;"{% endif %}> </div>{% endif %}
+                    </div>
+                    <div id="trip_pages">
+                        {% if trip.offer %}<div id="trip_pages_d"> </div>{% endif %}
+                        {% if trip.demand %}<div id="trip_pages_o"{% if trip.offer %} style="display:none;"{% endif %}> </div>{% endif %}
+                    </div>
+                </div>
+
+                <div id="trip_results_map" class="map">
+                    <span id="wait" style="display:none;"><img src="{{ MEDIA_URL }}img/wait.gif" alt="please-wait-while-we-are-working" /></span>
+                </div>
+
+                <div class="clear"> </div>
+                <form id="form_save_trip" action="" method="post">
+                    <div class="form_buttons">
+                        <input type="hidden" id="trip_details" name="trip_details" value="" />
+                        <input type="submit" id="btn_save_trip" class="form_button" value="{% trans "Save modifications" %}" />
+                    </div>
+                </form>
+{% endblock %}
+
+{% block ol_additional_global_vars %}
+    var markers;
+    var trip_layer;
+    var gdir;
+
+    {% if trip.offer %}var trip_offer_radius = {{ trip.offer.radius }};{% endif %}
+    {% if trip.demand %}var trip_demand_radius = {{ trip.demand.radius }};{% endif %}
+    var interval_min_radius = 7-{{ trip.interval_min }};
+    var interval_max_radius = {{ trip.interval_max }};
+    var trip_regular = {% if trip.regular %}true{% else %}false{% endif %};
+    var trip_type = {{ trip.trip_type }};
+    var trip_id = {{ trip.id }};
+{% endblock %}
+
+{% block ol_additional_functions %}
+    function initTrip() {
+        current_step = 1;
+        var step;
+        var lonlat;
+        var text;
+
+        text = parseHTML("<b>{% trans "Departure" %}</b>:<br /> {{ trip.departure_city }}{% if trip.departure_address %}<br />{{ trip.departure_address }}{% endif %}");
+        lonlat = OpenLayers.Layer.SphericalMercator.forwardMercator({{ trip.departure_point.get_x }}, {{ trip.departure_point.get_y }});
+        step = new Step(
+            parseHTML("{{ trip.departure_city }}"),
+            parseHTML("{{ trip.departure_address }}"),
+            null,
+            new OpenLayers.Feature.Vector(
+                new OpenLayers.Geometry.Point(lonlat.lon, lonlat.lat),
+                {id: 0, name: text},
+                //{% if trip.offer %}departure_car_style{% else %}departure_passenger_style{% endif %}
+                departure_style
+            )
+        );
+        trip[trip.length] = step;
+        {% for cp in trip.offer.checkpointlist %}
+        text = '{% blocktrans with forloop.counter as count %}Check point n°{{ count }}{% endblocktrans %}';
+        lonlat = OpenLayers.Layer.SphericalMercator.forwardMercator({{ cp.point.get_x }}, {{ cp.point.get_y }});
+        step = new Step(
+            null,
+            null,
+            null,
+            new OpenLayers.Feature.Vector(
+                new OpenLayers.Geometry.Point(lonlat.lon, lonlat.lat),
+                {id: {{ forloop.counter }}, name: text},
+                step_style
+            )
+        );
+        trip[trip.length] = step;
+        {% endfor %}
+        text = parseHTML("<b>{% trans "Arrival" %}</b>:<br /> {{ trip.arrival_city }}{% if trip.arrival_address %}<br />{{ trip.arrival_address }}{% endif %}");
+        lonlat = OpenLayers.Layer.SphericalMercator.forwardMercator({{ trip.arrival_point.get_x }}, {{ trip.arrival_point.get_y }});
+        step = new Step(
+            parseHTML("{{ trip.arrival_city }}"),
+            parseHTML("{{ trip.arrival_address }}"),
+            null,
+            new OpenLayers.Feature.Vector(
+                new OpenLayers.Geometry.Point(lonlat.lon, lonlat.lat),
+                {id: {{ trip.offer.checkpointlist|length }}+1, name: text},
+                //{% if trip.offer %}arrival_car_style{% else %}arrival_passenger_style{% endif %}
+                arrival_style
+            )
+        );
+        trip[trip.length] = step;
+
+        updateTrip();
+        displayDepartureRadiusCircle();
+        displayArrivalRadiusCircle();
+    }
+
+{% endblock %}
+
+{% block ol_map_id %}trip_results_map{% endblock %}
+
+{% block ol_additional_layers %}
+
+    markers = new OpenLayers.Layer.Vector("{% trans "Departure / Arrival (search - results) & Check Points" %}");
+    markers.displayInLayerSwitcher = false;
+    trip_layer = new OpenLayers.Layer.Vector("{% trans "Trips / search areas" %}");
+    trip_layer.displayInLayerSwitcher = false;
+    map.addLayers([trip_layer, markers]);
+{% endblock %}
+
+{% block ol_map_events %}
+    {% if trip.offer %}
+    map.events.register("moveend", map, function() {
+        calculateSimpleTripBuffer(trip_pls, map, trip_offer_radius, 'wait', trip_layer);
+    });
+    {% endif %}
+{% endblock %}
+
+{% block ol_additional_controls %}
+    var drag = new OpenLayers.Control.DragFeature(markers, {onComplete: completeDragMarker})
+    map.addControl(drag);
+    drag.activate();
+
+    selectControl = new OpenLayers.Control.SelectFeature(markers, {onSelect: showMarkerPopup, onUnselect: hideMarkerPopup}) ;
+    map.addControl(selectControl);
+    selectControl.activate();
+{% endblock %}
+
+{% block ol_routing %}
+    gdir = new GDirections();
+    GEvent.addListener(gdir, "load", onGDirectionsLoad);
+    GEvent.addListener(gdir, "error", handleErrors);
+{% endblock %}
+
+{% block ol_additional_init %}
+    initTrip();
+{% endblock %}
+
+{% block ol_additional_endscript %}
+    <script src="{{ MEDIA_URL }}js/scriptaculous/scriptaculous.js?load=effects,controls,slider" type="text/javascript"></script>
+    <script src="{{ MEDIA_URL }}js/prototip.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    //<![CDATA[
+
+    var help_permalink_tt = "{% trans "TT_HELP_PERMALINK" %}";
+    {% if not trip.regular %}var help_slider_date_tt = "{% trans "TT_HELP_DATE_SEARCH" %}";{% endif %}
+    {% if trip.offer %}var help_slider_radius_driver_tt = "{% trans "TT_HELP_OFFER_RADIUS" %}";{% endif %}
+    {% if trip.demand %}var help_slider_radius_passenger_tt = "{% trans "TT_HELP_DEMAND_RADIUS" %}";{% endif %}
+
+    // ]]>
+    </script>
+    <script src="{{ MEDIA_URL }}js/carpool/trip_results{{ JS_EXT }}" type="text/javascript"></script>
+{% endblock %}

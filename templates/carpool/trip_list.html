@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+                <h2>{% trans "All trips" %} <a href="/feeds/rss/annonces_covoiturage/" title="{% trans "RSS feed" %}"><img src="{{ MEDIA_URL }}img/rss.gif" alt="{% trans "RSS feed" %}" /></a></h2>
+
+                {% if paginator.count %}
+                <p>
+                {% trans "Number of trip displayed by page:" %}
+                {% for pagination in paginations %}
+                {% ifequal pagination current_pg %}
+                {{ pagination }}{% if not forloop.last %} | {% endif %}
+                {% else %}
+                <a href="{% url carpool:list_trips 1 %}?pg={{ pagination }}">{{ pagination }}</a>{% if not forloop.last %} | {% endif %}
+                {% endifequal%}
+                {% endfor %}
+                </p>
+                
+                {% if GOOGLE_ADSENSE_ENABLE %}
+                <div id="ad_sense">
+                    <script type="text/javascript">
+                    <!--
+                    google_ad_client = "{{ GOOGLE_ADSENSE_KEY }}";
+                    google_ad_slot = "{{ GOOGLE_ADSENSE_SLOT }}";
+                    google_ad_width = {{ GOOGLE_ADSENSE_WIDTH }};
+                    google_ad_height = {{ GOOGLE_ADSENSE_HEIGHT }};
+                    //-->
+                    </script>
+                    <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"> </script>
+                </div>
+                {% endif %}
+                
+                <p class="pg">
+                {% for i in page_range %}
+                {% ifequal i page_obj.number %}
+                <span class="current">{{ i }}</span>
+                {% else %}
+                {% ifequal i DOT %}
+                ...
+                {% else %}
+                <a href="{% url carpool:list_trips i %}{{ get_url }}">{{ i }}</a>
+                {% endifequal %}
+                {% endifequal %}
+                {% endfor %}
+                &nbsp;&nbsp;{% blocktrans count paginator.count as counter %}{{ counter }} trip{% plural %}{{ counter }} trips{% endblocktrans %}
+                </p>
+
+                <table id="quick_trip_list" class="pg_list">
+                    <thead>
+                        <tr>
+                            <th><a href="{% url carpool:list_trips 1 %}{{ get_url_pg }}&order={% ifequal order 'departure' %}-{% endifequal %}departure"{% ifequal order 'departure' %} class="ascending"{% else %}{% ifequal order '-departure' %} class="descending"{% endifequal %}{% endifequal %}>{% trans "Departure" %}</a></th>
+                            <th><a href="{% url carpool:list_trips 1 %}{{ get_url_pg }}&order={% ifequal order 'arrival' %}-{% endifequal %}arrival"{% ifequal order 'arrival' %} class="ascending"{% else %}{% ifequal order '-arrival' %} class="descending"{% endifequal %}{% endifequal %}>{% trans "Arrival" %}</a></th>
+                            <th><a href="{% url carpool:list_trips 1 %}{{ get_url_pg }}&order={% ifequal order 'date' %}-{% endifequal %}date"{% ifequal order 'date' %} class="ascending"{% else %}{% ifequal order '-date' %} class="descending"{% endifequal %}{% endifequal %}>{% trans "Date" %}</a></th>
+                            <th><a href="{% url carpool:list_trips 1 %}{{ get_url_pg }}&order={% ifequal order 'time' %}-{% endifequal %}time"{% ifequal order 'time' %} class="ascending"{% else %}{% ifequal order '-time' %} class="descending"{% endifequal %}{% endifequal %}>{% trans "Departure at about" %}</a></th>
+                            <th><a href="{% url carpool:list_trips 1 %}{{ get_url_pg }}&order={% ifequal order 'type' %}-{% endifequal %}type"{% ifequal order 'type' %} class="ascending"{% else %}{% ifequal order '-type' %} class="descending"{% endifequal %}{% endifequal %}>{% trans "Type" %}</a></th>
+                            <th class="act">{% trans "See details" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for trip in page_obj.object_list %}
+                        <tr class="{% cycle 'row1' 'row2' %}">
+                            <td>
+                                {{ trip.departure_city }}
+                                {% if trip.departure_address %}<br />{{ trip.departure_address }}{% endif %}
+                            </td>
+                            <td>
+                                {{ trip.arrival_city }}
+                                {% if trip.arrival_address %}<br />{{ trip.arrival_address }}{% endif %}
+                            </td>
+                            <td>
+                                {% if trip.regular %}
+                                {% trans "Regular" %}:
+                                <br />
+                                {{ trip.print_dows }}
+                                {% else %}
+                                {{ trip.date|date:"d/m/Y" }}
+                                <br />
+                                -{{ trip.interval_min }}j/+{{ trip.interval_max }}j
+                                {% endif %}
+                            </td>
+                            <td>
+                                {{ trip.time|time:"H\h" }}
+                            </td>
+                            <td>
+                                {% if trip.offer_id and not trip.demand_id %}
+                                {% trans "Offer" %}
+                                {% else %}
+                                {% if not trip.offer_id and trip.demand_id %}
+                                {% trans "Demand" %}
+                                {% else %}
+                                {% trans "Both" %}
+                                {% endif %}
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="{{ trip.get_absolute_url }}" title="{% trans "View trip details" %}"><img src="{{ MEDIA_URL }}img/icons/view.png" alt="{% trans "View trip details" %}" /></a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <p class="pg">
+                {% for i in page_range %}
+                {% ifequal i page_obj.number %}
+                <span class="current">{{ i }}</span>
+                {% else %}
+                {% ifequal i DOT %}
+                ...
+                {% else %}
+                <a href="{% url carpool:list_trips i %}{{ get_url }}">{{ i }}</a>
+                {% endifequal %}
+                {% endifequal %}
+                {% endfor %}
+                &nbsp;&nbsp;{% blocktrans count paginator.count as counter %}{{ counter }} trip{% plural %}{{ counter }} trips{% endblocktrans %}
+                </p>
+                {% else %}
+                <p>{% trans "No trip." %}</p>
+
+                {% endif %}
+{% endblock %}

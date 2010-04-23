@@ -1,0 +1,601 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-12-09 11:07+0100\n"
+"PO-Revision-Date: 2010-01-04 11:59\n"
+"Last-Translator: <a@m.fr>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Translated-Using: django-rosetta 0.5.1\n"
+
+#: settings.py:261
+msgid "French"
+msgstr "Français"
+
+#: settings.py:262
+msgid "English"
+msgstr "Anglais"
+
+#: accounts/forms.py:22
+msgid "The username must contain at leat 3 valid characters(alphanumeric characters, ., -, _)"
+msgstr "L'identifiant doit comporter au moins 3 caractères valides (caractères alphanumériques, ., -, _)"
+
+#: accounts/forms.py:28
+msgid "I have read and agree with the"
+msgstr "Je certifie avoir lu et accepté les"
+
+#: accounts/forms.py:28
+msgid "terms and conditions"
+msgstr "Conditions Générales d'Utilisation"
+
+#: accounts/forms.py:32
+msgid "Remember me"
+msgstr "Connexion automatique à chaque visite"
+
+#: accounts/forms.py:38 accounts/forms.py:141
+msgid "* Email"
+msgstr "* Email"
+
+#: accounts/forms.py:43 accounts/forms.py:139
+msgid "* Username"
+msgstr "* Identifiant"
+
+#: accounts/forms.py:44 accounts/forms.py:50 accounts/forms.py:56
+#: accounts/forms.py:196 accounts/forms.py:203
+#, python-format
+msgid "at least %(num)d characters"
+msgstr "au moins %(num)d caractères"
+
+#: accounts/forms.py:49
+msgid "* Password"
+msgstr "* Mot de passe"
+
+#: accounts/forms.py:55
+msgid "* Password (again)"
+msgstr "* Confirmation du mot de passe"
+
+#: accounts/forms.py:79 accounts/forms.py:264
+msgid "Only one account by email address."
+msgstr "Un seul compte par adresse email."
+
+#: accounts/forms.py:88
+msgid "Username already existing."
+msgstr "L'identifiant que vous avez saisi existe déjà."
+
+#: accounts/forms.py:92
+msgid "This username is forbidden."
+msgstr "L'identifiant que vous avez saisi est indisponible."
+
+#: accounts/forms.py:103 accounts/forms.py:303
+msgid "Password does not match."
+msgstr "Confirmation incorrecte."
+
+#: accounts/forms.py:114
+msgid "You have to read and agree with the terms and conditions."
+msgstr "Vous devez lire et accepter les Conditions Générales d'Utilisation."
+
+#: accounts/forms.py:120
+msgid "Username"
+msgstr "Identifiant"
+
+#: accounts/forms.py:123
+msgid "Password"
+msgstr "Mot de passe"
+
+#: accounts/forms.py:159
+msgid "Unknown user."
+msgstr "Utilisateur inconnu."
+
+#: accounts/forms.py:174
+msgid "This email address was not validated, impossible to send a new password."
+msgstr "Cette adresse email n'a pas été validée, nous ne pouvons pas y envoyer un nouveau mot de passe."
+
+#: accounts/forms.py:179
+msgid "Email address does not match with username."
+msgstr "L'email ne correspond pas à l'identifiant."
+
+#: accounts/forms.py:186 carpool/forms.py:559
+msgid "* Email:"
+msgstr "* Email:"
+
+#: accounts/forms.py:190
+msgid "Old password:"
+msgstr "Ancien mot de passe:"
+
+#: accounts/forms.py:195
+msgid "New password:"
+msgstr "Nouveau mot de passe:"
+
+#: accounts/forms.py:202
+msgid "New password (again):"
+msgstr "Confirmation du nouveau mot de passe:"
+
+#: accounts/forms.py:209
+msgid "Lastname:"
+msgstr "Nom:"
+
+#: accounts/forms.py:213
+msgid "Firstname:"
+msgstr "Prénom:"
+
+#: accounts/forms.py:217
+msgid "Phone number:"
+msgstr "Téléphone:"
+
+#: accounts/forms.py:222
+msgid "Mobile phone number:"
+msgstr "Téléphone mobile:"
+
+#: accounts/forms.py:227
+msgid "Address:"
+msgstr "Adresse:"
+
+#: accounts/forms.py:232
+msgid "Address complement:"
+msgstr "Complément d'adresse:"
+
+#: accounts/forms.py:237
+msgid "Zip code:"
+msgstr "Code postal:"
+
+#: accounts/forms.py:242 carpool/forms.py:265
+msgid "City:"
+msgstr "Ville:"
+
+#: accounts/forms.py:276
+msgid "Incorrect password."
+msgstr "Mot de passe incorrect."
+
+#: accounts/forms.py:289
+msgid "Please enter your old password to modify it."
+msgstr "Veuillez renseigner votre ancien mot de passe pour le modifier."
+
+#: accounts/forms.py:316
+msgid "Incorrect phone number."
+msgstr "Numéro de téléphone incorrect."
+
+#: accounts/forms.py:329
+msgid "Incorrect mobile phone number."
+msgstr "Numéro de téléphone mobile incorrect."
+
+#: accounts/forms.py:353
+msgid "Email alert enabled by default:"
+msgstr "Alerte email activée par défaut:"
+
+#: accounts/forms.py:359 carpool/forms.py:406
+msgid "Asking price by kilometer:"
+msgstr "Prix demandé au kilomètre:"
+
+#: accounts/forms.py:365 carpool/forms.py:412
+msgid "Smokers accepted:"
+msgstr "Accepte les fumeurs:"
+
+#: accounts/forms.py:370 carpool/forms.py:417
+msgid "Pets accepted:"
+msgstr "Animaux acceptés:"
+
+#: accounts/forms.py:375 carpool/forms.py:422
+msgid "Place for luggages:"
+msgstr "Place pour les bagages:"
+
+#: accounts/forms.py:380 carpool/forms.py:427
+msgid "Car type:"
+msgstr "Type de voiture:"
+
+#: accounts/forms.py:385 carpool/forms.py:432
+msgid "Seat number by default:"
+msgstr "Nombre de places par défaut:"
+
+#: accounts/forms.py:391 carpool/forms.py:467
+msgid "Maximum price by kilometer:"
+msgstr "Prix maximum au kilomètre:"
+
+#: accounts/forms.py:397 carpool/forms.py:473
+msgid "Smokers accepted first:"
+msgstr "Priorité aux offres acceptant les fumeurs:"
+
+#: accounts/forms.py:402 carpool/forms.py:478
+msgid "Pets accepted first:"
+msgstr "Priorité aux offres acceptant les animaux:"
+
+#: accounts/forms.py:407 carpool/forms.py:483
+msgid "Place for luggages first:"
+msgstr "Priorité aux offres ayant de la place pour les bagages:"
+
+#: accounts/forms.py:412 carpool/forms.py:488
+msgid "Car type first:"
+msgstr "Priorité aux voitures de type:"
+
+#: accounts/forms.py:417 carpool/forms.py:493
+msgid "Minimum remaining seats:"
+msgstr "Nombre minimum de places restantes:"
+
+#: accounts/views.py:61
+msgid "Wrong login."
+msgstr "Login incorrect."
+
+#: carpool/forms.py:23
+#, python-format
+msgid "Ensure this value has at most %(max)d characters (it has %(length)d)."
+msgstr "Assurez-vous que cette valeur fait moins de %(max)d caractères (elle en fait %(length)d)."
+
+#: carpool/forms.py:25
+#, python-format
+msgid "Ensure this value has at least %(min)d characters (it has %(length)d)."
+msgstr "Assurez-vous que cette valeur fait plus de %(min)d caractères (elle en fait %(length)d)."
+
+#: carpool/forms.py:30
+msgid "Report a bug"
+msgstr "Signaler un bug"
+
+#: carpool/forms.py:31
+msgid "Suggestions"
+msgstr "Faire une suggestion"
+
+#: carpool/forms.py:32
+msgid "Comments"
+msgstr "Faire un commentaire"
+
+#: carpool/forms.py:33
+msgid "Encouragements"
+msgstr "Nous encourager"
+
+#: carpool/forms.py:34
+msgid "Other"
+msgstr "Autre"
+
+#: carpool/forms.py:38
+msgid "Come from"
+msgstr "Venir de"
+
+#: carpool/forms.py:39
+msgid "Go to"
+msgstr "Aller à"
+
+#: carpool/forms.py:43
+msgid "Depart from city"
+msgstr "Au départ de"
+
+#: carpool/forms.py:44
+msgid "Arrival to city"
+msgstr "A destination de"
+
+#: carpool/forms.py:82
+msgid " address not found."
+msgstr "L'adresse n'a pas été trouvée."
+
+#: carpool/forms.py:111 carpool/forms.py:212 carpool/rmll2009.py:57
+msgid "Departure:"
+msgstr "Départ:"
+
+#: carpool/forms.py:123 carpool/forms.py:224 carpool/rmll2009.py:61
+msgid "Arrival:"
+msgstr "Arrivée:"
+
+#: carpool/forms.py:131 carpool/forms.py:236 carpool/rmll2009.py:69
+#: carpool/tools.py:107
+msgid "Date:"
+msgstr "Date:"
+
+#: carpool/forms.py:261
+msgid "Trips:"
+msgstr "Annonces:"
+
+#: carpool/forms.py:285 carpool/tools.py:140 carpool/tools.py:155
+msgid "Incorrect city."
+msgstr "Ville incorrecte."
+
+#: carpool/forms.py:303
+msgid "Route type"
+msgstr "Type de trajet"
+
+#: carpool/forms.py:305
+msgid "Demand"
+msgstr "Demande"
+
+#: carpool/forms.py:305
+msgid "Offer"
+msgstr "Offre"
+
+#: carpool/forms.py:305
+msgid "Both"
+msgstr "Indifférent"
+
+#: carpool/forms.py:308
+msgid "Announce name:"
+msgstr "Nom de l'annonce"
+
+#: carpool/forms.py:313 carpool/tools.py:115
+msgid "Departure city:"
+msgstr "Ville de départ:"
+
+#: carpool/forms.py:318
+msgid "Departure address:"
+msgstr "Adresse de départ"
+
+#: carpool/forms.py:323 carpool/tools.py:120
+msgid "Arrival city:"
+msgstr "Ville d'arrivée:"
+
+#: carpool/forms.py:328
+msgid "Arrival address:"
+msgstr "Adresse d'arrivée"
+
+#: carpool/forms.py:333
+msgid "Comment:"
+msgstr "Commentaire:"
+
+#: carpool/forms.py:339
+msgid "Email alert:"
+msgstr "Alerte email:"
+
+#: carpool/forms.py:345
+msgid "Punctual"
+msgstr "Ponctuel"
+
+#: carpool/forms.py:345
+msgid "Regular"
+msgstr "Régulier"
+
+#: carpool/forms.py:346
+msgid "Trip frequency"
+msgstr "Fréquence du trajet"
+
+#: carpool/forms.py:350
+msgid "Date"
+msgstr "Date"
+
+#: carpool/forms.py:362
+msgid "Departure at about"
+msgstr "Départ aux alentours de"
+
+#: carpool/forms.py:375
+msgid "Mon"
+msgstr "Lu"
+
+#: carpool/forms.py:375
+msgid "Tue"
+msgstr "Ma"
+
+#: carpool/forms.py:375
+msgid "Wed"
+msgstr "Me"
+
+#: carpool/forms.py:375
+msgid "Thu"
+msgstr "Je"
+
+#: carpool/forms.py:375
+msgid "Fri"
+msgstr "Ve"
+
+#: carpool/forms.py:375
+msgid "Sat"
+msgstr "Sa"
+
+#: carpool/forms.py:375
+msgid "Sun"
+msgstr "Di"
+
+#: carpool/forms.py:555
+msgid "* Firstname / Lastname:"
+msgstr "* Nom / Prénom:"
+
+#: carpool/forms.py:563 carpool/forms.py:586
+msgid "* Subject:"
+msgstr "* Sujet:"
+
+#: carpool/forms.py:567 carpool/forms.py:590
+msgid "* Title:"
+msgstr "* Titre:"
+
+#: carpool/forms.py:571 carpool/forms.py:594 talks/forms.py:18
+msgid "* Message:"
+msgstr "* Message:"
+
+#: carpool/models.py:40
+msgid "Favorite place"
+msgstr "Ville favorite"
+
+#: carpool/models.py:41
+msgid "Favorite places"
+msgstr "Villes favorites"
+
+#: carpool/models.py:93
+msgid "City"
+msgstr "Ville"
+
+#: carpool/models.py:106
+msgid "Car type"
+msgstr "Type de voiture"
+
+#: carpool/models.py:107
+msgid "Car types"
+msgstr "Type de voiture"
+
+#: carpool/models.py:681
+msgid "Mo"
+msgstr "Lu"
+
+#: carpool/models.py:682
+msgid "Tu"
+msgstr "Ma"
+
+#: carpool/models.py:683
+msgid "We"
+msgstr "Me"
+
+#: carpool/models.py:684
+msgid "Th"
+msgstr "Je"
+
+#: carpool/models.py:685
+msgid "Fr"
+msgstr "Ve"
+
+#: carpool/models.py:686
+msgid "Sa"
+msgstr "Sa"
+
+#: carpool/models.py:687
+msgid "Su"
+msgstr "Di"
+
+#: carpool/tools.py:70
+msgid "FFE theme"
+msgstr "thème du FFE"
+
+#: carpool/tools.py:73
+msgid "RMLL theme"
+msgstr "thème des RMLL"
+
+#: carpool/tools.py:76
+msgid "flower theme"
+msgstr "Thème \"Fleurs\""
+
+#: carpool/tools.py:79
+msgid "Sky theme"
+msgstr "Thème \"Ciel\""
+
+#: carpool/tools.py:82
+msgid "South theme"
+msgstr "Thème \"Sud\""
+
+#: carpool/tools.py:85
+msgid "Grey theme"
+msgstr "thème \"Gris\""
+
+#: carpool/tools.py:88
+msgid "RMLL 2009 theme"
+msgstr "thème \"RMLL 2009\""
+
+#: carpool/tools.py:97
+msgid "Format:"
+msgstr "Format:"
+
+#: carpool/tools.py:102
+msgid "Theme:"
+msgstr "Thème:"
+
+#: carpool/tools.py:164
+msgid "Iframe's width:"
+msgstr "Largeur de l'iframe:"
+
+#: carpool/tools.py:166 carpool/tools.py:172
+#, python-format
+msgid "minimum %(num)dpx"
+msgstr "minimum %(num)dpx"
+
+#: carpool/tools.py:170
+msgid "Iframe's height:"
+msgstr "Hauteur de l'iframe:"
+
+#: carpool/tools.py:176
+msgid "Displayed trip number:"
+msgstr "Nombre d'annonces affichées:"
+
+#: carpool/tools.py:179
+#, python-format
+msgid "minimum %(min)d, maximum %(max)d"
+msgstr "minimum %(min)d, maximum %(max)d"
+
+#: carpool/views.py:533
+#, python-format
+msgid "%(trip_name)s - Return"
+msgstr "%(trip_name)s - Retour"
+
+#: flatpages/admin.py:8
+msgid "URL"
+msgstr "URL"
+
+#: flatpages/admin.py:9
+msgid "Example: '/about/contact/'. Make sure to have leading and trailing slashes."
+msgstr "exemple: '/apropos/contact/'. assurez vous de laisser les slashes de début et de fin."
+
+#: flatpages/admin.py:11
+msgid "This value must contain only letters, numbers, underscores, dashes or slashes."
+msgstr "Cette valeur doit contenir uniquement des lettres, des chiffres, de soulignement, des tirets ou des barres obliques."
+
+#: flatpages/admin.py:22
+msgid "Advanced options"
+msgstr "Options avancées"
+
+#: flatpages/models.py:10
+msgid "name"
+msgstr "nom"
+
+#: flatpages/models.py:13
+msgid "category"
+msgstr "natégorie"
+
+#: flatpages/models.py:14
+msgid "categories"
+msgstr "catégories"
+
+#: flatpages/models.py:25
+msgid "link name"
+msgstr "nom du lien"
+
+#: flatpages/models.py:28
+msgid "flat page"
+msgstr "page"
+
+#: flatpages/models.py:29
+msgid "flat pages"
+msgstr "pages"
+
+#: rating/forms.py:13
+#, python-format
+msgid "%(int)d (minimum)"
+msgstr "%(int)d (minimum)"
+
+#: rating/forms.py:18
+#, python-format
+msgid "%(int)d (maximum)"
+msgstr "%(int)d (maximum)"
+
+#: rating/forms.py:24
+msgid "* Mark:"
+msgstr "* Note:"
+
+#: rating/forms.py:28
+msgid "* Comment:"
+msgstr "* Commentaire:"
+
+#: talks/views.py:132 talks/views.py:219
+#, python-format
+msgid "Trip %(trip_public_name)s"
+msgstr "Annonce %(trip_public_name)s"
+
+#: talks/views.py:181
+msgid "Your email is not yet validated."
+msgstr "Votre adresse email n'a pas été validée."
+
+#: talks/views.py:183
+msgid "The carpool user email is not yet validated."
+msgstr "L'adresse email de cet utilisateur n'a pas été validée."
+
+#: utils/models.py:45
+#, python-format
+msgid "%(day)d is not a valid day of week."
+msgstr "%(day)d n'est pas un jour de la semaine valide."
+
+#: utils/models.py:49
+msgid "This list must contain only integers."
+msgstr "Cette liste ne doit contenir que des entiers."
+
+#: utils/widgets.py:27
+msgid "Yes"
+msgstr "Oui"
+
+#: utils/widgets.py:28
+msgid "No"
+msgstr "Non"

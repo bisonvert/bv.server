@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<h2>{% trans "List of API access" %}</h2>
+<p> {% trans "api_list_description" %} </p>
+{% if consumers %}  
+<table id="access_list" class="pg_list">
+<thead>
+    <tr>
+        <th>{% trans "Name" %}</th>
+        <th>{% trans "Key" %}</th>
+        <th>{% trans "Secret" %}</th>
+        <th>{% trans "Status" %}</th>
+    </tr>
+</thead>
+<tbody>
+{% for consumer in consumers %}
+    <tr class="{% cycle 'row1' 'row2' %}">
+        <td>{{consumer.name}}</td>
+        <td>{{consumer.key}}</td>
+        <td>{{consumer.secret}}</td>
+        <td>{{consumer.status}}</td>
+    </tr>
+{% endfor %}
+</tbody>
+</table>
+{% else %}
+{% trans "You have no API access (yet)" %}
+{% endif %}
+<div class="center padding10">
+    <a href=" {% url api:createaccess %}" class="form_button"> {% trans "Request an API access" %}</a>
+</div>
+{% endblock %}
+    
+

@@ -1,0 +1,1187 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-12-09 15:02+0100\n"
+"PO-Revision-Date: 2009-12-09 15:15\n"
+"Last-Translator: <a@m.fr>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Translated-Using: django-rosetta 0.5.1\n"
+
+#: base.html:34
+msgid "Home"
+msgstr "Accueil"
+
+#: base.html:36 carpool/add_modify_trip.html:9 carpool/my_trips.html:5
+#: carpool/testview.html:10 carpool/trip_results.html:8
+msgid "My trips"
+msgstr "Mes annonces"
+
+#: base.html:37 talks/list_talk.html:5
+msgid "My talks"
+msgstr "Mes négociations"
+
+#: base.html:38 rating/base.html:5
+msgid "My reports"
+msgstr "Mes évaluations"
+
+#: base.html:39 base.html.py:42 accounts/base.html:5
+#: carpool/add_modify_trip.html:8 carpool/testview.html:9
+#: carpool/trip_results.html:7
+msgid "My account"
+msgstr "Mon compte"
+
+#: base.html:40
+msgid "My contacts"
+msgstr "Mes contacts"
+
+#: base.html:53
+msgid "Logout"
+msgstr "Déconnexion"
+
+#: base.html:54
+msgid "Connected"
+msgstr "Connecté"
+
+#: base.html:56 accounts/login.html:9
+msgid "Login"
+msgstr "Connexion"
+
+#: base.html:57 accounts/register.html:5 accounts/register.html.py:9
+msgid "Registration"
+msgstr "Inscription"
+
+#: base.html:75 carpool/confirm_contact.html:5 carpool/contact.html:5
+#: talks/list_talk.html:43
+msgid "Contact"
+msgstr "Contact"
+
+#: base.html:79
+msgid "Depart from"
+msgstr "Au départ de"
+
+#: base.html:82 carpool/home_rmll2009.html:122
+msgid "Arrival to"
+msgstr "A destination de"
+
+#: base.html:84 carpool/home_rmll2009.html:123
+msgid "Other cities"
+msgstr "Autres villes"
+
+#: base_openlayers.html:42
+msgid "normal map"
+msgstr "plan"
+
+#: base_openlayers.html:46
+msgid "satellite map"
+msgstr "vue satellite"
+
+#: base_openlayers.html:50
+msgid "hybrid map"
+msgstr "vue mixte"
+
+#: base_openlayers.html:54
+msgid "physical map"
+msgstr "vue relief"
+
+#: base_openlayers.html:86
+msgid "Base Layers"
+msgstr "Fonds de carte"
+
+#: base_openlayers.html:87
+msgid "Overlays"
+msgstr "Couches d'informations"
+
+#: accounts/confirm_new_password.html:5
+msgid "New password set"
+msgstr "Nouveau mot de passe attribué"
+
+#: accounts/confirm_registration.html:5
+msgid "Your account was successfully created"
+msgstr "Votre compte a bien été créé"
+
+#: accounts/edit_contact.html:5
+msgid "My Contacts"
+msgstr "Mes contacts"
+
+#: accounts/edit_preferences.html:5 accounts/nav.html:3
+msgid "My preferences"
+msgstr "Mes préférences"
+
+#: accounts/edit_preferences.html:8
+msgid "Your preferences were successfully saved."
+msgstr "Vos préférences ont bien été enregistrées."
+
+#: accounts/edit_preferences.html:11 accounts/edit_profile.html:35
+#: accounts/edit_profile.html.py:61 accounts/edit_profile.html:72
+#: carpool/add_modify_trip.html:29 carpool/add_modify_trip.html.py:57
+#: carpool/add_modify_trip.html:81 carpool/add_modify_trip.html.py:94
+#: carpool/add_modify_trip.html:145 carpool/search_trip.html:41
+#: carpool/search_trip.html.py:75 carpool/search_trip.html:111
+#: carpool/testview.html:30 carpool/testview.html.py:54
+#: carpool/testview.html:68 carpool/testview.html.py:98
+#: carpool/trip_results.html:16 carpool/trip_results.html.py:41
+#: carpool/trip_results.html:56 carpool/trip_results.html.py:71
+msgid "Help"
+msgstr "Aide"
+
+#: accounts/edit_preferences.html:11 accounts/edit_profile.html:14
+msgid "Do not forget to validate your modifications by clicking on the &quot;Save&quot; button on bottom."
+msgstr "N'oubliez pas de valider les modifications en cliquant sur le bouton &quot;Enregistrer&quot; en bas de page."
+
+#: accounts/edit_preferences.html:17 accounts/edit_profile.html:20
+msgid "Error : please check the form."
+msgstr "Erreur : Veuillez vérifier la saisie du formulaire."
+
+#: accounts/edit_preferences.html:22 carpool/add_modify_trip.html:187
+#: carpool/testview.html:111
+msgid "General options"
+msgstr "Informations générales"
+
+#: accounts/edit_preferences.html:32
+msgid "Driver preferences"
+msgstr "Préférences en tant que conducteur"
+
+#: accounts/edit_preferences.html:41
+msgid "Passenger preferences"
+msgstr "Préférences en tant que passager"
+
+#: accounts/edit_preferences.html:50 accounts/edit_profile.html:101
+#: carpool/add_modify_trip.html:272 carpool/testview.html:135
+#: carpool/testview2.html:11
+msgid "Save"
+msgstr "Enregistrer"
+
+#: accounts/edit_preferences.html:52 accounts/edit_profile.html:103
+#: carpool/add_modify_trip.html:274 carpool/testview.html:136
+#: carpool/tools/choose_iframe_form.html:32
+#: carpool/tools/choose_iframe_list.html:22 rating/rate_user.html:25
+#: talks/cancel_talk.html:19 talks/contact_user.html:41
+#: talks/delete_trip.html:24
+msgid "Cancel"
+msgstr "Annuler"
+
+#: accounts/edit_preferences.html:67
+msgid "TT_HELP_PREFERENCES"
+msgstr "Ces informations sont facultatives.<br />Si vous les remplissez, elles serviront à renseigner les critères optionnels que vous pouvez définir lorsque vous créez une annonce.<br />Bien sûr, ces critères restent modifiables dans le formulaire de création d'annonce."
+
+#: accounts/edit_profile.html:5 accounts/nav.html:2
+msgid "My profile"
+msgstr "Mon profil"
+
+#: accounts/edit_profile.html:8
+msgid "You modified your address email before validating the last one. The last validation email your received is not valid anymore."
+msgstr "Vous avez modifié votre adresse email avant de valider la précédente. Le dernier mail de validation que vous avez reçu n'est maintenant plus valide."
+
+#: accounts/edit_profile.html:11
+msgid "Your profile was successfully saved."
+msgstr "Votre profil a bien été enregistré."
+
+#: accounts/edit_profile.html:25
+msgid "General informations"
+msgstr "Informations générales"
+
+#: accounts/edit_profile.html:28
+msgid "Username:"
+msgstr "Identifiant:"
+
+#: accounts/edit_profile.html:38
+msgid "Your email address is not validated. Please check your emails. While your email address is not validated, you can not contact other carpool users and be contacted."
+msgstr "Votre adresse email est en attente de validation. Veuillez consulter votre boîte aux lettres. Tant que votre adresse email n'est pas validée, vous ne pouvez ni prendre contact avec d'autres utilisateurs, ni être contacté."
+
+#: accounts/edit_profile.html:40
+#, python-format
+msgid "Your new email address is not validated. Please check your emails. While your new email address is not validated, you will be contacted by other carpool users to this email address: %(user_email)s."
+msgstr "Votre adresse email est en attente de validation. Veuillez consulter votre boîte aux lettres. Tant que votre adresse email n'est pas validée, vous serez contacté par les autres utilisateurs à cette adresse: %(user_email)s."
+
+#: accounts/edit_profile.html:44
+msgid "Language:"
+msgstr "Choisir un langage"
+
+#: accounts/edit_profile.html:55
+msgid "Password change"
+msgstr "Changement de mot de passe"
+
+#: accounts/edit_profile.html:70
+msgid "Personal informations"
+msgstr "Informations personnelles"
+
+#: accounts/edit_profile.html:78
+msgid "Personal address"
+msgstr "Adresse personnelle"
+
+#: accounts/edit_profile.html:82
+msgid "number, way"
+msgstr "numéro, rue"
+
+#: accounts/edit_profile.html:87
+msgid "address complement"
+msgstr "complément d'adresse"
+
+#: accounts/edit_profile.html:93
+msgid "zip code / city"
+msgstr "code postal / ville"
+
+#: accounts/edit_profile.html:108 accounts/new_password.html:20
+#: accounts/register.html:17 carpool/contact.html:17 rating/rate_user.html:29
+#: talks/cancel_talk.html:23 talks/contact_user.html:46
+#: talks/delete_trip.html:28
+msgid "mandatory field"
+msgstr "champ obligatoire"
+
+#: accounts/edit_profile.html:122
+msgid "TT_HELP_PWD"
+msgstr "Vous êtes le seul à connaître votre mot de passe, même nos services n'y ont pas accès puisqu'il est stocké crypté (illisible) dans notre base de données.<br />Ne le donnez à personne !"
+
+#: accounts/edit_profile.html:123
+#, python-format
+msgid "TT_EMAIL_PWD %(PROJECT_NAME)s"
+msgstr "Nous nous engageons à ne jamais dévoiler votre adresse email.<br />Elle ne sera utilisée que pour communiquer avec vous à propos des services %(PROJECT_NAME)s."
+
+#: accounts/edit_profile.html:124
+#, python-format
+msgid "TT_HELP_PERSONAL_INFO %(PROJECT_NAME)s"
+msgstr "Ces informations sont confidentielles et ne seront jamais divulguées par %(PROJECT_NAME)s."
+
+#: accounts/login.html:5
+msgid "Please login to access to your account"
+msgstr "Veuillez vous identifier pour accéder à votre compte"
+
+#: accounts/login.html:18 accounts/new_password.html:16
+#: accounts/register.html:13 carpool/choose_depart_from_arrival_to.html:19
+#: carpool/tools/choose_iframe_form.html:30
+#: carpool/tools/choose_iframe_list.html:20
+msgid "Validate"
+msgstr "Valider"
+
+#: accounts/login.html:23
+msgid "Password forgotten ?"
+msgstr "Mot de passe oublié ?"
+
+#: accounts/login.html:23 accounts/login.html.py:26
+msgid "Click here"
+msgstr "Cliquez ici"
+
+#: accounts/login.html:26
+msgid "Not yet registered ?"
+msgstr "Pas encore inscrit ?"
+
+#: accounts/login.html:26
+msgid "and follow the registration process."
+msgstr "et suivez la procédure d'inscription."
+
+#: accounts/new_password.html:5
+msgid "Password forgotten"
+msgstr "Mot de passe oublié"
+
+#: accounts/new_password.html:12
+msgid "New password form"
+msgstr "Formulaire d'envoi d'un nouveau mot de passe"
+
+#: accounts/validate_email.html:5
+msgid "Email address validation"
+msgstr "Validation de votre adresse email"
+
+#: accounts/validate_email.html:8
+msgid "This validation link is not valid. May be your email was already validated ?"
+msgstr "Ce lien de validation n'est pas valide. Peut-être avez-vous déjà validé votre adresse email ?"
+
+#: accounts/validate_email.html:9
+msgid "We invite you to check the validation email we sent to you, and to copy/paste the validation link in your browser URL bar if you can not click on it."
+msgstr "Quoi qu'il en soit, nous vous invitons à vérifier l'email de validation que nous vous avons envoyé, et de copier/coller le lien d'activation qu'il contient dans la barre d'adresse de votre navigateur si vous ne pouvez pas cliquer dessus."
+
+#: accounts/validate_email.html:11
+msgid "You email address is validated."
+msgstr "Votre adresse email est validée."
+
+#: carpool/add_modify_trip.html:5 carpool/testview.html:6
+msgid "Trip modification"
+msgstr "Modification d'une annonce"
+
+#: carpool/add_modify_trip.html:5 carpool/add_modify_trip.html.py:13
+#: carpool/testview.html:6 carpool/testview.html.py:14
+msgid "New trip"
+msgstr "Nouvelle annonce"
+
+#: carpool/add_modify_trip.html:19 carpool/testview.html:20
+msgid "Route definition"
+msgstr "Définition du trajet"
+
+#: carpool/add_modify_trip.html:23 feeds/atom_description.html:34
+#: feeds/rss_description.html:34
+msgid "Trip type"
+msgstr "Type de trajet"
+
+#: carpool/add_modify_trip.html:25 carpool/depart_from_arrival_to.html:106
+#: carpool/my_trips.html:81 carpool/trip_list.html:86
+#: carpool/tools/iframe_list.html:58 rating/list_tempreports.html:68
+#: rating/rate_user.html:18 talks/list_talk.html:81
+msgid "Offer"
+msgstr "Offre"
+
+#: carpool/add_modify_trip.html:26 carpool/depart_from_arrival_to.html:109
+#: carpool/my_trips.html:84 carpool/trip_list.html:89
+#: carpool/tools/iframe_list.html:61 rating/list_tempreports.html:71
+#: rating/rate_user.html:18 talks/list_talk.html:84
+msgid "Demand"
+msgstr "Demande"
+
+#: carpool/add_modify_trip.html:27 carpool/depart_from_arrival_to.html:111
+#: carpool/my_trips.html:86 carpool/trip_list.html:91
+#: carpool/tools/iframe_list.html:63 rating/list_tempreports.html:73
+#: rating/rate_user.html:18 talks/list_talk.html:86
+msgid "Both"
+msgstr "Indifférent"
+
+#: carpool/add_modify_trip.html:33
+msgid "Trip name"
+msgstr "Nom de l'annonce"
+
+#: carpool/add_modify_trip.html:40
+msgid "Departure city"
+msgstr "Ville de départ"
+
+#: carpool/add_modify_trip.html:44
+msgid "Departure address"
+msgstr "Adresse de départ"
+
+#: carpool/add_modify_trip.html:48
+msgid "Arrival city"
+msgstr "Ville d'arrivée"
+
+#: carpool/add_modify_trip.html:52
+msgid "Arrival address"
+msgstr "Adresse d'arrivée"
+
+#: carpool/add_modify_trip.html:56 carpool/testview.html:29
+msgid "Place on the map"
+msgstr "Placer sur la carte"
+
+#: carpool/add_modify_trip.html:71 carpool/trip_results.html:61
+msgid "Driver"
+msgstr "Conducteur"
+
+#: carpool/add_modify_trip.html:77 carpool/add_modify_trip.html.py:90
+#: carpool/search_trip.html:38 carpool/testview.html:50
+#: carpool/testview.html.py:64 carpool/trip_results.html:52
+#: carpool/trip_results.html.py:67
+msgid "area around trip"
+msgstr "périmètre de recherche"
+
+#: carpool/add_modify_trip.html:84 carpool/trip_results.html:46
+msgid "Passenger"
+msgstr "Passager"
+
+#: carpool/add_modify_trip.html:101 carpool/testview.html:76
+msgid "Temporal criterion"
+msgstr "Critères temporels"
+
+#: carpool/add_modify_trip.html:105
+msgid "Trip Frequency"
+msgstr "Fréquence du trajet"
+
+#: carpool/add_modify_trip.html:107
+msgid "Ponctual"
+msgstr "Ponctuel"
+
+#: carpool/add_modify_trip.html:108 carpool/depart_from_arrival_to.html:92
+#: carpool/my_trips.html:67 carpool/trip_details.html:11
+#: carpool/trip_details.html.py:36 carpool/trip_list.html:72
+#: carpool/tools/iframe_list.html:47 feeds/atom_description.html:13
+#: feeds/rss_description.html:13 rating/list_tempreports.html:59
+#: talks/list_talk.html:67
+msgid "Regular"
+msgstr "Régulier"
+
+#: carpool/add_modify_trip.html:113 carpool/depart_from_arrival_to.html:74
+#: carpool/my_trips.html:45 carpool/trip_list.html:54 talks/list_talk.html:41
+msgid "Departure at about"
+msgstr "Départ aux alentours de"
+
+#: carpool/add_modify_trip.html:123 carpool/depart_from_arrival_to.html:73
+#: carpool/my_trips.html:44 carpool/search_trip.html:53
+#: carpool/trip_list.html:53 carpool/tools/iframe_list.html:28
+#: rating/list_my_reports.html:37 rating/list_other_reports.html:37
+#: rating/list_tempreports.html:39 talks/list_talk.html:40
+msgid "Date"
+msgstr "Date"
+
+#: carpool/add_modify_trip.html:140 carpool/search_trip.html:70
+#: carpool/testview.html:93 carpool/trip_results.html:35
+msgid "date interval"
+msgstr "intervalle de temps"
+
+#: carpool/add_modify_trip.html:152
+msgid "Mo"
+msgstr "Lu"
+
+#: carpool/add_modify_trip.html:153
+msgid "Tu"
+msgstr "Ma"
+
+#: carpool/add_modify_trip.html:154
+msgid "We"
+msgstr "Me"
+
+#: carpool/add_modify_trip.html:155
+msgid "Th"
+msgstr "Je"
+
+#: carpool/add_modify_trip.html:156
+msgid "Fr"
+msgstr "Ve"
+
+#: carpool/add_modify_trip.html:157
+msgid "Sa"
+msgstr "Sa"
+
+#: carpool/add_modify_trip.html:158
+msgid "Su"
+msgstr "Di"
+
+#: carpool/add_modify_trip.html:179 carpool/testview.html:104
+msgid "Options"
+msgstr "Critères optionnels"
+
+#: carpool/add_modify_trip.html:202 carpool/testview.html:118
+#: carpool/trip_details.html:70
+msgid "Driver options"
+msgstr "Critères en tant que conducteur"
+
+#: carpool/add_modify_trip.html:237 carpool/testview.html:122
+#: carpool/testview2.html:7 carpool/trip_details.html:100
+msgid "Passenger options"
+msgstr "Critères en tant que passager"
+
+#: carpool/add_modify_trip.html:279 carpool/testview.html:139
+msgid "Return trip"
+msgstr "Trajet retour"
+
+#: carpool/add_modify_trip.html:287 carpool/testview.html:144
+msgid "Create return trip"
+msgstr "Créer le trajet retour"
+
+#: carpool/add_modify_trip.html:316 carpool/depart_from_arrival_to.html:71
+#: carpool/my_trips.html:42 carpool/search_trip.html:8
+#: carpool/testview.html:174 carpool/trip_details.html:29
+#: carpool/trip_list.html:51 carpool/trip_results.html:127
+#: carpool/tools/iframe_list.html:26 feeds/atom_description.html:6
+#: feeds/rss_description.html:6 rating/list_tempreports.html:37
+#: talks/list_talk.html:38
+msgid "Departure"
+msgstr "Départ"
+
+#: carpool/add_modify_trip.html:331 carpool/testview.html:189
+#: carpool/trip_results.html:142
+#, python-format
+msgid "Check point n°%(count)s"
+msgstr "Point de passage n°%(count)s"
+
+#: carpool/add_modify_trip.html:332 carpool/my_trips.html:104
+#: carpool/testview.html:190
+msgid "Delete"
+msgstr "Supprimer"
+
+#: carpool/add_modify_trip.html:346 carpool/depart_from_arrival_to.html:72
+#: carpool/my_trips.html:43 carpool/search_trip.html:20
+#: carpool/testview.html:204 carpool/trip_details.html:32
+#: carpool/trip_list.html:52 carpool/trip_results.html:156
+#: carpool/tools/iframe_list.html:27 feeds/atom_description.html:9
+#: feeds/rss_description.html:9 rating/list_tempreports.html:38
+#: talks/list_talk.html:39
+msgid "Arrival"
+msgstr "Arrivée"
+
+#: carpool/add_modify_trip.html:376 carpool/testview.html:234
+msgid "Departure / Arrival / Check Points"
+msgstr "Départ / Arrivée / Points de passage"
+
+#: carpool/add_modify_trip.html:377 carpool/search_trip.html:134
+#: carpool/testview.html:235 carpool/trip_details.html:162
+#: carpool/trip_results.html:184
+msgid "Trips / search areas"
+msgstr "Trajets / Zones de recherche"
+
+#: carpool/add_modify_trip.html:422 carpool/testview.html:280
+msgid "TT_HELP_TRIP_TYPE"
+msgstr "Définissez le type de votre trajet:<br />Offre: vous avez un véhicule et vous cherchez des passagers.<br />Demande: vous cherchez un conducteur.<br />Indifférent: vous avez un véhicule et vous proposez d'être le conducteur, mais vous acceptez aussi de devenir passager dans un autre véhicule si l'occasion se présente."
+
+#: carpool/add_modify_trip.html:423 carpool/testview.html:281
+msgid "TT_HELP_MAP"
+msgstr "Définissez votre itinéraire:<br />Pour ajouter un point de passage, cliquez sur le bouton &laquo;Drapeau&raquo; en haut à droite de la carte, puis cliquez sur la carte.<br />Pour supprimer un point de passage, cliquez sur le drapeau associé, puis sur le lien &laquo;supprimer&raquo;.<br />&laquo;Glissez / Déposez&raquo; un drapeau pour déplacer un point."
+
+#: carpool/add_modify_trip.html:424 carpool/testview.html:282
+msgid "TT_HELP_DATE"
+msgstr "Vous pouvez élargir votre recherche en définissant un intervalle de temps autour de la date de départ.<br />Pour cela il suffit de déplacer les curseurs et de les positionner sur les nombres de jours qui vous conviennent avant et après la date de départ."
+
+#: carpool/add_modify_trip.html:425 carpool/search_trip.html:201
+#: carpool/testview.html:283 carpool/trip_results.html:225
+msgid "TT_HELP_OFFER_RADIUS"
+msgstr "Vous pouvez élargir votre recherche en définissant le détour que vous acceptez de faire pour prendre vos passagers.<br />Pour cela déplacez le curseur et positionnez-le sur la distance qui vous convient."
+
+#: carpool/add_modify_trip.html:426 carpool/search_trip.html:201
+#: carpool/testview.html:284 carpool/trip_results.html:226
+msgid "TT_HELP_DEMAND_RADIUS"
+msgstr "Vous pouvez élargir votre recherche en définissant la distance que vous pouvez faire par vos propres moyens pour rejoindre votre conducteur.<br />Pour cela déplacez le curseur et positionnez-le sur la distance qui vous convient."
+
+#: carpool/choose_depart_from_arrival_to.html:5
+msgid "Display trip list arrival to/departure from a city"
+msgstr "Afficher la liste des annonces au départ/à destination d'une ville"
+
+#: carpool/choose_depart_from_arrival_to.html:15
+#: carpool/tools/choose_iframe_list.html:16
+msgid "Depart/Arrival form"
+msgstr "Affichez la liste des annonces pour la ville de votre choix"
+
+#: carpool/confirm_contact.html:7
+msgid "Your message has been sent. It will be treated as soon as possible."
+msgstr "Votre message a bien été envoyé. Il sera traité dans les plus brefs délais."
+
+#: carpool/contact.html:9 talks/contact_user.html:31
+msgid "Contact form"
+msgstr "Formulaire de contact"
+
+#: carpool/contact.html:13 talks/cancel_talk.html:17
+#: talks/contact_user.html:38 talks/delete_trip.html:22
+msgid "Send"
+msgstr "Envoyer"
+
+#: carpool/depart_from_arrival_to.html:6
+#, python-format
+msgid "Depart from %(city_name)s"
+msgstr "Au départ de %(city_name)s"
+
+#: carpool/depart_from_arrival_to.html:6
+#: carpool/depart_from_arrival_to.html:16 carpool/trip_list.html:5
+#: carpool/trip_results.html:11
+msgid "RSS feed"
+msgstr "S'abonner au flux RSS (nécessite un aggrégateur)"
+
+#: carpool/depart_from_arrival_to.html:11
+#, python-format
+msgid "See arrival to %(city_name)s"
+msgstr "Voir les annonces à destination de %(city_name)s"
+
+#: carpool/depart_from_arrival_to.html:13
+msgid "See depart from other city"
+msgstr "Voir les annonces au départ d'une autre ville"
+
+#: carpool/depart_from_arrival_to.html:16
+#, python-format
+msgid "Arrival to %(city_name)s"
+msgstr "A destination de %(city_name)s"
+
+#: carpool/depart_from_arrival_to.html:21
+#, python-format
+msgid "See depart from %(city_name)s"
+msgstr "Voir les annonces au départ de %(city_name)s"
+
+#: carpool/depart_from_arrival_to.html:23
+msgid "See arrival to other city"
+msgstr "Voir les annonces à destination d'une autre ville"
+
+#: carpool/depart_from_arrival_to.html:29 carpool/my_trips.html:13
+#: carpool/trip_list.html:9
+msgid "Number of trip displayed by page:"
+msgstr "Nombre d'annonces affichées par page:"
+
+#: carpool/depart_from_arrival_to.html:65
+#: carpool/depart_from_arrival_to.html:135 carpool/my_trips.html:35
+#: carpool/my_trips.html.py:123 carpool/trip_list.html:45
+#: carpool/trip_list.html.py:115
+#, python-format
+msgid "%(counter)s trip"
+msgid_plural "%(counter)s trips"
+msgstr[0] "%(counter)s annonce"
+msgstr[1] "%(counter)s annonces"
+
+#: carpool/depart_from_arrival_to.html:75 carpool/my_trips.html:46
+#: carpool/trip_list.html:55 carpool/tools/iframe_list.html:29
+#: rating/list_tempreports.html:40 talks/list_talk.html:42
+msgid "Type"
+msgstr "Type"
+
+#: carpool/depart_from_arrival_to.html:76 carpool/trip_list.html:56
+#: carpool/tools/iframe_list.html:31
+msgid "See details"
+msgstr "Voir les détails"
+
+#: carpool/depart_from_arrival_to.html:116 carpool/trip_list.html:96
+#: carpool/tools/iframe_list.html:71
+msgid "View trip details"
+msgstr "Voir les détails de l'annonce"
+
+#: carpool/depart_from_arrival_to.html:138 carpool/my_trips.html:127
+#: carpool/trip_list.html:118 carpool/tools/iframe_list.html:78
+msgid "No trip."
+msgstr "Aucune annonce."
+
+#: carpool/home.html:16 carpool/home.html.py:33 carpool/home_rmll2009.html:21
+#: carpool/home_rmll2009.html.py:39 carpool/search_trip.html:11
+#: carpool/search_trip.html.py:23 carpool/tools/iframe_form.html:25
+#: carpool/tools/iframe_form.html.py:43 carpool/tools/rmll2008_form.html:25
+#: carpool/tools/rmll2008_form.html:43
+msgid "favorite places"
+msgstr "destinations favorites"
+
+#: carpool/home.html:21 carpool/home.html.py:38 carpool/home_rmll2009.html:26
+#: carpool/home_rmll2009.html.py:44 carpool/search_trip.html:16
+#: carpool/search_trip.html.py:28 carpool/tools/iframe_form.html:33
+#: carpool/tools/iframe_form.html.py:51 carpool/tools/rmll2008_form.html:32
+#: carpool/tools/rmll2008_form.html:50
+msgid "close"
+msgstr "fermer"
+
+#: carpool/home.html:68 carpool/home_rmll2009.html:75
+#: carpool/tools/rmll2008_form.html:68
+msgid "I'm searching for a driver"
+msgstr "Je cherche un conducteur"
+
+#: carpool/home.html:70 carpool/home_rmll2009.html:77
+#: carpool/tools/rmll2008_form.html:69
+msgid "I'm searching for passengers"
+msgstr "Je cherche des passagers"
+
+#: carpool/home.html:75 carpool/home_rmll2009.html:82
+#: carpool/tools/iframe_form.html:78
+msgid "See all trips"
+msgstr "Voir toutes les annonces"
+
+#: carpool/home.html:83 carpool/home_rmll2009.html:89
+msgid "PHILOSOPHY"
+msgstr "<br />C'est efficace, rapide et simple d'utilisation.<br />Trouvez un conducteur ou des passagers en deux clics.<br />Réduisez vos frais de déplacement.<br />Contribuez à la réduction des gaz à effet de serre.<br />Alors rejoignez vite la communauté des bisons verts !<br />"
+
+#: carpool/my_trips.html:8
+msgid "Add a new trip"
+msgstr "Créer une nouvelle annonce"
+
+#: carpool/my_trips.html:41
+msgid "Trip"
+msgstr "Trajet"
+
+#: carpool/my_trips.html:47
+msgid "Email alert"
+msgstr "Alerte email"
+
+#: carpool/my_trips.html:48 rating/list_tempreports.html:43
+#: talks/list_talk.html:44
+msgid "Actions"
+msgstr "Actions"
+
+#: carpool/my_trips.html:92 carpool/trip_details.html:75
+#: carpool/trip_details.html.py:78 carpool/trip_details.html:81
+#: carpool/trip_details.html.py:105 carpool/trip_details.html:108
+#: carpool/trip_details.html.py:111
+msgid "Yes"
+msgstr "Oui"
+
+#: carpool/my_trips.html:94 carpool/my_trips.html.py:98
+msgid "Enable/Disable alert"
+msgstr "Activer/Désactiver l'alerte"
+
+#: carpool/my_trips.html:94
+msgid "Disable"
+msgstr "Désactiver"
+
+#: carpool/my_trips.html:96 carpool/trip_details.html:75
+#: carpool/trip_details.html.py:78 carpool/trip_details.html:81
+#: carpool/trip_details.html.py:105 carpool/trip_details.html:108
+#: carpool/trip_details.html.py:111
+msgid "No"
+msgstr "Non"
+
+#: carpool/my_trips.html:98
+msgid "Enable"
+msgstr "Activer"
+
+#: carpool/my_trips.html:102
+msgid "View results"
+msgstr "Voir les résultats"
+
+#: carpool/my_trips.html:103
+msgid "Modify"
+msgstr "Modifier"
+
+#: carpool/my_trips.html:104
+msgid "Do you REALLY want to DELETE this trip ?"
+msgstr "Etes-vous SÛR(E) de vouloir SUPPRIMER cette annonce ?"
+
+#: carpool/search_trip.html:31
+msgid "Find trip around departure and arrival, in a radius of:"
+msgstr "Chercher des trajets autour du départ et de l'arrivée dans un rayon de "
+
+#: carpool/search_trip.html:49
+msgid "Reload search"
+msgstr "Relancer la recherche"
+
+#: carpool/search_trip.html:56
+msgid "Find trip around this date:"
+msgstr "Chercher des trajets proche de cette date"
+
+#: carpool/search_trip.html:84 carpool/trip_results.html:10
+#: carpool/trip_results.html.py:79
+msgid "Trip results"
+msgstr "Résultats"
+
+#: carpool/search_trip.html:110
+msgid "Save this search"
+msgstr "Enregistrer cette recherche"
+
+#: carpool/search_trip.html:132
+msgid "Departure / Arrival (search - results)"
+msgstr "Départ / Arrivée (recherche - résultats)"
+
+#: carpool/search_trip.html:199
+msgid "TT_HELP_SAVE_SEARCH"
+msgstr "Vous pouvez sauver cette recherche et la transformer en annonce de covoiturage.<br />Si vous cliquez sur le bouton &laquo;Enregistrer cette recherche&raquo;, une page de création d'annonce préremplie avec vos critères de recherche vous est proposée."
+
+#: carpool/search_trip.html:200 carpool/trip_results.html:224
+msgid "TT_HELP_DATE_SEARCH"
+msgstr "Vous pouvez élargir votre recherche en définissant un intervalle de temps autour de la date de départ.<br />Pour cela il suffit de déplacer les curseurs et de les positionner sur les nombres de jours qui vous conviennent avant et après la date de départ.<br />Toutes les annonces qui correspondent à votre trajet dans cet intervalle de temps vous seront proposées."
+
+#: carpool/set_language.html:5
+msgid "Set language"
+msgstr "Choisir un langage"
+
+#: carpool/simple_home.html:30
+msgid "As passenger"
+msgstr "Comme passager"
+
+#: carpool/simple_home.html:31
+msgid "As driver"
+msgstr "Comme conducteur"
+
+#: carpool/testview.html:44
+msgid "Seek for a driver around"
+msgstr "Chercher un conducteur dans un rayon de"
+
+#: carpool/testview.html:58
+msgid "Allow passengers around"
+msgstr "Autoriser des passagers dans un rayon de"
+
+#: carpool/trip_details.html:8 carpool/trip_details.html.py:16
+msgid "Trip details"
+msgstr "Détails d'une annonce"
+
+#: carpool/trip_details.html:11 carpool/trip_details.html.py:40
+#: feeds/atom_description.html:17 feeds/rss_description.html:17
+msgid "Departure on"
+msgstr "Départ le"
+
+#: carpool/trip_details.html:19 feeds/atom_description.html:3
+#: feeds/rss_description.html:3
+msgid "Trip author"
+msgstr "Auteur de l'annonce"
+
+#: carpool/trip_details.html:23
+msgid "Contact this carpool user"
+msgstr "Contacter cet utilisateur"
+
+#: carpool/trip_details.html:25
+msgid "Please login to contact this carpool user"
+msgstr "Veuillez vous connecter pour contacter cet utilisateur"
+
+#: carpool/trip_details.html:36 carpool/trip_details.html.py:40
+#: feeds/atom_description.html:13 feeds/atom_description.html.py:17
+#: feeds/rss_description.html:13 feeds/rss_description.html.py:17
+msgid "at about"
+msgstr "aux alentours de"
+
+#: carpool/trip_details.html:43 feeds/atom_description.html:20
+#: feeds/rss_description.html:20
+msgid "Search by date"
+msgstr "Recherche par date"
+
+#: carpool/trip_details.html:48 feeds/atom_description.html:25
+#: feeds/rss_description.html:25
+msgid "Area around driver trip"
+msgstr "Périmètre de recherche conducteur"
+
+#: carpool/trip_details.html:53 feeds/atom_description.html:30
+#: feeds/rss_description.html:30
+msgid "Area around passenger trip"
+msgstr "Périmètre de recherche passager"
+
+#: carpool/trip_details.html:65 feeds/atom_description.html:38
+#: feeds/rss_description.html:38 rating/list_my_reports.html:40
+#: rating/list_other_reports.html:40
+msgid "Comment"
+msgstr "Commentaire"
+
+#: carpool/trip_details.html:65 carpool/trip_details.html.py:72
+#: carpool/trip_details.html:75 carpool/trip_details.html.py:78
+#: carpool/trip_details.html:81 carpool/trip_details.html.py:84
+#: carpool/trip_details.html:92 carpool/trip_details.html.py:102
+#: carpool/trip_details.html:114 carpool/trip_details.html.py:116
+msgid "Not specified"
+msgstr "Non précisé"
+
+#: carpool/trip_details.html:72
+msgid "Asking price by kilometer"
+msgstr "Prix demandé au kilomètre"
+
+#: carpool/trip_details.html:75
+msgid "Smokers accepted"
+msgstr "Accepte les fumeurs"
+
+#: carpool/trip_details.html:78
+msgid "Pets accepted"
+msgstr "Accepte les animaux"
+
+#: carpool/trip_details.html:81
+msgid "Place for luggages"
+msgstr "Place pour les bagages"
+
+#: carpool/trip_details.html:84
+msgid "Car type"
+msgstr "Type de de voiture"
+
+#: carpool/trip_details.html:88 carpool/trip_details.html.py:92
+msgid "Seats available"
+msgstr "Nombre de places disponibles"
+
+#: carpool/trip_details.html:88
+msgid "No more seats available"
+msgstr "Plus de place disponible"
+
+#: carpool/trip_details.html:102
+msgid "Maximum price by kilometer"
+msgstr "Prix maximum au kilomètre"
+
+#: carpool/trip_details.html:105
+msgid "Smokers accepted first"
+msgstr "Priorité aux offres acceptant les fumeurs"
+
+#: carpool/trip_details.html:108
+msgid "Pets accepted first"
+msgstr "Priorité aux offres acceptant les animaux"
+
+#: carpool/trip_details.html:111
+msgid "Place for luggages first"
+msgstr "Priorité aux offres ayant de la place pour les bagages"
+
+#: carpool/trip_details.html:114
+msgid "Car type first"
+msgstr "Priorité aux voitures de type"
+
+#: carpool/trip_details.html:116
+msgid "Minimum remaining seats"
+msgstr "Nombre minimum de places restantes"
+
+#: carpool/trip_details.html:122 feeds/atom_description.html:42
+#: feeds/rss_description.html:42
+msgid "Trip created on"
+msgstr "Annonce créée le"
+
+#: carpool/trip_details.html:122 feeds/atom_description.html:42
+#: feeds/rss_description.html:42
+msgid "last modification on"
+msgstr "dernière modification le"
+
+#: carpool/trip_details.html:160
+msgid "Departure / Arrival"
+msgstr "Départ / Arrivée"
+
+#: carpool/trip_list.html:5
+msgid "All trips"
+msgstr "Toutes les annonces"
+
+#: carpool/trip_results.html:11
+msgid "RSS feed for this trip"
+msgstr "S'abonner au flux RSS relatif à cette annonce (nécessite un aggrégateur)"
+
+#: carpool/trip_results.html:80
+msgid "Demands"
+msgstr "Demandes"
+
+#: carpool/trip_results.html:81
+msgid "Offers"
+msgstr "Offres"
+
+#: carpool/trip_results.html:101
+msgid "Save modifications"
+msgstr "Sauver les modifications"
+
+#: carpool/trip_results.html:182
+msgid "Departure / Arrival (search - results) & Check Points"
+msgstr "Départ / Arrivée (recherche - résultats) & Points de passage"
+
+#: carpool/trip_results.html:223
+msgid "TT_HELP_PERMALINK"
+msgstr "Pour promouvoir votre annonce, copiez ce lien sur votre blog, sur les forums ou dans vos emails."
+
+#: carpool/tools/choose_banner.html:5 carpool/tools/home.html:49
+#: carpool/tools/home.html.py:53 carpool/tools/home.html:57
+msgid "Add a BisonVert banner to your website !"
+msgstr "Insérez un bandeau BisonVert dans votre site web !"
+
+#: carpool/tools/choose_iframe_form.html:5 carpool/tools/home.html:29
+#: carpool/tools/home.html.py:33
+msgid "Display a carpool form in your website !"
+msgstr "Insérez un formulaire de covoiturage dans votre site web !"
+
+#: carpool/tools/choose_iframe_form.html:26
+msgid "Iframe carpool form"
+msgstr "Personnalisez votre formulaire"
+
+#: carpool/tools/choose_iframe_list.html:5 carpool/tools/home.html:39
+#: carpool/tools/home.html.py:43
+msgid "Display a list of trips from / to a city in your website !"
+msgstr "Insérez la liste des annonces au départ/à destination d'une ville dans votre site web !"
+
+#: carpool/tools/home.html:5
+#, python-format
+msgid "%(PROJECT_NAME)s's Tools"
+msgstr "Les outils %(PROJECT_NAME)s"
+
+#: carpool/tools/iframe_form.html:71
+msgid "Find a driver"
+msgstr "Trouver un conducteur"
+
+#: carpool/tools/iframe_form.html:72
+msgid "Find passengers"
+msgstr "Trouver des passagers"
+
+#: carpool/tools/iframe_list.html:17
+#, python-format
+msgid "Depart from %(city_name)s last trips"
+msgstr "Dernières annonces au départ de %(city_name)s"
+
+#: carpool/tools/iframe_list.html:19
+#, python-format
+msgid "Arrival to %(city_name)s last trips"
+msgstr "Dernières annonces à destination de %(city_name)s"
+
+#: carpool/tools/iframe_list.html:30
+msgid "Last update"
+msgstr "Dernière mise à jour"
+
+#: carpool/tools/iframe_list.html:83 carpool/tools/iframe_list.html.py:85
+msgid "See more ..."
+msgstr "En savoir +"
+
+#: rating/list_my_reports.html:5 rating/nav.html:3
+msgid "Received reports"
+msgstr "Evaluations reçues"
+
+#: rating/list_my_reports.html:9 rating/list_other_reports.html:9
+#: rating/list_tempreports.html:9
+msgid "Number of report displayed by page:"
+msgstr "Nombre d'évaluations affichées par page:"
+
+#: rating/list_my_reports.html:31 rating/list_my_reports.html.py:75
+#: rating/list_other_reports.html:31 rating/list_other_reports.html.py:75
+#: rating/list_tempreports.html:31 rating/list_tempreports.html.py:113
+#, python-format
+msgid "%(counter)s report"
+msgid_plural "%(counter)s reports"
+msgstr[0] "%(counter)s évaluation"
+msgstr[1] "%(counter)s évaluations"
+
+#: rating/list_my_reports.html:38
+msgid "Evaluated by carpool user"
+msgstr "Evalué par l'utilisateur"
+
+#: rating/list_my_reports.html:39 rating/list_other_reports.html:39
+msgid "Mark"
+msgstr "Note"
+
+#: rating/list_my_reports.html:79 rating/list_other_reports.html:79
+msgid "No Report."
+msgstr "Pas d'évaluations."
+
+#: rating/list_other_reports.html:5 rating/nav.html:4
+msgid "Given reports"
+msgstr "Evaluations données"
+
+#: rating/list_other_reports.html:38
+msgid "Evaluated carpool user"
+msgstr "Utilisateur évalué"
+
+#: rating/list_tempreports.html:5 rating/nav.html:2
+msgid "My reports in progress"
+msgstr "Evaluations en cours"
+
+#: rating/list_tempreports.html:41
+msgid "Carpool user to rate"
+msgstr "Utilisateur à évaluer"
+
+#: rating/list_tempreports.html:42
+msgid "Write dates"
+msgstr "Dates de saisie de l'évaluation"
+
+#: rating/list_tempreports.html:87 rating/list_tempreports.html.py:91
+msgid "Rate this carpool user"
+msgstr "Evaluer cet utilisateur"
+
+#: rating/list_tempreports.html:117
+msgid "No Report in progress."
+msgstr "Pas d'évaluations en cours."
+
+#: rating/rate_user.html:5
+msgid "Rate a carpool user"
+msgstr "Evaluer cet utilisateur"
+
+#: rating/rate_user.html:14
+msgid "Rating form"
+msgstr "Formulaire d'évaluation"
+
+#: rating/rate_user.html:15
+msgid "Departure:"
+msgstr "Départ:"
+
+#: rating/rate_user.html:16
+msgid "Arrival:"
+msgstr "Arrivée:"
+
+#: rating/rate_user.html:17
+msgid "Departure date:"
+msgstr "Date de départ:"
+
+#: rating/rate_user.html:18
+msgid "Trip type:"
+msgstr "Type de trajet:"
+
+#: rating/rate_user.html:19
+msgid "Carpool user to rate:"
+msgstr "Utilisateur à évaluer:"
+
+#: rating/rate_user.html:23
+msgid "Rate"
+msgstr "Evaluer"
+
+#: talks/cancel_talk.html:5
+msgid "Cancel a talk"
+msgstr "Annuler une négociation"
+
+#: talks/cancel_talk.html:8
+msgid "Please give the reasons of this talk cancel. It will be forwarded to your carpool user contact."
+msgstr "Veuillez renseigner ce petit formulaire et indiquer la raison de l'annulation de cette négociation, afin d'avertir votre contact."
+
+#: talks/cancel_talk.html:13
+msgid "Cancel information"
+msgstr "Raison de l'annulation"
+
+#: talks/confirm_talk_validation.html:5
+msgid "Talk validated"
+msgstr "Négociation validée"
+
+#: talks/confirm_talk_validation.html:8
+msgid "The talk was validated."
+msgstr "La négociation est validée."
+
+#: talks/confirm_talk_validation.html:11
+msgid "You will receive an email in few days, which will ask you to rate your carpool partner."
+msgstr "Vous recevrez un email dans peu de temps pour vous demander d'évaluer votre compagnon de voyage."
+
+#: talks/contact_user.html:6
+msgid "Talk history"
+msgstr "Historique de la négociation"
+
+#: talks/contact_user.html:11
+msgid "Date:"
+msgstr "Date:"
+
+#: talks/contact_user.html:13 talks/contact_user.html.py:32
+msgid "From:"
+msgstr "De:"
+
+#: talks/contact_user.html:15 talks/contact_user.html.py:33
+msgid "To:"
+msgstr "Pour:"
+
+#: talks/contact_user.html:24 talks/list_talk.html:99
+msgid "Send a new message"
+msgstr "Envoyer un nouveau message"
+
+#: talks/contact_user.html:26
+msgid "Contact a carpool user"
+msgstr "Contacter un utilisateur"
+
+#: talks/contact_user.html:34
+msgid "Subject:"
+msgstr "Sujet:"
+
+#: talks/delete_trip.html:5
+msgid "Delete a trip"
+msgstr "Supprimer une annonce"
+
+#: talks/delete_trip.html:8
+msgid "At least one talk about this trip exist. Please give the reasons of this trip deletion. It will be forwarded to your carpool user contacts."
+msgstr "Il existe au moins une négociation à propos de cette annonce. Veuillez renseigner ce petit formulaire et indiquer la raison de la suppression de cette annonce, afin d'avertir vos contacts."
+
+#: talks/delete_trip.html:18
+msgid "Delete information"
+msgstr "Raisons de la suppression"
+
+#: talks/error_contact.html:5
+msgid "You can not contact this carpool user"
+msgstr "Vous ne pouvez pas contacter cet utilisateur"
+
+#: talks/error_contact.html:8
+msgid "You can not contact this carpool user because:"
+msgstr "Vous ne pouvez pas contacter cet utilisateur parce que:"
+
+#: talks/list_talk.html:9
+msgid "Number of talk displayed by page:"
+msgstr "Nombre de négociations affichées par page:"
+
+#: talks/list_talk.html:31 talks/list_talk.html.py:120
+#, python-format
+msgid "%(counter)s talk"
+msgid_plural "%(counter)s talks"
+msgstr[0] "%(counter)s négociation"
+msgstr[1] "%(counter)s négociations"
+
+#: talks/list_talk.html:52
+msgid "Other trip"
+msgstr "Autre annonce"
+
+#: talks/list_talk.html:54
+msgid "My trip"
+msgstr "Mon annonce"
+
+#: talks/list_talk.html:98
+msgid "View talk history"
+msgstr "Voir l'historique de la négociation"
+
+#: talks/list_talk.html:100
+msgid "Cancel talk"
+msgstr "Annuler la négociation"
+
+#: talks/list_talk.html:101
+msgid "Validate talk"
+msgstr "Valider la négociation"
+
+#: talks/list_talk.html:123
+msgid "No talk."
+msgstr "Aucune négociation."
+
+#~ msgid "FAQ"
+#~ msgstr "FAQ"
+
+#~ msgid "Terms and conditions"
+#~ msgstr "CGU"
+
+#~ msgid "About"
+#~ msgstr "A propos"
+
+#~ msgid "Tools"
+#~ msgstr "Outils"
+
+#~ msgid "show"
+#~ msgstr "voir"
+
+#~ msgid "Click there"
+#~ msgstr "Cliquez là"
+
+#~ msgid "Talk validation - Error"
+#~ msgstr "Validation d'une négociation - Erreur"

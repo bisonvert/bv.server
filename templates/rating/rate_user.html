@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+                <h2>{% trans "Rate a carpool user" %}</h2>
+
+                <form action="" method="post" id="rate_form">
+                    {% if error %}
+                    <ul class="errorlist">
+                        <li>{{ error }}</li>
+                    </ul>
+                    {% endif %}
+                    <fieldset id="rate_info">
+                        <legend>{% trans "Rating form" %}</legend>
+                        <p class="rate_info"><label>{% trans "Departure:" %}</label> <span>{{ tempreport.departure_city }}</span></p>
+                        <p class="rate_info"><label>{% trans "Arrival:" %}</label> <span>{{ tempreport.arrival_city }}</span></p>
+                        <p class="rate_info"><label>{% trans "Departure date:" %}</label> <span>{% if tempreport.regular %}{{ tempreport.print_dows }}{% else %}{{ tempreport.date|date:"d/m/Y" }}{% endif %}</span></p>
+                        <p class="rate_info"><label>{% trans "Trip type:" %}</label> <span>{% ifequal tempreport.type 0 %}{% trans "Offer" %}{% else %}{% ifequal tempreport.type 1 %}{% trans "Demand" %}{% else %}{% trans "Both" %}{% endifequal %}{% endifequal %}</span></p>
+                        <p class="rate_info"><label>{% trans "Carpool user to rate:" %}</label> <span>{% ifequal tempreport.user1.id user.id %}{{ tempreport.user2 }}{% else %}{{ tempreport.user1 }}{% endifequal %}</span></p>
+                        {{ form.as_p }}
+                    </fieldset>
+                    <div class="form_buttons">
+                        <input type="submit" id="btn_validate" class="form_button" value="{% trans "Rate" %}" />
+                        &nbsp;&nbsp;
+                        <input type="button" id="btn_cancel" class="form_button" value="{% trans "Cancel" %}" onclick="window.location='{% url rating:list_temp_reports 1 %}'" />
+                    </div>
+                </form>
+                <p>
+                    <span class="info">* {% trans "mandatory field" %}</span>
+                </p>
+{% endblock %}

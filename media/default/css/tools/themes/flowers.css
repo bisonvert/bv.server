@@ -1,0 +1,56 @@
+html {
+    font: normal 12px "Trebuchet MS", Verdana, "Lucida Grande", Georgia, Sans-Serif;
+    text-align: center;
+}
+
+/* Links */
+a, a:link, a:visited {
+    color: #336699;
+    text-decoration: none;
+}
+
+a:hover, a:active {
+    color: #ad5b1e;
+    text-decoration: underline;
+}
+
+/* Elements */
+img {
+    border: none;
+}
+
+span.info {
+    color: #6e6e6e;
+}
+
+label {
+    color: #883462;
+}
+
+/* Form */
+input {
+    border: 1px solid #bc4f8b;
+    background-color: #cc7aa7;
+}
+input:hover {
+    background-color: #bc4f8b;
+    border: 1px solid #bc4f8b;
+}
+
+input.form_button {
+    border: 1px solid #bc4f8b;
+    background:  #cc7aa7 url( ../../../img/tools/themes/flowers/bgButton.png) no-repeat left top;
+    color: #004268;
+}
+input.form_button:hover {
+    background-color: #bc4f8b;
+    background: #bc4f8b url( ../../../img/tools/themes/flowers/bgButton_over.png) no-repeat left top;
+    color: #004268;
+}
+
+/* Calendar */
+.calendar td.selected a { background-color: #C9DBED; }
+.calendar td a:hover, .timelist a:hover { background-color: #5b80b2; color:white; }
+.calendarbox .calendarnav-previous, .calendarbox .calendarnav-next { background-color:#C9DBED; color:white; }
+.calendarnav-previous:hover, .calendarnav-next:hover { background-color:#036; }
+ 

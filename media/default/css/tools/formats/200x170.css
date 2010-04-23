@@ -1,0 +1,42 @@
+html, body {
+    width: 200px;
+    height: 170px;
+    margin: 0;
+}
+
+h2 {
+    font-size: 12px;
+    margin: 2px 0 5px 0;
+}
+
+div#departure_container, div#arrival_container {
+    margin: 0;
+    padding: 2px;
+}
+
+label {
+    clear: left;
+    float: left;
+    width: 60px;
+    line-height: 22px;
+}
+
+input {
+    width: 130px;
+    padding: 2px 0;
+}
+
+input.form_button {
+    width: 140px;
+    margin-top: 5px;
+    font-size: 10px;
+}
+
+/* Elements to hide */
+span.info {
+    display: none;
+}
+
+.service {
+    display:none;
+}

@@ -1,0 +1,132 @@
+{% extends "accounts/base.html" %}
+{% load i18n fieldsets%}
+
+{% block accounts_content %}
+                <h3>{% trans "My profile" %}</h3>
+
+                {% if validation_key_not_valid %}
+                <p><span class="hl">{% trans "You modified your address email before validating the last one. The last validation email your received is not valid anymore." %}</span></p>
+                {% endif %}
+                {% if save_confirmation %}
+                <p>{% trans "Your profile was successfully saved." %}</p>
+                {% endif %}
+
+                <p><span class="hl">{% trans "Do not forget to validate your modifications by clicking on the &quot;Save&quot; button on bottom." %}</span></p>
+
+                <form id="userprofile_form" action="" method="post">
+
+                    {% if form.errors %}
+                    <ul class="errorlist">
+                        <li>{% trans "Error : please check the form." %}</li>
+                    </ul>
+                    {% endif %}
+
+                    <fieldset id="general_info">
+                        <legend>{% trans "General informations" %}</legend>
+
+                        <p>
+                            <label>{% trans "Username:" %}</label>
+                            <span id="id_username">{{ form.instance.user.username }}</span>
+                        </p>
+
+                        <p>
+                            {% if form.email.errors %}{{ form.email.errors }}{% endif %}
+                            {{ form.email.label_tag }} {{ form.email }} {{ form.email.help_text }}
+                            <img id="help_email" class="help" src="{{ MEDIA_URL }}img/icon_help.png" alt="{% trans "Help" %}" />
+                            {% if form.instance.validation %}
+                            {% if not form.instance.user.email %}
+                            <span id="email_info" class="hl">{% trans "Your email address is not validated. Please check your emails. While your email address is not validated, you can not contact other carpool users and be contacted." %}</span>
+                            {% else %}
+                            <span id="email_info" class="hl">{% blocktrans with form.instance.user.email as user_email %}Your new email address is not validated. Please check your emails. While your new email address is not validated, you will be contacted by other carpool users to this email address: {{ user_email }}.{% endblocktrans %}</span>
+                            {% endif %}
+                            {% endif %}
+                        </p>
+                            <label>{% trans "Language:" %}</label>
+                            <span id="id_language">
+                            {{ form.language }}
+                            </span>
+                        <p>
+                            
+                        </p>
+
+                    </fieldset>
+
+                    <fieldset id="password_info">
+                        <legend>{% trans "Password change" %}</legend>
+                        
+
+                        <p>
+                            {% if form.oldpassword.errors %}{{ form.oldpassword.errors }}{% endif %}
+                            {{ form.oldpassword.label_tag }} {{ form.oldpassword }}
+                            <img id="help_pwd" class="help" src="{{ MEDIA_URL }}img/icon_help.png" alt="{% trans "Help" %}" />
+                        </p>
+                        
+                        {% get_fieldset newpassword,newpasswordconfirm as password_fields from form %}
+                        {{ password_fields.as_p }}
+
+                    </fieldset>
+
+                    <fieldset id="personal_info">
+                        <legend>{% trans "Personal informations" %}</legend>
+
+                        <img id="help_personal_info" class="help" src="{{ MEDIA_URL }}img/icon_help.png" alt="{% trans "Help" %}" />
+                        
+                        {% get_fieldset lastname,firstname,phone,mobile_phone as personal_fields from form %}
+                        {{ personal_fields.as_p }}
+
+                        <p>
+                            <label id="home_address_label">{% trans "Personal address" %}:</label>
+                            <span id="home_address">
+                                <span class="address">
+                                {% if form.home_address.errors %}{{ form.home_address.errors }}{% endif %}
+                                {{ form.home_address }} {% trans "number, way" %}
+                                </span>
+
+                                <span class="address">
+                                {% if form.home_address2.errors %}{{ form.home_address2.errors }}{% endif %}
+                                {{ form.home_address2 }} {% trans "address complement" %}
+                                </span>
+
+                                <span>
+                                {% if form.home_zipcode.errors %}{{ form.home_zipcode.errors }}{% endif %}
+                                {% if form.home_city.errors %}{{ form.home_city.errors }}{% endif %}
+                                {{ form.home_zipcode }} {{ form.home_city }} {% trans "zip code / city" %}
+                                </span>
+                            </span>
+                        </p>
+
+                    </fieldset>
+
+                    <div class="form_buttons">
+                        <input type="submit" class="form_button" id="btn_userprofile_validate" value="{% trans "Save" %}" />
+                        &nbsp;&nbsp;
+                        <input type="button" class="form_button" id="btn_userprofile_cancel" value="{% trans "Cancel" %}" />
+                    </div>
+                </form>
+
+                <p>
+                    <span class="info">* {% trans "mandatory field" %}</span>
+                </p>
+{% endblock %}
+
+{% block endscript %}
+    <script src="{{ MEDIA_URL }}js/scriptaculous/scriptaculous.js?load=effects" type="text/javascript"></script>
+    <script src="{{ MEDIA_URL }}js/prototip.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    //<![CDATA[
+
+    $('btn_userprofile_cancel').observe('click', function(event) {
+        window.location="{% url accounts:edit_user_profile %}";
+    })
+
+    var help_pwd_tt = "{% trans "TT_HELP_PWD" %}";
+    var help_email_tt = "{% blocktrans %}TT_EMAIL_PWD {{ PROJECT_NAME }}{% endblocktrans %}";
+    var help_personal_info_tt = "{% blocktrans %}TT_HELP_PERSONAL_INFO {{ PROJECT_NAME }}{% endblocktrans %}";
+
+    new Tip($('help_pwd'), help_pwd_tt);
+    new Tip($('help_email'), help_email_tt);
+    new Tip($('help_personal_info'), help_personal_info_tt);
+
+    // ]]>
+    </script>
+{% endblock %}

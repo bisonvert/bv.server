@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<form method="post" action="">
+<h2>{% trans "Authorize token" %}</h2>
+<p> {% trans "authorize_token_description" %} </p>
+{{ form.as_p }}
+<div class="form_buttons">
+    <input type="submit" class="form_button" value="{% trans "authorize" %}" />
+</div>
+</form>
+{% endblock %}

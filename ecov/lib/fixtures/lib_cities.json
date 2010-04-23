@@ -1,0 +1,8 @@
+[
+{"pk": 3, "model": "carpool.city", "fields": {"name": "Amareins", "point": "POINT (4.7999999999999998 46.0833330000000032)", "insee_code": 1003, "zipcode": 1090, "slug": "amareins", "population": 0}}, 
+{"pk": 44, "model": "carpool.city", "fields": {"name": "Bohas", "point": "POINT (5.4000000000000004 46.1666669999999968)", "insee_code": 1048, "zipcode": 1250, "slug": "bohas", "population": 0}}, 
+{"pk": 51, "model": "carpool.city", "fields": {"name": "Bouvent", "point": "POINT (5.6333330000000004 46.2833329999999989)", "insee_code": 1055, "zipcode": 1100, "slug": "bouvent", "population": 0}},
+{"pk": 29591, "model": "carpool.city", "fields": {"name": "Paris", "point": "POINT (2.3333330000000001 48.8666669999999996)", "insee_code": 75100, "zipcode": 75000, "slug": "paris", "population": 2152423}},
+{"pk": 11856, "model": "carpool.city", "fields": {"name": "Toulouse", "point": "POINT (1.4333330000000000 43.6000000000000014)", "insee_code": 31555, "zipcode": 31500, "slug": "toulouse", "population": 358688}},
+{"pk": 32249, "model": "carpool.city", "fields": {"name": "Lavaur", "point": "POINT (1.8166670000000000 43.7000000000000028)", "insee_code": 81140, "zipcode": 81500, "slug": "lavaur", "population": 8148}}
+]

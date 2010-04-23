@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% load i18n site_extras %}
+
+{% block content %}
+                <h2>{% trans "My talks" %}</h2>
+
+                {% if paginator.count %}
+                <p>
+                {% trans "Number of talk displayed by page:" %}
+                {% for pagination in paginations %}
+                {% ifequal pagination current_pg %}
+                {{ pagination }}{% if not forloop.last %} | {% endif %}
+                {% else %}
+                <a href="{% url talks:list_talks %}?pg={{ pagination }}">{{ pagination }}</a>{% if not forloop.last %} | {% endif %}
+                {% endifequal%}
+                {% endfor %}
+                </p>
+                
+                <p class="pg">
+                {% for i in page_range %}
+                {% ifequal i page_obj.number %}
+                <span class="current">{{ i }}</span>
+                {% else %}
+                {% ifequal i DOT %}
+                ...
+                {% else %}
+                <a href="{% url talks:list_talks i %}{{ get_url }}">{{ i }}</a>
+                {% endifequal %}
+                {% endifequal %}
+                {% endfor %}
+                &nbsp;&nbsp;{% blocktrans count paginator.count as counter %}{{ counter }} talk{% plural %}{{ counter }} talks{% endblocktrans %}
+                </p>
+
+                <table id="my_talk_list" class="pg_list">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th><a href="{% url talks:list_talks %}{{ get_url_pg }}&order={% ifequal order 'departure' %}-{% endifequal %}departure"{% ifequal order 'departure' %} class="ascending"{% else %}{% ifequal order '-departure' %} class="descending"{% endifequal %}{% endifequal %}>{% trans "Departure" %}</a></th>
+                            <th><a href="{% url talks:list_talks %}{{ get_url_pg }}&order={% ifequal order 'arrival' %}-{% endifequal %}arrival"{% ifequal order 'arrival' %} class="ascending"{% else %}{% ifequal order '-arrival' %} class="descending"{% endifequal %}{% endifequal %}>{% trans "Arrival" %}</a></th>
+                            <th><a href="{% url talks:list_talks %}{{ get_url_pg }}&order={% ifequal order 'date' %}-{% endifequal %}date"{% ifequal order 'date' %} class="ascending"{% else %}{% ifequal order '-date' %} class="descending"{% endifequal %}{% endifequal %}>{% trans "Date" %}</a></th>
+                            <th><a href="{% url talks:list_talks %}{{ get_url_pg }}&order={% ifequal order 'time' %}-{% endifequal %}time"{% ifequal order 'time' %} class="ascending"{% else %}{% ifequal order '-time' %} class="descending"{% endifequal %}{% endifequal %}>{% trans "Departure at about" %}</a></th>
+                            <th><a href="{% url talks:list_talks %}{{ get_url_pg }}&order={% ifequal order 'type' %}-{% endifequal %}type"{% ifequal order 'type' %} class="ascending"{% else %}{% ifequal order '-type' %} class="descending"{% endifequal %}{% endifequal %}>{% trans "Type" %}</a></th>
+                            <th><a href="{% url talks:list_talks %}{{ get_url_pg }}&order={% ifequal order 'contact' %}-{% endifequal %}contact"{% ifequal order 'contact' %} class="ascending"{% else %}{% ifequal order '-contact' %} class="descending"{% endifequal %}{% endifequal %}>{% trans "Contact" %}</a></th>
+                            <th class="act">{% trans "Actions" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for talk in page_obj.object_list %}
+                        <tr class="{% cycle 'row1' 'row2' %}">
+                            <td>
+                                {% ifequal talk.from_user.id user.id %}
+                                <a href="{{ talk.trip.get_absolute_url }}" title="{% trans "Other trip" %}"><img src="{{ MEDIA_URL }}img/icons/other_trip.png" alt="{% trans "Other trip" %}" /></a>
+                                {% else %}
+                                <a href="{% url carpool:edit_trip talk.trip.id %}" title="{% trans "My trip" %}"><img src="{{ MEDIA_URL }}img/icons/my_trip.png" alt="{% trans "My trip" %}" /></a>
+                                {% endifequal %}
+                            </td>
+                            <td>
+                                {{ talk.trip.departure_city }}
+                                {% if talk.trip.departure_address %}<br />{{ tal.trip.departure_address }}{% endif %}
+                            </td>
+                            <td>
+                                {{ talk.trip.arrival_city }}
+                                {% if talk.trip.arrival_address %}<br />{{ talk.trip.arrival_address }}{% endif %}
+                            </td>
+                            <td>
+                                {% if talk.trip.regular %}
+                                {% trans "Regular" %}:
+                                <br />
+                                {{ talk.trip.print_dows }}
+                                {% else %}
+                                {{ talk.trip.date|date:"d/m/Y" }}
+                                <br />
+                                -{{ talk.trip.interval_min }}j/+{{ talk.trip.interval_max }}j
+                                {% endif %}
+                            </td>
+                            <td>
+                                {{ talk.trip.time|time:"H\h" }}
+                            </td>
+                            <td>
+                                {% if trip.offer_id and not trip.demand_id %}
+                                {% trans "Offer" %}
+                                {% else %}
+                                {% if not trip.offer_id and trip.demand_id %}
+                                {% trans "Demand" %}
+                                {% else %}
+                                {% trans "Both" %}
+                                {% endif %}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% ifequal talk.from_user.id user.id %}
+                                {{ talk.trip.user.username }}
+                                {% else %}
+                                {{ talk.from_user.username }}
+                                {% endifequal %}
+                            </td>
+                            <td>
+                                <a href="{% url talks:add_message talk.id %}" title="{% trans "View talk history" %}"><img src="{{ MEDIA_URL }}img/icons/view.png" alt="{% trans "View talk history" %}" /></a>
+                                <a href="{% url talks:add_message talk.id %}#nouveau_message" title="{% trans "Send a new message" %}"><img src="{{ MEDIA_URL }}img/icons/send.png" alt="{% trans "Send a new message" %}" /></a>
+                                <a href="{% url talks:delete_talk talk.id %}" title="{% trans "Cancel talk" %}"><img src="{{ MEDIA_URL }}img/icons/drop.png" alt="{% trans "Cancel talk" %}" /></a>
+                                <a href="{% url talks:validate_talk talk.id %}" title="{% trans "Validate talk" %}"><img src="{{ MEDIA_URL }}img/icons/validate.png" alt="{% trans "Validate talk" %}" /></a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <p class="pg">
+                {% for i in page_range %}
+                {% ifequal i page_obj.number %}
+                <span class="current">{{ i }}</span>
+                {% else %}
+                {% ifequal i DOT %}
+                ...
+                {% else %}
+                <a href="{% url talks:list_talks i %}{{ get_url }}">{{ i }}</a>
+                {% endifequal %}
+                {% endifequal %}
+                {% endfor %}
+                &nbsp;&nbsp;{% blocktrans count paginator.count as counter %}{{ counter }} talk{% plural %}{{ counter }} talks{% endblocktrans %}
+                </p>
+                {% else %}
+                <p>{% trans "No talk." %}</p>
+                {% endif %}
+
+{% endblock %}

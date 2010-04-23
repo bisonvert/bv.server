@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+                <h2>{% trans "Please login to access to your account" %}</h2>
+                
+                <form action="" method="post" id="login_form">
+                    <fieldset id="login_info">
+                        <legend>{% trans "Login" %}</legend>
+                        {% if error_login %}
+                        <ul class="errorlist">
+                            <li>{{ error_login }}</li>
+                        </ul>
+                        {% endif %}
+                        {{ form.as_p }}
+                    </fieldset>
+                    <input type="hidden" name="next" value="{{ next }}" />
+                    <div class="form_buttons">
+                        <input type="submit" id="btn_validate" class="form_button" value="{% trans "Validate" %}" />
+                    </div>
+                </form>
+
+                <p>
+                    {% trans "Password forgotten ?" %} <a href="{% url accounts:new_password %}">{% trans "Click here" %}</a>.
+                </p>
+                <p>
+                    {% trans "Not yet registered ?" %} <a href="{% url accounts:register %}">{% trans "Click here" %}</a> {% trans "and follow the registration process." %}
+                </p>
+{% endblock %}
+
+{% block endscript %}
+    <script type="text/javascript">
+    //<![CDATA[
+
+    Event.observe(window, 'load', function() {
+        $('id_username').focus();
+    });
+
+    // ]]>
+    </script>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% load i18n %}
+<p>
+{% trans "Trip author" %}: {{ obj.user.username }}
+</p>
+<p>
+{% trans "Departure" %}: {{ obj.departure_city }}{% if obj.departure_address %} - {{obj.departure_address }}{% endif %}
+</p>
+<p>
+{% trans "Arrival" %}: {{ obj.arrival_city }}{% if obj.arrival_address %} - {{obj.arrival_address }}{% endif %}
+</p>
+{% if obj.regular %}
+<p>
+{% trans "Regular" %}: {{ obj.print_dows }} {% if obj.time %}{% trans "at about" %} {{ obj.time|time:"H\h"}}{% endif %}
+</p>
+{% else %}
+<p>
+{% trans "Departure on"%} {{ obj.date|date:"d/m/Y" }} {% if obj.time %}{% trans "at about" %} {{ obj.time|time:"H\h"}}{% endif %}
+</p>
+<p>
+{% trans "Search by date" %}: -{{ obj.interval_min }}j/+{{ obj.interval_max }}j
+</p>
+{% endif %}
+{% if obj.offer %}
+<p>
+{% trans "Area around driver trip" %}: {{ obj.offer.print_radius }}
+</p>
+{% endif %}
+{% if obj.demand %}
+<p>
+{% trans "Area around passenger trip" %}: {{ obj.demand.print_radius }}
+</p>
+{% endif %}
+<p>
+{% trans "Trip type" %}: {% if obj.offer_id and not obj.demand_id %}Offre{% else %}{% if not obj.offer_id and obj.demand_id %}Demande{% else %}Indifférent{% endif %}{% endif %}
+</p>
+{% if obj.comment %}
+<p>
+{% trans "Comment" %}: {{ obj.comment }}
+</p>
+{% endif %}
+<p>
+{% trans "Trip created on" %} {{ obj.creation_date|date:"d/m/Y H\H" }}, {% trans "last modification on" %} {{ obj.modification_date|date:"d/m/Y H\H"}}
+</p>

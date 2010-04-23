@@ -1,0 +1,133 @@
+html, body {
+    width: 1000px;
+    margin: 0;
+    line-height:12px;
+}
+
+#head_container{
+float:left;
+}
+
+#head_container,#form_container{
+
+}
+
+#id_departure,#id_arrival,#id_date{
+  float:left;
+}
+#arrival_container , #departure_container, #date_container{
+  width: 226px;
+  float:left;
+}
+
+.form_buttons{
+float:none;
+position:absolute;
+top:60px;
+left:330px;
+}
+
+#date_container {
+  width: 180px;
+}
+
+input {
+    width: 175px;
+    padding: 5px;
+}
+
+
+input.form_button {
+    width: 200px;
+    margin-bottom: 3px;
+}
+
+
+form #id_date {
+    width: 115px;
+}
+
+.panel_show_img{
+float:left;
+margin-left:5px;
+}
+
+/* On masque le logo makina */
+.service{
+display:none;
+}
+
+
+
+/* Calendar */
+.calendarbox { 
+margin:5px auto; 
+width:16em;
+position:relative;}
+.calendar { margin:0; padding: 0; }
+
+.calendar table { 
+	margin:0; 
+	padding:0;
+	width:100%; 
+}
+.calendar caption, .calendarbox h2 { margin: 0; font-size:11px; line-height:18px; }
+.calendar th { font-size:10px; padding:2px 3px; }
+.calendar td { font-size:11px; padding: 0; }
+.calendar td a, .timelist a { display: block;padding:4px; }
+.calendarnav { font-size:10px;margin:0; padding:1px 3px; }
+.calendar-shortcuts { font-size:10px; line-height:11px;  padding:3px 0 4px; }
+.calendarbox .calendarnav-previous, .calendarbox .calendarnav-next { 
+display:block; position:absolute; line-height:18px;  padding:0 4px; }
+.calendarnav-previous { top:0; left:0; }
+.calendarnav-next { top:0; right:0; }
+.calendar-cancel { margin:0 !important; padding:0; }
+.calendar-cancel a { padding:2px; }
+.calendarlink img { vertical-align: top;}
+
+/* Auto complete */
+div.autocomplete {
+    position:absolute;
+    text-align: left;
+    width:250px;
+    margin:0px;
+    padding:0px;
+    z-index: 1000;
+}
+div.autocomplete ul {
+    margin:0px;
+    padding:0px;
+}
+
+div.autocomplete ul li {
+    display:block;
+    margin:0;
+    padding:2px;
+  
+}
+
+/* Panel */
+div.panel {
+    position:absolute;
+    width:250px;
+    margin:0px;
+    padding:0px;
+    z-index: 1000;
+}
+
+div.panel ul {
+    list-style-type:none;
+    margin:0px;
+    padding:0px;
+}
+div.panel ul li {
+    display:block;
+    margin:0;
+    padding:2px;
+
+}
+div.panel p {
+    margin: 0;
+    padding: 0 2px;
+}
+

@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+                    <br />
+                    <form action="" method="post" id="quick_search_form">
+                        <table>
+                            <tr>
+                                <td class="label">
+                                    {{ form.departure.label_tag }}
+                                </td>
+                                <td class="input">
+                                    {% if form.departure.errors %}<ul class="errorlist">{{ form.departure.errors }}</ul>{% endif %}
+                                    {{ form.departure }}
+                                    {% if places %}
+                                    <span id="departure_panel_show"><img class="show_panel" src="{{ MEDIA_URL }}{{ media_specific }}img/icon_show.png" alt="{% trans "favorite places" %}" /></span>
+                                    <div id="departure_panel" class="panel" style="display:none;">
+                                        <ul>
+                                            {% for place in places %}<li><a id="placed_{{ place.id }}">{{ place.name }}</a></li>{% endfor %}
+                                        </ul>
+                                        <p><a id="departure_panel_hide">{% trans "close" %}</a></p>
+                                    </div>
+                                    {% endif %}
+                                </td>
+
+                                <td class="label">
+                                    {{ form.arrival.label_tag }}
+                                </td>
+                                <td class="input">
+                                    {% if form.arrival.errors %}<ul class="errorlist">{{ form.arrival.errors }}</ul>{% endif %}
+                                    {{ form.arrival }}
+                                    {% if places %}
+                                    <span id="arrival_panel_show"><img class="show_panel" src="{{ MEDIA_URL }}{{ media_specific }}img/icon_show.png" alt="{% trans "favorite places" %}" /></span>
+                                    <div id="arrival_panel" class="panel" style="display:none;">
+                                        <ul>
+                                            {% for place in places %}<li><a id="placea_{{ place.id }}">{{ place.name }}</a></li>{% endfor %}
+                                        </ul>
+                                        <p><a id="arrival_panel_hide">{% trans "close" %}</a></p>
+                                    </div>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td class="info">
+                                    <span>ex.: "Paris", "64100", "30 avenue Janvier, Rennes"</span>
+                                </td>
+                                <td></td>
+                                <td class="info">
+                                    <span>ex.: "Lille", "42300", "place du Capitole, Toulouse"</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" class="center">
+                                    {% if form.date.errors %}<ul class="errorlist">{{ form.date.errors }}</ul>{% endif %}
+                                    {{ form.date.label_tag }}&nbsp;&nbsp;
+                                    {{ form.date }}
+                                </td>
+                            </tr>
+                        </table>
+                        {{ form.departure_point }}
+                        {{ form.departure_favoriteplace }}
+                        {{ form.arrival_point }}
+                        {{ form.arrival_favoriteplace }}
+                        {{ form.type }}
+                        <br />
+                        <div class="form_buttons">
+                            <input type="submit" class="form_button form_button_driver" id="btn_search_offer" value="{% trans "I'm searching for a driver" %}" />
+                            &nbsp; &nbsp;
+                            <input type="button" class="form_button form_button_passenger" id="btn_search_demand" value="{% trans "I'm searching for passengers" %}" />
+                        </div>
+                    </form>
+                    <br />
+                    <div id="trip_list_quick_access">
+                        <a href="{% url carpool:list_trips 1 %}">{% trans "See all trips" %}</a>
+                    </div>
+                    <br />
+                    <br />
+
+                    {% if with_philosophy %}
+                    <div id="philosophy">
+                        <p>
+                        <img src="{{ MEDIA_URL }}{{ media_specific }}img/logo.gif" alt="{{ PROJECT_NAME }}" /> {% trans "PHILOSOPHY" %}
+                        </p>
+                    </div>
+                    {% endif %}
+{% endblock %}
+
+{% block endscript %}
+    <script src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;key={{ gmapkey }}" type="text/javascript"></script>
+    <script src="{{ MEDIA_URL }}js/scriptaculous/scriptaculous.js?load=effects,controls" type="text/javascript"></script>
+    <script type="text/javascript">
+    //<![CDATA[
+
+    var places = $H();
+    {% for place in places %}
+    places.set({{ place.id }}, '{{ place.point.wkt }}');
+    {% endfor %}
+    var media_url = '{{ MEDIA_URL }}';
+    var with_autocomplete = true;
+
+    // ]]>
+    </script>
+    <script src="{{ MEDIA_URL }}js/carpool/home{{ JS_EXT }}" type="text/javascript"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/django_calendar{{ JS_EXT }}"></script>
+    <script type="text/javascript">
+    //<![CDATA[
+
+    {% if not date_uptodate %}
+    addCalendar($('id_date'), 'calendarlink', 'french', false, '', '{{ media_specific }}');
+    {% endif %}
+
+    // ]]>
+    </script>
+{% endblock %}

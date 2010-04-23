@@ -1,0 +1,213 @@
+{% extends "base_openlayers.html" %}
+{% load i18n %}
+
+{% block content %}
+                <div id="search_trip" class="{% ifequal trip_type OFFER %}search_offer{% else %}search_demand{% endifequal %}">
+                    <form action="" id="form_search_trip">
+                        <div id="param_location">
+                            <label for="id_departure_name">{% trans "Departure" %}:</label>
+                            <input type="text" id="id_departure_name" value="{{ trip_details.departure.name }}" autocomplete="off" />
+                            {% if places %}
+                            <span id="departure_panel_show"><img class="show_panel" src="{{ MEDIA_URL }}img/bg1/icon_show.png" alt="{% trans "favorite places" %}" /></span>
+                            <div id="departure_panel" class="panel" style="display:none;">
+                                <ul>
+                                    {% for place in places %}<li><a id="placed_{{ place.id }}">{{ place.name }}</a></li>{% endfor %}
+                                </ul>
+                                <p><a id="departure_panel_hide">{% trans "close" %}</a></p>
+                            </div>
+                            {% endif %}
+                            <div id="id_departure_autocomplete" class="autocomplete" style="display:none;"></div>
+                            <label for="id_arrival_name">{% trans "Arrival" %}:</label>
+                            <input type="text" id="id_arrival_name" value="{{ trip_details.arrival.name }}" autocomplete="off" />
+                            {% if places %}
+                            <span id="arrival_panel_show"><img class="show_panel" src="{{ MEDIA_URL }}img/bg1/icon_show.png" alt="{% trans "favorite places" %}" /></span>
+                            <div id="arrival_panel" class="panel" style="display:none;">
+                                <ul>
+                                    {% for place in places %}<li><a id="placea_{{ place.id }}">{{ place.name }}</a></li>{% endfor %}
+                                </ul>
+                                <p><a id="arrival_panel_hide">{% trans "close" %}</a></p>
+                            </div>
+                            {% endif %}
+                            <span id="param_radius_desc">{% trans "Find trip around departure and arrival, in a radius of:" %}</span>
+                            <div id="param_radius">
+                                <div id="slider_left" class="slider_left"> </div>
+                                <div id="track_radius" class="slider_bar">
+                                    <div id="handle_radius" class="slider"> </div>
+                                </div>
+                                <div id="slider_right" class="slider_right"> </div>
+                                <div class="slider_verbose">{% trans "area around trip" %}: <span id="verbose_radius" class="slider_radius_verbose">0 km</span></div>
+                            </div>
+                            <div id="help_radius_slider">
+                                <img id="help_slider_radius" class="help" src="{{ MEDIA_URL }}img/bg1/icon_help.png" alt="{% trans "Help" %}" />
+                            </div>
+
+                            <div id="id_arrival_autocomplete" class="autocomplete" style="display:none;"></div>
+                            <input type="hidden" id="id_departure_point" value="{{ trip_details.departure.point }}" />
+                            <input type="hidden" id="id_departure_favoriteplace" value="{{ trip_details.departure.favoriteplace }}" />
+                            <input type="hidden" id="id_arrival_point" value="{{ trip_details.arrival.point }}" />
+                            <input type="hidden" id="id_arrival_favoriteplace" value="{{ trip_details.arrival.favoriteplace }}" />
+                            <input type="submit" id="btn_search_trip" class="form_button" value="{% trans "Reload search" %}" />
+                        </div>
+                        <div id="param_date_radius">
+                            <div id="param_date">
+                                <label for="id_date">{% trans "Date" %}:</label>
+                                <input id="id_date" class="type-date" type="text" value="{{ trip_details.date }}" calendar="True" name="date" calendar_class="calendarlink"/>
+                            </div>
+                            <span id="param_date_desc">{% trans "Find trip around this date:" %}</span>
+                            <div id="date_slider">
+                                <div id="slider_interval_min_left" class="slider_left"> </div>
+                                <div id="track_interval_min_radius" class="slider_bar">
+                                    <div id="handle_interval_min_radius" class="slider"> </div>
+                                </div>
+                                <div id="slider_interval_min_right" class="slider_right"> </div>
+                                <div id="slider_interval_max_left" class="slider_left"> </div>
+                                <div id="track_interval_max_radius" class="slider_bar">
+                                    <div id="handle_interval_max_radius" class="slider"> </div>
+                                </div>
+                                <div id="slider_interval_max_right" class="slider_right"> </div>
+                                <div id="verbose_interval_radius" class="slider_verbose">
+                                    <span id="verbose_interval_min_radius" class="slider_radius_verbose">-1j</span>
+                                    <span>&nbsp;&nbsp;{% trans "date interval" %}&nbsp;&nbsp;</span>
+                                    <span id="verbose_interval_max_radius" class="slider_radius_verbose">+1j</span>
+                                </div>
+                            </div>
+                            <div id="help_date_slider">
+                                <img id="help_slider_date" class="help" src="{{ MEDIA_URL }}img/bg2/icon_help.png" alt="{% trans "Help" %}" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="clear"> </div>
+
+                <div id="trip_container">
+                    <div id="result_title" class="result_title">{% trans "Trip results" %}</div>
+                    <div id="trip_list">
+                        {% if trip_type %}
+                        <div id="trip_list_content_d" class="trip_list_content"> </div>
+                        {% else %}
+                        <div id="trip_list_content_o" class="trip_list_content"> </div>
+                        {% endif %}
+                    </div>
+                    <div id="trip_pages">
+                        {% if trip_type %}
+                        <div id="trip_pages_d"> </div>
+                        {% else %}
+                        <div id="trip_pages_o"> </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div id="quick_search_map" class="map">
+                    <span id="wait" style="display:none;"><img src="{{ MEDIA_URL }}img/wait.gif" alt="please-wait-while-we-are-working" /></span>
+                </div>
+
+                {% if user.is_authenticated %}
+                <div class="clear"> </div>
+                <form id="form_save_trip" action="{% url carpool:save_search %}" method="post">
+                    <div class="form_buttons">
+                        <input type="submit" id="btn_save_trip" class="form_button" value="{% trans "Save this search" %}" />
+                        <img id="help_button_save" class="help" src="{{ MEDIA_URL }}img/icon_help.png" alt="{% trans "Help" %}" />
+                    </div>
+                </form>
+                {% endif %}
+{% endblock %}
+
+{% block ol_additional_global_vars %}
+    var geocoder;
+    var gdir;
+
+    var markers;
+    var trip_layer;
+    var trip_markers;
+
+    var trip_type = {{ trip_type }};
+    var trip_radius = 500;
+{% endblock %}
+
+{% block ol_map_id %}quick_search_map{% endblock %}
+
+{% block ol_additional_layers %}
+    markers = new OpenLayers.Layer.Vector("{% trans "Departure / Arrival (search - results)" %}");
+    markers.displayInLayerSwitcher = false;
+    trip_layer = new OpenLayers.Layer.Vector("{% trans "Trips / search areas" %}");
+    trip_layer.displayInLayerSwitcher = false;
+    map.addLayers([trip_layer, markers]);
+{% endblock %}
+
+{% block ol_map_events %}
+    {% if trip_type %}
+    map.events.register("moveend", map, function() {
+        calculateSimpleTripBuffer(trip_route, map, trip_radius, 'wait', trip_layer);
+    });
+    {% endif %}
+{% endblock %}
+
+{% block ol_additional_controls %}
+    var dragControl = new OpenLayers.Control.DragFeature(markers, {onComplete: completeDragMarker});
+    map.addControl(dragControl);
+    dragControl.activate();
+
+    selectControl = new OpenLayers.Control.SelectFeature(markers, {onSelect: showMarkerPopup, onUnselect: hideMarkerPopup});
+    map.addControl(selectControl);
+    selectControl.activate();
+{% endblock %}
+
+{% block ol_geocoding %}
+    geocoder = new GClientGeocoder();
+{% endblock %}
+
+{% block ol_routing %}
+    gdir = new GDirections();
+    GEvent.addListener(gdir, "load", onGDirectionsLoad);
+    GEvent.addListener(gdir, "error", handleErrors);
+{% endblock %}
+
+{% block ol_additional_init %}
+    departure_marker = wkt.read('{{ trip_details.departure.point }}');
+    departure_marker.attributes = {id: "d", name: "<b>Point de départ:</b><br />{{ trip_details.departure.name }}"};
+    departure_marker.style = departure_style;
+    markers.addFeatures([departure_marker]);
+
+    arrival_marker = wkt.read('{{ trip_details.arrival.point }}');
+    arrival_marker.attributes = {id: "a", name: "<b>Point d'arrivée:</b><br />{{ trip_details.arrival.name }}"};
+    arrival_marker.style = arrival_style;
+    markers.addFeatures([arrival_marker]);
+
+    {% if trip_type %}
+    setDirections();
+    {% endif %}
+
+    // get trips
+    getTrips();
+    displayDepartureRadiusCircle();
+    displayArrivalRadiusCircle();
+{% endblock %}
+
+{% block ol_additional_endscript %}
+    <script src="{{ MEDIA_URL }}js/scriptaculous/scriptaculous.js?load=effects,controls,slider" type="text/javascript"></script>
+    <script src="{{ MEDIA_URL }}js/prototip.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    //<![CDATA[
+
+    var places = $H();
+    {% for place in places %}
+    places.set({{ place.id }}, '{{ place.point.wkt }}');
+    {% endfor %}
+
+    {% if user.is_authenticated %}var help_button_save_tt = "{% trans "TT_HELP_SAVE_SEARCH" %}";{% endif %}
+    var help_slider_date_tt = "{% trans "TT_HELP_DATE_SEARCH" %}";
+    var help_slider_radius_tt = "{% if trip_type %}{% trans "TT_HELP_OFFER_RADIUS" %}{% else %}{% trans "TT_HELP_DEMAND_RADIUS" %}{% endif %}";
+
+    // ]]>
+    </script>
+    <script src="{{ MEDIA_URL }}js/carpool/search_trip{{ JS_EXT }}" type="text/javascript"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/django_calendar{{ JS_EXT }}"></script>
+    <script type="text/javascript">
+    //<![CDATA[
+
+    addCalendar($('id_date'), 'calendarlink', 'french', false, 'bg2/');
+
+    // ]]>
+    </script>
+{% endblock %}

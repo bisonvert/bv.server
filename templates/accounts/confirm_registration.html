@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+                <h2>{% trans "Your account was successfully created" %}</h2>
+
+                <p>Vous pouvez dès maintenant accéder à votre compte. N'oubliez pas de renseigner <a href="{% url accounts:edit_user_profile %}">votre profil</a>.</p>
+
+                <p>Un email contenant un lien de validation a été envoyé à l'adresse email renseignée lors de votre inscription. Avant d'aller plus loin, pensez à consulter votre boîte aux lettres pour valider votre adresse email et finaliser votre inscription. Si vous avez fait une erreur lors de votre inscription, vous pouvez modifier votre adresse email dans <a href="{% url accounts:edit_user_profile %}">votre profil</a>.</p>
+
+                <p>Tant que votre email n'est pas validé, vous ne pouvez ni prendre contact avec d'autres utilisateurs, ni être contacté.</p>
+
+                <p>Bon covoiturage avec {{ PROJECT_NAME }} !</p>
+{% endblock %}

@@ -1,0 +1,135 @@
+html, body {
+    width: 250px;
+    height: 400px;
+    margin: 0;
+}
+
+h2 {
+    font-size: 16px;
+    margin: 2px 0 10px 0;
+}
+
+span.info {
+    display: block;
+    font-size: 10px;
+}
+
+form img {
+    vertical-align: top;
+}
+
+div#departure_container, div#arrival_container, div#date_container {
+    text-align: left;
+    margin: 0;
+    padding: 0 5px;
+}
+
+div#date_container input {
+    width: 115px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+}
+
+input {
+    width: 180px;
+    padding: 5px;
+}
+
+#form_buttons {
+    margin: 10px 0 20px 0;
+}
+input.form_button {
+    width: 200px;
+    margin-top: 5px;
+}
+
+p.service {
+    font-size: 10px;
+}
+
+/* Calendar */
+.calendarbox { margin:5px auto; font-size:11px; width:16em; text-align:center; background:white; position:relative; border:1px solid #ddd }
+.calendar { margin:0; padding: 0; }
+.calendar table { margin:0; padding:0; border-collapse:collapse; background-color:white; width:100%; }
+.calendar caption, .calendarbox h2 { margin: 0; font-size:11px; text-align:center; border-top:none; line-height:18px; }
+.calendar th { font-size:10px; color:#666; padding:2px 3px; text-align:center; background-color:#e1e1e1; border-bottom:1px solid #ddd; }
+.calendar td { font-size:11px; text-align: center; padding: 0; border-top:1px solid #eee; border-bottom:none; }
+.calendar td.selected a { background-color: #C9DBED; }
+.calendar td.nonday { background:#efefef; }
+.calendar td.today a { background:#ffc; }
+.calendar td a, .timelist a { display: block; font-weight:bold; padding:4px; text-decoration: none; color:#444; }
+.calendar td a:active, .timelist a:active { background-color: #036; color:white; }
+.calendarnav { font-size:10px; text-align: center; color:#ccc; margin:0; padding:1px 3px; }
+.calendarnav a:link, #calendarnav a:visited, #calendarnav a:hover { color: #999; }
+.calendar-shortcuts { background-color:white; font-size:10px; line-height:11px; border-top:1px solid #eee; padding:3px 0 4px; color:#ccc; }
+.calendarbox .calendarnav-previous, .calendarbox .calendarnav-next { display:block; position:absolute; font-weight:bold; font-size:12px; line-height:18px; padding:0 4px; }
+.calendarnav-previous:hover, .calendarnav-next:hover { text-decoration: none; }
+.calendarnav-previous { top:0; left:0; }
+.calendarnav-next { top:0; right:0; }
+.calendar-cancel { margin:0 !important; padding:0; font-size:10px; background-color:#e1e1e1;  border-top:1px solid #ddd; }
+.calendar-cancel a { padding:2px; color:#999; }
+.calendarlink img { vertical-align: top;}
+
+/* Panel */
+span.panel_show {
+    cursor: pointer;
+}
+div.panel {
+    position:absolute;
+    width:250px;
+    background-color:white;
+    border:1px solid #888;
+    margin:0px;
+    padding:0px;
+    z-index: 1000;
+}
+div.panel ul {
+    list-style-type:none;
+    margin:0px;
+    padding:0px;
+}
+div.panel ul li {
+    list-style-type:none;
+    display:block;
+    margin:0;
+    padding:2px;
+    font-style: normal;
+    color: black;
+    cursor:pointer;
+}
+div.panel p {
+    cursor:pointer;
+    text-align: right;
+    font-size: 10px;
+    margin: 0;
+    padding: 0 2px;
+}
+
+/* Auto complete */
+div.autocomplete {
+    position:absolute;
+    width:250px;
+    background-color:white;
+    border:1px solid #888;
+    margin:0px;
+    padding:0px;
+    z-index: 1000;
+}
+div.autocomplete ul {
+    list-style-type:none;
+    margin:0px;
+    padding:0px;
+}
+div.autocomplete ul li.selected { background-color: #ffb;}
+div.autocomplete ul li {
+    list-style-type:none;
+    display:block;
+    margin:0;
+    padding:2px;
+    cursor:pointer;
+    font-style: normal;
+    color: black;
+}

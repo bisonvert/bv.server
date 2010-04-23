@@ -1,0 +1,552 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Carpool trips API &mdash; Bison Vert v1.1 documentation</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.1',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Bison Vert v1.1 documentation"
+          href="_static/opensearch.xml"/>
+    <link rel="top" title="Bison Vert v1.1 documentation" href="index.html" />
+    <link rel="next" title="Reports / Ratings API" href="rating.html" />
+    <link rel="prev" title="Welcome to the documentation of the “Bison Vert” API !" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="rating.html" title="Reports / Ratings API"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to the documentation of the “Bison Vert” API !"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Bison Vert v1.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">Carpool trips API</a><ul>
+<li><a class="reference external" href="#list">List</a></li>
+<li><a class="reference external" href="#get">Get</a></li>
+<li><a class="reference external" href="#search">Search</a></li>
+<li><a class="reference external" href="#new">New</a></li>
+<li><a class="reference external" href="#edit-modify">Edit / Modify</a></li>
+<li><a class="reference external" href="#delete">Delete</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="index.html"
+                                  title="previous chapter">Welcome to the documentation of the &#8220;Bison Vert&#8221; API !</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="rating.html"
+                                  title="next chapter">Reports / Ratings API</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/carpool.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="carpool-trips-api">
+<h1>Carpool trips API<a class="headerlink" href="#carpool-trips-api" title="Permalink to this headline">¶</a></h1>
+<p>The API provides the following URIs to interact with trip data</p>
+<div class="section" id="list">
+<h2>List<a class="headerlink" href="#list" title="Permalink to this headline">¶</a></h2>
+<p>Retreive the list of existing trips, with the complete description of each item.</p>
+<dl class="docutils">
+<dt><strong>URL</strong></dt>
+<dd>/api/trips/</dd>
+<dt><em>Verb</em></dt>
+<dd>GET</dd>
+<dt><em>Data</em></dt>
+<dd>None</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-python"><pre>$ curl -X GET http://localhost:8000/api/trips/ -d 'trip_type=offer&amp;departure_city=paris&amp;arrival_city=toulouse'
+[
+{
+    "dows": [],
+    "offer": {
+        "driver_km_price": "20.00",
+        "driver_pets_accepted": true,
+        "direction_route": "LINESTRING (...)",
+        "driver_seats_available": null,
+        "radius": 500,
+        "checkpoints": "(lp1\n.",
+        "driver_smokers_accepted": null,
+        "driver_place_for_luggage": null
+    },
+    "departure_point": "POINT (1.8149983000000001 43.6988774000000078)",
+    "time": null,
+    "arrival_point": "POINT (2.3509871000000002 48.8566667000000194)",
+    "interval_min": 7,
+    "arrival_address": "",
+    "interval_max": 0,
+    "regular": false,
+    "departure_city": "Lavaur (81)",
+    "user": {
+        "username": "alexis",
+        "id": 1
+    },
+    "demand": null,
+    "date": "2010-01-20",
+    "departure_address": "",
+    "id": 27,
+    "arrival_city": "paris"
+},
+{
+    "dows": [],
+    "departure_point": "POINT (1.4429513000000000 43.6043630000000135)",
+    "time": "08:00:00",
+    "arrival_point": "POINT (2.3509871000000002 48.8566667000000194)",
+    "interval_min": 7,
+    "arrival_address": "",
+    "interval_max": 0,
+    "regular": false,
+    "departure_city": "toulouse",
+    "user": {
+        "username": "alexis",
+        "id": 1
+    },
+    "demand": {
+        "passenger_max_km_price": null,
+        "passenger_smokers_accepted": true,
+        "passenger_min_remaining_seats": null,
+        "passenger_car_type_id": null,
+        "radius": 500,
+        "passenger_place_for_luggage": false,
+        "passenger_pets_accepted": true,
+        "id": 43
+    },
+    "date": "2010-01-20",
+    "departure_address": "",
+    "id": 32,
+    "arrival_city": "paris"
+},
+{
+    "dows": [],
+    "departure_point": "POINT (1.4429513000000000 43.6043630000000135)",
+    "time": "09:00:00",
+    "arrival_point": "POINT (2.3509871000000002 48.8566667000000194)",
+    "interval_min": 7,
+    "arrival_address": "",
+    "interval_max": 0,
+    "regular": false,
+    "departure_city": "toulouse",
+    "user": {
+        "username": "alexis",
+        "id": 1
+    },
+    "demand": {
+        "passenger_max_km_price": null,
+        "passenger_smokers_accepted": true,
+        "passenger_min_remaining_seats": null,
+        "passenger_car_type_id": null,
+        "radius": 15000,
+        "passenger_place_for_luggage": false,
+        "passenger_pets_accepted": true,
+        "id": 39
+    },
+    "date": "2010-01-24",
+    "departure_address": "",
+    "id": 28,
+    "arrival_city": "paris"
+}
+]</pre>
+</div>
+</div>
+<div class="section" id="get">
+<h2>Get<a class="headerlink" href="#get" title="Permalink to this headline">¶</a></h2>
+<p>Retreive informations about a specific trip, by specifying it&#8217;s id.</p>
+<dl class="docutils">
+<dt><strong>URL</strong></dt>
+<dd>/api/trips/id</dd>
+<dt><em>Verb</em></dt>
+<dd>GET</dd>
+<dt><em>Data</em></dt>
+<dd>None</dd>
+</dl>
+<p>Exemple:</p>
+<div class="highlight-python"><pre>$ curl -X GET http://localhost:8000/api/trips/35/
+{
+    "dows": [],
+    "departure_point": "POINT (1.4429513000000000 43.6043630000000135)",
+    "time": "08:00:00",
+    "arrival_point": "POINT (2.3509871000000002 48.8566667000000194)",
+    "interval_min": 7,
+    "arrival_address": "",
+    "interval_max": 0,
+    "regular": false,
+    "departure_city": "toulouse",
+    "user": {
+        "username": "alexis",
+        "id": 1
+    },
+    "demand": {
+        "passenger_max_km_price": null,
+        "passenger_smokers_accepted": true,
+        "passenger_min_remaining_seats": null,
+        "passenger_car_type_id": null,
+        "radius": 500,
+        "passenger_place_for_luggage": false,
+        "passenger_pets_accepted": true,
+        "id": 46
+    },
+    "date": "2010-01-20",
+    "departure_address": "",
+    "id": 35,
+    "arrival_city": "paris"
+}</pre>
+</div>
+</div>
+<div class="section" id="search">
+<h2>Search<a class="headerlink" href="#search" title="Permalink to this headline">¶</a></h2>
+<p>It&#8217;s possible to search the results by specifying some parameters. The search
+always return a dict with tree keys: trip demands, trip offers and trip object,
+if there is one.</p>
+<dl class="docutils">
+<dt><strong>URL</strong></dt>
+<dd>/api/trips/search/:id
+/api/trips/search/</dd>
+<dt><em>Verb</em></dt>
+<dd>GET</dd>
+<dt><em>Data</em></dt>
+<dd><ul class="first last simple">
+<li><cite>trip_id</cite>: the trip id to find matches on. If specified, other informations aren&#8217;t needed.</li>
+<li><cite>is_offer</cite>: if specified, search for passengers (trip demands).</li>
+<li><cite>is_demand</cite>: if specified, search for drivers (trip offers).</li>
+<li><cite>offer_radius</cite>: the offer radius, in meters.</li>
+<li>demand_radius`: the demand radius, in meters.</li>
+<li><cite>date: the date</cite> of the trip, in the form YYYY-MM-DD.</li>
+<li><cite>interval_min</cite>: number of days to seek before the given date.</li>
+<li><cite>interval_max</cite>: number of days to seek after the given date.</li>
+<li><cite>is_regular</cite>: is the trip a regular one ? if so, please specify the &#8220;dows&#8221; parameter</li>
+<li><cite>dows</cite>: day of weeks</li>
+<li><cite>route</cite>: WKT Multipoint route.</li>
+<li><cite>departure_point</cite>: departure WKT point</li>
+<li><cite>arrival_point</cite>: arrival WKT point</li>
+</ul>
+</dd>
+</dl>
+<p>Parameters can be just the id of a already registred trip, or a list of values:</p>
+<div class="highlight-python"><pre>$ curl -X GET http://localhost:8000/api/trips/search/27/
+{
+    "trip_demands": [
+        {
+            "dows": [],
+            "departure_point": "POINT (1.4429513000000000 43.6043630000000135)",
+            "time": "09:00:00",
+            "arrival_point": "POINT (2.3509871000000002 48.8566667000000194)",
+            "interval_min": 0,
+            "arrival_address": "",
+            "interval_max": 0,
+            "regular": false,
+            "departure_city": "toulouse",
+            "user": {
+                "username": "test",
+                "id": 5
+            },
+            "demand": {
+                "passenger_max_km_price": null,
+                "passenger_smokers_accepted": true,
+                "passenger_min_remaining_seats": null,
+                "passenger_car_type_id": null,
+                "radius": 15000,
+                "passenger_place_for_luggage": false,
+                "passenger_pets_accepted": true,
+                "id": 39
+            },
+            "date": "2010-01-20",
+            "departure_address": "",
+            "id": 28,
+            "arrival_city": "paris"
+        }
+    ],
+    "trip_offers": null,
+    "trip": {
+        "dows": [],
+        "offer": {
+            "driver_km_price": "20.00",
+            "driver_pets_accepted": true,
+            "direction_route": "LINESTRING (...)",
+            "driver_seats_available": null,
+            "radius": 500,
+            "checkpoints": "(lp1\n.",
+            "driver_smokers_accepted": null,
+            "driver_place_for_luggage": null
+        },
+        "departure_point": "POINT (1.8149983000000001 43.6988774000000078)",
+        "time": null,
+        "arrival_point": "POINT (2.3509871000000002 48.8566667000000194)",
+        "interval_min": 7,
+        "arrival_address": "",
+        "interval_max": 0,
+        "regular": false,
+        "departure_city": "Lavaur (81)",
+        "user": {
+            "username": "test",
+            "id": 5
+        },
+        "demand": null,
+        "date": "2010-01-20",
+        "departure_address": "",
+        "id": 27,
+        "arrival_city": "paris"
+    }
+}</pre>
+</div>
+<p>Or to make a search by specifying the values directly to the API:</p>
+<div class="highlight-python"><pre>$ curl -X GET "http://localhost:8000/api/trips/search/?is_demand=true&amp;arrival_point=POINT+(2.3333330000000001+48.8666669999999996)&amp;departure_point=POINT+(1.4333330000000000+43.6000000000000014)&amp;demand_radius=20000&amp;date=2020-01-20"
+{
+"trip_demands": null,
+"trip_offers": [
+    {
+        "dows": [],
+        "offer": {
+            "driver_km_price": "20.00",
+            "driver_pets_accepted": true,
+            "direction_route": "LINESTRING (...)",
+            "driver_seats_available": null,
+            "radius": 500,
+            "checkpoints": "(lp1\n.",
+            "driver_smokers_accepted": null,
+            "driver_place_for_luggage": null
+        },
+        "departure_point": "POINT (1.8149983000000001 43.6988774000000078)",
+        "time": null,
+        "arrival_point": "POINT (2.3509871000000002 48.8566667000000194)",
+        "interval_min": 7,
+        "arrival_address": "",
+        "interval_max": 0,
+        "regular": false,
+        "departure_city": "Lavaur (81)",
+        "user": {
+            "username": "test",
+            "id": 5
+        },
+        "demand": null,
+        "date": "2020-01-20",
+        "departure_address": "",
+        "id": 27,
+        "arrival_city": "paris"
+    }
+],
+"trip": null
+}</pre>
+</div>
+</div>
+<div class="section" id="new">
+<h2>New<a class="headerlink" href="#new" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt><strong>URL</strong></dt>
+<dd>/api/trips/</dd>
+<dt><em>Verb</em></dt>
+<dd>POST</dd>
+<dt><em>Data</em></dt>
+<dd><ul class="first last simple">
+<li><cite>departure_city</cite>: the trip departure city  (<em>required</em>)</li>
+<li><cite>departure_address</cite>: the trip departure adress</li>
+<li><cite>departure_point</cite>: the departure geographical point for the trip (<em>required</em>)</li>
+<li><cite>arrival_city</cite>: the trip arrival city</li>
+<li><cite>arrival_address</cite>: the trip arrival adress (<em>required</em>)</li>
+<li><cite>arrival_point</cite>: the arrival geographical point for the trip (<em>required</em>)</li>
+<li><cite>regular</cite>: Is the trip a regular one ? True = Yes (<em>required</em>)</li>
+<li><cite>date</cite>: the date of the trip (<em>required</em>)</li>
+<li><cite>interval_min</cite>: nomber of interval (days) accepted before the departure date</li>
+<li><cite>interval_max</cite>: nomber of interval (days) accepted after the departure date</li>
+<li><cite>dows</cite>: if the trip i a regular one, dows contains a Json array containing days of weeks. (<em>required if the trip is regular</em>)</li>
+<li><cite>comment</cite>: an optionnal comment for this trip</li>
+<li><cite>demand</cite>: True or False</li>
+<li><cite>offer</cite>: True or False</li>
+<li><cite>demand_radius</cite>: perimeter of the passenger search</li>
+<li><cite>demand_smokers_accepted</cite>: weather the passenger accepts smokers or not</li>
+<li><cite>demand_pets_accepted</cite>: weather the passenger accepts pets or not</li>
+<li><cite>demand_place_for_luggage</cite>:  weather the passenger need place for laggages or not</li>
+<li><cite>demand_car_type</cite>: the car type id asked by the passenger</li>
+<li><cite>demand_min_remaining_seats</cite>:  the number of remaining seats for the passenger</li>
+<li><cite>demand_max_km_price</cite>: Maximum price per KM</li>
+<li><cite>offer_radius</cite>: perimeter of the conductor search</li>
+<li><cite>offer_checkpoints</cite>: checkpoints of the offer trip</li>
+<li><cite>offer_route</cite>: SIG route</li>
+<li><cite>offer_km_price</cite>: Price per KM asked by the driver</li>
+<li><cite>offer_radius</cite>: perimeter of the passenger search</li>
+<li><cite>offer_smokers_accepted</cite>: weather the passenger accepts smokers or not</li>
+<li><cite>offer_pets_accepted</cite>: weather the passenger accepts pets or not</li>
+<li><cite>offer_place_for_luggage</cite>:  weather the driver have place for laggages or not</li>
+<li><cite>offer_car_type</cite>: the car type the driver have</li>
+<li><cite>offer_seats_available</cite>:  the number of remaining seats for the driver</li>
+<li><cite>tag</cite>: a free to use tag. If specified, all trip must have it</li>
+</ul>
+</dd>
+</dl>
+<p>Create a new trip. It can be an offer, a demand or both. the request return a
+item with the complete list of fields. <strong>require to be authenticated</strong></p>
+<p>At least one of &#8216;offer&#8217; or &#8216;demand&#8217; type are mendatory:</p>
+<div class="highlight-python"><pre>$ curl -X POST http://localhost:8000/api/trips/ -d 'alert=on&amp;arrival_city=paris&amp;arrival_point=POINT(2.3509871 48.85666670000002)&amp;comment=&amp;date=20/01/2010&amp;demand-passenger_car_type=&amp;demand-passenger_max_km_price=&amp;demand-passenger_min_remaining_seats=&amp;demand-passenger_pets_accepted=on&amp;demand-passenger_smokers_accepted=on&amp;demand-radius=500&amp;departure_address=&amp;departure_city=toulouse&amp;departure_point=POINT(1.4429513 43.60436300000001)&amp;interval_max=0&amp;interval_min=7&amp;name=announce name&amp;offer-radius=500&amp;regular=False&amp;time=8&amp;trip_type=1'
+{
+    "dows": [],
+    "departure_point": "POINT (1.4429513000000000 43.6043630000000135)",
+    "time": "08:00:00",
+    "arrival_point": "POINT (2.3509871000000002 48.8566667000000194)",
+    "interval_min": 7,
+    "arrival_address": "",
+    "interval_max": 0,
+    "regular": false,
+    "departure_city": "toulouse",
+    "user": {
+        "username": "alexis",
+        "id": 1
+    },
+    "demand": {
+        "passenger_max_km_price": null,
+        "passenger_smokers_accepted": true,
+        "passenger_min_remaining_seats": null,
+        "passenger_car_type_id": null,
+        "radius": 500,
+        "passenger_place_for_luggage": false,
+        "_passenger_car_type_cache": null,
+        "passenger_pets_accepted": true,
+        "id": 48
+    },
+    "date": "2010-01-20",
+    "departure_address": "",
+    "id": 37,
+    "arrival_city": "paris"
+}</pre>
+</div>
+</div>
+<div class="section" id="edit-modify">
+<h2>Edit / Modify<a class="headerlink" href="#edit-modify" title="Permalink to this headline">¶</a></h2>
+<p>Edit an existing trip object.</p>
+<dl class="docutils">
+<dt><strong>URL</strong></dt>
+<dd>/api/trips/id</dd>
+<dt><em>Verb</em></dt>
+<dd>POST</dd>
+<dt><em>Data</em></dt>
+<dd><ul class="first last simple">
+<li><cite>departure_city</cite>: the trip departure city</li>
+<li><cite>departure_address</cite>: the trip departure adress</li>
+<li><cite>departure_point</cite>: the departure geographical point for the trip</li>
+<li><cite>arrival_city</cite>: the trip arrival city</li>
+<li><cite>arrival_address</cite>: the trip arrival adress</li>
+<li><cite>arrival_point</cite>: the arrival geographical point for the trip</li>
+<li><cite>regular</cite>: Is the trip a regular one ? True = Yes</li>
+<li><cite>date</cite>: the date of the trip (<em>required</em>)</li>
+<li><cite>interval_min</cite>: nomber of interval (days) accepted before the departure date</li>
+<li><cite>interval_max</cite>: nomber of interval (days) accepted after the departure date</li>
+<li><cite>dows</cite>: if the trip is a regular one, dows contains a Json array containing days of weeks. (<em>required if the trip is regular</em>)</li>
+<li><cite>comment</cite>: an optionnal comment for this trip</li>
+<li><cite>demand</cite>: True or False</li>
+<li><cite>offer</cite>: True or False</li>
+<li><cite>demand_radius</cite>: perimeter of the passenger search</li>
+<li><cite>demand_smokers_accepted</cite>: weather the passenger accepts smokers or not</li>
+<li><cite>demand_pets_accepted</cite>: weather the passenger accepts pets or not</li>
+<li><cite>demand_place_for_luggage</cite>:  weather the passenger need place for laggages or not</li>
+<li><cite>demand_car_type</cite>: the car type id asked by the passenger</li>
+<li><cite>demand_min_remaining_seats</cite>:  the number of remaining seats for the passenger</li>
+<li><cite>demand_max_km_price</cite>: Maximum price per KM</li>
+<li><cite>offer_radius</cite>: perimeter of the conductor search</li>
+<li><cite>offer_checkpoints</cite>: checkpoints of the offer trip</li>
+<li><cite>offer_route</cite>: SIG route</li>
+<li><cite>offer_km_price</cite>: Price per KM asked by the driver</li>
+<li><cite>offer_radius</cite>: perimeter of the passenger search</li>
+<li><cite>offer_smokers_accepted</cite>: weather the passenger accepts smokers or not</li>
+<li><cite>offer_pets_accepted</cite>: weather the passenger accepts pets or not</li>
+<li><cite>offer_place_for_luggage</cite>:  weather the driver have place for laggages or not</li>
+<li><cite>offer_car_type</cite>: the car type the driver have</li>
+<li><cite>offer_seats_available</cite>:  the number of remaining seats for the driver</li>
+</ul>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-python"><pre>$ curl -X PUT http://localhost:8000/api/trips/27/ -d 'alert=on&amp;arrival_city=paris&amp;arrival_point=POINT(2.3509871 48.85666670000002)&amp;comment=&amp;date=25/01/2010&amp;demand-passenger_car_type=&amp;demand-passenger_max_km_price=&amp;demand-passenger_min_remaining_seats=&amp;demand-passenger_pets_accepted=on&amp;demand-passenger_smokers_accepted=on&amp;demand-radius=500&amp;departure_address=&amp;departure_city=toulouse&amp;departure_point=POINT(1.4429513 43.60436300000001)&amp;interval_max=0&amp;interval_min=7&amp;name=announce name&amp;offer-radius=500&amp;offer-route=&amp;offer-steps=&amp;regular=False&amp;return_trip=false&amp;time=8&amp;trip_type=1'
+OK</pre>
+</div>
+</div>
+<div class="section" id="delete">
+<h2>Delete<a class="headerlink" href="#delete" title="Permalink to this headline">¶</a></h2>
+<p>Delete an existing trip offer/demand object.</p>
+<dl class="docutils">
+<dt><strong>URL</strong></dt>
+<dd>/api/trips/id</dd>
+<dt><em>Verb</em></dt>
+<dd>POST</dd>
+<dt><em>Data</em></dt>
+<dd>None</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-python"><pre>$ curl -X DELETE http://localhost:8000/api/trips/27/</pre>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="rating.html" title="Reports / Ratings API"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to the documentation of the “Bison Vert” API !"
+             >previous</a> |</li>
+        <li><a href="index.html">Bison Vert v1.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2010, Makina Corpus.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
+    </div>
+  </body>
+</html>

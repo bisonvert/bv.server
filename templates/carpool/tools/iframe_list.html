@@ -1,0 +1,103 @@
+{% load i18n %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="en">
+
+<head>
+    <title>{{ PROJECT_NAME }}</title>
+    <meta http-equiv="content-language" content="fr" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/tools/iframe_list.css" media="screen" />
+    <link rel="shortcut icon" href="{{ MEDIA_URL }}img/favicon.ico" />
+</head>
+
+<body>
+    <div id="container">
+        {% if is_depart %}
+        <h1>{% blocktrans with city.name as city_name %}Depart from {{ city_name }} last trips{% endblocktrans %}</h1>
+        {% else %}
+        <h1>{% blocktrans with city.name as city_name %}Arrival to {{ city_name }} last trips{% endblocktrans %}</h1>
+        {% endif %}
+
+        {% if trips %}
+        <table id="iframe_list">
+            <thead>
+                <tr>
+                    <th>{% trans "Departure" %}</a></th>
+                    <th>{% trans "Arrival" %}</a></th>
+                    <th>{% trans "Date" %}</a></th>
+                    <th>{% trans "Type" %}</a></th>
+                    <th>{% trans "Last update" %}</a></th>
+                    <th class="act">{% trans "See details" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for trip in trips %}
+                <tr class="{% cycle 'row1' 'row2' %}">
+                    <td>
+                        {{ trip.departure_city }}
+                        {% if trip.departure_address %}<br />{{ trip.departure_address }}{% endif %}
+                    </td>
+                    <td>
+                        {{ trip.arrival_city }}
+                        {% if trip.arrival_address %}<br />{{ trip.arrival_address }}{% endif %}
+                    </td>
+                    <td>
+                        {% if trip.regular %}
+                        {% trans "Regular" %}:
+                        <br />
+                        {{ trip.print_dows }}
+                        {% else %}
+                        {{ trip.date|date:"d/m/Y" }}
+                        <br />
+                        -{{ trip.interval_min }}j/+{{ trip.interval_max }}j
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if trip.offer_id and not trip.demand_id %}
+                        {% trans "Offer" %}
+                        {% else %}
+                        {% if not trip.offer_id and trip.demand_id %}
+                        {% trans "Demand" %}
+                        {% else %}
+                        {% trans "Both" %}
+                        {% endif %}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {{ trip.modification_date|date:"d/m/Y H\H" }}
+                    </td>
+                    <td>
+                        <a target="_parent" href="{{ trip.get_absolute_url }}" title="{% trans "View trip details" %}"><img src="{{ MEDIA_URL }}img/icons/view.png" alt="{% trans "View trip details" %}" /></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>{% trans "No trip." %}</p>
+        {% endif %}
+
+        <p id="all_trips">
+            {% if is_depart %}
+            <a target="_parent" href="{% url carpool:show_departure_from city.slug,city.zip,1 %}">{% trans "See more ..." %}</a>
+            {% else %}
+            <a target="_parent" href="{% url carpool:show_arrival_to city.slug,city.zip,1 %}">{% trans "See more ..." %}</a>
+            {% endif %}
+        </p>
+
+        <p id="service">
+            <a target="_parent" href="{% url carpool:home %}">{{ PROJECT_NAME }}</a> est un service de covoiturage proposé par <a target="_parent" href="http://www.makina-corpus.com">Makina Corpus</a>.
+        </p>
+    </div>
+
+    {% if GOOGLE_ANALYTICS_ENABLE %}
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        _uacct = "{{ GOOGLE_ANALYTICS_KEY }}";
+        urchinTracker();
+    </script>
+    {% endif %}
+</body>
+
+</html>

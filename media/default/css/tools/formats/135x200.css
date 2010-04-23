@@ -1,0 +1,45 @@
+html, body {
+    width: 135px;
+    height: 200px;
+    margin: 0;
+}
+
+h2 {
+    font-size: 16px;
+    margin: 2px 0 15px 0;
+}
+
+span.info {
+    display: none;
+    font-size: 10px;
+}
+
+div#departure_container, div#arrival_container {
+    text-align: left;
+    margin: 0;
+    padding: 0 5px;
+}
+
+label {
+    display: block;
+    font-weight: normal;
+}
+
+input {
+    width: 115px;
+    padding: 3px;
+}
+
+#form_buttons {
+    margin: 10px 0 20px 0;
+}
+input.form_button {
+    width: 120px;
+    margin-top: 5px;
+    font-size: 10px;
+}
+
+/* Elements to hide */
+.service {
+    display:none;
+}

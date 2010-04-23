@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+                <h2>{% trans "Add a BisonVert banner to your website !" %}</h2>
+                
+                <p>
+                    Voici quelques bandeaux pour promouvoir {{ PROJECT_NAME }} sur votre site web.
+                </p>
+                <p>
+                    Vous pouvez télécharger ces bandeaux directement depuis cette page ou insérer le code html que nous vous proposons directement dans vos pages web.
+                </p>
+                
+                <h3>Bandeau N°1</h3>
+
+    			<a href="{% url carpool:home %}"><img src="{{ MEDIA_URL }}img/tools/banners/logo_200.png" alt="{{ PROJECT_NAME }}, service de covoiturage"/></a>
+    			
+    			<p>Code html à insérer :</p>
+    			
+    			<pre>&lt;a href="{{ PROJECT_ROOT_URL }}"&gt;
+    &lt;img src="{{ PROJECT_ROOT_URL }}{{ MEDIA_URL }}img/tools/banners/logo_200.png" alt="{{ PROJECT_NAME }}, service de covoiturage"/&gt;
+&lt;/a&gt;</pre>
+
+                <h3>Bandeau N°2</h3>
+
+    			<a href="{% url carpool:home %}"><img src="{{ MEDIA_URL }}img/tools/banners/logo_150.png" alt="{{ PROJECT_NAME }}, service de covoiturage"/></a>
+    			
+    			<p>Code html à insérer :</p>
+    			
+    			<pre>&lt;a href="{{ PROJECT_ROOT_URL }}"&gt;
+    &lt;img src="{{ PROJECT_ROOT_URL }}{{ MEDIA_URL }}img/tools/banners/logo_150.png" alt="{{ PROJECT_NAME }}, service de covoiturage"/&gt;
+&lt;/a&gt;</pre>
+
+
+                <h3>Bandeau N°3</h3>
+
+    			<a href="{% url carpool:home %}"><img src="{{ MEDIA_URL }}img/tools/banners/logo_blue.png" alt="{{ PROJECT_NAME }}, service de covoiturage"/></a>
+    			
+    			<p>Code html à insérer :</p>
+    			
+    			<pre>&lt;a href="{{ PROJECT_ROOT_URL }}"&gt;
+    &lt;img src="{{ PROJECT_ROOT_URL }}{{ MEDIA_URL }}img/tools/banners/logo_blue.png" alt="{{ PROJECT_NAME }}, service de covoiturage"/&gt;
+&lt;/a&gt;</pre>
+
+                <h3>Bandeau N°4</h3>
+
+    			<a href="{% url carpool:home %}"><img src="{{ MEDIA_URL }}img/tools/banners/logo_green.png" alt="{{ PROJECT_NAME }}, service de covoiturage"/></a>
+    			
+    			<p>Code html à insérer :</p>
+    			
+    			<pre>&lt;a href="{{ PROJECT_ROOT_URL }}"&gt;
+    &lt;img src="{{ PROJECT_ROOT_URL }}{{ MEDIA_URL }}img/tools/banners/logo_green.png" alt="{{ PROJECT_NAME }}, service de covoiturage"/&gt;
+&lt;/a&gt;</pre>
+
+                <h3>Bandeau N°5</h3>
+
+    			<a href="{% url carpool:home %}"><img src="{{ MEDIA_URL }}img/tools/banners/logo_green_bison.png" alt="{{ PROJECT_NAME }}, service de covoiturage"/></a>
+    			
+    			<p>Code html à insérer :</p>
+    			
+    			<pre>&lt;a href="{{ PROJECT_ROOT_URL }}"&gt;
+    &lt;img src="{{ PROJECT_ROOT_URL }}{{ MEDIA_URL }}img/tools/banners/logo_green_bison.png" alt="{{ PROJECT_NAME }}, service de covoiturage"/&gt;
+&lt;/a&gt;</pre>
+
+{% endblock %}

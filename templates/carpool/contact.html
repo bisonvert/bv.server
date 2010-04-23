@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+                <h2>{% trans "Contact" %}</h2>
+
+                <form action="" method="post" id="contact_form">
+                    <fieldset id="contact_info">
+                        <legend>{% trans "Contact form" %}</legend>
+                        {{ form.as_p }}
+                    </fieldset>
+                    <div class="form_buttons">
+                        <input type="submit" id="btn_validate" class="form_button" value="{% trans "Send" %}" />
+                    </div>
+                </form>
+                <p>
+                    <span class="info">* {% trans "mandatory field" %}</span>
+                </p>
+{% endblock %}
+
+{% block endscript %}
+    <script type="text/javascript">
+    //<![CDATA[
+
+    Event.observe(window, 'load', function() {
+        if ($('id_name'))
+            $('id_name').focus();
+        else
+            $('id_subject').focus();
+    });
+
+    // ]]>
+    </script>
+{% endblock %}

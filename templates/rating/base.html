@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+            <h2>{% trans "My reports" %}</h2>
+            <ul id="nav_rating" class="nav_tabs">
+                {% include "rating/nav.html" %}
+            </ul>
+            <div id="content_rating" class="content_tabs">
+                {% block rating_content %}{% endblock %}
+            </div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+                <h2>{% trans "Registration" %}</h2>
+
+                <form action="" method="post" id="register_form">
+                    <fieldset id="register_info">
+                        <legend>{% trans "Registration" %}</legend>
+                        {{ form.as_p }}
+                    </fieldset>
+                    <div class="form_buttons">
+                        <input type="submit" id="btn_save" class="form_button" value="{% trans "Validate" %}" />
+                    </div>
+                </form>
+                <p>
+                    <span class="info">* {% trans "mandatory field" %}</span>
+                </p>
+{% endblock %}
+
+{% block endscript %}
+    <script type="text/javascript">
+    //<![CDATA[
+
+    Event.observe(window, 'load', function() {
+        $('id_email').focus();
+    });
+
+    // ]]>
+    </script>
+{% endblock %}

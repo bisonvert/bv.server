@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+                <h2>{% trans "Display a list of trips from / to a city in your website !" %}</h2>
+
+                <p>
+                Nous vous proposons un outil vous permettant d'intégrer la liste des dernières annonces de covoiturage au départ ou à destination de la ville de votre choix (dans un rayon d'environ 10km) dans les pages de votre site web. Cette liste se présente tout simplement sous la forme d'une iframe, dont il vous suffit d'insérer le code html dans vos pages.
+                </p>
+                <p>
+                Pour obtenir le code de cette iframe, veuillez renseigner le formulaire suivant.
+                </p>
+
+                <form action="" method="post" id="iframe_list_form">
+                    <fieldset id="iframe_list_info">
+                        <legend>{% trans "Depart/Arrival form" %}</legend>
+                        {{ form.as_p }}
+                    </fieldset>
+                    <div class="form_buttons">
+                        <input type="submit" class="form_button" id="btn_validate" value="{% trans "Validate" %}" />
+                        &nbsp;&nbsp;
+                        <input type="button" class="form_button" id="btn_cancel" value="{% trans "Cancel" %}" />
+                    </div>
+                </form>
+
+                {% if valid %}
+                <p>Voici le code html à insérer dans les pages de votre site web:</p>
+                <pre>&lt;iframe src="{{ PROJECT_ROOT_URL }}{% if is_depart %}{% url carpool:show_iframe_list_departure_from city.slug,city.zip,trip_num %}{% else %}{% url carpool:show_iframe_list_arrival_to city.slug,city.zip,trip_num %}{% endif %}" width="{{ width }}px" height="{{ height }}px" scrolling="auto" frameborder="0"&gt; &lt;/iframe&gt;</pre>
+
+                <p>Un petit aperçu de la liste:</p>
+                <div id="iframe_preview">
+                    <iframe src="{{ PROJECT_ROOT_URL }}{% if is_depart %}{% url carpool:show_iframe_list_departure_from city.slug,city.zip,trip_num %}{% else %}{% url carpool:show_iframe_list_arrival_to city.slug,city.zip,trip_num %}{% endif %}" width="{{ width }}px" height="{{ height }}px" scrolling="auto" frameborder="0"> </iframe>
+                </div>
+                {% endif %}
+{% endblock %}
+
+{% block endscript %}
+    <script src="{{ MEDIA_URL }}js/scriptaculous/scriptaculous.js?load=effects,controls" type="text/javascript"></script>
+    <script src="{{ MEDIA_URL }}js/carpool/choose_depart_arrival{{ JS_EXT }}" type="text/javascript"></script> 
+    <script type="text/javascript">
+    //<![CDATA[
+
+    $('btn_cancel').observe('click', function(event) {
+        window.location="{% url carpool:tools %}";
+    })
+
+    // ]]>
+    </script>
+{% endblock %}

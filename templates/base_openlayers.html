@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block headers %}
+    {% block ol_additional_headers %}{% endblock %}
+{% endblock %}
+
+{% block endscript %}
+    <script src="{{ MEDIA_URL }}js/openlayers/OpenLayers.js" type="text/javascript"></script>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2.93&amp;key={{ gmapkey }}" type="text/javascript"></script>
+    <script type="text/javascript">
+    //<![CDATA[
+    var media_url = '{{ MEDIA_URL }}';
+    // ]]>
+    </script>
+    <script src="{{ MEDIA_URL }}js/browser.js" type="text/javascript"></script>
+    <script src="{{ MEDIA_URL }}js/trip_utils{{ JS_EXT }}" type="text/javascript"></script>
+    <script type="text/javascript">
+    //<![CDATA[
+    var map;
+    var center;
+    var zoom;
+
+    var wkt;
+    var wkb;
+    {% block ol_additional_global_vars %}{% endblock %}
+
+    {% block ol_additional_functions %}{% endblock %}
+
+    function initOL() {
+        var options = {
+            projection: new OpenLayers.Projection("EPSG:900913"),
+            displayProjection: new OpenLayers.Projection("EPSG:4326"),
+            units: "m",
+            maxResolution: 156543.0339,
+            maxExtent: new OpenLayers.Bounds(-20037508, -20037508, 20037508, 20037508.34),
+            controls: []
+        };
+        map = new OpenLayers.Map('{% block ol_map_id %}map{% endblock %}', options);
+
+        var gmap = new OpenLayers.Layer.Google(
+            "Google - {% trans "normal map" %}",
+            {type: G_NORMAL_MAP, 'maxZoomLevel':17, 'sphericalMercator': true}
+        );
+        var gmapsat = new OpenLayers.Layer.Google(
+            "Google - {% trans "satellite map" %}",
+            {type: G_SATELLITE_MAP, 'maxZoomLevel':17, 'sphericalMercator': true}
+        );
+        var gmaphybrid = new OpenLayers.Layer.Google(
+            "Google - {% trans "hybrid map" %}",
+            {type: G_HYBRID_MAP, 'maxZoomLevel':17, 'sphericalMercator': true}
+        );
+        var gmapphysical = new OpenLayers.Layer.Google(
+            "Google - {% trans "physical map" %}",
+            {type: G_PHYSICAL_MAP, 'maxZoomLevel':17, 'sphericalMercator': true}
+        );
+
+        map.addLayers([gmap, gmapsat, gmaphybrid, gmapphysical]);
+
+        {% block ol_additional_layers %}{% endblock %}
+
+        wkt = new OpenLayers.Format.WKT({
+            'internalProjection': map.baseLayer.projection,
+            'externalProjection': new OpenLayers.Projection("EPSG:4326")
+        });
+
+        {% if geometry %}
+        var geometry = wkt.read('{{ geometry }}').geometry;
+        var bounds = geometry.getBounds();
+        center = bounds.getCenterLonLat();
+        zoom = map.getZoomForExtent(bounds);
+        {% else %}
+        var point = wkt.read('{{ default_center }}').geometry;
+        center = new OpenLayers.LonLat(point.x, point.y);
+        zoom = {{ default_zoom }};
+        {% endif %}
+        map.setCenter(center, zoom);
+        map.addControl(new OpenLayers.Control.Navigation({
+            'zoomWheelEnabled': false
+        }));
+        map.addControl(new OpenLayers.Control.PanZoomBar());
+        map.addControl(new CustomLayerSwitcher({
+            activeColor: "white",
+            fontColor: "#515151",
+            opacity: 1,
+            baseLblTitle: "{% trans "Base Layers" %}",
+            dataLblTitle: "{% trans "Overlays" %}"
+        }));
+
+        {% block ol_map_events %}{% endblock %}
+        {% block ol_additional_controls %}{% endblock %}
+        {% block ol_geocoding %}{% endblock %}
+        {% block ol_routing %}{% endblock %}
+
+        {% block ol_additional_init %}{% endblock %}
+    }
+
+    // ]]>
+    </script>
+    {% block ol_additional_endscript %}{% endblock %}
+{% endblock%}

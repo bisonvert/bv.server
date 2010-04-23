@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+                <h2>{% trans "Display trip list arrival to/departure from a city" %}</h2>
+
+                <p>
+                Vous pouvez afficher la liste des annonces au départ/à destination de la ville de votre choix dans un rayon d'environ 10km, et disposer de son flux RSS.
+                </p>
+                <p>
+                Pour cela, renseignez le formulaire suivant.
+                </p>
+                <form action="" method="post" id="departarrival_form">
+                    <fieldset id="departarrival_info">
+                        <legend>{% trans "Depart/Arrival form" %}</legend>
+                        {{ form.as_p }}
+                    </fieldset>
+                    <div class="form_buttons">
+                        <input type="submit" class="form_button" id="btn_validate" value="{% trans "Validate" %}" />
+                    </div>
+                </form>
+
+{% endblock %}
+
+{% block endscript %}
+    <script src="{{ MEDIA_URL }}js/scriptaculous/scriptaculous.js?load=effects,controls" type="text/javascript"></script>
+    <script src="{{ MEDIA_URL }}js/carpool/choose_depart_arrival{{ JS_EXT }}" type="text/javascript"></script>
+{% endblock %}

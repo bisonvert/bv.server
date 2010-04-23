@@ -1,0 +1,73 @@
+{% extends "accounts/base.html" %}
+{% load i18n fieldsets%}
+
+{% block accounts_content %}
+                <h3>{% trans "My preferences" %}</h3>
+
+                {% if save_confirmation %}
+                <p>{% trans "Your preferences were successfully saved." %}</p>
+                {% endif %}
+
+                <p><img id="help_preferences" class="help" src="{{ MEDIA_URL }}img/icon_help.png" alt="{% trans "Help" %}" /> <span class="hl">{% trans "Do not forget to validate your modifications by clicking on the &quot;Save&quot; button on bottom." %}</span></p>
+
+                <form id="userpreferences_form" action="" method="post">
+
+                    {% if form.errors %}
+                    <ul class="errorlist">
+                        <li>{% trans "Error : please check the form." %}</li>
+                    </ul>
+                    {% endif %}
+
+                    <fieldset id="general_options">
+                        <legend>{% trans "General options" %}</legend>
+
+                        <p>
+                            {% if form.alert.errors %}{{ form.alert.errors }}{% endif %}
+                            {{ form.alert.label_tag }} {{ form.alert }}
+                        </p>
+
+                    </fieldset>
+
+                    <fieldset id="driver_preferences">
+                        <legend>{% trans "Driver preferences" %}</legend>
+                        
+                        {% get_fieldset driver_km_price,driver_smoker_accepted,driver_pets_accepted,driver_place_for_luggage,driver_car_type,driver_seats_available as driver_preferences_form from form %}
+
+                        {{ driver_preferences_form.as_p }}
+
+                    </fieldset>
+
+                    <fieldset id="passenger_preferences">
+                        <legend>{% trans "Passenger preferences" %}</legend>
+                        
+                        {% get_fieldset passenger_max_km_price,passenger_smokers_accepted,passenger_pets_accepted,passenger_place_for_luggage,passenger_car_type,passenger_min_remaining_seats as passenger_preferences_form from form %}
+
+                        {{ passenger_preferences_form.as_p }}
+
+                    </fieldset>
+
+                    <div class="form_buttons">
+                        <input type="submit" class="form_button" id="btn_userprofile_validate" value="{% trans "Save" %}" />
+                        &nbsp;&nbsp;
+                        <input type="button" class="form_button" id="btn_userprofile_cancel" value="{% trans "Cancel" %}" />
+                    </div>
+                </form>
+{% endblock %}
+
+{% block endscript %}
+	<script src="{{ MEDIA_URL }}js/scriptaculous/scriptaculous.js?load=effects" type="text/javascript"></script>
+	<script src="{{ MEDIA_URL }}js/prototip.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    //<![CDATA[
+
+    $('btn_userprofile_cancel').observe('click', function(event) {
+        window.location="{% url accounts:edit_user_preferences %}";
+    })
+
+	var help_preferences_tt = "{% trans "TT_HELP_PREFERENCES" %}";
+	
+	new Tip($('help_preferences'), help_preferences_tt);
+
+    // ]]>
+    </script>
+{% endblock %}

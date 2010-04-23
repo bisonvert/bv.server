@@ -1,0 +1,250 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-04-30 14:00+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: js/django_calendar.js:139
+msgid ""
+"January February March April May June July August September October November "
+"December"
+msgstr ""
+
+#: js/django_calendar.js:140
+msgid "S M T W T F S"
+msgstr ""
+
+#: js/django_calendar.js:360
+msgid "Calendar"
+msgstr ""
+
+#: js/django_calendar.js:405
+msgid "Yesterday"
+msgstr ""
+
+#: js/django_calendar.js:407
+msgid "Today"
+msgstr ""
+
+#: js/django_calendar.js:409
+msgid "Tomorrow"
+msgstr ""
+
+#: js/django_calendar.js:413
+msgid "Cancel"
+msgstr ""
+
+#: js/trip_utils-min.js:26 js/trip_utils.js:441
+#: js/site/add_modify_trip-min.js:11 js/site/add_modify_trip-min.js.py:13
+#: js/site/add_modify_trip.js:90 js/site/add_modify_trip.js.py:115
+#: js/site/search_trip-min.js:5 js/site/search_trip-min.js.py:8
+#: js/site/search_trip-min.js:9 js/site/search_trip.js:49
+#: js/site/search_trip.js.py:83 js/site/search_trip.js:99
+msgid "Departure"
+msgstr ""
+
+#: js/trip_utils-min.js:26 js/trip_utils.js:442
+#: js/site/add_modify_trip-min.js:11 js/site/add_modify_trip-min.js.py:17
+#: js/site/add_modify_trip.js:93 js/site/add_modify_trip.js.py:156
+#: js/site/search_trip-min.js:5 js/site/search_trip-min.js.py:12
+#: js/site/search_trip-min.js:13 js/site/search_trip.js:54
+#: js/site/search_trip.js.py:130 js/site/search_trip.js:146
+msgid "Arrival"
+msgstr ""
+
+#: js/trip_utils-min.js:28 js/trip_utils.js:450
+msgid "Departure on"
+msgstr ""
+
+#: js/trip_utils-min.js:29 js/trip_utils.js:456 js/trip_utils.js.py:457
+msgid "Offer by"
+msgstr ""
+
+#: js/trip_utils-min.js:33 js/trip_utils.js:523
+msgid "show details"
+msgstr ""
+
+#: js/trip_utils-min.js:33 js/trip_utils.js:559
+#, perl-format
+msgid "Departure at about %s"
+msgstr ""
+
+#: js/trip_utils-min.js:33 js/trip_utils.js:559
+msgid "Departure time not specified"
+msgstr ""
+
+#: js/trip_utils-min.js:33 js/trip_utils.js:563
+#, perl-format
+msgid "%s seat still available"
+msgid_plural "%s seats still available"
+msgstr[0] ""
+msgstr[1] ""
+
+#: js/trip_utils-min.js:33 js/trip_utils.js:565
+msgid "No more seat available"
+msgstr ""
+
+#: js/trip_utils-min.js:33 js/trip_utils.js:568
+msgid "Seats available not specified"
+msgstr ""
+
+#: js/trip_utils-min.js:35 js/trip_utils.js:575
+msgid "Trip author"
+msgstr ""
+
+#: js/trip_utils-min.js:36 js/trip_utils.js:589
+msgid "Show trip details"
+msgstr ""
+
+#: js/trip_utils-min.js:39 js/trip_utils.js:619
+msgid "No corresponding trip for the moment."
+msgstr ""
+
+#: js/trip_utils-min.js:39 js/trip_utils.js:624
+msgid ""
+"You can create a trip by clicking on the button &laquo;Save this "
+"search&raquo;, perhaps another carpool user will contact you about it."
+msgstr ""
+
+#: js/trip_utils-min.js:39 js/trip_utils.js:627
+msgid "after login"
+msgstr ""
+
+#: js/trip_utils-min.js:39 js/trip_utils.js:628
+#, perl-format
+msgid ""
+"You can create a trip %s, perhaps another carpool user will contact you "
+"about it."
+msgstr ""
+
+#: js/site/add_modify_trip-min.js:3 js/site/add_modify_trip-min.js.py:6
+#: js/site/add_modify_trip-min.js:40 js/site/add_modify_trip.js:23
+#: js/site/add_modify_trip.js.py:53 js/site/add_modify_trip.js:312
+#: js/site/add_modify_trip.js.py:313 js/site/trip_results-min.js:26
+#: js/site/trip_results.js:177 js/site/trip_results.js.py:178
+#, perl-format
+msgid "Check point n&deg;%s"
+msgstr ""
+
+#: js/site/add_modify_trip-min.js:3 js/site/add_modify_trip-min.js.py:6
+#: js/site/add_modify_trip.js:24 js/site/add_modify_trip.js.py:54
+msgid "Delete"
+msgstr ""
+
+#: js/site/add_modify_trip-min.js:13 js/site/add_modify_trip.js:112
+#: js/site/home-min.js:2 js/site/home.js:19 js/site/search_trip-min.js:9
+#: js/site/search_trip.js:94
+msgid "ERROR : Departure address not found."
+msgstr ""
+
+#: js/site/add_modify_trip-min.js:17 js/site/add_modify_trip.js:153
+#: js/site/home-min.js:2 js/site/home.js:29 js/site/search_trip-min.js:13
+#: js/site/search_trip.js:141
+msgid "ERROR : Arrival address not found."
+msgstr ""
+
+#: js/site/add_modify_trip-min.js:40 js/site/add_modify_trip.js:310
+#: js/site/search_trip-min.js:26 js/site/search_trip.js:265
+#: js/site/trip_results-min.js:26 js/site/trip_results.js:175
+msgid "Error : Address not found."
+msgstr ""
+
+#: js/site/add_modify_trip-min.js:40 js/site/add_modify_trip.js:314
+#: js/site/search_trip-min.js:26 js/site/search_trip.js:267
+#: js/site/trip_results-min.js:26 js/site/trip_results.js:179
+#, perl-format
+msgid "Route %s - %s not found."
+msgstr ""
+
+#: js/site/add_modify_trip-min.js:40 js/site/add_modify_trip.js:316
+#: js/site/search_trip-min.js:26 js/site/search_trip.js:269
+#: js/site/trip_results-min.js:26 js/site/trip_results.js:181
+#, perl-format
+msgid ""
+"Directions request could not be successfully processed.\\nError code: %s"
+msgstr ""
+
+#: js/site/add_modify_trip-min.js:40 js/site/add_modify_trip.js:318
+#: js/site/search_trip-min.js:26 js/site/search_trip.js:271
+#: js/site/trip_results-min.js:26 js/site/trip_results.js:183
+#, perl-format
+msgid "Invalid key.\\nError code: %s"
+msgstr ""
+
+#: js/site/add_modify_trip-min.js:40 js/site/add_modify_trip.js:320
+#: js/site/search_trip-min.js:26 js/site/search_trip.js:273
+#: js/site/trip_results-min.js:26 js/site/trip_results.js:185
+#, perl-format
+msgid "A directions request could not be successfully parsed.\\nError code: %s"
+msgstr ""
+
+#: js/site/add_modify_trip-min.js:40 js/site/add_modify_trip.js:322
+#: js/site/search_trip-min.js:26 js/site/search_trip.js:275
+#: js/site/trip_results-min.js:26 js/site/trip_results.js:187
+#, perl-format
+msgid "An error occurs.\\nError code: %s"
+msgstr ""
+
+#: js/site/add_modify_trip-min.js:67 js/site/add_modify_trip.js:574
+msgid "Please give a name to your trip."
+msgstr ""
+
+#: js/site/add_modify_trip-min.js:68 js/site/add_modify_trip.js:579
+msgid "Please choose a date."
+msgstr ""
+
+#: js/site/add_modify_trip-min.js:69 js/site/add_modify_trip.js:583
+msgid "Please choose a frequency."
+msgstr ""
+
+#: js/site/add_modify_trip-min.js:70 js/site/add_modify_trip.js:587
+msgid "The route is not correctly defined."
+msgstr ""
+
+#: js/site/home-min.js:4 js/site/home.js:61
+msgid "Please fill Departure and Arrival fields."
+msgstr ""
+
+#: js/site/my_trips-min.js:2 js/site/my_trips.js:8
+msgid "Yes"
+msgstr ""
+
+#: js/site/my_trips-min.js:2 js/site/my_trips.js:9
+msgid "Disable"
+msgstr ""
+
+#: js/site/my_trips-min.js:2 js/site/my_trips.js:11
+msgid "No"
+msgstr ""
+
+#: js/site/my_trips-min.js:2 js/site/my_trips.js:12
+msgid "Enable"
+msgstr ""
+
+#: js/site/my_trips-min.js:2 js/site/my_trips.js:16
+msgid "An error occurs."
+msgstr ""
+
+#: js/site/my_trips.js:2
+msgid "Your email is not validated, you can not receiv alert emails."
+msgstr ""
+
+#: js/site/simple_home-min.js:2 js/site/simple_home.js:12
+msgid "ERROR : Address not found."
+msgstr ""
+
+#: js/site/simple_home-min.js:2 js/site/simple_home.js:29
+msgid "Please fill Address field."
+msgstr ""

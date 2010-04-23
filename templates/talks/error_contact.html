@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+                <h2>{% trans "You can not contact this carpool user" %}</h2>
+
+                <p>
+                {% trans "You can not contact this carpool user because:" %}
+                <br />
+                {{ error_reason }}
+                </p>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+                {% if talk %}
+                <h2>{% trans "Talk history" %}</h2>
+
+                <dl id="talk_history">
+                    {% for message in talk.message_set.all|dictsort:"date" %}
+                    <dt{% if message.from_user %}{% ifequal user.id talk.from_user.id %} class="from_user"{% endifequal %}{% else %}{% ifequal user.id talk.trip.user.id %} class="from_user"{% endifequal %}{% endif %}>
+                    {% trans "Date:" %} {{ message.date|date:"d/m/Y H:i" }}
+                    <br />
+                    {% trans "From:" %} {% if message.from_user %}{{ talk.from_user.username }}{% else %}{{ talk.trip.user.username }}{% endif %}
+                    <br />
+                    {% trans "To:" %} {% if message.from_user %}{{ talk.trip.user.username }}{% else %}{{ talk.from_user.username }}{% endif %}
+                    </dt>
+                    <dd>{{ message.message|linebreaks }}</dd>
+                {% endfor %}
+                </dl>
+                {% endif %}
+
+                <a name="nouveau_message"> </a>
+                {% if talk %}
+                <h2>{% trans "Send a new message" %}</h2>
+                {% else %}
+                <h2>{% trans "Contact a carpool user" %}</h2>
+                {% endif %}
+
+                <form action="" method="post" id="contact_form">
+                    <fieldset id="contact_info">
+                        <legend>{% trans "Contact form" %}</legend>
+                        <p class="contact_info"><label>{% trans "From:" %}</label> <span>{{ from_user.username }}</span></p>
+                        <p class="contact_info"><label>{% trans "To:" %}</label> <span>{{ to_user.username }}</span></p>
+                        <p class="contact_info"><label>{% trans "Subject:" %}</label> <span>{{ subject }}</span></p>
+                        {{ form.as_p }}
+                    </fieldset>
+                    <div class="form_buttons">
+                        <input type="submit" id="btn_validate" class="form_button" value="{% trans "Send" %}" />
+                        {% if talk %}
+                        &nbsp;&nbsp;
+                        <input type="button" id="btn_cancel" class="form_button" value="{% trans "Cancel" %}" onclick="window.location='{% url talks:list_talks 1 %}'" />
+                        {% endif %}
+                    </div>
+                </form>
+                <p>
+                    <span class="info">* {% trans "mandatory field" %}</span>
+                </p>
+{% endblock %}

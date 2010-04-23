@@ -1,0 +1,1 @@
+{{ obj.departure_city }} - {{ obj.arrival_city }} {% if not obj.regular %}{{ obj.date|date:"d/m/Y" }}{% else %}{{ obj.print_dows }}{% endif %} ({% if obj.offer_id and not obj.demand_id %}Offre{% else %}{% if not obj.offer_id and obj.demand_id %}Demande{% else %}Indifférent{% endif %}{% endif %})

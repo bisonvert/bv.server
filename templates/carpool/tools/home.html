@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+                <h2>{% blocktrans %}{{ PROJECT_NAME }}'s Tools{% endblocktrans %}</h2>
+                
+                <p>
+                    {{ PROJECT_NAME }}, au-delà de son propre site, souhaite démocratiser le covoiturage, notamment en multipliant les entrées vers sa base d'annonces.
+                </p>
+                <p>
+                    C'est pourquoi nous proposons aux webmasters une gamme d'outils variés permettant d'accéder, depuis leur site, aux annonces de covoiturage de façon plus ou moins personnalisée.
+                </p>
+                <p>
+                    Ces outils vous permettent:
+                </p>
+                <ul class="colorBullet">
+                    <li>d'afficher un <a href="#carpool_form">formulaire de covoiturage</a> sur votre site</li>
+                    <li>d'afficher <a href="#carpool_list">la liste des dernières annonces</a> au départ ou à destination de votre commune</li>
+                    <li>ou simplement d'afficher <a href="#carpool_banner">un lien vers {{ PROJECT_NAME }}</a></li>
+                </ul>
+                <p>
+                    Nous travaillons actuellement à la conception de notre API, en espérant vous la proposer très prochainement !
+                </p>
+                <p>
+                    Vous représentez une collectivité ou une entreprise et souhaitez disposer de services plus personnalisés, d'un formulaire à vos couleurs, de développements spécifiques; <a href="{% url pages:contact_us %}">Contactez-nous</a>, nous serons ravis de vous informer sur les prestations possibles.
+                </p>
+
+                <a name="carpool_form"> </a>
+                <h3>{% trans "Display a carpool form in your website !" %}</h3>
+                <div class="tool_example">
+                    <div class="tool_example_content">
+                        <a href="{% url carpool:choose_iframe_form %}">
+                            <img src="{{ MEDIA_URL }}img/tools/tool_example_rmll.png" alt="{% trans "Display a carpool form in your website !" %}" />
+                        </a>
+                    </div>
+                </div>
+
+                <a name="carpool_list"> </a>
+                <h3>{% trans "Display a list of trips from / to a city in your website !" %}</h3>
+                <div class="tool_example">
+                    <div class="tool_example_content">
+                        <a href="{% url carpool:choose_iframe_list %}">
+                            <img src="{{ MEDIA_URL }}img/tools/tool_example_annonces.png" alt="{% trans "Display a list of trips from / to a city in your website !" %}" />
+                        </a>
+                    </div>
+                </div>
+
+                <a name="carpool_banner"> </a>
+                <h3>{% trans "Add a BisonVert banner to your website !" %}</h3>
+                <div class="tool_example">
+                    <div class="tool_example_content">
+                        <a href="{% url carpool:choose_banner %}">
+                            <img src="{{ MEDIA_URL }}img/tools/banners/logo_200.png" alt="{% trans "Add a BisonVert banner to your website !" %}" />
+                        </a>
+                        <br/>
+                        <a href="{% url carpool:choose_banner %}">
+                            <img src="{{ MEDIA_URL }}img/tools/banners/logo_blue.png" alt="{% trans "Add a BisonVert banner to your website !" %}" />
+                        </a>
+                    </div>
+                </div>
+
+{% endblock %}

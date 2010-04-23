@@ -1,0 +1,453 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-04-30 15:17+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: settings.py:123
+msgid "French"
+msgstr ""
+
+#: accounts/forms.py:21
+msgid ""
+"The username must contain at leat 3 valid characters(alphanumeric "
+"characters, ., -, _)"
+msgstr ""
+
+#: accounts/forms.py:27
+msgid "I have read and agree with the"
+msgstr ""
+
+#: accounts/forms.py:27
+msgid "terms and conditions"
+msgstr ""
+
+#: accounts/forms.py:31
+msgid "Remember me"
+msgstr ""
+
+#: accounts/forms.py:37 accounts/forms.py:141
+msgid "* Email"
+msgstr ""
+
+#: accounts/forms.py:42 accounts/forms.py:139
+msgid "* Username"
+msgstr ""
+
+#: accounts/forms.py:43 accounts/forms.py:49 accounts/forms.py:55
+#: accounts/forms.py:198 accounts/forms.py:205
+#, python-format
+msgid "at least %(num)d characters"
+msgstr ""
+
+#: accounts/forms.py:48
+msgid "* Password"
+msgstr ""
+
+#: accounts/forms.py:54
+msgid "* Password (again)"
+msgstr ""
+
+#: accounts/forms.py:79 accounts/forms.py:264
+msgid "Only one account by email address."
+msgstr ""
+
+#: accounts/forms.py:89
+msgid "Username already existing."
+msgstr ""
+
+#: accounts/forms.py:93
+msgid "This username is forbidden."
+msgstr ""
+
+#: accounts/forms.py:104 accounts/forms.py:304
+msgid "Password does not match."
+msgstr ""
+
+#: accounts/forms.py:115
+msgid "You have to read and agree with the terms and conditions."
+msgstr ""
+
+#: accounts/forms.py:121
+msgid "Username"
+msgstr ""
+
+#: accounts/forms.py:124
+msgid "Password"
+msgstr ""
+
+#: accounts/forms.py:160
+msgid "Unknown user."
+msgstr ""
+
+#: accounts/forms.py:176
+msgid ""
+"This email address was not validated, impossible to send a new password."
+msgstr ""
+
+#: accounts/forms.py:181
+msgid "Email address does not match with username."
+msgstr ""
+
+#: accounts/forms.py:188 site/forms.py:352
+msgid "* Email:"
+msgstr ""
+
+#: accounts/forms.py:192
+msgid "Old password:"
+msgstr ""
+
+#: accounts/forms.py:197
+msgid "New password:"
+msgstr ""
+
+#: accounts/forms.py:204
+msgid "New password (again):"
+msgstr ""
+
+#: accounts/forms.py:211
+msgid "Lastname:"
+msgstr ""
+
+#: accounts/forms.py:215
+msgid "Firstname:"
+msgstr ""
+
+#: accounts/forms.py:219
+msgid "Phone number:"
+msgstr ""
+
+#: accounts/forms.py:224
+msgid "Mobile phone number:"
+msgstr ""
+
+#: accounts/forms.py:229
+msgid "Address:"
+msgstr ""
+
+#: accounts/forms.py:234
+msgid "Address complement:"
+msgstr ""
+
+#: accounts/forms.py:239
+msgid "Zip code:"
+msgstr ""
+
+#: accounts/forms.py:244 site/forms.py:203
+msgid "City:"
+msgstr ""
+
+#: accounts/forms.py:276
+msgid "Incorrect password."
+msgstr ""
+
+#: accounts/forms.py:289
+msgid "Please enter your old password to modify it."
+msgstr ""
+
+#: accounts/forms.py:318
+msgid "Incorrect phone number."
+msgstr ""
+
+#: accounts/forms.py:330
+msgid "Incorrect mobile phone number."
+msgstr ""
+
+#: accounts/forms.py:353
+msgid "Email alert enabled by default:"
+msgstr ""
+
+#: accounts/forms.py:359 site/forms.py:242
+msgid "Asking price by kilometer:"
+msgstr ""
+
+#: accounts/forms.py:365 site/forms.py:248
+msgid "Smokers accepted:"
+msgstr ""
+
+#: accounts/forms.py:370 site/forms.py:253
+msgid "Pets accepted:"
+msgstr ""
+
+#: accounts/forms.py:375 site/forms.py:258
+msgid "Place for luggages:"
+msgstr ""
+
+#: accounts/forms.py:380 site/forms.py:263
+msgid "Car type:"
+msgstr ""
+
+#: accounts/forms.py:385 site/forms.py:268
+msgid "Seat number by default:"
+msgstr ""
+
+#: accounts/forms.py:391 site/forms.py:274
+msgid "Maximum price by kilometer:"
+msgstr ""
+
+#: accounts/forms.py:397 site/forms.py:280
+msgid "Smokers accepted first:"
+msgstr ""
+
+#: accounts/forms.py:402 site/forms.py:285
+msgid "Pets accepted first:"
+msgstr ""
+
+#: accounts/forms.py:407 site/forms.py:290
+msgid "Place for luggages first:"
+msgstr ""
+
+#: accounts/forms.py:412 site/forms.py:295
+msgid "Car type first:"
+msgstr ""
+
+#: accounts/forms.py:417 site/forms.py:300
+msgid "Minimum remaining seats:"
+msgstr ""
+
+#: accounts/views.py:65
+msgid "Wrong login."
+msgstr ""
+
+#: rating/forms.py:13
+#, python-format
+msgid "%(int)d (minimum)"
+msgstr ""
+
+#: rating/forms.py:18
+#, python-format
+msgid "%(int)d (maximum)"
+msgstr ""
+
+#: rating/forms.py:24
+msgid "* Mark:"
+msgstr ""
+
+#: rating/forms.py:28
+msgid "* Comment:"
+msgstr ""
+
+#: site/cub.py:53 site/ffe.py:53 site/forms.py:92 site/francofolies.py:55
+#: site/jazzinmarciac.py:53 site/lepape.py:62 site/lourdes2008.py:57
+#: site/radiohead.py:58 site/rmll2009.py:57 site/rpc.py:57
+msgid "Departure:"
+msgstr ""
+
+#: site/cub.py:57 site/ffe.py:57 site/forms.py:96 site/francofolies.py:59
+#: site/jazzinmarciac.py:57 site/lepape.py:66 site/lourdes2008.py:61
+#: site/radiohead.py:62 site/rmll2009.py:61 site/rpc.py:61
+msgid "Arrival:"
+msgstr ""
+
+#: site/cub.py:65 site/ffe.py:65 site/forms.py:104 site/francofolies.py:67
+#: site/jazzinmarciac.py:65 site/lepape.py:74 site/lourdes2008.py:69
+#: site/radiohead.py:70 site/rmll2009.py:69 site/rpc.py:69 site/tools.py:100
+msgid "Date:"
+msgstr ""
+
+#: site/cub.py:86 site/ffe.py:86 site/forms.py:125 site/francofolies.py:88
+#: site/jazzinmarciac.py:86 site/lepape.py:93 site/lourdes2008.py:89
+#: site/radiohead.py:89 site/rmll2009.py:90 site/rpc.py:90
+msgid "Departure address not found."
+msgstr ""
+
+#: site/cub.py:100 site/ffe.py:100 site/forms.py:139 site/francofolies.py:102
+#: site/jazzinmarciac.py:100 site/lepape.py:107 site/lourdes2008.py:103
+#: site/radiohead.py:103 site/rmll2009.py:104 site/rpc.py:104
+msgid "Arrival address not found."
+msgstr ""
+
+#: site/forms.py:23
+#, python-format
+msgid "Ensure this value has at most %(max)d characters (it has %(length)d)."
+msgstr ""
+
+#: site/forms.py:25
+#, python-format
+msgid "Ensure this value has at least %(min)d characters (it has %(length)d)."
+msgstr ""
+
+#: site/forms.py:30
+msgid "Report a bug"
+msgstr ""
+
+#: site/forms.py:31
+msgid "Suggestions"
+msgstr ""
+
+#: site/forms.py:32
+msgid "Comments"
+msgstr ""
+
+#: site/forms.py:33
+msgid "Encouragements"
+msgstr ""
+
+#: site/forms.py:34
+msgid "Other"
+msgstr ""
+
+#: site/forms.py:38
+msgid "Come from"
+msgstr ""
+
+#: site/forms.py:39
+msgid "Go to"
+msgstr ""
+
+#: site/forms.py:43
+msgid "Depart from city"
+msgstr ""
+
+#: site/forms.py:44
+msgid "Arrival to city"
+msgstr ""
+
+#: site/forms.py:184
+msgid "Address not found."
+msgstr ""
+
+#: site/forms.py:199
+msgid "Trips:"
+msgstr ""
+
+#: site/forms.py:224 site/tools.py:129 site/tools.py:143
+msgid "Incorrect city."
+msgstr ""
+
+#: site/forms.py:229
+msgid "Comment:"
+msgstr ""
+
+#: site/forms.py:236
+msgid "Email alert:"
+msgstr ""
+
+#: site/forms.py:348
+msgid "* Firstname / Lastname:"
+msgstr ""
+
+#: site/forms.py:356 site/forms.py:379
+msgid "* Subject:"
+msgstr ""
+
+#: site/forms.py:360 site/forms.py:383
+msgid "* Title:"
+msgstr ""
+
+#: site/forms.py:364 site/forms.py:387 talks/forms.py:20
+msgid "* Message:"
+msgstr ""
+
+#: site/models.py:712
+msgid "Mo"
+msgstr ""
+
+#: site/models.py:713
+msgid "Tu"
+msgstr ""
+
+#: site/models.py:714
+msgid "We"
+msgstr ""
+
+#: site/models.py:715
+msgid "Th"
+msgstr ""
+
+#: site/models.py:716
+msgid "Fr"
+msgstr ""
+
+#: site/models.py:717
+msgid "Sa"
+msgstr ""
+
+#: site/models.py:718
+msgid "Su"
+msgstr ""
+
+#: site/tools.py:90
+msgid "Format:"
+msgstr ""
+
+#: site/tools.py:95
+msgid "Theme:"
+msgstr ""
+
+#: site/tools.py:108
+msgid "Departure city:"
+msgstr ""
+
+#: site/tools.py:113
+msgid "Arrival city:"
+msgstr ""
+
+#: site/tools.py:152
+msgid "Iframe's width:"
+msgstr ""
+
+#: site/tools.py:154 site/tools.py:160
+#, python-format
+msgid "minimum %(num)dpx"
+msgstr ""
+
+#: site/tools.py:158
+msgid "Iframe's height:"
+msgstr ""
+
+#: site/tools.py:164
+msgid "Displayed trip number:"
+msgstr ""
+
+#: site/tools.py:167
+#, python-format
+msgid "minimum %(min)d, maximum %(max)d"
+msgstr ""
+
+#: site/views.py:510
+#, python-format
+msgid "%(trip_name)s - Return"
+msgstr ""
+
+#: talks/views.py:145 talks/views.py:246
+#, python-format
+msgid "Trip %(trip_public_name)s"
+msgstr ""
+
+#: talks/views.py:197
+msgid "Your email is not yet validated."
+msgstr ""
+
+#: talks/views.py:199
+msgid "The carpool user email is not yet validated."
+msgstr ""
+
+#: utils/models.py:45
+#, python-format
+msgid "%(day)d is not a valid day of week."
+msgstr ""
+
+#: utils/models.py:49
+msgid "This list must contain only integers."
+msgstr ""
+
+#: utils/widgets.py:23
+msgid "Yes"
+msgstr ""
+
+#: utils/widgets.py:24
+msgid "No"
+msgstr ""

@@ -1,0 +1,14 @@
+../../media/default/js/utils
+../../media/default/js/trip_utils
+../../media/default/js/django_calendar
+../../media/default/js/site/help
+../../media/default/js/site/home
+../../media/default/js/site/simple_home
+../../media/default/js/site/search_trip
+../../media/default/js/site/my_trips
+../../media/default/js/site/add_modify_trip
+../../media/default/js/site/trip_results
+../../media/default/js/site/trip_details
+../../media/default/js/site/choose_depart_arrival
+../../media/default/js/jsi18n/fr
+../../media/default/js/jsi18n/en

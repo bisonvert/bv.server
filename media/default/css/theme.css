@@ -1,0 +1,347 @@
+/* fonts, colors & images */
+
+html {
+    background-color: #ebebeb;
+    color: black;
+}
+
+/* Links */
+
+a, a:link, a:visited {
+    color: #336699;
+    text-decoration: none;
+}
+
+a:hover, a:active {
+    color: #ad5b1e;
+    text-decoration: underline;
+}
+
+/* Html Elements */
+
+h1 { 
+    color : #597190;
+}
+
+h2 { 
+    font-weight: bold;
+    background: #c2c6d0 url(../img/bg_h2.png) no-repeat left top;
+    color: #000;
+}
+
+h3 {
+    font-weight: normal;
+    background: #b3d663 url(../img/bg_h3.png) no-repeat left top;
+    color: #fff;
+}
+
+ul {
+    list-style-type: square;
+}
+
+p.info {
+    font-style: italic;
+    color: #666;
+}
+
+span.hl {
+    font-weight: bold;
+    color: #336699;
+}
+span.label {
+    font-style: italic;
+    color: #666;
+}
+
+pre {
+    border: 1px solid #d8d8d8;
+    background-color: #f4f4f4;
+}
+
+fieldset {
+    border: 1px solid #ccc;
+}
+
+table tr.row1 {
+    background-color: #eee;
+}
+
+/* prototip.css : http://www.nickstakenburg.com/projects/prototip */
+.prototip .default .content { 
+    background-color: #d6d6fc;
+    border: 1px solid #b6b6fb;
+    color: #336699;
+}
+
+/* Forms */
+form {
+    font-style: italic;
+    color: #6e6e6e;
+}
+form label {
+    color: black;
+}
+form ul.errorlist {
+    color: #b92b14;
+}
+legend {
+    color: #6e6e6e;
+}
+
+input, textarea {
+    background-color: #f5f5f5;
+    border: 1px solid #999999;
+}
+input:hover, textarea:hover {
+    background-color: #e5e5e5;
+    border: 1px solid #777777;
+}
+
+input.form_button {
+    color: white;
+    border: none;
+}
+input.form_button:hover {
+    color: #eff8ff;
+}
+
+/* Slider */
+.slider_verbose {
+    color: #526b8a;
+}
+.slider_radius_verbose {
+    color: #6e8f55;
+}
+
+/* Tabs */
+.nav_tabs {
+    border-bottom: 1px solid #b6bdcb;
+}
+.nav_tabs a:link, .nav_tabs a:visited {
+    background: #fff;
+    border: 1px solid #b6bdcb;
+}
+.nav_tabs a:link.selected, .nav_tabs a:visited.selected {
+    background: #fff;
+    border-bottom: 1px solid #fff;
+}
+
+.content_tabs {
+    border-left: 1px solid #b6bdcb;
+    border-bottom: 1px solid #b6bdcb;
+    border-right: 1px solid #b6bdcb;
+}
+
+/* Calendar */
+.calendarbox { background:white; border:1px solid #ddd; }
+.calendar table { background-color:white; }
+.calendar caption, .calendarbox h2 { }
+.calendar th { color:#666; background-color:#e1e1e1; border-bottom:1px solid #ddd; }
+.calendar td { border-top:1px solid #eee; }
+.calendar td.selected a { background-color: #C9DBED; }
+.calendar td.nonday { background:#efefef; }
+.calendar td.today a { background:#ffc; }
+.calendar td.emptyday { background: #FFFFFF; }
+.calendar td a, .timelist a { color:#444; }
+.calendar td a:hover, .timelist a:hover { background-color: #5b80b2; color:white; }
+.calendar td a:active, .timelist a:active { background-color: #036; color:white; }
+.calendar #today { background-color: #BCED4C; color:#444; }
+.calendar #today a { color:white; }
+.calendarnav { color:#ccc; }
+.calendarnav a:link, #calendarnav a:visited, #calendarnav a:hover { color: #999; }
+.calendar-shortcuts { background-color:white; border-top:1px solid #eee; color:#ccc; }
+.calendarbox .calendarnav-previous, .calendarbox .calendarnav-next { background-color:#C9DBED; color:white; }
+.calendarnav-previous:hover, .calendarnav-next:hover { background-color:#036; }
+.calendar-cancel { background-color:#e1e1e1; border-top:1px solid #ddd; }
+.calendar-cancel a { color:#999; }
+
+/* Auto complete */
+div.autocomplete {
+    background-color:white;
+    border:1px solid #888;
+}
+div.autocomplete ul li.selected { background-color: #ffb;}
+div.autocomplete ul li {
+    color: black;
+}
+
+/* Panel */
+div.panel {
+    background-color:white;
+    border:1px solid #888;
+}
+div.panel ul li {
+    color: black;
+}
+
+/* Default map */
+div.map {
+    border: solid 1px #D3DDCB;
+}
+
+/* Page Headers */
+#navigation a:link, #navigation a:visited {
+    color: #eff8ff;
+}
+
+#navigation a:hover, #navigation a:active {
+    color: #ffffff;
+    background-color: #485573;
+}
+
+#navigation a.current {
+    color: #eff8ff;
+    background-color: #374462;
+}
+
+div#user_connected {
+    color: #336699;
+}
+
+/* Footer */
+
+div#footer {
+    border-top: 1px dotted #aaaaaa;
+    color: #666666;
+}
+#footer a:link, #footer a:visited {
+    color: #5588aa;
+}
+#footer a:hover, #footer a:active {
+    color: #336699;
+}
+
+/* Home */
+div#philosophy {
+    color: #374462;
+}
+
+/* paginator */
+table.pg_list {
+    border: 1px solid #cccccc;
+}
+table.pg_list td, table.pg_list th {
+    border: 1px solid #cccccc;
+}
+table.pg_list th a:link, table.pg_list th a:visited {
+    color: black;
+}
+p.pg {
+    color: #666666;
+}
+p.pg a:link, p.pg a:visited {
+    border: 1px solid #cccccc;
+}
+
+/* Quick Search */
+#search_trip #param_date_radius #param_date_desc {
+    color: #6E6E6E;
+}
+
+/* used also in trip results page */
+#trip_container {
+    border: 1px solid #D3DDCB;
+}
+
+#trip_list span.trip_da {
+    color: #526b8a;
+}
+
+#trip_list span.trip_type {
+    color: #8eb831;
+}
+
+#trip_pages {
+    color: #B3D663;
+}
+#trip_pages a {
+    color: #b3d663;
+    border: solid 1px #b3d663;
+}
+#trip_pages a.current {
+    background-color: #b3d663;
+    color: white;
+}
+
+/* Trip creation/modification */
+#route_info div.help {
+    background-color: #d6d6fc;
+    border: 1px solid #b6b6fb;
+    color: #336699;
+}
+
+#date_info #date_dows table {
+    border: 1px solid #999;
+}
+#date_info #date_dows th, #date_info #date_dows td {
+    border: 1px solid #999;
+}
+
+/* Trip results */
+#trip_list_headers a {
+    color: white;
+}
+#trip_list_headers a.current {
+    border: solid 1px white;
+}
+
+/* Trip details */
+#trip_details {
+    border: solid 1px #D3DDCB;
+}
+.result_title {
+    color: #fff;
+}
+
+/* My talk list */
+dl#talk_history dt {
+    background-color: #eee;
+}
+dl#talk_history dt.from_user {
+    background-color: #e1efc2;
+}
+
+/* My reports */
+table#my_reports_list tr.opened {
+    color: green;
+}
+
+/* Carpool user contact form */
+form#contact_form #contact_info p.contact_info span {
+    color: black;
+}
+
+/* Accounts profile form */
+form#userprofile_form span#id_username {
+    color: black;
+}
+
+/* Carpool user rating */
+form#rate_form #rate_info p.rate_info span {
+    color: black;
+}
+
+/* Terms */
+div#terms h3 {
+    color: #000;
+    background-color: #fff;
+}
+
+/* Help */
+dl#help dt {
+    color: #374462;
+}
+
+/* Tools */
+.tool_example {
+    color: #444;
+}
+
+.tool_example_content {
+    border: 1px solid #B3D663;
+}
+
+/* Iframes */
+#iframe_preview iframe {
+    border: solid 1px #6e6e6e;
+}

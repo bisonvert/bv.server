@@ -1,0 +1,52 @@
+{% load i18n %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="en">
+
+<head>
+    <title>{{ PROJECT_NAME }}</title>
+    <meta http-equiv="content-language" content="fr" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/home_assisesingenierie2008.css" media="screen" />
+    <link rel="shortcut icon" href="{{ MEDIA_URL }}img/favicon.ico" />
+</head>
+
+<body>
+    <div id="container">
+        <img src="{{ MEDIA_URL }}img/header_assisesingenierie2008.png" alt="covoiturage" />
+        <form action="" method="post" id="quick_search_form" target="_parent">
+            <p>
+                {% if form.address_type.errors %}<ul class="errorlist">{{ form.address_type.errors }}</ul>{% endif %}
+                {{ form.address_type }}
+            </p>
+            <p>
+                {% if form.address.errors %}<ul class="errorlist">{{ form.address.errors }}</ul>{% endif %}
+                {{ form.address }}
+                <span class="info">ex.: "Paris", "place du Capitole, Toulouse"</span>
+            </p>
+            {{ form.point }}
+            {{ form.type }}
+            <div class="form_buttons">
+                <input type="submit" class="form_button" id="btn_search_offer" value="{% trans "As passenger" %}" />
+                <input type="button" class="form_button" id="btn_search_demand" value="{% trans "As driver" %}" />
+            </div>
+        </form>
+    </div>
+
+    <script src="{{ MEDIA_URL }}js/prototype1.6.0.1.js" type="text/javascript"></script>
+    <script src="{{ MEDIA_URL }}js/utils{{ JS_EXT }}" type="text/javascript"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/jsi18n/{{ LANGUAGE_CODE }}{{ JS_EXT }}"></script>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;key={{ gmapkey }}" type="text/javascript"></script>
+    <script src="{{ MEDIA_URL }}js/scriptaculous/scriptaculous.js?load=effects,controls" type="text/javascript"></script>
+    <script src="{{ MEDIA_URL }}js/carpool/simple_home{{ JS_EXT }}" type="text/javascript"></script>
+
+    {% if GOOGLE_ANALYTICS_ENABLE %}
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        _uacct = "{{ GOOGLE_ANALYTICS_KEY }}";
+        urchinTracker();
+    </script>
+    {% endif %}
+</body>
+
+</html>

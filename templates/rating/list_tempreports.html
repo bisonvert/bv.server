@@ -1,0 +1,123 @@
+{% extends "rating/base.html" %}
+{% load i18n %}
+
+{% block rating_content %}
+                <h3>{% trans "My reports in progress" %}</h3>
+
+                {% if paginator.count %}
+                <p>
+                {% trans "Number of report displayed by page:" %}
+                {% for pagination in paginations %}
+                {% ifequal pagination current_pg %}
+                {{ pagination }}{% if not forloop.last %} | {% endif %}
+                {% else %}
+                <a href="{% url rating:list_temp_reports 1 %}?pg={{ pagination }}">{{ pagination }}</a>{% if not forloop.last %} | {% endif %}
+                {% endifequal%}
+                {% endfor %}
+                </p>
+                
+                <p class="pg">
+                {% for i in page_range %}
+                {% ifequal i page_obj.number %}
+                <span class="current">{{ i }}</span>
+                {% else %}
+                {% ifequal i DOT %}
+                ...
+                {% else %}
+                <a href="{% url rating:list_temp_reports i %}{{ get_url }}">{{ i }}</a>
+                {% endifequal %}
+                {% endifequal %}
+                {% endfor %}
+                &nbsp;&nbsp;{% blocktrans count paginator.count as counter %}{{ counter }} report{% plural %}{{ counter }} reports{% endblocktrans %}
+                </p>
+
+                <table id="my_reports_list" class="pg_list">
+                    <thead>
+                        <tr>
+                            <th><a href="{% url rating:list_temp_reports 1 %}{{ get_url_pg }}&order={% ifequal order 'departure' %}-{% endifequal %}departure"{% ifequal order 'departure' %} class="ascending"{% else %}{% ifequal order '-departure' %} class="descending"{% endifequal %}{% endifequal %}>{% trans "Departure" %}</a></th>
+                            <th><a href="{% url rating:list_temp_reports 1 %}{{ get_url_pg }}&order={% ifequal order 'arrival' %}-{% endifequal %}arrival"{% ifequal order 'arrival' %} class="ascending"{% else %}{% ifequal order '-arrival' %} class="descending"{% endifequal %}{% endifequal %}>{% trans "Arrival" %}</a></th>
+                            <th><a href="{% url rating:list_temp_reports 1 %}{{ get_url_pg }}&order={% ifequal order 'date' %}-{% endifequal %}date"{% ifequal order 'date' %} class="ascending"{% else %}{% ifequal order '-date' %} class="descending"{% endifequal %}{% endifequal %}>{% trans "Date" %}</a></th>
+                            <th class="type"><a href="{% url rating:list_temp_reports 1 %}{{ get_url_pg }}&order={% ifequal order 'type' %}-{% endifequal %}type"{% ifequal order 'type' %} class="ascending"{% else %}{% ifequal order '-type' %} class="descending"{% endifequal %}{% endifequal %}>{% trans "Type" %}</a></th>
+                            <th class="user"><a href="{% url rating:list_temp_reports 1 %}{{ get_url_pg }}&order={% ifequal order 'user' %}-{% endifequal %}user"{% ifequal order 'user' %} class="ascending"{% else %}{% ifequal order '-user' %} class="descending"{% endifequal %}{% endifequal %}>{% trans "Carpool user to rate" %}</a></th>
+                            <th><a href="{% url rating:list_temp_reports 1 %}{{ get_url_pg }}&order={% ifequal order 'write_date' %}-{% endifequal %}write_date"{% ifequal order 'write_date' %} class="ascending"{% else %}{% ifequal order '-write_date' %} class="descending"{% endifequal %}{% endifequal %}>{% trans "Write dates" %}</a></th>
+                            <th class="act">{% trans "Actions" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for tempreport in page_obj.object_list %}
+                        <tr class="{% cycle 'row1' 'row2' %}{% if tempreport.is_opened %} opened{% endif %}">
+                            <td>
+                                {{ tempreport.departure_city }}
+                                {% if tempreport.departure_address %}<br />{{ tempreport.departure_address }}{% endif %}
+                            </td>
+                            <td>
+                                {{ tempreport.arrival_city }}
+                                {% if tempreport.arrival_address %}<br />{{ tempreport.arrival_address }}{% endif %}
+                            </td>
+                            <td>
+                                {% if tempreport.regular %}
+                                {% trans "Regular" %}:
+                                <br />
+                                {{ tempreport.print_dows }}
+                                {% else %}
+                                {{ tempreport.date|date:"d/m/Y" }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% ifequal tempreport.type 0 %}
+                                {% trans "Offer" %}
+                                {% else %}
+                                {% ifequal tempreport.type 1 %}
+                                {% trans "Demand" %}
+                                {% else %}
+                                {% trans "Both" %}
+                                {% endifequal %}
+                                {% endifequal %}
+                            </td>
+                            <td>
+                                {% ifequal user.id tempreport.user1.id %}
+                                {{ tempreport.user2.username }}
+                                {% else %}
+                                {{ tempreport.user1.username }}
+                                {% endifequal %}
+                            </td>
+                            <td>
+                                {{ tempreport.start_date|date:"d/m/Y" }} - {{ tempreport.end_date|date:"d/m/Y" }}
+                            </td>
+                            <td>
+                                {% if tempreport.is_opened %}
+                                {% ifequal tempreport.user1.id user.id %}
+                                {% if not tempreport.report1_mark %}
+                                <a href="{% url rating:rate_user tempreport.id %}" title="{% trans "Rate this carpool user" %}"><img src="{{ MEDIA_URL }}img/rate.png" alt="{% trans "Rate this carpool user" %}" /></a>
+                                {% endif %}
+                                {% else %}
+                                {% if not tempreport.report2_mark %}
+                                <a href="{% url rating:rate_user tempreport.id %}" title="{% trans "Rate this carpool user" %}"><img src="{{ MEDIA_URL }}img/rate.png" alt="{% trans "Rate this carpool user" %}" /></a>
+                                {% endif %}
+                                {% endifequal %}
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <p class="pg">
+                {% for i in page_range %}
+                {% ifequal i page_obj.number %}
+                <span class="current">{{ i }}</span>
+                {% else %}
+                {% ifequal i DOT %}
+                ...
+                {% else %}
+                <a href="{% url rating:list_temp_reports i %}{{ get_url }}">{{ i }}</a>
+                {% endifequal %}
+                {% endifequal %}
+                {% endfor %}
+                &nbsp;&nbsp;{% blocktrans count paginator.count as counter %}{{ counter }} report{% plural %}{{ counter }} reports{% endblocktrans %}
+                </p>
+
+                {% else %}
+                {% trans "No Report in progress." %}
+                {% endif %}
+{% endblock %}

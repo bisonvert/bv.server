@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<form method="post">
+<h2>{% trans "Request an API access" %}</h2>
+<p> {% trans "api_access_description" %} </p>
+{{ form.as_p }}
+<div class="form_buttons">
+    <input type="submit" class="form_button" value="{% trans "make your demand" %}" />
+</div>
+</form>
+{% endblock %}
+    
+

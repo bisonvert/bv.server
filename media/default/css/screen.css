@@ -1,0 +1,1171 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+html {
+    font: normal 12px "Trebuchet MS", Verdana, "Lucida Grande", Georgia, Sans-Serif;
+    text-align: center;
+}
+
+/* Links -> theme.css */
+
+/* Html Elements */
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+    margin: 5px 0 10px;
+    padding: 0;
+}
+
+h1 { 
+    font-size: 22px;
+}
+
+h2 { 
+    font-size: 13px;
+    padding-left: 60px;
+    line-height: 18px;
+}
+h2 img {
+    vertical-align: top;
+}
+
+h3 { 
+    font-size: 13px;
+    padding-left: 60px;
+    line-height: 18px;
+}
+h3 img {
+    vertical-align: top;
+}
+
+h4 { 
+    font-size: 12px;
+}
+
+h5 { 
+    font-size: 14px;
+}
+
+h6 { 
+    font-size: 12px;
+}
+
+ul, ol {
+    padding: 10px 30px;
+    line-height: 1.8em;
+}
+
+ul.colorBullet {
+    list-style-image: url(../img/color_bullet.png);
+}
+
+ul.altColorBullet {
+    list-style-image: url(../img/alt_color_bullet.png);
+}
+
+p {
+    text-align: justify;
+}
+
+span.info {
+    font-size: 10px;
+}
+
+img {
+    border: none;
+}
+
+pre {
+    font-family: 'Consolas', 'Deja Vu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
+    letter-spacing: 0.015em;
+    padding: 5px;
+    line-height: 15px;
+    white-space: pre-wrap; /* css-3 */
+    white-space: -moz-pre-wrap !important; /* Mozilla, since 1999 */
+    white-space: -pre-wrap; /* Opera 4-6 */
+    white-space: -o-pre-wrap; /* Opera 7 */
+    word-wrap: break-word; /* Internet Explorer 5.5+ */
+}
+
+/* Help Tooltip */
+img.help {
+    cursor: pointer;
+}
+
+/* prototip.css : http://www.nickstakenburg.com/projects/prototip */
+.prototip { position: absolute; }
+.prototip .effectWrapper { position: relative; }
+.prototip .tooltip { position: relative; }
+.prototip .content { clear: both; }
+.iframeShim {
+    position: absolute;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    background: none;
+}
+.prototip .default {
+    width: 300px;
+}
+.prototip .default .content { 
+    text-align: justify;
+    padding: 5px;
+    font-size: 10px;
+}
+
+/* Forms */
+form ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+form label {
+    float: left;
+    font-weight: normal;
+    font-style: normal;
+    width: 250px;
+    line-height: 26px;
+    text-align: right;
+    padding-right: 10px;
+}
+form ul.errorlist {
+    font-weight: bold;
+}
+form ul li label {
+    float: none;
+}
+form div.form_buttons {
+    margin: 5px auto;
+    text-align: center;
+}
+
+.center{
+    text-align: center;
+}
+
+.padding10{
+    padding: 10px;
+}
+
+form div.form_buttons img {
+    vertical-align: middle;
+}
+legend {
+    font-style: italic;
+}
+
+input, textarea, button {
+    padding: 5px;
+}
+input.checkbox, input.checkbox:hover {
+    padding: 0;
+    border: none;
+    background-color: transparent;
+}
+
+input.form_button, button.form_button {
+    width: 200px;
+    height: 27px;
+    background: transparent url(../img/bg_button.png) no-repeat;
+    color: white;
+    border: none;
+}
+input.form_button:hover, button.form_button:hover {
+    background-position: 0 -27px;
+}
+
+/* Slider */
+.slider_left {
+    margin: 0;
+    width: 10px;
+    height: 20px;
+    float: left;
+    background: transparent url(../img/slider_left.png) no-repeat scroll 0%;
+    cursor: pointer;
+}
+.slider_right {
+    margin: 0;
+    width: 10px;
+    height: 20px;
+    float: left;
+    background: transparent url(../img/slider_right.png) no-repeat scroll 0%;
+    cursor: pointer;
+}
+.slider_bar {
+    width: 200px;
+    height: 20px;
+    float: left;
+    background: transparent url(../img/slider_bar.png) no-repeat scroll 0%;
+}
+.slider {
+    width: 9px;
+    height: 20px;
+    background: transparent url(../img/slider.png) no-repeat scroll 0%;
+    cursor: move;
+}
+.slider_verbose {
+    clear: left;
+    text-align: center;
+}
+#track_interval_min_radius, #track_interval_max_radius {
+    width: 90px;
+}
+#slider_interval_min_right {
+    margin-right: 5px;
+}
+
+/* Tabs */
+.nav_tabs {
+    clear: left;
+    margin: 30px 0 0 0;
+    padding: 0 0 19px 10px;
+}
+.nav_tabs li {
+    display: inline;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.nav_tabs a:link, .nav_tabs a:visited {
+    float: left;
+    line-height: 14px;
+    margin-right: 8px;
+    padding: 2px 10px 2px 10px;
+    text-decoration: none;
+}
+
+.content_tabs {
+    clear: left;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Calendar */
+.calendarbox { margin:5px auto; font-size:11px; width:16em; text-align:center; position:relative; z-index: 2000; }
+.calendar { margin:0; padding: 0; }
+.calendar table { margin:0; padding:0; border-collapse:collapse; width:100%; }
+.calendar caption, .calendarbox h2 { margin: 0; font-size:11px; text-align:center; border-top:none; line-height:18px; }
+.calendar th { font-size:10px; padding:2px 3px; text-align:center; }
+.calendar td { font-size:11px; text-align: center; padding: 0; border-bottom:none; }
+.calendar td a, .timelist a { display: block; font-weight:bold; padding:4px; text-decoration: none; }
+.calendarnav { font-size:10px; text-align: center; margin:0; padding:1px 3px; }
+.calendar-shortcuts {font-size:10px; line-height:11px; padding:3px 0 4px; }
+.calendarbox .calendarnav-previous, .calendarbox .calendarnav-next { display:block; position:absolute; font-weight:bold; font-size:12px; line-height:18px; padding:0 4px; }
+.calendarnav-previous:hover, .calendarnav-next:hover { text-decoration: none; }
+.calendarnav-previous { top:0; left:0; }
+.calendarnav-next { top:0; right:0; }
+.calendar-cancel { margin:0 !important; padding:0; font-size:10px; }
+.calendar-cancel a { padding:2px; }
+.calendarlink img { vertical-align: top;}
+
+/* Auto complete */
+div.autocomplete {
+    position:absolute;
+    width:250px;
+    margin:0px;
+    padding:0px;
+    z-index: 1000;
+}
+div.autocomplete ul {
+    list-style-type:none;
+    margin:0px;
+    padding:0px;
+}
+div.autocomplete ul li {
+    list-style-type:none;
+    display:block;
+    margin:0;
+    padding:2px;
+    cursor:pointer;
+    font-style: normal;
+}
+
+/* Panel */
+img.show_panel {
+    cursor: pointer;
+}
+div.panel {
+    position:absolute;
+    width:250px;
+    margin:0px;
+    padding:0px;
+    z-index: 1000;
+}
+div.panel ul {
+    list-style-type:none;
+    margin:0px;
+    padding:0px;
+}
+div.panel ul li {
+    list-style-type:none;
+    display:block;
+    margin:0;
+    padding:2px;
+    font-style: normal;
+    cursor:pointer;
+}
+div.panel p {
+    cursor:pointer;
+    text-align: right;
+    font-size: 10px;
+    margin: 0;
+    padding: 0 2px;
+}
+
+/* Default map */
+div.map {
+    width: 650px;
+    height: 400px;
+    border: solid 1px #D3DDCB;
+}
+div.map input, div.map input:hover {
+    padding: 0;
+    border: none;
+    background-color: transparent;
+}
+
+/* Custom popups */
+div.map .olPopup {
+    background: transparent url(../img/bgpopup.png) no-repeat left top;
+}
+div.map .olPopupContent {
+    padding-left: 20px;
+}
+div.map .olPopupCloseBox {
+    background: transparent url(../img/close.gif) no-repeat left top;
+    cursor: pointer;
+}
+
+/* ToolBar */
+.ToolBar  {
+    float:right;
+    right: 30px;
+    height: 30px;
+    width: 150px;
+}
+.ToolBar div {
+  float:right;
+  width:  40px;
+  height: 40px;
+  margin: 5px;
+}
+.ToolBar .olControlNavigationItemActive {
+  background: url("../img/editing_tool_navigation.png") no-repeat left top;
+}
+.ToolBar .olControlNavigationItemInactive {
+  background: url("../img/editing_tool_navigation.png") no-repeat left top;
+  background-position: 0 -40px;
+}
+.ToolBar .olControlDrawFeaturePointItemActive {
+  background: url("../img/editing_tool_draw_point.png") no-repeat left top;
+}
+.ToolBar .olControlDrawFeaturePointItemInactive {
+  background: url("../img/editing_tool_draw_point.png") no-repeat left top;
+  background-position: 0 -40px;
+}
+
+/* marks */
+span.mark {
+    white-space: pre;
+}
+
+/* Container */
+
+div#container {
+    min-height: 100%;
+    width: 1000px;
+    margin: 0 auto;
+    position: relative;
+    padding: 0;
+    background: url(../img/body_bg.png) center repeat-y;
+}
+
+/* Page Headers */
+
+#page-header {
+    width: 970px;
+    margin: 0 auto;
+    padding: 0;
+    text-align: left;
+}
+
+#page-header h1#header {
+    height: 138px;
+    margin: 0;
+    background: url(../img/page_header.png) no-repeat left top;
+}
+
+#page-header h1#header a {
+    width: 950px;
+    height: 51px;
+    display: block;
+    background: url(../img/logo_header.gif) no-repeat;
+    position: relative;
+    left: 5px;
+    top: 15px;
+    text-indent: -5000px;
+}
+
+#navigation {
+    position: absolute;
+    top: 118px;
+    padding: 0;
+    height: 20px;
+    margin: 0 0 10px;
+    list-style-type: none;
+}
+
+#navigation li {
+    float: left;
+}
+
+#navigation a:link, #navigation a:visited {
+    float: left;
+    padding: 2px 10px;
+    line-height: 16px;
+    border-bottom-width: 0;
+}
+
+#navigation a:hover, #navigation a:active {
+    text-decoration: none;
+}
+
+div#user_connected {
+    text-align: right;
+    padding: 0 5px;
+    line-height: 20px;
+}
+
+/* Wrapper */
+
+div#wrapper {
+    clear: left;
+    width: 920px;
+    margin: 0 auto;
+    padding-bottom: 80px;
+    overflow: auto;
+    text-align: left;
+}
+
+div#wrapper div.clear {
+    clear: both;
+}
+
+/* Footer */
+
+div#footer {
+    position: absolute;
+    bottom: 0;
+    left: 40px;
+    font-size: 11px;
+    width: 920px;
+    margin: 0 auto;
+}
+#footer a.current {
+    text-decoration: underline;
+}
+#footer p {
+    margin: 5px 0;
+    text-align: center;
+}
+#footer #footer_links {
+    margin-bottom: 10px;
+}
+
+/**********************************************************/
+
+/* Home page */
+form#quick_search_form table input {
+    width: 200px;
+}
+form#quick_search_form table label {
+    float: none;
+}
+form#quick_search_form table {
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+form#quick_search_form td {
+    padding: 5px 10px;
+}
+form#quick_search_form td.info {
+    padding: 0 10px;
+    margin: 0;
+    font-size: 10px;
+    font-style: normal;
+}
+form#quick_search_form td.center {
+    text-align: center;
+}
+form#quick_search_form td.center input {
+    width: 115px;
+}
+form#quick_search_form img {
+    vertical-align: top;
+}
+
+div#philosophy {
+    width: 35%;
+    height: 150px;
+    margin: 0 auto;
+    font-size: 11px;
+    padding: 0 40px;
+}
+
+div#trip_list_quick_access {
+    text-align: center;
+}
+
+/* paginator */
+table.pg_list {
+    width: 99%;
+    border-collapse: collapse;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+}
+table.pg_list td, table.pg_list th {
+    padding: 5px;
+}
+table.pg_list th a.ascending {
+    padding-right: 13px;
+    background: transparent url(../img/arrow_down.gif) no-repeat scroll right 0.4em;
+}
+table.pg_list th a.descending {
+    padding-right: 13px;
+    background: transparent url(../img/arrow_up.gif) no-repeat scroll right 0.4em;
+}
+p.pg {
+    font-size: 11px;
+    line-height: 22px;
+    margin: 0;
+    padding: 10px 5px;
+}
+p.pg a:link, p.pg a:visited {
+    padding: 2px 6px;
+}
+p.pg span.current {
+    font-size: 13px;
+    font-weight: bold;
+    padding: 2px 6px;
+    vertical-align: top;
+}
+
+/* Quick access to trip list */
+table#quick_trip_list th.act {
+    width: 60px;
+}
+
+/* Quick Search */
+#search_trip {
+    margin: 20px 0 0 0;
+    height: 190px;
+    padding-left: 110px;
+}
+div.search_demand {
+    background: url(../img/car.png) no-repeat left top;
+}
+div.search_offer {
+    background: url(../img/passenger.png) no-repeat left top;
+}
+#search_trip #param_location, #search_trip #param_date_radius {
+    padding: 10px 0px 0px 60px;
+}
+#search_trip #form_search_trip label {
+    margin-left: 20px;
+    font-weight: normal;
+    clear: left;
+    width: 50px;
+}
+#search_trip #form_search_trip input, #search_trip #form_search_trip button {
+    float: left;
+    width: 150px;
+}
+#search_trip #form_search_trip #param_location img {
+    float: left;
+}
+#search_trip #form_search_trip #btn_search_trip {
+    width: 200px;
+    margin-top: 1px;
+    background: transparent url(../img/bg1/bg_button.png) no-repeat;
+    margin-left:30px;
+}
+
+#search_trip #form_search_trip #btn_search_trip:hover {
+    background-position: 0 -27px;
+}
+
+#search_trip #param_location {
+    background:transparent url(../img/bg_search_trip.png) no-repeat scroll left top;
+    float:left;
+    height:180px;
+    width:340px;
+}
+
+#search_trip #param_date_radius {
+    position: relative;
+    padding-top: 35px;
+    height:140px;
+    background:transparent url(../img/bg_search_time.png) no-repeat scroll left top;
+    margin-left:10px;
+    width:340px;
+    float: left;
+}
+
+#search_trip #param_date_radius #param_date_desc {
+    float: left;
+    padding-left: 40px;
+    font-style:italic;
+    width: 250px;
+}
+
+#search_trip #param_date_radius #parame_date {
+    position: relative;
+}
+
+#search_trip #help_date_slider {
+    float: left;
+}
+#search_trip #param_date, #search_trip #date_slider {
+    position: relative;
+}
+#search_trip #date_slider {
+    float: left;
+    margin-left: 40px;
+}
+#search_trip #param_date label {
+    text-align: right;
+    line-height: 26px;
+    margin-left: 20px;
+    padding-right: 10px;
+    float: left;
+    width: 50px;
+}
+#search_trip #param_date input {
+    width: 115px;
+}
+#search_trip #param_radius {
+    float: left;
+    margin-left : 30px;
+}
+#search_trip #help_radius_slider {
+    float: left;
+}
+
+#search_trip #param_radius_desc {
+    float:left;
+    padding-left:30px;
+    width:300px;
+}
+
+/* used also in trip results page */
+#trip_container {
+    clear: both;
+    float: left;
+    width: 300px;
+    height: 400px;
+    position: relative;
+}
+#trip_list {
+    margin: 10px;
+}
+#trip_list div.trip_list_content {
+    height: 320px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+#trip_list div.trip {
+    clear: both;
+    padding: 3px 0;
+}
+#trip_list span.trip_toggle {
+    cursor: pointer;
+}
+#trip_list span.trip_toggle, #trip_list span.trip_title {
+    float: left;
+}
+#trip_list span.trip_da {
+    margin: 2px;
+}
+#trip_list span.trip_date {
+    color: #666;
+    font-size: 11px;
+    font-style : italic;
+}
+#trip_list span.trip_type {
+    margin: 2px;
+}
+#trip_list span.trip_show {
+    float: right;
+}
+#trip_list div.trip_details {
+    clear: both;
+    position: absolute;
+    margin-top: 17px;
+    width: 280px;
+    height: 105px;
+    background: transparent url(../img/bgresult.png) no-repeat left top;
+}
+
+#trip_list p {
+    padding: 10px;
+    margin: 0;
+    font-size: 11px;
+    color: #444;
+}
+#trip_list div.trip_details p {
+    padding: 10px 8px 0 20px;
+    text-align: left;
+}
+
+#trip_pages {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+#trip_pages a {
+    padding: 0 5px;
+    margin-left: 5px;
+    line-height: 26px;
+    cursor: pointer;
+}
+#trip_pages a:hover, #trip_pages a:active {
+    text-decoration: none;
+}
+
+#quick_search_map {
+    float: right;
+    width: 600px;
+    height: 400px;
+    position: relative;
+}
+#quick_search_map #wait {
+    position: absolute;
+    z-index: 1000;
+    top: 190px;
+    left: 190px;
+}
+
+/* My trip list */
+table#my_trip_list th.permalink {
+    width: 30px;
+}
+table#my_trip_list th.type {
+    width: 60px;
+}
+table#my_trip_list th.act {
+    width: 120px;
+}
+
+/* Trip creation/modification */
+#route_info #param_name, #route_info #param_type {
+    width: 50%;
+    margin-bottom: 5px;
+}
+#route_info #param_trip {
+    float: left;
+    width: 250px;
+    height: 400px;
+    padding: 10px 10px 10px 30px;
+    background: transparent url(../img/bg_create_trip.png) no-repeat left top;
+}
+#route_info #param_type img {
+    vertical-align: top;
+}
+#param_trip p {
+    text-align: left;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+#param_trip p label {
+    float: left;
+    text-align: left;
+}
+
+#route_info #param_name_type label {
+    line-height: 26px;
+    font-weight: normal;
+    width: 150px;
+    text-align: right;
+}
+#route_info #param_name_type input, #search_trip #form_search_trip button {
+    float: left;
+    width: 180px;
+}
+#route_info #form_departure_arrival {
+    clear: left;
+    width: 220px;
+}
+#route_info #param_departure, #route_info #param_arrival {
+    width: 100%;
+}
+#route_info #form_departure_arrival label {
+    text-align: left;
+    line-height: 22px;
+    width: 150px;
+}
+#route_info #form_departure_arrival input, #route_info #form_departure_arrival button{
+    float: left;
+    width: 180px;
+}
+#route_info #param_button {
+    clear: left;
+    float: left;
+    width: 225px;
+}
+#route_info #param_button input#btn_departure_arrival, #route_info #param_button button#btn_departure_arrival{
+    background: transparent url(../img/bg1/bg_button.png) no-repeat;
+    width: 200px;
+    margin-top: 15px;
+}
+#route_info #param_button button#btn_departure_arrival:hover {
+    background-position: 0 -27px;
+}
+#route_info #help_map {
+    margin-top: 0px;
+    padding: 4px 0;
+}
+#define_trip_map {
+    width: 600px;
+    height: 400px;
+    position: relative;
+    float: left;
+}
+#define_trip_map #wait {
+    position: absolute;
+    z-index: 1000;
+    top: 190px;
+    left: 340px;
+}
+#route_info div.help {
+    text-align: justify;
+    padding: 0 5px;
+    font-size: 10px;
+}
+#route_info #param_radius {
+    float: right;
+    width: 600px;
+    margin-top: 5px;
+}
+#route_info #param_radius_demand {
+    float: left;
+    margin-bottom: 5px;
+}
+#route_info #help_radius_demand_slider {
+    float: left;
+    margin-left: 10px;
+}
+#route_info #help_radius_offer_slider {
+    float: right;
+    margin-right: 10px;
+}
+#route_info #param_radius_offer {
+    float: right;
+    margin-bottom: 5px;
+}
+
+#date_info #param_time {
+    width: 580px;
+    height: 140px;
+    padding: 10px 10px 10px 10px;
+    margin: 0px auto;
+    background: transparent url(../img/bg_create_time.png) no-repeat left top;
+}
+
+#date_info #param_frequency_type, #date_info #param_hour {
+    width: 350px;
+    margin-bottom: 5px;
+}
+#date_info #param_frequency_hour label {
+    line-height: 26px;
+    font-weight: normal;
+    float: left;
+    width: 200px;
+    text-align: right;
+    padding-right: 10px;
+}
+#date_info #param_hour label {
+    width: 200px;
+    text-align: right;
+    padding-right: 10px;
+}
+#date_info #param_date_radius {
+    clear: both;
+    height: 45px;
+}
+#date_info #param_date, #date_info #date_slider {
+    float: left;
+    margin-right: 10px;
+}
+#date_info #date_slider {
+    margin: 5px 0px 0px 110px;
+    clear: left;
+    width: 225px;
+}
+#date_info #help_date_slider {
+    float: left;
+    margin: 5px 0 0 5px;
+}
+#date_info #date_dows {
+    margin-left: 210px;
+}
+#date_info #param_date label {
+    line-height: 26px;
+    font-weight: normal;
+    float: left;
+    width: 200px;
+    text-align: right;
+    padding-right: 10px;
+}
+#date_info #param_date input {
+    width: 115px;
+}
+#date_info #date_dows table {
+    border-collapse: collapse;
+}
+#date_info #date_dows table label{
+    width: 0px;
+}
+#date_info #date_dows th, #date_info #date_dows td {
+    padding: 2px 5px;
+}
+
+#form_departure_arrival{
+    color:#000;
+    font-style:normal;
+}
+
+#form_departure_arrival label {
+    width: 400px;
+    text-align: right;
+    padding-right: 10px;
+}
+
+#form_departure_arrival #param_trip label{
+    text-align: left;
+}
+#form_departure_arrival #param_time label{
+    width: 250px;
+}
+
+#form_departure_arrival #param_time p{
+    margin-top: 0px;
+    margin-bottom: 6px;
+}
+
+
+/* Trip results */
+#trip_results {
+    margin: 20px 0 0 0;
+    height: 100px;
+    padding-left:100px;
+}
+#trip_results p, #trip_results #param_radius {
+    float: left;
+}
+#trip_results #permalink {
+    float: right;
+}
+#trip_results #permalink input {
+    padding: 0;
+    margin: 12px 0;
+    width: 300px;
+}
+#trip_results #permalink #help_permalink {
+    margin: 12px 0;
+    vertical-align: bottom;
+}
+#trip_results #param_radius {
+    clear: both;
+    width: 100%;
+}
+#trip_results #date_radius, #trip_results #param_radius_driver, #trip_results #param_radius_passenger {
+    float: left;
+}
+#trip_results #help_date_slider, #trip_results #help_radius_driver_slider, #trip_results #help_radius_passenger_slider {
+    float: left;
+    margin: 0 15px 0 5px;
+}
+
+#trip_results_map {
+    float: right;
+    width: 600px;
+    height: 400px;
+    position: relative;
+}
+#trip_results_map #wait {
+    position: absolute;
+    z-index: 1000;
+    top: 190px;
+    left: 190px;
+}
+
+#trip_list_headers a {
+    padding: 0 5px;
+    margin-left: 5px;
+    line-height: 26px;
+    cursor: pointer;
+}
+#trip_list_headers a:hover, #trip_list_headers a:active {
+    text-decoration: none;
+}
+#trip_list_headers a.current {
+}
+
+/* Trip details */
+#trip_details_headers {
+    margin: 20px 0 0 0;
+    height: 100px;
+}
+#trip_details_headers p {
+    margin-left: 100px;
+}
+
+#trip_details {
+    clear: both;
+    float: left;
+    width: 300px;
+    height: 400px;
+    position: relative;
+}
+#trip_details_content {
+    height: 370px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin: 10px;
+}
+
+#trip_details_map {
+    float: right;
+    width: 600px;
+    height: 400px;
+}
+.result_title {
+    width: 300px;
+    height: 36px;
+    background: transparent url(../img/result_title.png) no-repeat left top;
+    text-align: center;
+    line-height: 36px;
+    font-weight: bold;
+}
+
+/* My talk list */
+dl#talk_history dd {
+    margin-bottom: 20px;
+}
+table#my_talk_list th.act {
+    width: 150px;
+}
+
+/* My reports */
+table#my_reports_list th.act {
+    width: 40px;
+}
+
+/* Carpool user contact form */
+form#contact_form #contact_info p.contact_info label {
+    line-height: 15px;
+}
+form#contact_form #contact_info p.contact_info span {
+    font-style: normal;
+    line-height: 15px;
+}
+
+/* Accounts profile form */
+form#userprofile_form img {
+    vertical-align: bottom;
+}
+form#userprofile_form span#id_username {
+    display: block;
+    line-height: 26px;
+    font-style: normal;
+}
+form#userprofile_form span#email_info {
+    line-height: 26px;
+    font-style: normal;
+}
+form#userprofile_form span#home_address {
+    float: left;
+}
+form#userprofile_form span#home_address span {
+    display: block;
+    margin-bottom: 3px;
+}
+
+/* Accounts preferences form */
+form#userpreferences_form label {
+    width: 320px;
+}
+img#help_preferences {
+   vertical-align: bottom; 
+}
+
+/* Carpool user rating */
+form#rate_form #rate_info p.rate_info label {
+    line-height: 15px;
+}
+form#rate_form #rate_info p.rate_info span {
+    font-style: normal;
+    line-height: 15px;
+}
+
+/* Terms */
+div#terms h3 {
+    background: none;
+    padding-left:0px;
+}
+div#terms h4 {
+    padding-left: 30px;
+}
+
+/* Help */
+dl#help {
+    margin: 6px 14px;
+    padding: 0;
+}
+dl#help dt {
+    margin: 5px 0;
+    padding: 2px;
+    font-weight: bold;
+}
+dl#help dt img {
+    cursor: pointer;
+}
+dl#help dd {
+    margin: 0 2px 9px 2px;
+    padding: 2px 2px 9px 2px;
+}
+dl#help dd li {
+    text-align: justify;
+}
+
+/* Tools */
+.tool_example {
+    margin: 20px auto;
+    padding: 0;
+    color: #444;
+}
+
+.tool_example_content {
+    padding: 20px;
+    margin: 0;
+}
+
+/* Depart from */
+div#depart_from_offers {
+    width: 45%;
+    float: left;
+}
+div#depart_from_demands {
+    width: 45%;
+    float: right;
+}
+
+/* AdSense */
+div#ad_sense {
+    margin: 0 auto;
+}

@@ -1,0 +1,141 @@
+====================
+Internationalization
+====================
+
+Documentation to read before start
+
++ `the django i18n documentation page online (en)`_
++ `the django i18n documentation page online (fr)`_
+
+``$project``: ``/path/to/project/``
+
+Where to find i18n files
+============================
+
++ ``$project/app/ecov/locale``: code related translation files
++ ``$project/app/templates/locale``: template related translation files
++ ``$project/app/media/locale``: static related translation files (javascript)
+
+How to process
+================
+
+The process is the same for code and templates, but differs a bit for static 
+files (mainly js ones)
+
+Code translation
+------------------
+
+First, we need to generate the .po file, wich contains all translation strings.
+
+::
+
+    $ cd $project/app/ecov
+    $ python manage.py makemessages -l fr -d django
+
++ the ``-l fr`` option allow us to specify the language.
+
+Once the file has been generated, edit it (``locale/fr/LC_MESSAGES/django.po``),  
+seek for "fuzzy" or empty translation strings, and/or translation to change.
+
+The last step is to compile the translation strings!
+::
+
+    $ cd $project/app/ecov
+    $ python manage.py compilemessages
+
+This generate a compiled file: ``locale/fr/LC_MESSAGES/django.mo``, wich will 
+be used by our application.
+
+Restart the development server. a stop/start is needed.
+
+Template translation
+----------------------
+
+The procedure is the same, apart we need to work into the 
+``$project/app/templates/`` folder.
+
+Static file translation
+-------------------------
+
+A good practice is to separate static files from other project files. It's the 
+reason why the "media" folder is at the same level than "ecov". This allows to 
+serve static files by a specific dedicated server, for instance.
+
+Unfortunately, the view used to access javascript translation has a limitation, 
+that prevent to access translation files witch are outside the django project 
+himself and outside django applications. Some patches have been submit by the 
+community, but all have been rejected.
+
+So, we have to find a workaround.
+
+First, we have to explain to the ``javascript_catalog`` view where to find 
+the traduction files for the js files.
+
+Into ``ecov.urls.py``, we wrote this
+::
+
+    js_info_dict = {
+        'packages': ('carpool'),
+    }
+    urlpatterns += patterns('',
+        (r'^jsi18n/$', 'django.views.i18n.javascript_catalog', js_info_dict),
+    )
+
+So, it uses the carpool app. To make this working, all it needs is to make a 
+symlink ::
+::
+
+    $ cd $project/ecov/carpool
+    $ ln -s ../../media/locale
+
+Static files translation procedure
+------------------------------------
+
+to generate translation:
+::
+
+    $ cd $project/app/media
+    $ python manage.py makemessages -l fr -d djangojs
+
+Edit the ``locale/fr/LC_MESSAGES/djangojs.po`` file, and update the translation.
+
+Then, to compile translation, use the following command lines
+::
+
+    $ cd $project/app/media
+    $ python manage.py compilemessages
+
+the compilated file is ``locale/fr/LC_MESSAGES/djangojs.mo``. Reload the dev. 
+server with a stop/start.
+
+Now, a link to the dynamic javascript file allow us to use translation:
+::
+
+    <script type="text/javascript" src="/jsi18n/"></script>
+
+This call the javascript_catalog view and return a list of translations. this 
+works fine, but is not really performant: translations are computed each time
+the page is called, without using a cache.
+
+The solution is to manage translation in a JS file, wich needs to be modified 
+each time a translation is modified/added.
+
+So, we have replaced the previous link by this one, within the template 
+layout "base.html"::
+
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/jsi18n/{{ LANGUAGE_CODE }}{{ JS_EXT }}"></script>
+
+Edit the ``$project/media/js/jsi18n/fr.js`` file and replace all the ``catalog``
+array declaration by the content provided by 
+``http://url.to.local.project:port/jsi18n/``. 
+
+Caution, be sure to only edit the catalog content BEFORE the comment line 
+CALENDAR FOR ADMIN.
+
+When modifying a JS file, reload the minifying script::
+
+    $ cd $project/share/scripts
+    $ ./do_minify.sh
+
+.. _`the django i18n documentation page online (en)`: http://www.djangoproject.com/documentation/i18n/
+.. _`the django i18n documentation page online (fr)`: http://www.django-fr.org/documentation/i18n/

@@ -1,0 +1,181 @@
+{% extends "base_openlayers.html" %}
+{% load i18n %}
+
+{% block content %}
+                <div id="trip_details_headers" class="{% if trip.offer %}search_demand{% else %}search_offer{% endif %}">
+                    <p>
+                        {% comment %}fil d'ariane à définir &raquo;{% endcomment %}
+                        <a href="{{ trip.get_absolute_url }}">{% trans "Trip details" %}</a>
+                    </p>
+                    <p>
+                        {{ trip.departure_city }} - {{ trip.arrival_city }} - {% if trip.regular %}{% trans "Regular" %}: {{ trip.print_dows }}{% else %}{% trans "Departure on"%} {{ trip.date|date:"d/m/Y" }}{% endif %}
+                    </p>
+                </div>
+
+                <div id="trip_details">
+                    <div id="trip_details_title" class="result_title">{% trans "Trip details" %}</div>
+                    <div id="trip_details_content">
+                        <p>
+                        <span class="label">{% trans "Trip author" %}:</span> {{ trip.user.username }}
+                        <span class="mark">{{ user_mark }}</span>
+                        <br />
+                        {% if user.is_authenticated %}
+                        <a href="{% url talks:contact_user trip.id %}">{% trans "Contact this carpool user" %}</a>
+                        {% else %}
+                        <a href="{% url accounts:login %}">{% trans "Please login to contact this carpool user" %}</a>
+                        {% endif %}
+                        </p>
+                        <p>
+                        <span class="label">{% trans "Departure" %}:</span> {{ trip.departure_city }}{% if trip.departure_address %} - {{trip.departure_address }}{% endif %}
+                        </p>
+                        <p>
+                        <span class="label">{% trans "Arrival" %}:</span> {{ trip.arrival_city }}{% if trip.arrival_address %} - {{trip.arrival_address }}{% endif %}
+                        </p>
+                        {% if trip.regular %}
+                        <p>
+                        <span class="label">{% trans "Regular" %}:</span> {{ trip.print_dows }} {% if trip.time %}{% trans "at about" %} {{ trip.time|time:"H\h"}}{% endif %}
+                        </p>
+                        {% else %}
+                        <p>
+                        <span class="label">{% trans "Departure on"%}</span> {{ trip.date|date:"d/m/Y" }} {% if trip.time %}{% trans "at about" %} {{ trip.time|time:"H\h"}}{% endif %}
+                        </p>
+                        <p>
+                        <span class="label">{% trans "Search by date" %}:</span> -{{ trip.interval_min }}j/+{{ trip.interval_max }}j
+                        </p>
+                        {% endif %}
+                        {% if trip.offer %}
+                        <p>
+                        <span class="label">{% trans "Area around driver trip" %}:</span> {{ trip.offer.print_radius }}
+                        </p>
+                        {% endif %}
+                        {% if trip.demand %}
+                        <p>
+                        <span class="label">{% trans "Area around passenger trip" %}:</span> {{ trip.demand.print_radius }}
+                        </p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div id="trip_details_map" class="map"></div>
+
+                <div class="clear"> </div>
+
+                <div id ="trip_options">
+                        <p>
+                         <span class="label">{% trans "Comment" %}:</span> {% if trip.comment %}{{ trip.comment }}{% else %}{% trans "Not specified" %}{% endif %}
+                        </p>
+
+                        {% if trip.offer %}
+
+                        <h3>{% trans "Driver options" %}</h3>
+                        <p>
+                         <span class="label">{% trans "Asking price by kilometer" %}:</span> {% if trip.offer.driver_km_price %}{{ trip.offer.driver_km_price }} &euro;{% else %}{% trans "Not specified" %}{% endif %}
+                        </p>
+                        <p>
+                         <span class="label">{% trans "Smokers accepted" %}:</span> {% ifnotequal trip.offer.driver_smokers_accepted None %}{% if trip.offer.driver_smokers_accepted %}{% trans "Yes" %}{% else%}{% trans "No" %}{% endif %}{% else %}{% trans "Not specified" %}{% endifnotequal %}
+                        </p>
+                        <p>
+                         <span class="label">{% trans "Pets accepted" %}:</span> {% ifnotequal trip.offer.driver_pets_accepted None %}{% if trip.offer.driver_pets_accepted %}{% trans "Yes" %}{% else%}{% trans "No" %}{% endif %}{% else %}{% trans "Not specified" %}{% endifnotequal %}
+                        </p>
+                        <p>
+                         <span class="label">{% trans "Place for luggages" %}:</span> {% ifnotequal trip.offer.driver_place_for_luggage None %}{% if trip.offer.driver_place_for_luggage %}{% trans "Yes" %}{% else%}{% trans "No" %}{% endif %}{% else %}{% trans "Not specified" %}{% endifnotequal %}
+                        </p>
+                        <p>
+                         <span class="label">{% trans "Car type" %}:</span> {% if trip.offer.driver_car_type %}{{ trip.offer.driver_car_type }}{% else %}{% trans "Not specified" %}{% endif %}
+                        </p>
+                        {% ifequal trip.offer.driver_seats_available 0 %}
+                        <p>
+                         <span class="label">{% trans "Seats available" %}:</span> {% trans "No more seats available" %}
+                        </p>
+                        {% else %}
+                        <p>
+                         <span class="label">{% trans "Seats available" %}:</span> {% if trip.offer.driver_seats_available %}{{ trip.offer.driver_seats_available }}{% else %}{% trans "Not specified" %}{% endif %}
+                        </p>
+                        {% endifequal %}
+
+                        {% endif %}
+
+                        {% if trip.demand %}
+
+                        <h3>{% trans "Passenger options" %}</h3>
+                        <p>
+                        <span class="label">{% trans "Maximum price by kilometer" %}:</span> {% if trip.demand.passenger_max_km_price %}{{ trip.demand.passenger_max_km_price }} &euro;{% else %}{% trans "Not specified" %}{% endif %}
+                        </p>
+                        <p>
+                        <span class="label">{% trans "Smokers accepted first" %}:</span> {% if trip.demand.passenger_smokers_accepted %}{% trans "Yes" %}{% else%}{% trans "No" %}{% endif %}
+                        </p>
+                        <p>
+                        <span class="label">{% trans "Pets accepted first" %}:</span> {% if trip.demand.passenger_pets_accepted %}{% trans "Yes" %}{% else%}{% trans "No" %}{% endif %}
+                        </p>
+                        <p>
+                        <span class="label">{% trans "Place for luggages first" %}:</span> {% if trip.demand.passenger_place_for_luggage %}{% trans "Yes" %}{% else%}{% trans "No" %}{% endif %}
+                        </p>
+                        <p>
+                        <span class="label">{% trans "Car type first" %}:</span> {% if trip.demand.passenger_car_type %}{{ trip.demand.passenger_car_type }}{% else %}{% trans "Not specified" %}{% endif %}
+                        </p>
+                        <span class="label">{% trans "Minimum remaining seats" %}:</span> {% if trip.demand.passenger_min_remaining_seats %}{{ trip.demand.passenger_min_remaining_seats }}{% else %}{% trans "Not specified" %}{% endif %}
+                        </p>
+
+                        {% endif %}
+
+                        <p>
+                            <span class="info">{% trans "Trip created on" %} {{ trip.creation_date|date:"d/m/Y H\H" }}, {% trans "last modification on" %} {{ trip.modification_date|date:"d/m/Y H\H"}}</span>
+                        </p>
+                </div>
+{% endblock %}
+
+{% block ol_additional_global_vars %}
+    var markers;
+    var trip_layer;
+{% endblock %}
+
+{% block ol_additional_functions %}
+    function initTrip() {
+        var step;
+        var lonlat;
+        var text;
+
+        var departure = wkt.read('{{ trip.departure_point.wkt }}');
+        departure.style = {% if trip.offer %}departure_car_style{% else %}departure_passenger_style{% endif %};
+        var arrival = wkt.read('{{ trip.arrival_point.wkt }}');
+        arrival.style = {% if trip.offer %}arrival_car_style{% else %}arrival_passenger_style{% endif %};
+        markers.addFeatures([departure, arrival]);
+
+        {% if trip.demand %}
+        displayDepartureRadiusCircle(departure, {{ trip.demand.radius }});
+        displayArrivalRadiusCircle(arrival, {{ trip.demand.radius }});
+        {% endif %}
+        {% if trip.offer %}
+        trip_pls = wkt.read('{{ trip.offer.simple_route.wkt }}');
+        trip_pls.style = route_style;
+        trip_layer.addFeatures([trip_pls]);
+        calculateSimpleTripBuffer(trip_pls, map, {{ trip.offer.radius }}, null, trip_layer);
+        {% endif %}
+    }
+{% endblock %}
+
+{% block ol_map_id %}trip_details_map{% endblock %}
+
+{% block ol_additional_layers %}
+    markers = new OpenLayers.Layer.Vector("{% trans "Departure / Arrival" %}");
+    markers.displayInLayerSwitcher = false;
+    trip_layer = new OpenLayers.Layer.Vector("{% trans "Trips / search areas" %}");
+    trip_layer.displayInLayerSwitcher = false;
+    map.addLayers([trip_layer, markers]);
+{% endblock %}
+
+{% block ol_map_events %}
+    {% if trip.offer %}
+    map.events.register("moveend", map, function() {
+        calculateSimpleTripBuffer(trip_pls, map, {{ trip.offer.radius }}, null, trip_layer);
+    });
+    {% endif %}
+{% endblock %}
+
+{% block ol_additional_init %}
+    initTrip();
+{% endblock %}
+
+{% block ol_additional_endscript %}
+    <script src="{{ MEDIA_URL }}js/carpool/trip_details{{ JS_EXT }}" type="text/javascript"></script>
+{% endblock %}

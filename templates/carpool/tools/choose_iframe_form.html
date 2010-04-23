@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+                <h2>{% trans "Display a carpool form in your website !" %}</h2>
+
+                <p>
+                Nous vous proposons un outil vous permettant d'intégrer un formulaire de covoiturage dans les pages de votre site web, afin que les internautes qui visitent votre site puissent rechercher des annonces de covoiturage. Ce formulaire se présente tout simplement sous la forme d'une iframe, dont il vous suffit d'insérer le code html dans vos pages.
+                </p>
+                <p>
+                Ce formulaire est très simple: saisie de la ville de départ, de la ville d'arrivée, et d'une date de départ. L'internaute a ensuite le choix entre la recherche d'un conducteur ou d'un passager.
+                <br />
+                Remarque: pour certains formats, il n'est pas possible d'afficher la date de départ.
+                </p>
+                <p>
+                Pour obtenir le code de cette iframe, veuillez renseigner le formulaire suivant.
+                <br />
+                Les champs date et villes de départ/arrivée sont optionnels; ils permettent de pré-remplir le formulaire avec des valeurs que vous aurez choisies.
+                </p>
+                <p class="info">
+                Si vous ne trouvez pas votre bonheur parmi la liste des formats et thèmes disponibles, n'hésitez pas à nous <a href="{% url pages:contact_us %}">contacter</a>, nous serons ravis d'agrandir notre panoplie.
+                </p>
+
+                <form action="" method="post" id="iframe_form">
+                    <fieldset id="iframe_info">
+                        <legend>{% trans "Iframe carpool form" %}</legend>
+                        {{ form.as_p }}
+                    </fieldset>
+                    <div class="form_buttons">
+                        <input type="submit" class="form_button" id="btn_validate" value="{% trans "Validate" %}" />
+                        &nbsp;&nbsp;
+                        <input type="button" class="form_button" id="btn_cancel" value="{% trans "Cancel" %}" />
+                    </div>
+                </form>
+
+                {% if valid %}
+                <p>Voici le code html à insérer dans les pages de votre site web:</p>
+                <pre>&lt;iframe src="{{ PROJECT_ROOT_URL }}{% url carpool:show_iframe_form theme_id,format_id,form.cleaned_data.date|date:"d-m-Y"|default:"00-00-0000",form.departure_obj.slug|default:"",form.departure_obj.zip|default:"00",form.arrival_obj.slug|default:"",form.arrival_obj.zip|default:"00" %}" height="{{ format_dict.height }}px" width="{{ format_dict.width }}px" scrolling="no" frameborder="0"&gt; &lt;/iframe&gt;</pre>
+
+                <p>Un petit aperçu du formulaire:</p>
+                <div id="iframe_preview">
+                <iframe src="{{ PROJECT_ROOT_URL }}{% url carpool:iframe_form theme_id,format_id,form.cleaned_data.date|date:"d-m-Y"|default:"00-00-0000",form.departure_obj.slug|default:"",form.departure_obj.zip|default:"00",form.arrival_obj.slug|default:"",form.arrival_obj.zip|default:"00" %}" height="{{ format_dict.height }}px" width="{{ format_dict.width }}px" scrolling="no" frameborder="0"> </iframe>
+                </div>
+                {% endif %}
+{% endblock %}
+
+{% block endscript %}
+    <script type="text/javascript">
+    //<![CDATA[
+
+    var media_url = '{{ MEDIA_URL }}';
+
+    // ]]>
+    </script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/django_calendar{{ JS_EXT }}"></script>
+    <script src="{{ MEDIA_URL }}js/scriptaculous/scriptaculous.js?load=effects,controls" type="text/javascript"></script>
+    <script type="text/javascript">
+    //<![CDATA[
+
+    addCalendar($('id_date'), 'calendarlink', 'french');
+    $('btn_cancel').observe('click', function(event) {
+        window.location="{% url tools %}";
+    })
+    new Ajax.Autocompleter("id_departure", "id_departure_autocomplete", autocomplete_url, {paramName: autocomplete_paramName, frequency: autocomplete_frequency, minChars: autocomplete_minChars});
+    new Ajax.Autocompleter("id_arrival", "id_arrival_autocomplete", autocomplete_url, {paramName: autocomplete_paramName, frequency: autocomplete_frequency, minChars: autocomplete_minChars});
+
+    // ]]>
+    </script>
+{% endblock %}

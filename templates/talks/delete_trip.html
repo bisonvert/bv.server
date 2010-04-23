@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+                <h2>{% trans "Delete a trip" %}</h2>
+
+                <p>
+                {% trans "At least one talk about this trip exist. Please give the reasons of this trip deletion. It will be forwarded to your carpool user contacts." %}
+                </p>
+
+                <form action="" method="post" id="trip_delete_form">
+                    {% if error %}
+                    <ul class="errorlist">
+                        <li>{{ error }}</li>
+                    </ul>
+                    {% endif %}
+                    <fieldset id="delete_info">
+                        <legend>{% trans "Delete information" %}</legend>
+                        {{ form.as_p }}
+                    </fieldset>
+                    <div class="form_buttons">
+                        <input type="submit" id="btn_validate" class="form_button" value="{% trans "Send" %}" />
+                        &nbsp;&nbsp;
+                        <input type="button" id="btn_cancel" class="form_button" value="{% trans "Cancel" %}" onclick="window.location='{% url carpool:list_user_trips %}'" />
+                    </div>
+                </form>
+                <p>
+                    <span class="info">* {% trans "mandatory field" %}</span>
+                </p>
+{% endblock %}

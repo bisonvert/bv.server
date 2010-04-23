@@ -1,0 +1,289 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Reports / Ratings API &mdash; Bison Vert v1.1 documentation</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.1',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Bison Vert v1.1 documentation"
+          href="_static/opensearch.xml"/>
+    <link rel="top" title="Bison Vert v1.1 documentation" href="index.html" />
+    <link rel="next" title="Talks API" href="talks.html" />
+    <link rel="prev" title="Carpool trips API" href="carpool.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="talks.html" title="Talks API"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="carpool.html" title="Carpool trips API"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Bison Vert v1.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">Reports / Ratings API</a><ul>
+<li><a class="reference external" href="#list-given-ratings">List given ratings</a></li>
+<li><a class="reference external" href="#list-received-ratings">List received ratings</a></li>
+<li><a class="reference external" href="#list-temporary-ratings">List temporary ratings</a></li>
+<li><a class="reference external" href="#get">Get</a></li>
+<li><a class="reference external" href="#add">Add</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="carpool.html"
+                                  title="previous chapter">Carpool trips API</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="talks.html"
+                                  title="next chapter">Talks API</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/rating.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="reports-ratings-api">
+<h1>Reports / Ratings API<a class="headerlink" href="#reports-ratings-api" title="Permalink to this headline">¶</a></h1>
+<p>Bison Vert comes with a system to make reports about the trips, once they had
+been made.</p>
+<div class="section" id="list-given-ratings">
+<h2>List given ratings<a class="headerlink" href="#list-given-ratings" title="Permalink to this headline">¶</a></h2>
+<p>List ratings made <em>by</em> the authenticated user.</p>
+<dl class="docutils">
+<dt><strong>URL</strong></dt>
+<dd>/api/ratings/given/</dd>
+<dt><em>Verb</em></dt>
+<dd>GET</dd>
+<dt><em>Data</em></dt>
+<dd>None</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-python"><pre>$ curl -X GET http://localhost:8000/api/ratings/given/
+[
+    {
+        "comment": "Merci beaucoup, c'était très sympa :)",
+        "mark": 5,
+        "user": {
+            "username": "alexis",
+            "id": 1
+        },
+        "from_user": {
+            "username": "test",
+            "id": 5
+        },
+        "creation_date": "2010-01-26",
+        "id": 1
+    },
+    {
+        "comment": "my comment",
+        "mark": 5,
+        "user": {
+            "username": "alexis",
+            "id": 1
+        },
+        "from_user": {
+            "username": "test",
+            "id": 5
+        },
+        "creation_date": "2010-01-26",
+        "id": 3
+    }
+]</pre>
+</div>
+</div>
+<div class="section" id="list-received-ratings">
+<h2>List received ratings<a class="headerlink" href="#list-received-ratings" title="Permalink to this headline">¶</a></h2>
+<p>List ratings made <em>about</em> the authenticated user (received by)</p>
+<dl class="docutils">
+<dt><strong>URL</strong></dt>
+<dd>/api/ratings/received/</dd>
+<dt><em>Verb</em></dt>
+<dd>GET</dd>
+<dt><em>Data</em></dt>
+<dd>None</dd>
+</dl>
+<p>Exemple:</p>
+<div class="highlight-python"><pre>$ curl -X GET http://localhost:8000/api/ratings/received/
+[
+    {
+        "comment": "merci :)",
+        "mark": 5,
+        "user": {
+            "username": "test",
+            "id": 5
+        },
+        "from_user": {
+            "username": "alexis",
+            "id": 1
+        },
+        "creation_date": "2010-01-26",
+        "id": 2
+    },
+    {
+        "comment": "my comment",
+        "mark": 5,
+        "user": {
+            "username": "test",
+            "id": 5
+        },
+        "from_user": {
+            "username": "alexis",
+            "id": 1
+        },
+        "creation_date": "2010-01-26",
+        "id": 4
+    }
+]</pre>
+</div>
+</div>
+<div class="section" id="list-temporary-ratings">
+<h2>List temporary ratings<a class="headerlink" href="#list-temporary-ratings" title="Permalink to this headline">¶</a></h2>
+<p id="ratings-temp-ratings">List temporary ratings for the authenticated user. This list ratings user have
+to make.</p>
+<dl class="docutils">
+<dt><strong>URL</strong></dt>
+<dd>/api/temp-ratings/</dd>
+<dt><em>Verb</em></dt>
+<dd>GET</dd>
+<dt><em>Data</em></dt>
+<dd>None</dd>
+</dl>
+<p>Exemple:</p>
+<div class="highlight-python"><pre>$ curl -X GET http://localhost:8000/api/temp-ratings/
+[
+    {
+        "user2": {
+            "username": "test",
+            "id": 5
+        },
+        "end_date": "2020-02-05",
+        "user1": {
+            "username": "test",
+            "id": 5
+        },
+        "report2_creation_date": null,
+        "dows": [],
+        "id": 1,
+        "report1_creation_date": null,
+        "departure_city": "toulouse",
+        "date": "2020-01-20",
+        "creation_date": "2010-01-25",
+        "type": 1,
+        "start_date": "2020-01-21",
+        "arrival_city": "paris"
+    }
+]</pre>
+</div>
+</div>
+<div class="section" id="get">
+<h2>Get<a class="headerlink" href="#get" title="Permalink to this headline">¶</a></h2>
+<p>Retreive a rating, by it&#8217;s id. Need to concern the authenticated user to be
+accessed.</p>
+<dl class="docutils">
+<dt><strong>URL</strong></dt>
+<dd>/api/ratings/:id/</dd>
+<dt><em>Verb</em></dt>
+<dd>GET</dd>
+<dt><em>Data</em></dt>
+<dd>None</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-python"><pre>$ curl -X GET http://localhost:8000/api/ratings/1/</pre>
+</div>
+</div>
+<div class="section" id="add">
+<h2>Add<a class="headerlink" href="#add" title="Permalink to this headline">¶</a></h2>
+<p>Rate an user about a trip. Note that a temporary rating must exists to rate an
+user about  a trip. See the &#8220;validation&#8221; clause of the <em class="xref">talks</em> API.</p>
+<dl class="docutils">
+<dt><strong>URL</strong></dt>
+<dd>/api/ratings/:id/</dd>
+<dt><em>Verb</em></dt>
+<dd>PUT</dd>
+<dt><em>Data</em></dt>
+<dd><ul class="first last simple">
+<li><cite>mark</cite>: an int, between 0 and 5</li>
+<li><cite>comment</cite>: comment about the trip</li>
+</ul>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-python"><pre>$ curl -X POST http://localhost:8000/api/ratings/1/ -d "mark=5&amp;comment=my+comment"
+OK</pre>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="talks.html" title="Talks API"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="carpool.html" title="Carpool trips API"
+             >previous</a> |</li>
+        <li><a href="index.html">Bison Vert v1.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2010, Makina Corpus.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
+    </div>
+  </body>
+</html>

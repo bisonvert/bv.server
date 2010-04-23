@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+                <h2>{% trans "My trips" %}</h2>
+
+                <p>
+                    <a href="{% url carpool:add_trip %}">{% trans "Add a new trip" %}</a>
+                </p>
+
+                {% if paginator.count %}
+                <p>
+                {% trans "Number of trip displayed by page:" %}
+                {% for pagination in paginations %}
+                {% ifequal pagination current_pg %}
+                {{ pagination }}{% if not forloop.last %} | {% endif %}
+                {% else %}
+                <a href="{% url carpool:list_user_trips %}?pg={{ pagination }}">{{ pagination }}</a>{% if not forloop.last %} | {% endif %}
+                {% endifequal%}
+                {% endfor %}
+                </p>
+                
+                <p class="pg">
+                {% for i in page_range %}
+                {% ifequal i page_obj.number %}
+                <span class="current">{{ i }}</span>
+                {% else %}
+                {% ifequal i DOT %}
+                ...
+                {% else %}
+                <a href="{% url carpool:list_user_trips i %}{{ get_url }}">{{ i }}</a>
+                {% endifequal %}
+                {% endifequal %}
+                {% endfor %}
+                &nbsp;&nbsp;{% blocktrans count paginator.count as counter %}{{ counter }} trip{% plural %}{{ counter }} trips{% endblocktrans %}
+                </p>
+
+                <table id="my_trip_list" class="pg_list">
+                    <thead>
+                        <tr>
+                            <th><a href="{% url carpool:list_user_trips %}{{ get_url_pg }}&order={% ifequal order 'name' %}-{% endifequal %}name"{% ifequal order 'name' %} class="ascending"{% else %}{% ifequal order '-name' %} class="descending"{% endifequal %}{% endifequal %}>{% trans "Trip" %}</a></th>
+                            <th><a href="{% url carpool:list_user_trips %}{{ get_url_pg }}&order={% ifequal order 'departure' %}-{% endifequal %}departure"{% ifequal order 'departure' %} class="ascending"{% else %}{% ifequal order '-departure' %} class="descending"{% endifequal %}{% endifequal %}>{% trans "Departure" %}</a></th>
+                            <th><a href="{% url carpool:list_user_trips %}{{ get_url_pg }}&order={% ifequal order 'arrival' %}-{% endifequal %}arrival"{% ifequal order 'arrival' %} class="ascending"{% else %}{% ifequal order '-arrival' %} class="descending"{% endifequal %}{% endifequal %}>{% trans "Arrival" %}</a></th>
+                            <th><a href="{% url carpool:list_user_trips %}{{ get_url_pg }}&order={% ifequal order 'date' %}-{% endifequal %}date"{% ifequal order 'date' %} class="ascending"{% else %}{% ifequal order '-date' %} class="descending"{% endifequal %}{% endifequal %}>{% trans "Date" %}</a></th>
+                            <th><a href="{% url carpool:list_user_trips %}{{ get_url_pg }}&order={% ifequal order 'time' %}-{% endifequal %}time"{% ifequal order 'time' %} class="ascending"{% else %}{% ifequal order '-time' %} class="descending"{% endifequal %}{% endifequal %}>{% trans "Departure at about" %}</a></th>
+                            <th class="type"><a href="{% url carpool:list_user_trips %}{{ get_url_pg }}&order={% ifequal order 'type' %}-{% endifequal %}type"{% ifequal order 'type' %} class="ascending"{% else %}{% ifequal order '-type' %} class="descending"{% endifequal %}{% endifequal %}>{% trans "Type" %}</a></th>
+                            <th><a href="{% url carpool:list_user_trips %}{{ get_url_pg }}&order={% ifequal order 'alert' %}-{% endifequal %}alert"{% ifequal order 'alert' %} class="ascending"{% else %}{% ifequal order '-alert' %} class="descending"{% endifequal %}{% endifequal %}>{% trans "Email alert" %}</a></th>
+                            <th class="act">{% trans "Actions" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for trip in page_obj.object_list %}
+                        <tr class="{% cycle 'row1' 'row2' %}">
+                            <td>
+                                {{ trip.name }}
+                            </td>
+                            <td>
+                                {{ trip.departure_city }}
+                                {% if trip.departure_address %}<br />{{ trip.departure_address }}{% endif %}
+                            </td>
+                            <td>
+                                {{ trip.arrival_city }}
+                                {% if trip.arrival_address %}<br />{{ trip.arrival_address }}{% endif %}
+                            </td>
+                            <td>
+                                {% if trip.regular %}
+                                {% trans "Regular" %}:
+                                <br />
+                                {{ trip.print_dows }}
+                                {% else %}
+                                {{ trip.date|date:"d/m/Y" }}
+                                <br />
+                                -{{ trip.interval_min }}j/+{{ trip.interval_max }}j
+                                {% endif %}
+                            </td>
+                            <td>
+                                {{ trip.time|time:"H\h" }}
+                            </td>
+                            <td>
+                                {% if trip.offer_id and not trip.demand_id %}
+                                {% trans "Offer" %}
+                                {% else %}
+                                {% if not trip.offer_id and trip.demand_id %}
+                                {% trans "Demand" %}
+                                {% else %}
+                                {% trans "Both" %}
+                                {% endif %}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if trip.alert %}
+                                <span id="a_{{ trip.id }}">{% trans "Yes" %}</span>
+                                <br/>
+                                <a id="{{ trip.id }}" href="javascript:void(0)" title="{% trans "Enable/Disable alert" %}">{% trans "Disable" %}</a>
+                                {% else %}
+                                <span id="a_{{ trip.id }}">{% trans "No" %}</span>
+                                <br/>
+                                <a id="{{ trip.id }}" href="javascript:void(0)" title="{% trans "Enable/Disable alert" %}">{% trans "Enable" %}</a>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="{% url carpool:show_trip_results trip.id %}" title="{% trans "View results" %}"><img src="{{ MEDIA_URL }}img/icons/view.png" alt="{% trans "View results" %}" /></a>
+                                <a href="{% url carpool:edit_trip trip.id %}" title="{% trans "Modify" %}"><img src="{{ MEDIA_URL }}img/icons/edit.png" alt="{% trans "Modify" %}" /></a>
+                                <a href="{% url carpool:delete_trip trip.id %}" onclick="if (!confirm('{% trans "Do you REALLY want to DELETE this trip ?" %}')) return false; return true;" title="{% trans "Delete" %}"><img src="{{ MEDIA_URL }}img/icons/drop.png" alt="{% trans "Delete" %}" /></a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <p class="pg">
+                {% for i in page_range %}
+                {% ifequal i page_obj.number %}
+                <span class="current">{{ i }}</span>
+                {% else %}
+                {% ifequal i DOT %}
+                ...
+                {% else %}
+                <a href="{% url carpool:list_user_trips i %}{{ get_url }}">{{ i }}</a>
+                {% endifequal %}
+                {% endifequal %}
+                {% endfor %}
+                &nbsp;&nbsp;{% blocktrans count paginator.count as counter %}{{ counter }} trip{% plural %}{{ counter }} trips{% endblocktrans %}
+                </p>
+
+                {% else %}
+                <p>{% trans "No trip." %}</p>
+                {% endif %}
+{% endblock %}
+
+{% block endscript %}
+    <script type="text/javascript">
+    //<![CDATA[
+
+    var trip_ids = Array();
+    {% for trip in page_obj.object_list %}
+    trip_ids[trip_ids.length] = {{ trip.id }};
+    {% endfor %}
+    {% if user.email %}
+    var email_validated = true;
+    {% else %}
+    var email_validated = false;
+    {% endif %}
+
+    // ]]>
+    </script>
+    <script src="{{ MEDIA_URL }}js/carpool/my_trips{{ JS_EXT }}" type="text/javascript"></script>
+{% endblock %}

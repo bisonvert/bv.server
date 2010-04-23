@@ -1,0 +1,81 @@
+{% extends "rating/base.html" %}
+{% load i18n %}
+
+{% block rating_content %}
+                <h3>{% trans "Received reports" %}</h3>
+
+                {% if paginator.count %}
+                <p>
+                {% trans "Number of report displayed by page:" %}
+                {% for pagination in paginations %}
+                {% ifequal pagination current_pg %}
+                {{ pagination }}{% if not forloop.last %} | {% endif %}
+                {% else %}
+                <a href="{% url rating:list_user_reports 1 %}?pg={{ pagination }}">{{ pagination }}</a>{% if not forloop.last %} | {% endif %}
+                {% endifequal%}
+                {% endfor %}
+                </p>
+                
+                <p class="pg">
+                {% for i in page_range %}
+                {% ifequal i page_obj.number %}
+                <span class="current">{{ i }}</span>
+                {% else %}
+                {% ifequal i DOT %}
+                ...
+                {% else %}
+                <a href="{% url rating:list_user_reports i %}{{ get_url }}">{{ i }}</a>
+                {% endifequal %}
+                {% endifequal %}
+                {% endfor %}
+                &nbsp;&nbsp;{% blocktrans count paginator.count as counter %}{{ counter }} report{% plural %}{{ counter }} reports{% endblocktrans %}
+                </p>
+
+                <table id="my_reports_list" class="pg_list">
+                    <thead>
+                        <tr>
+                            <th><a href="{% url rating:list_user_reports 1 %}{{ get_url_pg }}&order={% ifequal order 'date' %}-{% endifequal %}date"{% ifequal order 'date' %} class="ascending"{% else %}{% ifequal order '-date' %} class="descending"{% endifequal %}{% endifequal %}>{% trans "Date" %}</a></th>
+                            <th class="user"><a href="{% url rating:list_user_reports 1 %}{{ get_url_pg }}&order={% ifequal order 'user' %}-{% endifequal %}user"{% ifequal order 'user' %} class="ascending"{% else %}{% ifequal order '-user' %} class="descending"{% endifequal %}{% endifequal %}>{% trans "Evaluated by carpool user" %}</a></th>
+                            <th><a href="{% url rating:list_user_reports 1 %}{{ get_url_pg }}&order={% ifequal order 'mark' %}-{% endifequal %}mark"{% ifequal order 'mark' %} class="ascending"{% else %}{% ifequal order '-mark' %} class="descending"{% endifequal %}{% endifequal %}>{% trans "Mark" %}</a></th>
+                            <th><a href="{% url rating:list_user_reports 1 %}{{ get_url_pg }}&order={% ifequal order 'comment' %}-{% endifequal %}comment"{% ifequal order 'comment' %} class="ascending"{% else %}{% ifequal order '-comment' %} class="descending"{% endifequal %}{% endifequal %}>{% trans "Comment" %}</a></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for report in page_obj.object_list %}
+                        <tr class="{% cycle 'row1' 'row2' %}{% if tempreport.is_opened %} opened{% endif %}">
+                            <td>
+                                {{ report.creation_date|date:"d/m/Y" }}
+                            </td>
+                            <td>
+                                {{ report.from_user }}
+                            </td>
+                            <td>
+                                <span class="mark">{{ report.get_mark }}</span>
+                            </td>
+                            <td>
+                                {{ report.comment|linebreaks }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <p class="pg">
+                {% for i in page_range %}
+                {% ifequal i page_obj.number %}
+                <span class="current">{{ i }}</span>
+                {% else %}
+                {% ifequal i DOT %}
+                ...
+                {% else %}
+                <a href="{% url rating:list_user_reports i %}{{ get_url }}">{{ i }}</a>
+                {% endifequal %}
+                {% endifequal %}
+                {% endfor %}
+                &nbsp;&nbsp;{% blocktrans count paginator.count as counter %}{{ counter }} report{% plural %}{{ counter }} reports{% endblocktrans %}
+                </p>
+
+                {% else %}
+                {% trans "No Report." %}
+                {% endif %}
+{% endblock %}

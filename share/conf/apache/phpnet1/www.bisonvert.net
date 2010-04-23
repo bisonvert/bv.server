@@ -1,0 +1,95 @@
+<VirtualHost 195.144.11.153:80>
+    ServerAdmin webmaster@makina-corpus.com
+    ServerName www.bisonvert.fr
+    ServerAlias bisonvert.fr
+
+    Redirect /server-status https://phpnet1.makina-corpus.net/server-status
+    Redirect / http://www.bisonvert.net/
+</VirtualHost>
+<VirtualHost 195.144.11.153:80>
+    ServerAdmin webmaster@makina-corpus.com
+    ServerName www.bisonvert.org
+    ServerAlias bisonvert.org
+
+    Redirect /server-status https://phpnet1.makina-corpus.net/server-status
+    Redirect / http://www.bisonvert.net/
+</VirtualHost>
+<VirtualHost 195.144.11.153:80>
+    ServerAdmin webmaster@makina-corpus.com
+    ServerName www.bisonvert.com
+    ServerAlias bisonvert.com
+
+    Redirect /server-status https://phpnet1.makina-corpus.net/server-status
+    Redirect / http://www.bisonvert.net/
+</VirtualHost>
+<VirtualHost 195.144.11.153:80>
+    ServerAdmin webmaster@makina-corpus.com
+    ServerName www.bisonvert.eu
+    ServerAlias bisonvert.eu
+
+    Redirect /server-status https://phpnet1.makina-corpus.net/server-status
+    Redirect / http://www.bisonvert.net/
+</VirtualHost>
+<VirtualHost 195.144.11.153:80>
+    ServerAdmin webmaster@makina-corpus.com
+    ServerName bisonvert.net
+
+    Redirect /server-status https://phpnet1.makina-corpus.net/server-status
+    Redirect / http://www.bisonvert.net/
+</VirtualHost>
+
+<VirtualHost 195.144.11.153:80>
+    Redirect /server-status https://phpnet1.makina-corpus.net/server-status
+
+    ServerAdmin webmaster@makina-corpus.com
+    ServerName www.bisonvert.net
+
+    LogLevel warn
+
+    ErrorLog  "|/usr/bin/cronolog /var/makina/bv/logs/apache2/%Y/%W/%d-bisonvert-error.log"
+    CustomLog "|/usr/bin/cronolog /var/makina/bv/logs/apache2/%Y/%W/%d-bisonvert-access.log" combined
+    UnsetEnv LD_LIBRARY_PATH
+
+    RewriteEngine on
+    #RewriteLog "/var/makina/bv/logs/rewrite.log"
+    #RewriteLogLevel 2
+
+    #
+    # Contenus static directement servi par apache
+    #
+    RewriteRule ^/media/\d+(/.*)$ /var/makina/bv/minitage/django/bisonvert/src/bisonvert/src/media$1 [L]
+    <Location "/media">
+        SetHandler None
+        SetOutputFilter DEFLATE
+    </Location>
+    <Directory "/var/makina/bv/minitage/django/bisonvert/src/bisonvert/src/media">
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Order allow,deny
+        Allow from all
+    </Directory>
+
+    RewriteRule ^/admin_media(/.*)$ /var/makina/bv/minitage/eggs/cache/Django-0.97_pre_ZMinitagePatched_Django-py2.5.egg/django/contrib/admin/media$1 [L]
+    <Location "/admin_media">
+        SetOutputFilter DEFLATE
+    </Location>
+    <Directory "/var/makina/bv/minitage/eggs/cache/Django-0.97_pre_ZMinitagePatched_Django-py2.5.egg/django/contrib/admin/media/">
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Order allow,deny
+        Allow from all
+    </Directory>
+
+    #
+    # Contenu dynamique
+    #
+    ProxyRequests Off
+    ProxyPass / http://localhost:8081/bv/
+    ProxyPassReverse / http://localhost:8081/bv/
+    <Proxy http://localhost>
+        Order deny,allow
+        Allow from all
+    </Proxy>
+    SetEnv force-proxy-request-1.0 1
+    SetEnv proxy-nokeepalive 1
+</VirtualHost>
