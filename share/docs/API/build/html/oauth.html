@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '',
+        URL_ROOT:    '#',
         VERSION:     '1.1',
         COLLAPSE_MODINDEX: false,
         FILE_SUFFIX: '.html',
@@ -40,6 +40,16 @@
     </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
+            <h3><a href="index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="#">OAuth implementation</a><ul>
+<li><a class="reference external" href="#consume-the-api">Consume the API</a></li>
+<li><a class="reference external" href="#oauth-urls">OAuth URLS</a></li>
+<li><a class="reference external" href="#exemple">Exemple</a></li>
+</ul>
+</li>
+</ul>
+
             <h4>Previous topic</h4>
             <p class="topless"><a href="users.html"
                                   title="previous chapter">User API</a></p>
@@ -71,6 +81,32 @@
             
   <div class="section" id="oauth-implementation">
 <h1>OAuth implementation<a class="headerlink" href="#oauth-implementation" title="Permalink to this headline">¶</a></h1>
+<p>To authenticate users from Bison Vert, we use OAuth.</p>
+<div class="section" id="consume-the-api">
+<h2>Consume the API<a class="headerlink" href="#consume-the-api" title="Permalink to this headline">¶</a></h2>
+<p>Before you can access informations throught our API, you need to declare
+to us your application: <a class="reference external" href="http://www.bisonvert.net/api/access/create/">http://www.bisonvert.net/api/access/create/</a></p>
+<p>We will provide you the consumer key and secret you need to use our API.</p>
+</div>
+<div class="section" id="oauth-urls">
+<h2>OAuth URLS<a class="headerlink" href="#oauth-urls" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Request Token:</dt>
+<dd><a class="reference external" href="http://bisonvert.net/oauth/request_token/">http://bisonvert.net/oauth/request_token/</a></dd>
+<dt>Access Token:</dt>
+<dd><a class="reference external" href="http://bisonvert.net/oauth/access_token/">http://bisonvert.net/oauth/access_token/</a></dd>
+<dt>Authorize:</dt>
+<dd><a class="reference external" href="http://bisonvert.net/oauth/authorize/">http://bisonvert.net/oauth/authorize/</a></dd>
+</dl>
+<p>Please refer to the OAuth documentation to get more informations on how to use
+this.</p>
+</div>
+<div class="section" id="exemple">
+<h2>Exemple<a class="headerlink" href="#exemple" title="Permalink to this headline">¶</a></h2>
+<p>Bison Vert comes with a fully fonctional client, that implement the tree legged
+authentication flow. This client is coded in django and the source code is
+available on bitbucket.</p>
+</div>
 </div>
 
 
@@ -93,7 +129,7 @@
     </div>
     <div class="footer">
       &copy; Copyright 2010, Makina Corpus.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.4.
     </div>
   </body>
 </html>

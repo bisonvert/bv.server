@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '',
+        URL_ROOT:    '#',
         VERSION:     '1.1',
         COLLAPSE_MODINDEX: false,
         FILE_SUFFIX: '.html',
@@ -46,7 +46,7 @@
         <div class="sphinxsidebarwrapper">
             <h3><a href="index.html">Table Of Contents</a></h3>
             <ul>
-<li><a class="reference external" href="">User API</a><ul>
+<li><a class="reference external" href="#">User API</a><ul>
 <li><a class="reference external" href="#add">Add</a></li>
 <li><a class="reference external" href="#retreive">Retreive</a></li>
 <li><a class="reference external" href="#edit">Edit</a></li>
@@ -118,7 +118,7 @@
 <div class="section" id="retreive">
 <h2>Retreive<a class="headerlink" href="#retreive" title="Permalink to this headline">¶</a></h2>
 <p>Retreive all informations about a specified user. It&#8217;s only possible to ask
-informations about an authenticated user.</p>
+informations about the authenticated user.</p>
 <dl class="docutils">
 <dt><strong>URL</strong></dt>
 <dd>/api/users/active</dd>
@@ -155,7 +155,6 @@ informations about an authenticated user.</p>
 </div>
 <div class="section" id="delete">
 <h2>Delete<a class="headerlink" href="#delete" title="Permalink to this headline">¶</a></h2>
-<p>It&#8217;s only possible to delete our user, once authenticated.</p>
 <dl class="docutils">
 <dt><strong>URL</strong></dt>
 <dd>/api/users/id</dd>
@@ -164,6 +163,7 @@ informations about an authenticated user.</p>
 <dt><em>Data</em></dt>
 <dd>None</dd>
 </dl>
+<p>Delete the authenticated user</p>
 </div>
 </div>
 
@@ -190,7 +190,7 @@ informations about an authenticated user.</p>
     </div>
     <div class="footer">
       &copy; Copyright 2010, Makina Corpus.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.4.
     </div>
   </body>
 </html>

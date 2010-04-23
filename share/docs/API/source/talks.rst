@@ -68,7 +68,7 @@ Validate
 **URL**
     /api/talks/id    
 *Verb*
-    POST
+    PUT
 *Data*
     `validate`: must be set to 'True' to have effect.
     
@@ -81,17 +81,20 @@ report ::
 Delete
 ------
 
+We don't really delete a talk, but we cancel it, with an explanation message.
+For this purpose, we make a PUT instead of a DELETE.
+
 **URL**
     /api/talks/id    
 *Verb*
     PUT
 *Data*
-    * `validate`: must be set to 'True' to have effect.
+    * `cancel`: must be set to 'True' to have effect.
     
 Cancel the negotiation talk
     
-Delete the negociation talk and associated messages, send a mail to the other 
-user and redirect to the talk's list.
+Delete the negociation talk and associated messages and send a mail to the other
+user. 
 
 Deleting a talk is only possible for one of the two users the talk is about::
 

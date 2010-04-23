@@ -17,7 +17,7 @@ class Talk(models.Model):
     + from _user
     + creation_date
 
-    La negotiation (talk) is initiated by a "from_user" abount an announce of
+    Negotiation (talk) is initiated by a "from_user" abount an announce of
     another carpooler (trip)
 
     The negotiation contains a list of messages. To fetch the list of messages:
@@ -31,10 +31,7 @@ class Talk(models.Model):
     creation_date = models.DateTimeField()
 
     def save(self):
-        """Renseigne la date de création s'il s'agit d'une création de
-        négociation.
-
-        Appelle la méthode save() de la classe parente.
+        """Add the create date if this is a negociation. 
 
         """
         if not self.id:

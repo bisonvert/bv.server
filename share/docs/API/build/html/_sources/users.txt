@@ -29,7 +29,7 @@ Retreive
 --------
 
 Retreive all informations about a specified user. It's only possible to ask 
-informations about an authenticated user.
+informations about the authenticated user.
 
 **URL**
     /api/users/active
@@ -63,11 +63,11 @@ Edit information about the current authenticated user.
 Delete
 ------
 
-It's only possible to delete our user, once authenticated.
-
 **URL**
     /api/users/id
 *Verb*
     DELETE
 *Data*
     None
+    
+Delete the authenticated user
