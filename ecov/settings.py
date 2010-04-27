@@ -21,10 +21,13 @@ DATABASE_PASSWORD = 'bisonvert'
 DATABASE_HOST = 'localhost'
 DATABASE_PORT = '5432'
 
-TEMPLATE_DEBUG = DEBUG
+try:
+    dummy = DEBUG
+except NameError:
+    # DEFAULT
+    DEBUG = False
 
-# Specific to pagination
-DEFAULT_PAGINATION_COUNT = 20
+TEMPLATE_DEBUG = DEBUG
 
 # For SQL Query logger - DEFAULT
 SQL_LOG_PATHFILE = '/path/to/sql.log'
@@ -197,6 +200,9 @@ INSTALLED_APPS = (
 # Django Piston API
 PISTON_IGNORE_DUPE_MODELS = True
 OAUTH_AUTH_VIEW = 'api.views.oauth_auth_view'
+
+# Pagination settings
+DEFAULT_PAGINATION_COUNT = 10
 
 # import local setings to override these
 try:

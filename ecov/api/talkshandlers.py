@@ -69,14 +69,14 @@ class TalksHandler(BaseTalkHandler):
         """List all talks for the authenticated user
         
         """
-        if (talk_id is not None):
+        if talk_id == 'count':
+            return self.lib.list_talks(request.user).count()
+        elif talk_id is not None:
             talk = Talk.objects.get(id=talk_id)
             user = request.user
-            if (talk.from_user.id != user.id and message.talk.trip.user.id != user.id):
-                return rc.NOT_HERE
+            if (talk.from_user.id != user.id and talk.trip.user.id != user.id):
+                return rc.FORBIDDEN
             return talk;
-        elif talk_id == 'count':
-            return self.lib.list_talks(request.user).count()
         else:
             items = self.lib.list_talks(request.user)
             return paginate_items(items, start, count, request, self.count)
@@ -101,7 +101,7 @@ class TalksHandler(BaseTalkHandler):
 class MessagesHandler(BaseTalkHandler):
     model = Message
     fields = __message_public_fields__
-    def read(self, request, talk_id, message_id=None, talk_id=None, start=None, 
+    def read(self, request, message_id=None, talk_id=None, start=None, 
             count=None):
         """List all messages for a talk, or a specific message.
         

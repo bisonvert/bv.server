@@ -171,8 +171,6 @@ class AnonymousTripsHandler(AnonymousCarpoolHandler):
     def read(self, request, trip_id=None, start=None, count=None):
         if trip_id == 'count':
             return self.lib.list_trips().count()
-        elif trip_id == 'mine':
-            items= self.lib.list_trips_by_user(request.user)
         elif trip_id:
             return self.lib.get_trip(trip_id)
         else:

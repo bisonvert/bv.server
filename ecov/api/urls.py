@@ -2,7 +2,7 @@
 from django.conf.urls.defaults import *
 
 #piston imports
-from piston.authentication import OAuthAuthentication
+from piston.authentication import OAuthAuthentication, HttpBasicAuthentication
 from piston.doc import documentation_view
 from piston.resource import Resource
 
@@ -17,6 +17,7 @@ from api.cartypeshandlers import CarTypesHandler
 
 #auth
 auth = OAuthAuthentication()
+#auth = HttpBasicAuthentication()
 noauth = None
 
 #trips
@@ -54,7 +55,7 @@ urlpatterns = patterns('api.handlers',
     url(r'^talks/$', talks_handler),
     url(r'^talks/(?P<talk_id>[0-9a-z\_]+)/$', talks_handler),
     url(r'^talks/(?P<talk_id>\d+)/messages/$', messages_handler),
-    url(r'^talks/(?P<talk_id>\d+)/messages/(?P<message_id>\d+)/$', messages_handler),
+    url(r'^talks/(?P<talk_id>\d+)/messages/(?P<message_id>[0-9a-z\_]+)/$', messages_handler),
 
     #users
     url(r'^users/(?P<user_id>.+)/$', users_handler),
