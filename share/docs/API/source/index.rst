@@ -5,7 +5,7 @@ Here are the list of documentation pages you can browse, about the Bison Vert
 API
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    
    carpool
    rating

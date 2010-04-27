@@ -41,12 +41,14 @@ __tempreport_public_fields__ = (
 'start_date',
 'report2_creation_date',
 'report1_creation_date',
-'dows',
-'date',
-'creation_date',
-'type',
-'departure_city',
-'arrival_city',
+('trip',(
+    'dows',
+    'date',
+    'creation_date',
+    'type',
+    'departure_city',
+    'arrival_city',
+))
 )
 
 class BaseRatingHandler(Handler):
