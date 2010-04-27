@@ -14,6 +14,8 @@ from django.contrib.gis.geos.geometry import GEOSGeometry
 from datetime import date
 from piston.decorator import decorator
 
+from django.conf import settings
+
 __trip_public_fields__ = (
 'id', 
 'departure_point',
@@ -116,14 +118,14 @@ def request_to_dict(request):
     return requestdict
 
 class CarpoolHandler(Handler):
-    count = 20
+    count = settings.DEFAULT_PAGINATION_COUNT
     model = Trip
     fields = __trip_private_fields__
     def __init__(self):
         self.lib = LibCarpool()
 
 class AnonymousCarpoolHandler(AnonymousHandler):
-    count = 20
+    count = settings.DEFAULT_PAGINATION_COUNT
     model = Trip
     fields = __trip_public_fields__
     def __init__(self):

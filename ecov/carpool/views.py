@@ -77,7 +77,7 @@ def home(request, layout=None, theme_id=None, theme_dict=None, format_id=None, \
     }
 
     today = datetime.date.today()
-    dates_available = get_dates_available(settings.HOME_PAGES[theme_used]['dates'])
+    dates_available = () 
 
     search_trip_details = request.session.get('search_trip_details', None)
     if search_trip_details and not theme_id:

@@ -13,7 +13,7 @@ js_info_dict = {'packages': ('carpool'),}
 
 urlpatterns = patterns('',
     #Include app urls
-#    (r'^', include('carpool.urls', namespace='carpool')),
+    (r'^', include('carpool.urls', namespace='carpool')),
     (r'^', include('pages.urls', namespace='pages')),
     (r'^utilisateurs/', include('accounts.urls', namespace='accounts')),
     (r'^mes_evaluations/', include('rating.urls', namespace='rating')),

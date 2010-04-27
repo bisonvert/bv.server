@@ -14,7 +14,6 @@ except NameError:
 PROJECT_ROOT_URL = 'http://url/to/project:port' # DEFAULT
 PROJECT_NAME = 'BisonVert'
 PROJECT_NAME_URL = 'BisonVert.net'
-
 DATABASE_ENGINE = 'postgresql_psycopg2'
 DATABASE_NAME = 'bv'
 DATABASE_USER = 'dbbv'
@@ -22,15 +21,10 @@ DATABASE_PASSWORD = 'bisonvert'
 DATABASE_HOST = 'localhost'
 DATABASE_PORT = '5432'
 
-# Django settings for ecov project.
-
-try:
-    dummy = DEBUG
-except NameError:
-    # DEFAULT
-    DEBUG = False
-
 TEMPLATE_DEBUG = DEBUG
+
+# Specific to pagination
+DEFAULT_PAGINATION_COUNT = 20
 
 # For SQL Query logger - DEFAULT
 SQL_LOG_PATHFILE = '/path/to/sql.log'
