@@ -16,8 +16,7 @@ from api.citieshandlers import CitiesHandler
 from api.cartypeshandlers import CarTypesHandler
 
 #auth
-auth = OAuthAuthentication()
-#auth = HttpBasicAuthentication()
+auth = [OAuthAuthentication(), HttpBasicAuthentication()]
 noauth = None
 
 #trips
