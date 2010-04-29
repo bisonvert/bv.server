@@ -4,9 +4,9 @@ from django.conf.urls.defaults import *
 #piston imports
 from piston.authentication import OAuthAuthentication, HttpBasicAuthentication
 from piston.doc import documentation_view
-from piston.resource import Resource
 
 #API imports
+from api.resource import Resource
 from api.carpoolhandlers import TripsHandler, TripsSearchHandler 
 from api.ratinghandlers import RatingsHandler, TempRatingsHandler
 from api.ratinghandlers import MyRatingsHandler, RatingsAboutMeHandler
