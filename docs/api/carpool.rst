@@ -1,5 +1,5 @@
-Carpool trips API
-=================
+Carpool Trips 
+==============
 
 The API provides the following URIs to interact with trip data
 
@@ -9,7 +9,7 @@ List
 Retreive the list of existing trips, with the complete description of each item. 
 
 **URL**
-    /api/trips/
+    /trips/
 *Verb*
     GET
 *Data*
@@ -17,7 +17,7 @@ Retreive the list of existing trips, with the complete description of each item.
     
 Example::
 
-    $ curl -X GET http://localhost:8000/api/trips/ -d 'trip_type=offer&departure_city=paris&arrival_city=toulouse'
+    $ curl -X GET http://api.bisonvert.net/trips/ -d 'trip_type=offer&departure_city=paris&arrival_city=toulouse'
     [
     {
         "dows": [], 
@@ -116,7 +116,7 @@ Get
 Retreive informations about a specific trip, by specifying it's id.
 
 **URL**
-    /api/trips/id
+    /trips/id
 *Verb*
     GET
 *Data*
@@ -124,7 +124,7 @@ Retreive informations about a specific trip, by specifying it's id.
 
 Exemple::
     
-    $ curl -X GET http://localhost:8000/api/trips/35/
+    $ curl -X GET http://api.bisonvert.net/trips/35/
     {
         "dows": [], 
         "departure_point": "POINT (1.4429513000000000 43.6043630000000135)", 
@@ -162,8 +162,8 @@ always return a dict with tree keys: trip demands, trip offers and trip object,
 if there is one.
 
 **URL**
-    /api/trips/search/:id
-    /api/trips/search/
+    /trips/search/:id
+    /trips/search/
 *Verb*
     GET
 *Data*
@@ -183,7 +183,7 @@ if there is one.
     
 Parameters can be just the id of a already registred trip, or a list of values::
 
-    $ curl -X GET http://localhost:8000/api/trips/search/27/
+    $ curl -X GET http://api.bisonvert.net/trips/search/27/
     {
         "trip_demands": [
             {
@@ -251,7 +251,7 @@ Parameters can be just the id of a already registred trip, or a list of values::
     
 Or to make a search by specifying the values directly to the API::
 
-    $ curl -X GET "http://localhost:8000/api/trips/search/?is_demand=true&arrival_point=POINT+(2.3333330000000001+48.8666669999999996)&departure_point=POINT+(1.4333330000000000+43.6000000000000014)&demand_radius=20000&date=2020-01-20"
+    $ curl -X GET "http://api.bisonvert.net/trips/search/?is_demand=true&arrival_point=POINT+(2.3333330000000001+48.8666669999999996)&departure_point=POINT+(1.4333330000000000+43.6000000000000014)&demand_radius=20000&date=2020-01-20"
     {
     "trip_demands": null, 
     "trip_offers": [
@@ -294,7 +294,7 @@ New
 ---
 
 **URL**
-    /api/trips/
+    /trips/
 *Verb*
     POST
 *Data*
@@ -336,7 +336,7 @@ item with the complete list of fields. **require to be authenticated**
 
 At least one of 'offer' or 'demand' type are mendatory::
     
-    $ curl -X POST http://localhost:8000/api/trips/ -d 'alert=on&arrival_city=paris&arrival_point=POINT(2.3509871 48.85666670000002)&comment=&date=20/01/2010&demand-passenger_car_type=&demand-passenger_max_km_price=&demand-passenger_min_remaining_seats=&demand-passenger_pets_accepted=on&demand-passenger_smokers_accepted=on&demand-radius=500&departure_address=&departure_city=toulouse&departure_point=POINT(1.4429513 43.60436300000001)&interval_max=0&interval_min=7&name=announce name&offer-radius=500&regular=False&time=8&trip_type=1'
+    $ curl -X POST http://api.bisonvert.net/trips/ -d 'alert=on&arrival_city=paris&arrival_point=POINT(2.3509871 48.85666670000002)&comment=&date=20/01/2010&demand-passenger_car_type=&demand-passenger_max_km_price=&demand-passenger_min_remaining_seats=&demand-passenger_pets_accepted=on&demand-passenger_smokers_accepted=on&demand-radius=500&departure_address=&departure_city=toulouse&departure_point=POINT(1.4429513 43.60436300000001)&interval_max=0&interval_min=7&name=announce name&offer-radius=500&regular=False&time=8&trip_type=1'
     {
         "dows": [], 
         "departure_point": "POINT (1.4429513000000000 43.6043630000000135)", 
@@ -375,7 +375,7 @@ Edit / Modify
 Edit an existing trip object.
 
 **URL**
-    /api/trips/id
+    /trips/id
 *Verb*
     POST
 *Data*
@@ -413,7 +413,7 @@ Edit an existing trip object.
     
 Example::
 
-    $ curl -X PUT http://localhost:8000/api/trips/27/ -d 'alert=on&arrival_city=paris&arrival_point=POINT(2.3509871 48.85666670000002)&comment=&date=25/01/2010&demand-passenger_car_type=&demand-passenger_max_km_price=&demand-passenger_min_remaining_seats=&demand-passenger_pets_accepted=on&demand-passenger_smokers_accepted=on&demand-radius=500&departure_address=&departure_city=toulouse&departure_point=POINT(1.4429513 43.60436300000001)&interval_max=0&interval_min=7&name=announce name&offer-radius=500&offer-route=&offer-steps=&regular=False&return_trip=false&time=8&trip_type=1'
+    $ curl -X PUT http://api.bisonvert.net/trips/27/ -d 'alert=on&arrival_city=paris&arrival_point=POINT(2.3509871 48.85666670000002)&comment=&date=25/01/2010&demand-passenger_car_type=&demand-passenger_max_km_price=&demand-passenger_min_remaining_seats=&demand-passenger_pets_accepted=on&demand-passenger_smokers_accepted=on&demand-radius=500&departure_address=&departure_city=toulouse&departure_point=POINT(1.4429513 43.60436300000001)&interval_max=0&interval_min=7&name=announce name&offer-radius=500&offer-route=&offer-steps=&regular=False&return_trip=false&time=8&trip_type=1'
     OK
 
 Delete
@@ -422,12 +422,13 @@ Delete
 Delete an existing trip offer/demand object. 
 
 **URL**
-    /api/trips/id
+    /trips/id
 *Verb*
-    POST
+    DELETE
 *Data*
     None
     
 Example::
 
-    $ curl -X DELETE http://localhost:8000/api/trips/27/
+    $ curl -X DELETE http://api.bisonvert.net/trips/27/
+    OK

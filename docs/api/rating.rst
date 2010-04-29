@@ -10,7 +10,7 @@ List given ratings
 List ratings made *by* the authenticated user.
 
 **URL**
-    /api/ratings/given/
+    /ratings/given/
 *Verb*
     GET
 *Data*
@@ -18,7 +18,7 @@ List ratings made *by* the authenticated user.
     
 Example::
     
-    $ curl -X GET http://localhost:8000/api/ratings/given/
+    $ curl -X GET http://api.bisonvert.net/ratings/given/
     [
         {
             "comment": "Merci beaucoup, c'était très sympa :)", 
@@ -57,7 +57,7 @@ List received ratings
 List ratings made *about* the authenticated user (received by)
 
 **URL**
-    /api/ratings/received/
+    /ratings/received/
 *Verb*
     GET
 *Data*
@@ -65,7 +65,7 @@ List ratings made *about* the authenticated user (received by)
 
 Exemple::
 
-    $ curl -X GET http://localhost:8000/api/ratings/received/
+    $ curl -X GET http://api.bisonvert.net/ratings/received/
     [
         {
             "comment": "merci :)", 
@@ -106,7 +106,7 @@ List temporary ratings for the authenticated user. This list ratings user have
 to make.
 
 **URL**
-    /api/temp-ratings/
+    /temp-ratings/
 *Verb*
     GET
 *Data*
@@ -114,7 +114,7 @@ to make.
 
 Exemple::
 
-    $ curl -X GET http://localhost:8000/api/temp-ratings/
+    $ curl -X GET http://api.bisonvert.net/temp-ratings/
     [
         {
             "user2": {
@@ -146,7 +146,7 @@ Retreive a rating, by it's id. Need to concern the authenticated user to be
 accessed.
 
 **URL**
-    /api/ratings/:id/
+    /ratings/:id/
 *Verb*
     GET
 *Data*
@@ -154,7 +154,7 @@ accessed.
     
 Example::
     
-    $ curl -X GET http://localhost:8000/api/ratings/1/
+    $ curl -X GET http://api.bisonvert.net/ratings/1/
     
     
 Add
@@ -164,7 +164,7 @@ Rate an user about a trip. Note that a temporary rating must exists to rate an
 user about  a trip. See the "validation" clause of the :ref:`talks` API.
 
 **URL**
-    /api/ratings/:id/
+    /ratings/:id/
 *Verb*
     PUT
 *Data*
@@ -173,6 +173,6 @@ user about  a trip. See the "validation" clause of the :ref:`talks` API.
     
 Example::
 
-    $ curl -X POST http://localhost:8000/api/ratings/1/ -d "mark=5&comment=my+comment"
+    $ curl -X POST http://api.bisonvert.net/ratings/1/ -d "mark=5&comment=my+comment"
     OK
     

@@ -20,7 +20,7 @@ List
 ----
 
 **URL**
-    /api/talks/
+    /talks/
 *Verb*
     GET
 *Data*
@@ -28,7 +28,7 @@ List
 
 List all existing talks for the authenticated user::
 
-    $ curl -X GET http://localhost:8000/api/talks/
+    $ curl -X GET http://api.bisonvert.net/talks/
     [
         {
             "id": 18, 
@@ -66,7 +66,7 @@ Validate
 --------
 
 **URL**
-    /api/talks/id    
+    /talks/id    
 *Verb*
     PUT
 *Data*
@@ -75,7 +75,7 @@ Validate
 Validate the negociation talk. This deletes the talk, and create a temporary 
 report ::
     
-    $ curl -X PUT http://localhost:8000/api/talks/18/ -d "validate=true"
+    $ curl -X PUT http://api.bisonvert.net/talks/18/ -d "validate=true"
     OK
     
 Delete
@@ -85,7 +85,7 @@ We don't really delete a talk, but we cancel it, with an explanation message.
 For this purpose, we make a PUT instead of a DELETE.
 
 **URL**
-    /api/talks/id    
+    /talks/id    
 *Verb*
     PUT
 *Data*
@@ -98,14 +98,14 @@ user.
 
 Deleting a talk is only possible for one of the two users the talk is about::
 
-    $ curl -X PUT http://localhost:8000/api/talks/19/ -d "cancel=true&message='my+message'"
+    $ curl -X PUT http://api.bisonvert.net/talks/19/ -d "cancel=true&message='my+message'"
 
 Create
 ------
 
 Initiate the talk with another user::
     
-    $ curl -X POST http://localhost:8000/api/talks/ -d "trip_id=28&message='my+message'"
+    $ curl -X POST http://api.bisonvert.net/talks/ -d "trip_id=28&message='my+message'"
     Created
 
 Messages
@@ -118,7 +118,7 @@ List
 ----
 
 **URL**
-    /api/talks/messages/:talk_id/
+    /talks/messages/:talk_id/
 *Verb*
     GET
 *Data*
@@ -127,7 +127,7 @@ List
 Return the list of messages in a talk. The authenticated user must be one of 
 the two of the talk::
 
-    $ curl -X GET http://localhost:8000/api/talks/22/messages/
+    $ curl -X GET http://api.bisonvert.net/talks/22/messages/
     [
         {
             "date": "2010-02-01 15:13:47", 
@@ -177,7 +177,7 @@ New
 ---
 
 **URL**
-    /api/talks/messages/
+    /talks/messages/
 *Verb*
     PUT
 *Data*
@@ -186,7 +186,7 @@ New
 Send a message to the author of the trip announce. If the Talk does not exists, 
 create it automatically::
 
-    $ curl -X POST http://localhost:8000/api/talks/22/messages/ -d "message='my+message+(2nd)'"
+    $ curl -X POST http://api.bisonvert.net/talks/22/messages/ -d "message='my+message+(2nd)'"
     OK
 
 Delete
