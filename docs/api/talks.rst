@@ -24,7 +24,9 @@ List
 *Verb*
     GET
 *Data*
-    None
+    You can, if you want, specify the trip_id you want to list the talks
+    relative to this trip_id.
+    trip_id=x
 
 List all existing talks for the authenticated user::
 
@@ -62,6 +64,27 @@ List all existing talks for the authenticated user::
         }
     ]
 
+Here is how to get all talks relative to a specific trip_id::
+
+    $ curl -X GET "http://api.bisonvert.net/talks/?trip_id=2" 
+    [
+        {
+            "id": 19, 
+            "from_user": {
+                "username": "ametaireau", 
+                "id": 3
+            }, 
+            "trip": {
+                "date": "2010-06-08", 
+                "time": null, 
+                "departure_city": "Toulouse", 
+                "id": 2, 
+                "arrival_city": "Paris"
+            }, 
+            "creation_date": "2010-04-29 15:32:26"
+        }
+    ]
+         
 Validate
 --------
 
@@ -118,11 +141,17 @@ List
 ----
 
 **URL**
-    /talks/messages/:talk_id/
+    /talks/:talk_id/messages/
 *Verb*
     GET
 *Data*
     None
+
+You can also suffic the url by "count" (eg. /talks/:talk_id/messages/count) to
+have the count of messages for this specific talk::
+
+    
+
 
 Return the list of messages in a talk. The authenticated user must be one of 
 the two of the talk::

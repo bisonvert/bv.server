@@ -9,6 +9,7 @@ from talks.forms import ContactUserForm
 
 from django import forms
 from django.conf import settings
+from django.db.models import Q
 
 class CreateTalkForm(ContactUserForm):
     trip_id = forms.IntegerField()
@@ -69,6 +70,13 @@ class TalksHandler(BaseTalkHandler):
         """List all talks for the authenticated user
         
         """
+        if 'trip_id' in request.GET:
+            # get the trip
+            talks = Talk.objects.filter(Q(trip__id=request.GET['trip_id']) 
+                & (Q(trip__user__id=request.user.id) | 
+                        Q(from_user__id=request.user.id)))
+            return talks
+
         if talk_id == 'count':
             return self.lib.list_talks(request.user).count()
         elif talk_id is not None:
@@ -107,7 +115,10 @@ class MessagesHandler(BaseTalkHandler):
         
         """
         if message_id == "count":
-            return self.lib.list_messages(request.user, talk_id).count() 
+            try:
+                return self.lib.list_messages(request.user, talk_id).count() 
+            except exceptions.InvalidUser:
+                return rc.FORBIDDEN
         elif message_id is not None:
             try:
                 message = Message.objects.get(id=talk_id)
