@@ -106,7 +106,9 @@ class MessagesHandler(BaseTalkHandler):
         """List all messages for a talk, or a specific message.
         
         """
-        if message_id is not None:
+        if message_id == "count":
+            return self.lib.list_messages(request.user, talk_id).count() 
+        elif message_id is not None:
             try:
                 message = Message.objects.get(id=talk_id)
                 user = request.user
@@ -116,8 +118,6 @@ class MessagesHandler(BaseTalkHandler):
                     return message                 
             except (Message.DoesNotExist):
                 return rc.NOT_HERE
-        elif message_id == "count":
-            return self.lib.list_messages(requesT.user, talk_id).count() 
         else:
             try:
                 items = self.lib.list_messages(request.user, talk_id)

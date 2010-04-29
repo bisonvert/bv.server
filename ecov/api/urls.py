@@ -53,8 +53,8 @@ urlpatterns = patterns('api.handlers',
     #talks
     url(r'^talks/$', talks_handler),
     url(r'^talks/(?P<talk_id>[0-9a-z\_]+)/$', talks_handler),
-    url(r'^talks/(?P<talk_id>\d+)/messages/$', messages_handler),
     url(r'^talks/(?P<talk_id>\d+)/messages/(?P<message_id>[0-9a-z\_]+)/$', messages_handler),
+    url(r'^talks/(?P<talk_id>\d+)/messages/$', messages_handler),
 
     #users
     url(r'^users/(?P<user_id>.+)/$', users_handler),

@@ -100,11 +100,12 @@ TEST_SQL_PATH = os.path.join(PROJECT_ROOT_PATH, '../share/data')
 TEST_SQL_FILES = ('procedures.sql', 'trigger.sql', 'additional_columns.sql')
 
 # DEFAULT
-EMAIL_HOST = '127.0.0.1'
+EMAIL_HOST = 'localhost'
 EMAIL_HOST_PASSWORD = ''
 EMAIL_HOST_USER = ''
-EMAIL_PORT = 2626
+EMAIL_PORT = 1025
 EMAIL_USE_TLS = False
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 # Session configuration
 SESSION_COOKIE_AGE            = 7200      # 2 heures, duree de la session en base
@@ -196,6 +197,14 @@ INSTALLED_APPS = (
     'utils',
     'api',
 )
+
+DEFAULT_CLIENT_URLS = {
+    'root': 'http://www.bisonvert.net/',
+    'talks' : {
+        'add_message': '%s/talks/%s/add_message/',
+        'list': '%s/talks/list/'
+    }
+}
 
 # Django Piston API
 PISTON_IGNORE_DUPE_MODELS = True
