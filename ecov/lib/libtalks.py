@@ -136,9 +136,9 @@ class LibTalks:
 
         """
         try:
-            talk = Talk.objects.get(id=talk_id, from_user=user)
+            talk = Talk.objects.get(id=talk_id)
         except Talk.DoesNotExist:
-            raise TalkDoesNotExist(trip_id)
+            raise TalkDoesNotExist(talk_id)
             
         if (talk.from_user.id != user.id and talk.trip.user.id != user.id):
             raise InvalidUser(user)

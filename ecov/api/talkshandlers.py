@@ -28,6 +28,10 @@ __talk_public_fields__ = (
 ('trip',(
     'id',
     'departure_city', 
+    ('user',(
+        'id', 
+        'username',
+    )),
     'arrival_city', 
     'date', 
     'time',
@@ -136,7 +140,7 @@ class MessagesHandler(BaseTalkHandler):
             except exceptions.TalkDoesNotExist:
                  return rc.NOT_HERE
     
-    @validate(ContactUserForm)
+    @validate(ContactUserForm, "GET")
     def create(self, request, talk_id):
         """Add a message
         
