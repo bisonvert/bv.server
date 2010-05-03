@@ -1,6 +1,0 @@
-Write API tests
-Remove old code and unused views + templates
-Update install documentation
-Separate the API and the app handling OAuth tokens CRUD
-Support ordering within the API
-Review comments

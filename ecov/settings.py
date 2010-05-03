@@ -105,8 +105,7 @@ EMAIL_HOST_PASSWORD = ''
 EMAIL_HOST_USER = ''
 EMAIL_PORT = 1025
 EMAIL_USE_TLS = False
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-
+ 
 # Session configuration
 SESSION_COOKIE_AGE            = 7200      # 2 heures, duree de la session en base
 SESSION_PERSISTENT_COOKIE_AGE = 31536000 # 1an, duree du cookie et de la session en base
@@ -180,6 +179,8 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
+
+    # external
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -188,6 +189,8 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.markup',
     'piston',
+
+    # internal
     'accounts',
     'lib',
     'carpool',

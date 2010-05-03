@@ -167,7 +167,6 @@ class LibTalks:
                 transaction.commit()
                 return talk
        
-    @transaction.commit_manually
     def cancel_talk(self, user, talk_id, post_data):
         """Cancel the negotiation talk
         
@@ -192,26 +191,25 @@ class LibTalks:
         
         if not form.is_valid():
             raise InvalidContactUserForm(form)
-        try:
-            from_user = user
-            to_user = (talk.trip.user if from_user.id == talk.from_user.id
-                    else talk.from_user)
-            subject = talk.trip.get_public_name()
-            message_header = (u"%s a annulé la négociation " %
-                from_user.username)
-                
-            if from_user.id == talk.from_user.id:
-                message_header += u"à propos de votre annonce %s (%s)." % (
-                    talk.trip.name,
-                    subject,
-                )
-            else:
-                message_header += (u"à propos de l'annonce %s." %
-                    subject)
-            send_mail(
-                (u"Annonce %s - Annulation de la négociation" %
-                    subject),
-                u"""Ceci est un message automatique, veuillez ne pas y répondre.
+        from_user = user
+        to_user = (talk.trip.user if from_user.id == talk.from_user.id
+                else talk.from_user)
+        subject = talk.trip.get_public_name()
+        message_header = (u"%s a annulé la négociation " %
+            from_user.username)
+            
+        if from_user.id == talk.from_user.id:
+            message_header += u"à propos de votre annonce %s (%s)." % (
+                talk.trip.name,
+                subject,
+            )
+        else:
+            message_header += (u"à propos de l'annonce %s." %
+                subject)
+        send_mail(
+            (u"Annonce %s - Annulation de la négociation" %
+                subject),
+            u"""Ceci est un message automatique, veuillez ne pas y répondre.
 
 Bonjour %s,
 
@@ -227,20 +225,15 @@ Nous espérons que vous aurez plus de chance lors de votre prochaine négociatio
 
 Cordialement,
 L'équipe %s""" % (
-                    to_user.username,
-                    message_header,
-                    from_user.username,
-                    form.cleaned_data['message'],
-                    settings.PROJECT_NAME
-                ),
-                settings.FROM_EMAIL, [to_user.email]
-            )
-            talk.delete()
-        except Exception, err:
-            transaction.rollback()
-            raise err
-        else:
-            transaction.commit()
+                to_user.username,
+                message_header,
+                from_user.username,
+                form.cleaned_data['message'],
+                settings.PROJECT_NAME
+            ),
+            settings.FROM_EMAIL, [to_user.email]
+        )
+        talk.delete()
 
     def delete_trip(self, user, trip_id, post_data):
         """Delete a trip
@@ -312,8 +305,6 @@ L'équipe %s""" % (
         
         try:
             talk = Talk.objects.get(pk=talk_id)
-            from ipdb import set_trace
-            set_trace()
         except Talk.DoesNotExist:
             raise TalkDoesNotExist(talk_id)
             

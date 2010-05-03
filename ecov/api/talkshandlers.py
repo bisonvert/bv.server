@@ -43,6 +43,7 @@ __talk_public_fields__ = (
 )
 
 class BaseTalkHandler(Handler):
+    allowed_methods = ('GET', 'PUT', 'DELETE', 'POST')
     count = settings.DEFAULT_PAGINATION_COUNT
     def __init__(self):
         self.lib = LibTalks()
@@ -56,13 +57,14 @@ class TalksHandler(BaseTalkHandler):
         """Initiate the talk with another user.
         
         """
-        if "trip_id" in request.POST:
-            trip_id = request.POST['trip_id']
+        params = dict(request.REQUEST.items())
+        if "trip_id" in params:
+            trip_id = params['trip_id']
         else:
             return rc.BAD_REQUEST  
         try:
-            self.lib.contact_user(request.user, trip_id, request.POST)
-            return rc.CREATED
+            talk = self.lib.contact_user(request.user, trip_id, params)
+            return talk.id
         except exceptions.TalkAlreadyExists:
             return rc.DUPLICATE_ENTRY
         except exceptions.InvalidMail:
@@ -97,12 +99,13 @@ class TalksHandler(BaseTalkHandler):
         """Validate or cancel the talk
         
         """
-        if "validate" in request.POST and request.POST['validate'] in ('true', 'True', True):
+        params = dict(request.REQUEST.items())
+        if "validate" in params and params['validate'] in ('true', 'True', True):
             self.lib.validate_talk(request.user, talk_id)
             return rc.ALL_OK
-        elif "cancel" in request.POST and request.POST['cancel'] in ('true', 'True', True):
+        elif "cancel" in params and params['cancel'] in ('true', 'True', True):
             try:
-                self.lib.cancel_talk(request.user, talk_id, request.POST)
+                self.lib.cancel_talk(request.user, talk_id, params)
                 return rc.DELETED
             except exceptions.TalkDoesNotExist:
                 return rc.NOT_HERE
@@ -140,13 +143,14 @@ class MessagesHandler(BaseTalkHandler):
             except exceptions.TalkDoesNotExist:
                  return rc.NOT_HERE
     
-    @validate(ContactUserForm, "GET")
+    @validate(ContactUserForm)
     def create(self, request, talk_id):
         """Add a message
         
         """
         try:
-            self.lib.add_message(request.user, talk_id, request.POST)
+            self.lib.add_message(request.user, talk_id,
+                dict(request.REQUEST.items()))
             return rc.ALL_OK            
         except exceptions.TalkDoesNotExist:
             return rc.NOT_HERE
