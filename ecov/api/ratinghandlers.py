@@ -6,7 +6,7 @@ from rating.models import Report, TempReport
 from rating.forms import ReportForm
 
 from lib import LibRating
-from lib.exceptions import InvalidUser
+from lib.exceptions import *
 
 from django.contrib.gis.geos.geometry import GEOSGeometry
 from datetime import date
@@ -41,14 +41,13 @@ __tempreport_public_fields__ = (
 'start_date',
 'report2_creation_date',
 'report1_creation_date',
-('trip',(
-    'dows',
-    'date',
-    'creation_date',
-    'type',
-    'departure_city',
-    'arrival_city',
-))
+'dows',
+'date',
+'creation_date',
+'type',
+'departure_city',
+'arrival_city',
+'opened',
 )
 
 class BaseRatingHandler(Handler):
@@ -58,10 +57,21 @@ class BaseRatingHandler(Handler):
         self.lib = LibRating()
 
 class RatingsHandler(BaseRatingHandler):
+    allowed_methods = ('GET', 'POST')
     @validate(ReportForm)
-    def create(self, request, tempreport_id):
-        self.lib.rate_user(request.user, tempreport_id, request.POST)
-        return rc.OK
+    def create(self, request):
+        values = dict(request.REQUEST.items())
+        if 'temprating_id' not in values:
+            return rc.BAD_REQUEST
+        try:
+            self.lib.rate_user(request.user, values['temprating_id'], values)
+            return rc.CREATED
+        except MarkAlreadyExists:
+            return rc.DUPLICATE_ENTRY
+        except (InvalidUser, TempReportIsntOpen):
+            return rc.FORBIDDEN
+        except InvalidReportForm:
+            return rc.BAD_REQUEST
         
     def read(self, request):
         return Report.objects.filter(Q(from_user=request.user) | Q(user=request.user))
@@ -69,10 +79,16 @@ class RatingsHandler(BaseRatingHandler):
 class TempRatingsHandler(BaseRatingHandler):
     model = TempReport
     fields = __tempreport_public_fields__  
-    def read(self, request, rating_id=None):
+    def read(self, request, id=None):
         ratings = TempReport.objects.get_user_tempreports(request.user)
-        if rating_id:
-            return ratings.filter(id=rating_id)
+        if id:
+            ratings = ratings.filter(id=id)
+            if ratings.count() == 1:
+                return ratings[0]
+            elif ratings.count() > 1:
+                return rc.BAD_REQUEST
+            else:
+                return rc.NOT_HERE
         else:
             return ratings
         

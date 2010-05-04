@@ -1,5 +1,5 @@
-TODO list for bvserver
-=======================
+bvserver
+========
 
 Features
 ---------

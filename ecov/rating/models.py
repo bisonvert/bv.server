@@ -167,6 +167,10 @@ class TempReport(models.Model):
     mail_sent = models.BooleanField(default=False)
 
     objects = TempReportManager()
+
+    @property
+    def opened(self):
+        return self.is_opened()
         
     def is_opened(self):
         """Return True if actual date is between start and end date"""
