@@ -14,3 +14,4 @@ On these pages, you'll find how works our API, with examples.
    rating
    talks
    users
+   gis

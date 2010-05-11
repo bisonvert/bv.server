@@ -12,6 +12,7 @@ from django.conf import settings
 from django.contrib.gis.geos import MultiPoint, GEOSGeometry
 from django.shortcuts import get_object_or_404
 from django.utils.encoding import smart_unicode
+from django.utils import simplejson
 
 #ecov imports
 from carpool import get_direction_route, str_slugify
@@ -23,6 +24,7 @@ from carpool.forms import EditTripOfferOptionsForm, EditTripDemandOptionsForm, \
 # lib import
 from utils.paginator import PaginatorRender
 from lib.exceptions import *
+
 
 __fixtures__ = ['accounts.json','lib_cities.json','lib_trips.json',]
 
@@ -295,7 +297,9 @@ class LibCarpool:
             
             if trip_type != self.TRIPDEMAND : 
                 if form_offer.is_valid():
-                    trip.offer = form_offer.save()
+                    trip.offer = form_offer.save(commit=False)
+                    trip.offer.steps = simplejson.loads(form_offer.cleaned_data['steps'])
+                    trip.offer.save()
                 else:
                     error = form_offer.errors()
                 
@@ -313,7 +317,7 @@ class LibCarpool:
                 # if we have a demand, and an offer is already registred, delete it   
                 if trip_type == self.TRIPDEMAND and trip.offer is not None: 
                     trip.offer.delete()
-                    trip.offer = None 
+                    trip.offer = None
                 trip.save()
         else:
             error = True

@@ -1,9 +1,8 @@
-from api.handlers import Handler, AnonymousHandler
+from api.handlers import Handler, AnonymousHandler, paginate_items
 from piston.utils import rc, require_mime, require_extended
 from piston.utils import validate
 
 from lib import LibTalks, exceptions
-from api.utils import paginate_items
 from talks.models import Talk, Message
 from talks.forms import ContactUserForm
 

@@ -219,25 +219,23 @@ class TripOffer(models.Model):
     objects = models.GeoManager()
 
     def __init__(self, *args, **kwargs):
-        self._checkpointlist = []
+        self._steps = []
         super(TripOffer, self).__init__(*args, **kwargs)
 
-    def _get_check_point_list(self):
+    def _get_steps(self):
         """Unserialize the check points list."""
-        if self._checkpointlist:
-            return self._checkpointlist
+        if self._steps:
+            return self._steps
         if self.checkpoints:
-            self._checkpointlist = pickle.loads(smart_str(self.checkpoints))
-            for checkpoint in self._checkpointlist:
-                checkpoint['point'] = GEOSGeometry(checkpoint['point'])
-        return self._checkpointlist
+            self._steps = pickle.loads(smart_str(self.checkpoints))
+        return self._steps
 
-    def _set_check_point_list(self, value):
+    def _set_steps(self, value):
         """Set the check points list"""
-        self._checkpointlist = value
-    checkpointlist = property(
-        fget=_get_check_point_list,
-        fset=_set_check_point_list
+        self._steps = value
+    steps = property(
+        fget=_get_steps,
+        fset=_set_steps
     )
 
     def print_radius(self):
@@ -290,9 +288,7 @@ class TripOffer(models.Model):
 
         """
         # dump the checkpoint list into a pickle value
-        for checkpoint in self.checkpointlist:
-            checkpoint['point'] = checkpoint['point'].wkt
-        self.checkpoints = pickle.dumps(self.checkpointlist)
+        self.checkpoints = pickle.dumps(self.steps)
         # calculate a simple route for sql queries and map display
         simple_route = get_simple_route(self.route)
         if isinstance(simple_route, LineString):

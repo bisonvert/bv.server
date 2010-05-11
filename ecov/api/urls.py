@@ -69,6 +69,12 @@ urlpatterns = patterns('api.handlers',
     url(r'^cartypes/$', cartypes_handler),
 )
 
+urlpatterns += patterns('api.sig_utils', 
+    url(r'^gis/calculate_buffer/$', 'calculate_buffer', {}, 'calculate_buffer'),
+    url(r'^gis/ogcserver/$', 'ogcserver', {}, 'ogcserver'),
+)
+
+# TODO move to an external application.
 urlpatterns += patterns('',
     url(r'^access/create/$', 'api.views.create_api_access', {}, 'createaccess'),
     url(r'^access/list/$', 'api.views.list_api_access', {}, 'listaccess'),

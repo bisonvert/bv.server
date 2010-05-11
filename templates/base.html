@@ -31,10 +31,11 @@
         <div id="page-header">
             <h1 id="header"><span>{{ PROJECT_NAME }}</span></a></h1>
             <ul id="navigation">
+                <li><a{% if home %} class="current"{% endifequal %} href="{% url home %}">{% trans "Home" %}</a></li>
                 {% if user.is_authenticated %}
-                <li><a{% ifequal current_item 13 %} class="current"{% endifequal %} href="{% url talks:list_talks %}">{% trans "My talks" %}</a></li>
-                <li><a{% ifequal current_item 14 %} class="current"{% endifequal %} href="{% url rating:list_user_reports %}">{% trans "My reports" %}</a></li>
-                <li><a{% ifequal current_item 11 %} class="current"{% endifequal %} href="{% url accounts:show_user_account %}">{% trans "My account" %}</a></li>
+                <li><a{% if talks %} class="current"{% endifequal %} href="{% url talks:list_talks %}">{% trans "My talks" %}</a></li>
+                <li><a{% if ratings %} class="current"{% endifequal %} href="{% url rating:list_user_reports %}">{% trans "My reports" %}</a></li>
+                <li><a href="{% url accounts:show_user_account %}">{% trans "My account" %}</a></li>
                 {% comment %}<li><a{% ifequal current_item 12 %} class="current"{% endifequal %} href="{% url accounts:edit_user_contacts %}">{% trans "My contacts" %}</a></li>{% endcomment %}
                 {% else %}
                 <li><a{% ifequal current_item 2 %} class="current"{% endifequal %} href="{% url accounts:login %}">{% trans "My account" %}</a></li>

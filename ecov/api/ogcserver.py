@@ -8,7 +8,7 @@ from django.shortcuts import get_object_or_404
 from mapnik import Style, Rule, Color, Layer, PostGIS
 from mapnik import PointSymbolizer, LineSymbolizer
 from mapnik.ogcserver.configparser import SafeConfigParser
-from mapnik.ogcserver.exceptions import ServerConfigurationError
+from mapnik.ogcserver.exceptions import ServerConfigurationError, OGCException
 from mapnik.ogcserver.WMS import BaseWMSFactory
 
 from carpool.models import Trip
@@ -50,7 +50,7 @@ class WMSHandler(object):
         new_layer_name = "trip_%s" % trip_id
         str_new_layer_name = "%s_aggragatestyle" % new_layer_name
 
-        if new_layer_name not in s2a4776elf.mapfactory.layers:
+        if new_layer_name not in self.mapfactory.layers:
             new_layer = Layer(new_layer_name)
             new_layer.queryable = True
             new_layer.datasource = PostGIS(
@@ -59,7 +59,7 @@ class WMSHandler(object):
                 password=settings.DATABASE_PASSWORD,
                 port=settings.DATABASE_PORT,
                 dbname=settings.DATABASE_NAME,
-                table="(SELECT route FROM carpool_tripoffer WHERE id=%s) geom" % trip.offer_id
+                table="(SELECT route FROM carpool_tripoffer o LEFT JOIN carpool_trip t ON t.offer_id=o.id WHERE t.id=%s) geom" % trip.offer_id
             )
             new_layer.srs = '+init=epsg:4326'
             new_layer.styles.append(str_new_layer_name)
@@ -114,12 +114,5 @@ class WMSHandler(object):
 
         resp = requesthandler(ogcparams)
         data = resp.content
-        response = HttpResponse(data, mimetype=resp.content_type)
+        response = HttpResponse(data, content_type=resp.content_type)
         return response
-
-wmshandler = WMSHandler()
-# ogcserver inits
-def ogcserver(request):
-    """OGCServer main view."""
-    return wmshandler.process(request)
-

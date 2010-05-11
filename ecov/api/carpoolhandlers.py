@@ -1,5 +1,4 @@
-from api.handlers import Handler, AnonymousHandler
-from api.utils import paginate_items
+from api.handlers import Handler, AnonymousHandler, paginate_items
 from piston.utils import rc, require_mime, require_extended
 from piston.utils import validate
 
@@ -38,7 +37,7 @@ __trip_public_fields__ = (
     'driver_car_type_id',
     'driver_seats_available',
     'radius',
-    'checkpoints',
+    'steps',
     'driver_smokers_accepted',
     'driver_place_for_luggage',
     'simple_route',

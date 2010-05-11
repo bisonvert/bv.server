@@ -460,6 +460,7 @@ class EditTripOfferOptionsForm(ModelForm):
             'driver_seats_available',
             'route',
             'radius',
+            'steps',
         )
     
 class EditTripDemandOptionsForm(ModelForm):
