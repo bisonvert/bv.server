@@ -4,14 +4,14 @@
 from django.conf.urls.defaults import *
 
 urlpatterns = patterns('accounts.views',
+    (r'^$', 'my_account', {}, 'show_user_account'),
     (r'^login/$', 'login', {'template_name':'accounts/login.html'}, 'login'),
-    (r'^nouveau_mdp/$', 'new_password', {}, 'new_password'),
-    (r'^inscription/$', 'register', {}, 'register'),
-    (r'^validation_email/(?P<key>\w{50})/$', 'validate_email', {}, 'validate_email'),
-    (r'^mon_compte/$', 'my_account', {}, 'show_user_account'),
-    (r'^mon_compte/mon_profil/$', 'edit_profile', {}, 'edit_user_profile'),
-    (r'^mon_compte/mes_preferences/$', 'edit_preferences', {}, 'edit_user_preferences'),
-    (r'^mes_contacts/$', 'edit_contact', {}, 'edit_user_contacts'),
+    (r'^change_password/$', 'new_password', {}, 'new_password'),
+    (r'^register/$', 'register', {}, 'register'),
+    (r'^register/confirm_mail/(?P<key>\w{50})/$', 'validate_email', {}, 'validate_email'),
+    (r'^profile/$', 'edit_profile', {}, 'edit_user_profile'),
+    (r'^preferences/$', 'edit_preferences', {}, 'edit_user_preferences'),
+    (r'^contacts/$', 'edit_contact', {}, 'edit_user_contacts'),
 )
 
 urlpatterns += patterns('',
@@ -19,13 +19,13 @@ urlpatterns += patterns('',
 )
 
 urlpatterns += patterns('django.views.generic.simple',
-    (r'^confirmation_nouveau_mdp/$', 'direct_to_template', {
+    (r'^change_password/confirm/$', 'direct_to_template', {
         'template': 'accounts/confirm_new_password.html',
-        'extra_context': {'current_item': 2}
+        'extra_context': {'apiconsumers': True}
     }, 'confirm_new_password'),
-    (r'^confirmation_inscription/$', 'direct_to_template', {
+    (r'^register/confirm/$', 'direct_to_template', {
         'template': 'accounts/confirm_registration.html',
-        'extra_context': {'current_item': 2}
+        'extra_context': {'apiconsumers': True}
     }, 'confirm_registration'),
     (r'^robots.txt$', 'direct_to_template', {
         'template': 'robots.html',

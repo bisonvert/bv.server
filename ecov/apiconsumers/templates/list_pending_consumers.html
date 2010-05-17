@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<h1>{% trans "List of pending consumers" %}</h1>
+{% if consumers %}
+<a href="{% url apiconsumers:validate_all %}">{% trans "validate all" %}</a>
+<ul>
+{% for consumer in consumers %}
+    <li>{{ consumer.name }} <a href="{% url apiconsumers:validate consumer.id %}">validate</a></li>
+{% endfor %}
+</ul>
+{% else %}
+{% trans "There is no pending consumers to validate." %}
+{% endif %}
+{% endblock %}

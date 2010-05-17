@@ -7,7 +7,7 @@ CREATE OR REPLACE FUNCTION proj_route() RETURNS trigger AS $proj_route$
 $proj_route$ LANGUAGE plpgsql;
 
 
-CREATE TRIGGER proj_route BEFORE INSERT OR UPDATE ON site_tripoffer
+CREATE TRIGGER proj_route BEFORE INSERT OR UPDATE ON carpool_tripoffer
     FOR EACH ROW EXECUTE PROCEDURE proj_route();
 
 CREATE OR REPLACE FUNCTION proj_points() RETURNS trigger AS $proj_points$
@@ -19,5 +19,5 @@ CREATE OR REPLACE FUNCTION proj_points() RETURNS trigger AS $proj_points$
 $proj_points$ LANGUAGE plpgsql;
 
 
-CREATE TRIGGER proj_points BEFORE INSERT OR UPDATE ON site_trip
+CREATE TRIGGER proj_points BEFORE INSERT OR UPDATE ON carpool_trip
     FOR EACH ROW EXECUTE PROCEDURE proj_points();

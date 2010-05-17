@@ -12,19 +12,14 @@ handler500 = 'pages.views.server_error'
 js_info_dict = {'packages': ('carpool'),}
 
 urlpatterns = patterns('',
-    #Include app urls
-    (r'^', include('carpool.urls', namespace='carpool')),
-    (r'^', include('pages.urls', namespace='pages')),
-    (r'^utilisateurs/', include('accounts.urls', namespace='accounts')),
-    (r'^mes_evaluations/', include('rating.urls', namespace='rating')),
-    (r'^discussions/', include('talks.urls', namespace='talks')),
-    (r'^admin/(.*)', admin.site.root),
-    (r'^ogcserver/$', 'ogcserver.views.ogcserver'),
+    # API URLs
+    (r'^', include('api.urls', namespace='api')),
+    (r'^consumers/', include('apiconsumers.urls', namespace='apiconsumers')),
 
-    #Ajax
-    (r'^ajax/calculate_buffer/$', 'carpool.misc.calculate_buffer'),
-    (r'^ajax/get_city/$', 'carpool.misc.get_city'),
-    (r'^ajax/reverse_geocode/$', 'utils.reverse_geocoding.reverse_geocoder'),
+    #Include app urls
+    (r'^', include('pages.urls', namespace='pages')),
+    (r'^account/', include('accounts.urls', namespace='accounts')),
+    (r'^admin/(.*)', admin.site.root),
 
     #Feeds
     (r'^feeds/(?P<url>.*)/$', 'django.contrib.syndication.views.feed', {'feed_dict': { 'rss': RSSFeed, 'atom': AtomFeed }}),
@@ -32,10 +27,6 @@ urlpatterns = patterns('',
     #I18n
     (r'^i18n/', include('django.conf.urls.i18n', namespace='i18n')),
     (r'^jsi18n/$', 'django.views.i18n.javascript_catalog', js_info_dict),
-    
-    #API
-    (r'^api/', include('api.urls', namespace='api')),
-     
 )
 
 #OAUTH

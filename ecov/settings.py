@@ -11,7 +11,7 @@ except NameError:
     # DEFAULT
     PROJECT_ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
 
-PROJECT_ROOT_URL = 'http://url/to/project:port' # DEFAULT
+PROJECT_ROOT_URL = 'http://api.bisonvert.net'
 PROJECT_NAME = 'BisonVert'
 PROJECT_NAME_URL = 'BisonVert.net'
 DATABASE_ENGINE = 'postgresql_psycopg2'
@@ -71,7 +71,7 @@ JS_EXT = '-min.js' if not DEBUG else '.js'
 
 # User profile
 #AUTH_PROFILE_MODULE = 'accounts.userprofile'
-LOGIN_URL = '/utilisateurs/login/'
+LOGIN_URL = '/account/login/'
 LOGIN_REDIRECT_URL = '/mes_annonces/'
 AUTH_PROFILE_MODULE = 'accounts.UserProfile'
 
@@ -199,8 +199,11 @@ INSTALLED_APPS = (
     'pages',
     'utils',
     'api',
+    'apiconsumers',
 )
 
+# We can't acces to the definition of urls of the client, so they need to be
+# configured manually. It's useful to send mails.
 DEFAULT_CLIENT_URLS = {
     'root': 'http://www.bisonvert.net/',
     'talks' : {
@@ -211,7 +214,7 @@ DEFAULT_CLIENT_URLS = {
 
 # Django Piston API
 PISTON_IGNORE_DUPE_MODELS = True
-OAUTH_AUTH_VIEW = 'api.views.oauth_auth_view'
+OAUTH_AUTH_VIEW = 'apiconsumers.views.oauth_auth_view'
 
 # Pagination settings
 DEFAULT_PAGINATION_COUNT = 10

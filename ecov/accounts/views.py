@@ -75,7 +75,7 @@ def new_password(request):
     to manage mail sending errors.
     """
     response_dict = {
-        'current_item': 2
+        'accounts': True
     }
 
     if request.method == 'POST':
@@ -130,7 +130,7 @@ def register(request):
     On errors, display again the form (via GET)
     """
     response_dict = {
-        'current_item': 2
+        'accounts': True
     }
 
     if request.method == 'POST':
@@ -158,7 +158,7 @@ def register(request):
                     login(request, user)
                     request.session[settings.PERSISTENT_SESSION_KEY] = False
 
-#                _send_validation_mail(request, user, True)
+                _send_validation_mail(request, user, True)
             except Exception, err:
                 transaction.rollback()
                 raise err
@@ -179,12 +179,13 @@ def validate_email(request, key):
     Check that the key is valid, and validate the user email if so.
     """
     response_dict = {
-        'current_item': 2
+        'accounts': True
     }
 
     try:
         userprofile = UserProfile.objects.get(validation__key=key)
         userprofile.user.email = userprofile.validation.email
+        userprofile.user.is_valid = True
         userprofile.user.save()
         validation = userprofile.validation
         userprofile.validation = None
@@ -219,7 +220,7 @@ def edit_profile(request):
     to manage mail sending errors.
     """
     response_dict = {
-        'current_item': 11,
+        'accounts': True,
         'current_nav_item': 1,
     }
 
@@ -279,7 +280,7 @@ def edit_preferences(request):
     This view is only accessible by connected users.
     """
     response_dict = {
-        'current_item': 11,
+        'accounts': True,
         'current_nav_item': 2,
     }
 
