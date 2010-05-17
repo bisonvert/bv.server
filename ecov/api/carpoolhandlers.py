@@ -68,6 +68,7 @@ __valid_search_keys__ = (
     'route', 
     'departure_point', 
     'arrival_point',
+    'geometry',
 )
 
 def validateTripForm(operation='POST'):
@@ -137,11 +138,14 @@ def filter_tripsearch_values(request):
     values = dict()
     for (key, value) in request.GET.iteritems():
         if key.encode() in __valid_search_keys__:
-            if (key in (u'departure_point', u'arrival_point', u'route')):
+            if key in (u'departure_point', u'arrival_point', u'route', u'geometry'):
                 value = GEOSGeometry(value)
-            if (key == u'date'):
+            if key == u'date':
                 value = date(*[int(datevalue) for datevalue in value.encode().split('-')])
-            values[key.encode()] = value
+            if key == u'geometry':
+                values['route'] = value
+            else:
+                values[key.encode()] = value
     return values
 
 class AnonymousTripsSearchHandler(AnonymousCarpoolHandler):
@@ -150,7 +154,6 @@ class AnonymousTripsSearchHandler(AnonymousCarpoolHandler):
 
         """
         values = filter_tripsearch_values(request)
-        
         return self.lib.get_trip_results(**values)
 
 class TripsSearchHandler(CarpoolHandler):

@@ -383,8 +383,21 @@ class LibCarpool:
             
         if is_offer:
             offer_radius = offer_radius or self.OFFER_RADIUS
-            if route is None or route.geom_type != 'MultiLineString':
-                raise InvalidGeometry("The trip offer route geometry type must set and a 'MultiLineString'")
+            if trip_id:
+                if route is None or route.geom_type != 'MultiLineString':
+                    raise InvalidGeometry("The trip offer route geometry is " \
+                    "required and need to be a 'MultiLineString'. You gave us " \
+                    "a '%(type)s' instead." % {
+                        'type': "None" if route is None else route.geom_type
+                    })
+            else:
+                if route is None or route.geom_type != 'LineString':
+                    raise InvalidGeometry("The trip offer route geometry is " \
+                    "required and need to be a 'LineString'. You gave us " \
+                    "a '%(type)s' instead." % {
+                        'type': "None" if route is None else route.geom_type
+                    })
+                    
         if is_demand:
             demand_radius = demand_radius or self.DEMAND_RADIUS
         
