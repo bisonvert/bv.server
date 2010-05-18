@@ -81,6 +81,8 @@ def validateTripForm(operation='POST'):
         errors = False
         if len(request.REQUEST.items()) == 1 and request.REQUEST.get('alert', False):
             return f(self, request, *args, **kwargs)
+        if  3 <= len(request.REQUEST.items()) <= 4:
+            return f(self, request, *args, **kwargs)
         
         if 'dows' in request.REQUEST.items():
             request.REQUEST.setlist(request.REQUEST.get('dows').split('-'))
@@ -222,9 +224,9 @@ class TripsHandler(CarpoolHandler):
             return rc.ALL_OK
         
         response = self.lib.update_trip(request.user, request_to_dict(request), trip_id)
-        if (response['error']):
+        if response['error']:
             return rc.BAD_REQUEST
-        elif (response['trip']):
+        elif response['trip']:
             return response['trip']
         
     def delete(self, request, trip_id):

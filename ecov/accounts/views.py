@@ -143,9 +143,6 @@ def register(request):
                     '',
                     form.cleaned_data['password']
                 )
-                user.is_staff = False
-                user.is_active = False
-                user.is_superuser = False
                 user.save()
                 userprofile = UserProfile(user=user)
                 userprofile.save()
