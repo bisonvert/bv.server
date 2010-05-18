@@ -2,7 +2,6 @@ bvserver
 ========
 
 * Remember user choice about oauth token, per application.
-* Created accounts are inactive by default. change this.
 * Update global workflow.
 
 * Support ordering results within the API
