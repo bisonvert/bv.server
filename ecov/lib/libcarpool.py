@@ -297,9 +297,10 @@ class LibCarpool:
             
             if trip_type != self.TRIPDEMAND : 
                 if form_offer.is_valid():
-                    trip.offer = form_offer.save(commit=False)
-                    trip.offer.steps = simplejson.loads(form_offer.cleaned_data['steps'])
-                    trip.offer.save()
+                    offer = form_offer.save(commit=False)
+                    offer.steps = simplejson.loads(form_offer.cleaned_data['steps'])
+                    offer.save()
+                    trip.offer = offer
                 else:
                     error = form_offer.errors()
                 

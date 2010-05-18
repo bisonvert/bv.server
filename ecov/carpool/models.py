@@ -840,19 +840,6 @@ class Trip(models.Model):
                     else self.print_dows())
         )
 
-#    def save(self, update_modification_date=True, **kwargs):
-#        """Update the creation and modification dates.
-#        
-#        Calls the save() method of the parent class
-#
-#        """
-#        today = datetime.datetime.today()
-#        if not self.id:
-#            self.creation_date = today
-#        if update_modification_date:
-#            self.modification_date = today
-#        super(Trip, self).save()
-
     def delete(self):
         """Deletes matching demand and offers.
         

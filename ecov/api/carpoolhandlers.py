@@ -29,6 +29,8 @@ __trip_public_fields__ = (
 'regular', 
 'dows', 
 'time',
+'creation_date', 
+'modification_date', 
 ('offer', (
     'id',
     'driver_km_price',
@@ -154,6 +156,8 @@ class AnonymousTripsSearchHandler(AnonymousCarpoolHandler):
 
         """
         values = filter_tripsearch_values(request)
+        from ipdb import set_trace
+        set_trace()
         return self.lib.get_trip_results(**values)
 
 class TripsSearchHandler(CarpoolHandler):
