@@ -1,8 +1,8 @@
-{% extends "base.html" %}
+{% extends "accounts/base.html" %}
 {% load i18n %}
-{% block content %}
+{% block accounts_content %}
 <form method="post" action="">
-<h2>{% trans "Authorize token" %}</h2>
+<h3>{% trans "Authorize token" %}</h3>
 <p> {% trans "authorize_token_description" %} </p>
 {{ form.as_p }}
 <div class="form_buttons">

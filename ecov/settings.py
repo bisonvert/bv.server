@@ -1,15 +1,14 @@
 # -*- coding: utf-8 -*-
-# vim: set fileencoding=utf-8 :
+"""Default settings for Bisonvert Serverside application.
+
+Please, do not make your modifications here, but on a specific local_settings.py
+file at the root of the project.
+"""
 
 import os.path
 import datetime
-ugettext = lambda s: s
 
-try:
-    dummy = PROJECT_ROOT_PATH
-except NameError:
-    # DEFAULT
-    PROJECT_ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
 
 PROJECT_ROOT_URL = 'http://api.bisonvert.net'
 PROJECT_NAME = 'BisonVert'
@@ -21,12 +20,7 @@ DATABASE_PASSWORD = 'bisonvert'
 DATABASE_HOST = 'localhost'
 DATABASE_PORT = '5432'
 
-try:
-    dummy = DEBUG
-except NameError:
-    # DEFAULT
-    DEBUG = False
-
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 # For SQL Query logger - DEFAULT
@@ -72,7 +66,7 @@ JS_EXT = '-min.js' if not DEBUG else '.js'
 # User profile
 #AUTH_PROFILE_MODULE = 'accounts.userprofile'
 LOGIN_URL = '/account/login/'
-LOGIN_REDIRECT_URL = '/mes_annonces/'
+LOGIN_REDIRECT_URL = '/account/'
 AUTH_PROFILE_MODULE = 'accounts.UserProfile'
 
 # Custom Auth Backend : username case insensitive
@@ -107,13 +101,14 @@ EMAIL_PORT = 1025
 EMAIL_USE_TLS = False
  
 # Session configuration
-SESSION_COOKIE_AGE            = 7200      # 2 heures, duree de la session en base
-SESSION_PERSISTENT_COOKIE_AGE = 31536000 # 1an, duree du cookie et de la session en base
+SESSION_COOKIE_AGE            = 7200 # 2 hours
+SESSION_PERSISTENT_COOKIE_AGE = 31536000 # 1 year 
 SESSION_COOKIE_DOMAIN = None
 SESSION_COOKIE_SECURE = None
 PERSISTENT_SESSION_KEY = 'sessionpersistent'
 
 # i18n / l10n
+ugettext = lambda s: s
 TIME_ZONE = 'Europe/Paris'
 DEFAULT_CHARSET = 'utf-8'
 SITE_ID = 1
@@ -166,11 +161,9 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.media',
     'utils.context_processors.js_ext',
     'utils.context_processors.project_info',
-#    'utils.context_processors.get_footer_cities',
     'utils.context_processors.get_google_analytics_info',
     'utils.context_processors.get_google_adsense_info',
-#    'utils.context_processors.with_title_header',
-#    'utils.context_processors.with_tools',
+    'utils.context_processors.client_urls',
 )
 
 ROOT_URLCONF = 'urls'
@@ -179,8 +172,7 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
-
-    # external
+    # django needed applications
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -189,8 +181,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.markup',
     'piston',
-
-    # internal
+    # bv's internal apps
     'accounts',
     'lib',
     'carpool',
@@ -202,24 +193,36 @@ INSTALLED_APPS = (
     'apiconsumers',
 )
 
-# We can't acces to the definition of urls of the client, so they need to be
-# configured manually. It's useful to send mails.
+# OAuth is great, but user experience with it is a bit ... strange, so we 
+# need to provide the same user interface (at least the same menus) on the 
+# client and server side.
+# As we can't acces to the definition of urls of the client, there is a need
+# to specify them here, by hand.
+# This is easilly modifiable here, and that make the separation of application
+# (eg. between "oauth server" side and "default client") invisible to the end 
+# user.
+DEFAULT_CLIENT_ROOT_URL = 'http://www.bisonvert.net',
 DEFAULT_CLIENT_URLS = {
-    'root': 'http://www.bisonvert.net/',
     'talks' : {
         'add_message': '%s/talks/%s/add_message/',
         'list': '%s/talks/list/'
+    },
+    'trips': {
+        'mine': '%s/trips/mine/',
+        'home': '%s',
+        'list': '%s/trips/list/',
+    }, 
+    'reports': {
+        'list': '%s/ratings/',
     }
 }
 
-# Django Piston API
+# Set oauth ignore dupe models to false to be a bit noiseless with our logs.
 PISTON_IGNORE_DUPE_MODELS = True
 OAUTH_AUTH_VIEW = 'apiconsumers.views.oauth_auth_view'
-
-# Pagination settings
 DEFAULT_PAGINATION_COUNT = 10
 
-# import local setings to override these
+# import local setings to override these ones
 try:
     from local_settings import *
 except ImportError:

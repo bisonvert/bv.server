@@ -12,6 +12,9 @@ handler500 = 'pages.views.server_error'
 js_info_dict = {'packages': ('carpool'),}
 
 urlpatterns = patterns('',
+    # When the user enter the website, redirect him on his profile page
+    (r'^$', 'accounts.views.my_account', {}, 'home'),
+
     # API URLs
     (r'^', include('api.urls', namespace='api')),
     (r'^consumers/', include('apiconsumers.urls', namespace='apiconsumers')),

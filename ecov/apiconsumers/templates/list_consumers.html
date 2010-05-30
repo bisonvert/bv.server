@@ -1,7 +1,7 @@
-{% extends "base.html" %}
+{% extends "accounts/base.html" %}
 {% load i18n %}
-{% block content %}
-<h2>{% trans "List of API access" %}</h2>
+{% block accounts_content %}
+<h3>{% trans "List of API access" %}</h3>
 <p> {% trans "api_list_description" %} </p>
 {% if consumers %}  
 <table id="access_list" class="pg_list">

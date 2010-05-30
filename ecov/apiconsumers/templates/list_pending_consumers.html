@@ -1,7 +1,7 @@
-{% extends "base.html" %}
+{% extends "accounts/base.html" %}
 {% load i18n %}
-{% block content %}
-<h1>{% trans "List of pending consumers" %}</h1>
+{% block accounts_content %}
+<h3>{% trans "List of pending consumers" %}</h3>
 {% if consumers %}
 <a href="{% url apiconsumers:validate_all %}">{% trans "validate all" %}</a>
 <ul>

@@ -1,8 +1,8 @@
-{% extends "base.html" %}
+{% extends "accounts/base.html" %}
 {% load i18n %}
-{% block content %}
+{% block accounts_content %}
 <form method="post">
-<h2>{% trans "Request an API access" %}</h2>
+<h3>{% trans "Request an API access" %}</h3>
 <p> {% trans "api_access_description" %} </p>
 {{ form.as_p }}
 <div class="form_buttons">

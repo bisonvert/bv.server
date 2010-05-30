@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-# vim: set fileencoding=utf-8 :
 
 from django.conf import settings
 from carpool.models import City
@@ -155,3 +154,15 @@ def with_tools(request):
     """Avec ou sans outils: avec un bv skinné, pas d'outils."""
     return {'WITH_TOOLS': settings.THEME_USED == 'default'}
 
+def client_urls(request):
+    """Provides a dict to the templates, with the urls of the client actions."""
+   
+    dict = {} 
+    for category, urls in settings.DEFAULT_CLIENT_URLS.items():
+        if category != 'root':
+            dict[category] = {}
+            for name, url in urls.items():
+                if url.count("%s") == 1:
+                    dict[category][name] = url % settings.DEFAULT_CLIENT_ROOT_URL
+    
+    return {'client_urls' : dict}
