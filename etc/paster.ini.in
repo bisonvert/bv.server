@@ -1,4 +1,4 @@
-# bv.server WSGI CONFIGURATION FILE FOR DEVELOPMENT
+# bv.server WSGI CONFIGURATION FILE
 [DEFAULT]
 debug=${settings:debug}
 
