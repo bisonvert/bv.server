@@ -6,7 +6,7 @@ from django.contrib.gis.geos import GEOSGeometry, MultiLineString
 from django.utils.encoding import smart_unicode
 from htmlentitydefs import name2codepoint as n2cp
 
-from ecov.carpool.models import City, Trip, TripOffer, TripDemand
+from bv.server.carpool.models import City, Trip, TripOffer, TripDemand
 
 import simplejson
 import random

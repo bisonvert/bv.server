@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # vim: set fileencoding=utf-8 :
 
-from ecov.carpool.models import City
-from ecov.carpool import str_slugify, SRID_DEFAULT
+from bv.server.carpool.models import City
+from bv.server.carpool import str_slugify, SRID_DEFAULT
 
 from django.contrib.gis.geos import GEOSGeometry
 from django.utils.encoding import smart_unicode

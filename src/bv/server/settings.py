@@ -143,7 +143,7 @@ TEMPLATE_LOADERS = (
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.gzip.GZipMiddleware',
-    'utils.middleware.EcovSessionMiddleware',
+    'bv.server.utils.middleware.EcovSessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -159,11 +159,11 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.debug',
     'django.core.context_processors.i18n',
     'django.core.context_processors.media',
-    'utils.context_processors.js_ext',
-    'utils.context_processors.project_info',
-    'utils.context_processors.get_google_analytics_info',
-    'utils.context_processors.get_google_adsense_info',
-    'utils.context_processors.client_urls',
+    'bv.server.utils.context_processors.js_ext',
+    'bv.server.utils.context_processors.project_info',
+    'bv.server.utils.context_processors.get_google_analytics_info',
+    'bv.server.utils.context_processors.get_google_adsense_info',
+    'bv.server.utils.context_processors.client_urls',
 )
 
 ROOT_URLCONF = 'urls'
@@ -182,15 +182,15 @@ INSTALLED_APPS = (
     'django.contrib.markup',
     'piston',
     # bv's internal apps
-    'accounts',
-    'lib',
-    'carpool',
-    'talks',
-    'rating',
-    'pages',
-    'utils',
-    'api',
-    'apiconsumers',
+    'bv.server.accounts',
+    'bv.server.lib',
+    'bv.server.carpool',
+    'bv.server.talks',
+    'bv.server.rating',
+    'bv.server.pages',
+    'bv.server.utils',
+    'bv.server.api',
+    'bv.server.apiconsumers',
 )
 
 # OAuth is great, but user experience with it is a bit ... strange, so we 
