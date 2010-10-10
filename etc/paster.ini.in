@@ -5,7 +5,7 @@ debug=${settings:debug}
 [composite:main]
 use=egg:Paste#urlmap
 /media/=pmedia
-/admin/media/=padminmedia
+/admin_media/=padminmedia
 /=pmain
 /threads/=watch_threads
 

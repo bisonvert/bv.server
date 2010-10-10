@@ -222,6 +222,33 @@ PISTON_IGNORE_DUPE_MODELS = True
 OAUTH_AUTH_VIEW = 'apiconsumers.views.oauth_auth_view'
 DEFAULT_PAGINATION_COUNT = 10
 
+#gdal and others from minitage
+libs = [".so", ".dylib", ".a"]
+if 'MT' in os.environ:
+    geosfound = False
+    gdalfound = False 
+    for gd in os.environ['LD_LIBRARY_PATH'].split(':'):
+        if 'geos' in gd and not geosfound:
+            files = os.listdir(gd)
+            for libext in libs:
+                for f in files:
+                    if f.endswith(libext):
+                        GEOS_LIBRARY_PATH = os.path.join(gd, f)
+                        geosfound = True
+                        break
+                if geosfound:
+                    break 
+        if 'gdal' in gd and not gdalfound:
+            files = os.listdir(gd)
+            for libext in libs:
+                for f in files:
+                    if f.endswith(libext):
+                        GDAL_LIBRARY_PATH = os.path.join(gd, f)
+                        gdalfound = True
+                        break
+                if gdalfound:
+                    break
+
 # import local setings to override these ones
 try:
     from local_settings import *
