@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://127.0.0.1:8081/" />
+<title>bv.server</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">bv.server</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/collect/Generic%20Portal%20Django</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//div[@id='header']/a[1]/h1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Generic Portal Django</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>project</td>
+	<td>bv.server</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>uri</td>
+	<td>http://bitbucket.org/kiorky/bv.server</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>effective_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>author_email</td>
+	<td>sth@makina-corpus.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>author</td>
+	<td>Simon Thepot &lt;sth@makina-corpus.com&gt;</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>license</td>
+	<td>GPL</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>db_name</td>
+	<td>bisonvert</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>with_gis_mapscript</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>with_gis_gdal</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>supervisor_port</td>
+	<td>8090</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>db_port</td>
+	<td>5434</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>http_port</td>
+	<td>8085</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>reverseproxy_aliases</td>
+	<td>www.bisonvert.net</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>with_binding_memcache</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>with_tool_reportlab</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>with_binding_mapscript</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>submit_cgwbDownload</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

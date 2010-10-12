@@ -1,0 +1,35 @@
+<VirtualHost *:${reverse_proxy:port}>
+ServerAdmin     sth@makina-corpus.com
+DocumentRoot    ${buildout:directory}
+ServerName      ${reverse_proxy:host}
+ServerAlias     www.bisonvert.net
+ErrorLog        ${buildout:directory}/var/log/apache/${reverse_proxy:host}_log
+TransferLog     ${buildout:directory}/var/log/apache/${reverse_proxy:host}-access_log
+CustomLog       ${buildout:directory}/var/log/apache/${reverse_proxy:host}-access_log combined
+DirectoryIndex   index.html index.htm
+<Directory "${buildout:directory}">
+    Options  ExecCGI IncludesNOEXEC FollowSymLinks -Indexes
+    AllowOverride All
+    Order allow,deny
+    Allow from all
+</Directory>
+ProxyRequests off
+<Proxy *>
+  Order allow,deny
+  Allow from all
+</Proxy>
+RewriteEngine  on
+
+# application mounted on / does not needs _vh_
+# supervisor
+ProxyPass         /supervisor/ http://${hosts:supervisor}:${ports:supervisor}/
+ProxyPassReverse  /supervisor/ http://${hosts:supervisor}:${ports:supervisor}/
+
+# /-> vhmonster proxyreverse because of redirects !
+ProxyPass         / http://${hosts:front}:${ports:front}
+ProxyPassReverse  / http://${hosts:front}:${ports:front}
+
+#RewriteLog "${buildout:directory}/var/log/apache/rewrite.log"
+#RewriteLogLevel 3
+# vim: set ft=xml:
+</VirtualHost>

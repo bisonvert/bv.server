@@ -2,6 +2,7 @@
 setuptools.*
 .sql
 django
+t/*
 local_settings.py
 .installed.cfg
 .mr.developer.cfg
@@ -15,3 +16,4 @@ etc/settings-BOX.py
 log/.*log
 sys/.*
 src/bv/server/customdev.py
+minilays/*

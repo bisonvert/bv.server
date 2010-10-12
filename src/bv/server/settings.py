@@ -232,7 +232,7 @@ if 'MT' in os.environ:
             files = os.listdir(gd)
             for libext in libs:
                 for f in files:
-                    if f.endswith(libext):
+                    if f.endswith(libext) and ('geos_c' in f):
                         GEOS_LIBRARY_PATH = os.path.join(gd, f)
                         geosfound = True
                         break

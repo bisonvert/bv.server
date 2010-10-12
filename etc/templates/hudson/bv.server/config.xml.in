@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description>${bvserver_hudson_job:project}</description>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <scm class="hudson.scm.SubversionSCM">
+    <locations>
+      <hudson.scm.${bvserver_hudson_job:scm_type}_-ModuleLocation>
+        <remote>${bvserver_hudson_job:scm_url}</remote>
+      </hudson.scm.${bvserver_hudson_job:scm_type}_-ModuleLocation>
+    </locations>
+    <useUpdate>true</useUpdate>
+    <doRevert>false</doRevert>
+    <excludedRegions></excludedRegions>
+    <excludedUsers></excludedUsers>
+    <excludedRevprop></excludedRevprop>
+    <excludedCommitMessages></excludedCommitMessages>
+  </scm>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers class="vector">
+    <hudson.triggers.TimerTrigger>
+      <spec>${bvserver_hudson_job:cron}</spec>
+    </hudson.triggers.TimerTrigger>
+  </triggers>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>${bvserver_hudson_job:update-mrdeveloper-cmd}</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>${bvserver_hudson_job:update-project-cmd}</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>${bvserver_hudson_job:build-cmd}</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>${bvserver_hudson_job:update-mrdeveloper-cmd}</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>${bvserver_hudson_job:test-cmd}</command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers>
+    <hudson.tasks.junit.JUnitResultArchiver>
+      <testResults>testhudsonxmlreports/**/*.xml</testResults>
+      <testDataPublishers/>
+    </hudson.tasks.junit.JUnitResultArchiver>
+    <hudson.tasks.Mailer>
+      <recipients>${bvserver_hudson_job:recipients}</recipients>
+      <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
+      <sendToIndividuals>false</sendToIndividuals>
+    </hudson.tasks.Mailer>
+    <hudson.plugins.ircbot.IrcPublisher>
+      <targets class="linked-list"/>
+      <strategy class="hudson.plugins.im.NotificationStrategy">ALL</strategy>
+      <notifyOnBuildStart>true</notifyOnBuildStart>
+      <notifySuspects>true</notifySuspects>
+      <notifyCulprits>true</notifyCulprits>
+      <notifyFixers>true</notifyFixers>
+      <notifyUpstreamCommitters>true</notifyUpstreamCommitters>
+      <channels/>
+    </hudson.plugins.ircbot.IrcPublisher>
+  </publishers>
+  <buildWrappers/>
+</project>

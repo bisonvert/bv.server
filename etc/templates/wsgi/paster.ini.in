@@ -1,16 +1,30 @@
-# bv.server WSGI CONFIGURATION FILE
+# bv.clientb WSGI CONFIGURATION FILE
 [DEFAULT]
 debug=${settings:debug}
 
 [composite:main]
 use=egg:Paste#urlmap
 /media/=pmedia
-/admin_media/=padminmedia
+/admin/media/=padminmedia
 /=pmain
 /threads/=watch_threads
 
+# deliverance support
+#/deliverange=pdeliverance
+#/_themes = athemes 
+#[pipeline:pdeliverance]
+#pipeline= translogger exc deliverance projectapp 
+#[filter:fdeliverance]
+#use=egg:Deliverance
+#theme_uri = file://${locations:deliverance-themes}/layout.html
+#rule_uri = file://${buildout:directory}/etc/deliverance/deliverance.xml
+#execute_pyref=true
+#[app:athemes]
+#use = egg:Paste#static
+#document_root=${locations:deliverance-themes}
+
 [pipeline:pmain]
-pipeline= translogger cchbapp
+pipeline= fvhm exc translogger projectapp
 
 [pipeline:pmedia]
 pipeline= translogger exc mediaapp
@@ -20,6 +34,9 @@ pipeline= translogger exc adminmediaapp
 
 [app:watch_threads]
 use=egg:Paste#watch_threads
+
+[filter:fvhm]
+use = egg:repoze.vhm#vhm_xheaders
 
 [filter:translogger]
 use=egg:Paste#translogger
@@ -31,12 +48,10 @@ use=egg:Paste#printdebug
 
 [filter:exc]
 use=egg:WebError#evalerror
-[filter:close]
-paste.filter_factory = cchb.cchbmiddleware:closeconnection_factory
 
-[app:cchbapp]
+[app:projectapp]
 use=egg:dj.paste
-django_settings_module=bv.server.${buildout:dsm}
+django_settings_module=${buildout:dsm}
 
 [app:mediaapp]
 use = egg:Paste#pkg_resources
@@ -87,7 +102,7 @@ formatter = generic
 # Handler for writing access.log style log lines to an "access.log" file
 [handler_fconsole]
 class = FileHandler
-args = ('${buildout:directory}/log/console.log','a')
+args = ('${buildout:directory}/var/log/console.log','a')
 level = INFO
 formatter = generic
 
@@ -95,14 +110,14 @@ formatter = generic
 # Handler for writing access.log style log lines to an "access.log" file
 [handler_accesslog]
 class = FileHandler
-args = ('${buildout:directory}/log/access.log','a')
+args = ('${buildout:directory}/var/log/access.log','a')
 level = INFO
 formatter = accesslog
 
 # Handler for writing error messages to an "error.log" file
 [handler_errorlog]
 class = FileHandler
-args = ('${buildout:directory}/log/error.log','a')
+args = ('${buildout:directory}/var/log/error.log','a')
 level = WARNING
 formatter = generic
 
@@ -117,6 +132,7 @@ format = %(message)s
 
 [server:main]
 use=egg:Paste#http
-host=${settings:host}
-port=${settings:port}
+host=${host}
+port=${port}
 
+# vim:set et ts=4 sts=4 ft=cfg:

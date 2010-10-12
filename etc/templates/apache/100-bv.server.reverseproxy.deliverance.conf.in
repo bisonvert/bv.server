@@ -1,0 +1,53 @@
+<VirtualHost *:${reverse_proxy:port}>
+ServerAdmin     sth@makina-corpus.com
+DocumentRoot    ${buildout:directory}
+ServerName      ${reverse_proxy:host}
+ServerAlias     www.bisonvert.net
+ErrorLog        ${buildout:directory}/var/log/apache/${reverse_proxy:host}_log
+TransferLog     ${buildout:directory}/var/log/apache/${reverse_proxy:host}-access_log
+CustomLog       ${buildout:directory}/var/log/apache/${reverse_proxy:host}-access_log combined
+DirectoryIndex   index.html index.htm
+<Directory "${buildout:directory}">
+    Options  ExecCGI IncludesNOEXEC FollowSymLinks -Indexes
+    AllowOverride All
+    Order allow,deny
+    Allow from all
+</Directory>
+
+ProxyRequests off
+<Proxy *>
+  Order allow,deny
+  Allow from all
+</Proxy>
+
+# we need to have
+#    - a vhm url for the zope2 server
+#    - one set of request environment variables for the deliverance server .
+RequestHeader add        X-Vhm-Host ${reverse_proxy:scheme}://${reverse_proxy:host}:${reverse_proxy:port}/
+#RequestHeader add        X-Vhm-Root /submountpoint
+
+RewriteEngine  on
+
+# supervisor
+ProxyPass        /supervisor http://${hosts:supervisor}:${ports:supervisor}
+ProxyPassReverse /supervisor http://${hosts:supervisor}:${ports:supervisor} 
+
+# /django-bv.server-> project without deliverance filtering
+ProxyPassMatch   ^/django-bv.server(.*) http://${hosts:front}:${ports:front}$1
+ProxyPassReverse ^/django-bv.server/    http://${hosts:front}:${ports:front}
+
+# /_themes  & .deliverance
+ProxyPassMatch   /(_themes|\.deliverance)(.*) http://${hosts:front}:${ports:front}/$1$2
+ProxyPassReverse /_themes/                    http://${hosts:front}:${ports:front}/_themes/
+ProxyPassReverse /.deliverance/               http://${hosts:front}:${ports:front}/.deliverance/
+
+# deliverance filtering on /
+ProxyPass         / http://${hosts:front}:${ports:front}/deliverance
+ProxyPassReverse  / http://${hosts:front}:${ports:front}/deliverance 
+
+
+#RewriteLog "${buildout:directory}/var/log/apache/rewrite.log"
+#RewriteLogLevel 3
+
+# vim: set ft=xml:
+</VirtualHost>
