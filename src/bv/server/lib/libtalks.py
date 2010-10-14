@@ -14,7 +14,7 @@ from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext_lazy as _
 
 # ecov imports
-from carpool.models import Trip
+from bv.server.carpool.models import Trip
 from rating.models import TempReport
 from talks.models import Talk, Message
 from talks.forms import ContactUserForm

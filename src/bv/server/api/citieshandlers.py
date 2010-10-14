@@ -9,7 +9,7 @@ from piston.utils import validate
 from api.handlers import Handler, AnonymousHandler
 
 # bv imports
-from carpool.models import City
+from bv.server.carpool.models import City
 
 
 class CitiesHandler(AnonymousHandler):

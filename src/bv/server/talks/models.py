@@ -4,7 +4,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-from carpool.models import Trip
+from bv.server.carpool.models import Trip
 
 import datetime
 

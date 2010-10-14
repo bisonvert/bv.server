@@ -19,14 +19,14 @@ from django.utils.encoding import smart_unicode
 from django.utils import simplejson
 
 from django.contrib.auth.decorators import login_required
-from carpool import MAX_DISTANCE_DRIVER, MAX_DISTANCE_PASSENGER, \
+from bv.server.carpool import MAX_DISTANCE_DRIVER, MAX_DISTANCE_PASSENGER, \
     MAX_INTERVAL, R_CITY_ZIP, get_direction_route, str_slugify
-from carpool.forms import SearchTripForm, SearchTripWithDatesForm, \
+from bv.server.carpool.forms import SearchTripForm, SearchTripWithDatesForm, \
     ChooseDepartArrivalCityForm, EditTripOfferOptionsForm, \
     EditTripDemandOptionsForm, EditTripForm
 
-from carpool.models import City, FavoritePlace, Trip, TripDemand, TripOffer
-from carpool.misc import get_mark_average, get_date, get_trip_search_details, \
+from bv.server.carpool.models import City, FavoritePlace, Trip, TripDemand, TripOffer
+from bv.server.carpool.misc import get_mark_average, get_date, get_trip_search_details, \
     get_trip_dict, get_trip_search_type, get_trip_search_offer_details, \
     get_trip_search_demand_details, sort_offers, sort_demands
 

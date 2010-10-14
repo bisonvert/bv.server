@@ -11,7 +11,7 @@ from mapnik.ogcserver.configparser import SafeConfigParser
 from mapnik.ogcserver.exceptions import ServerConfigurationError, OGCException
 from mapnik.ogcserver.WMS import BaseWMSFactory
 
-from carpool.models import Trip
+from bv.server.carpool.models import Trip
 
 class WMSFactory(BaseWMSFactory):
     def __init__(self):

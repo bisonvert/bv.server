@@ -2,7 +2,7 @@
 # vim: set fileencoding=utf-8 :
 
 from django.conf.urls.defaults import *
-from carpool.models import Trip
+from bv.server.carpool.models import Trip
 from django.conf import settings
 
 urlpatterns = patterns('carpool.views',

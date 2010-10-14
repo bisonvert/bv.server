@@ -11,10 +11,10 @@ from django.http import HttpResponse, Http404
 
 from django.conf import settings
 
-from carpool.forms import ChooseDepartArrivalCityForm
-from carpool.models import Trip, City
-from carpool.misc import get_date, FRENCH_DATE_INPUT_FORMATS
-from carpool.views import home
+from bv.server.carpool.forms import ChooseDepartArrivalCityForm
+from bv.server.carpool.models import Trip, City
+from bv.server.carpool.misc import get_date, FRENCH_DATE_INPUT_FORMATS
+from bv.server.carpool.views import home
 from utils.fields import FrenchDateField
 from utils.widgets import AutoCompleteTextInput, FrenchDateInput
 

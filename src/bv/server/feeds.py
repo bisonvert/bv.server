@@ -8,7 +8,7 @@ from django.utils.feedgenerator import Atom1Feed
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 
-from carpool.models import Trip, City
+from bv.server.carpool.models import Trip, City
 
 import time
 

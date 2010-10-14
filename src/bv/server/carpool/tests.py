@@ -7,8 +7,8 @@ import re
 from django.test import TestCase
 from django.core.exceptions import ObjectDoesNotExist
 
-from carpool.views import *
-from carpool.models import Trip
+from bv.server.carpool.views import *
+from bv.server.carpool.models import Trip
 
 class CarpoolTestCase(TestCase):
     fixtures = ['accounts']

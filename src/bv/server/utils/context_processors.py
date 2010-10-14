@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.conf import settings
-from carpool.models import City
+from bv.server.carpool.models import City
 import re
 
 """Context processors

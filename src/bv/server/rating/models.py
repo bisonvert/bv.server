@@ -34,8 +34,8 @@ from django.db import models
 from django.db.models import Q
 from django.contrib.auth.models import User
 
-from carpool.models import Trip
-from carpool.misc import get_mark_imgs
+from bv.server.carpool.models import Trip
+from bv.server.carpool.misc import get_mark_imgs
 from utils.models import DOWArrayField
 
 import datetime

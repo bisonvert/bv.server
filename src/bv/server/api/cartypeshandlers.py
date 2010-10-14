@@ -9,7 +9,7 @@ from piston.utils import validate
 from api.handlers import Handler, AnonymousHandler
 
 # bv imports
-from carpool.models import CarType
+from bv.server.carpool.models import CarType
 
 class CarTypesHandler(AnonymousHandler):
     """Handler for accessing cartypes.

@@ -18,7 +18,7 @@ from django.db import transaction
 from django.core.mail import send_mail
 
 from django.contrib.auth.decorators import login_required
-from carpool.models import Trip
+from bv.server.carpool.models import Trip
 from talks.models import Talk, Message
 from talks.forms import ContactUserForm
 from rating.models import TempReport

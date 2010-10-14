@@ -10,7 +10,7 @@ from django.forms.models import ModelForm, model_to_dict
 from django.contrib.gis.geos import GEOSGeometry
 from django.contrib.gis.geos.error import GEOSException
 
-from carpool.models import CarType, Trip, TripOffer, TripDemand, City
+from bv.server.carpool.models import CarType, Trip, TripOffer, TripDemand, City
 from utils.fields import FrenchDateField, FrenchDecimalField, SelectableTimeField
 from utils.widgets import FrenchDateInput, AutoCompleteTextInput, SelectableTimeWidget, NullBooleanSelect,CheckboxSelectMultipleAsArray
 

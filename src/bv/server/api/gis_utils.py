@@ -10,7 +10,7 @@ from django.http import HttpResponse, Http404
 
 # bv imports
 from utils.geodjango import smart_transform
-from carpool import MAX_DISTANCE_DRIVER, MAX_DISTANCE_PASSENGER, MAX_INTERVAL, \
+from bv.server.carpool import MAX_DISTANCE_DRIVER, MAX_DISTANCE_PASSENGER, MAX_INTERVAL, \
     SRID_DEFAULT, SRID_TRANSFORM, str_slugify
 from api.ogcserver import WMSHandler
 

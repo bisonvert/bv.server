@@ -9,11 +9,11 @@ from django.core.urlresolvers import reverse
 from django.conf import settings
 from django import forms
 
-from carpool import R_CITY_ZIP, str_slugify
-from carpool.models import FavoritePlace, Trip, City
-from carpool.forms import SearchTripForm
-from carpool.misc import get_date
-from carpool.forms import BaseForm
+from bv.server.carpool import R_CITY_ZIP, str_slugify
+from bv.server.carpool.models import FavoritePlace, Trip, City
+from bv.server.carpool.forms import SearchTripForm
+from bv.server.carpool.misc import get_date
+from bv.server.carpool.forms import BaseForm
 from utils.fields import FRENCH_DATE_INPUT_FORMATS, FrenchDateField
 from utils.widgets import NullBooleanSelect, FrenchDateInput
 

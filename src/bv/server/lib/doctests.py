@@ -2,7 +2,7 @@ r"""
 >>> from django.contrib.auth.models import User
 >>> from lib.libcarpool import LibCarpool
 >>> from django.utils.datastructures import MultiValueDict
->>> from carpool.models import Trip
+>>> from bv.server.carpool.models import Trip
 >>> import datetime
 
 ### Carpool ###

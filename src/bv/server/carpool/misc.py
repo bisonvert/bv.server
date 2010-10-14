@@ -12,11 +12,11 @@ from django.utils.safestring import mark_safe
 from django.utils import simplejson
 from django.utils import simplejson
 
-from carpool import MAX_DISTANCE_DRIVER, MAX_DISTANCE_PASSENGER, MAX_INTERVAL, SRID_DEFAULT, SRID_TRANSFORM, str_slugify
-#from carpool.models import City
+from bv.server.carpool import MAX_DISTANCE_DRIVER, MAX_DISTANCE_PASSENGER, MAX_INTERVAL, SRID_DEFAULT, SRID_TRANSFORM, str_slugify
+#from bv.server.carpool.models import City
 from utils.fields import FRENCH_DATE_INPUT_FORMATS
 from utils.geodjango import smart_transform
-from carpool.models import City
+from bv.server.carpool.models import City
 
 import datetime
 import time

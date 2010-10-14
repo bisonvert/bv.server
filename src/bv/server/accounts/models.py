@@ -8,7 +8,7 @@ Account module Models
 from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
-from carpool.models import CarType
+from bv.server.carpool.models import CarType
 
 from random import choice
 
