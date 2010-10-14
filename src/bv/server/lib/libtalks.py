@@ -16,8 +16,8 @@ from django.utils.translation import ugettext_lazy as _
 # ecov imports
 from bv.server.carpool.models import Trip
 from bv.server.rating.models import TempReport
-from talks.models import Talk, Message
-from talks.forms import ContactUserForm
+from bv.server.talks.models import Talk, Message
+from bv.server.talks.forms import ContactUserForm
 
 # lib imports
 from bv.server.lib.exceptions import *

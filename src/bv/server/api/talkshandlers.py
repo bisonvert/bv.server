@@ -3,8 +3,8 @@ from piston.utils import rc, require_mime, require_extended
 from piston.utils import validate
 
 from bv.server.lib import LibTalks, exceptions
-from talks.models import Talk, Message
-from talks.forms import ContactUserForm
+from bv.server.talks.models import Talk, Message
+from bv.server.talks.forms import ContactUserForm
 
 from django import forms
 from django.conf import settings

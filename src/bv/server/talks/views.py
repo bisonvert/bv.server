@@ -19,8 +19,8 @@ from django.core.mail import send_mail
 
 from django.contrib.auth.decorators import login_required
 from bv.server.carpool.models import Trip
-from talks.models import Talk, Message
-from talks.forms import ContactUserForm
+from bv.server.talks.models import Talk, Message
+from bv.server.talks.forms import ContactUserForm
 from bv.server.rating.models import TempReport
 from bv.server.utils.paginator import PaginatorRender
 
