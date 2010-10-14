@@ -15,10 +15,10 @@ from django.utils.encoding import smart_unicode
 from django.utils import simplejson
 
 #ecov imports
-from carpool import get_direction_route, str_slugify
-from carpool.models import City, Trip, TripDemand, TripOffer
-from carpool.misc import sort_offers, sort_demands
-from carpool.forms import EditTripOfferOptionsForm, EditTripDemandOptionsForm, \
+from bv.server.carpool import get_direction_route, str_slugify
+from bv.server.carpool.models import City, Trip, TripDemand, TripOffer
+from bv.server.carpool.misc import sort_offers, sort_demands
+from bv.server.carpool.forms import EditTripOfferOptionsForm, EditTripDemandOptionsForm, \
     EditTripForm
 
 # lib import

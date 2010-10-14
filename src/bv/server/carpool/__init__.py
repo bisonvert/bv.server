@@ -2,7 +2,7 @@
 # vim: set fileencoding=utf-8 :
 
 from django.contrib.gis.geos import LineString, MultiLineString, GEOSGeometry
-from utils.geodjango import smart_transform
+from bv.server.utils.geodjango import smart_transform
 
 import re
 import unicodedata
