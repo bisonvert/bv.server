@@ -12,7 +12,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 
 from bv.server.carpool.models import Trip
-from utils.management import BaseCommand
+from bv.server.utils.management import BaseCommand
 
 class Command(BaseCommand):
     help = """Checks the match between announces if they have selected

@@ -15,8 +15,8 @@ from django.conf import settings
 from django.contrib.auth.forms import AuthenticationForm as BaseAuthenticationForm
 from accounts.models import UserProfile, EmailValidation, ForbiddenUsername
 from bv.server.carpool.models import CarType
-from utils.fields import FrenchDecimalField
-from utils.widgets import NullBooleanSelect
+from bv.server.utils.fields import FrenchDecimalField
+from bv.server.utils.widgets import NullBooleanSelect
 
 import re
 

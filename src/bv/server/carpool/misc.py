@@ -14,8 +14,8 @@ from django.utils import simplejson
 
 from bv.server.carpool import MAX_DISTANCE_DRIVER, MAX_DISTANCE_PASSENGER, MAX_INTERVAL, SRID_DEFAULT, SRID_TRANSFORM, str_slugify
 #from bv.server.carpool.models import City
-from utils.fields import FRENCH_DATE_INPUT_FORMATS
-from utils.geodjango import smart_transform
+from bv.server.utils.fields import FRENCH_DATE_INPUT_FORMATS
+from bv.server.utils.geodjango import smart_transform
 from bv.server.carpool.models import City
 
 import datetime

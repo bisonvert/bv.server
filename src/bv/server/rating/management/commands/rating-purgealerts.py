@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: set fileencoding=utf-8 :
 
-from utils.management import BaseCommand
+from bv.server.utils.management import BaseCommand
 from rating.models import TempReport
 
 class Command(BaseCommand):

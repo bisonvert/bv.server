@@ -30,8 +30,8 @@ from bv.server.carpool.misc import get_mark_average, get_date, get_trip_search_d
     get_trip_dict, get_trip_search_type, get_trip_search_offer_details, \
     get_trip_search_demand_details, sort_offers, sort_demands
 
-from utils.fields import FRENCH_DATE_INPUT_FORMATS
-from utils.paginator import PaginatorRender
+from bv.server.utils.fields import FRENCH_DATE_INPUT_FORMATS
+from bv.server.utils.paginator import PaginatorRender
 
 from lib import LibCarpool
 import datetime

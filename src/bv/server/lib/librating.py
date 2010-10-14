@@ -14,7 +14,7 @@ from django.utils.datastructures import SortedDict
 #ecov import
 from rating.forms import ReportForm
 from rating.models import TempReport, Report
-from utils.paginator import PaginatorRender
+from bv.server.utils.paginator import PaginatorRender
 
 # lib import
 from lib.exceptions import *

@@ -22,7 +22,7 @@ from bv.server.carpool.forms import EditTripOfferOptionsForm, EditTripDemandOpti
     EditTripForm
 
 # lib import
-from utils.paginator import PaginatorRender
+from bv.server.utils.paginator import PaginatorRender
 from lib.exceptions import *
 
 

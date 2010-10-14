@@ -10,7 +10,7 @@ from django.utils.datastructures import SortedDict
 from django.contrib.auth.decorators import login_required
 from rating.forms import ReportForm
 from rating.models import TempReport, Report
-from utils.paginator import PaginatorRender
+from bv.server.utils.paginator import PaginatorRender
 
 import datetime
 

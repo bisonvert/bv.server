@@ -22,7 +22,7 @@ from bv.server.carpool.models import Trip
 from talks.models import Talk, Message
 from talks.forms import ContactUserForm
 from rating.models import TempReport
-from utils.paginator import PaginatorRender
+from bv.server.utils.paginator import PaginatorRender
 
 _TALK_PG = [10, 20, 50]
 

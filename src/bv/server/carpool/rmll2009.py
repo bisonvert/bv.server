@@ -14,8 +14,8 @@ from bv.server.carpool.models import FavoritePlace, Trip, City
 from bv.server.carpool.forms import SearchTripForm
 from bv.server.carpool.misc import get_date
 from bv.server.carpool.forms import BaseForm
-from utils.fields import FRENCH_DATE_INPUT_FORMATS, FrenchDateField
-from utils.widgets import NullBooleanSelect, FrenchDateInput
+from bv.server.utils.fields import FRENCH_DATE_INPUT_FORMATS, FrenchDateField
+from bv.server.utils.widgets import NullBooleanSelect, FrenchDateInput
 
 import datetime
 import time

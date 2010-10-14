@@ -36,7 +36,7 @@ from django.contrib.auth.models import User
 
 from bv.server.carpool.models import Trip
 from bv.server.carpool.misc import get_mark_imgs
-from utils.models import DOWArrayField
+from bv.server.utils.models import DOWArrayField
 
 import datetime
 

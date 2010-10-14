@@ -15,8 +15,8 @@ from bv.server.carpool.forms import ChooseDepartArrivalCityForm
 from bv.server.carpool.models import Trip, City
 from bv.server.carpool.misc import get_date, FRENCH_DATE_INPUT_FORMATS
 from bv.server.carpool.views import home
-from utils.fields import FrenchDateField
-from utils.widgets import AutoCompleteTextInput, FrenchDateInput
+from bv.server.utils.fields import FrenchDateField
+from bv.server.utils.widgets import AutoCompleteTextInput, FrenchDateInput
 
 IFRAME_FORMATS = {
     '490x90': {

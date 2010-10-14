@@ -11,8 +11,8 @@ from django.contrib.gis.geos import GEOSGeometry
 from django.contrib.gis.geos.error import GEOSException
 
 from bv.server.carpool.models import CarType, Trip, TripOffer, TripDemand, City
-from utils.fields import FrenchDateField, FrenchDecimalField, SelectableTimeField
-from utils.widgets import FrenchDateInput, AutoCompleteTextInput, SelectableTimeWidget, NullBooleanSelect,CheckboxSelectMultipleAsArray
+from bv.server.utils.fields import FrenchDateField, FrenchDecimalField, SelectableTimeField
+from bv.server.utils.widgets import FrenchDateInput, AutoCompleteTextInput, SelectableTimeWidget, NullBooleanSelect,CheckboxSelectMultipleAsArray
 
 import datetime
 

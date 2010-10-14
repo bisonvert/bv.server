@@ -4,7 +4,7 @@
 """Personalized fields for forms."""
 
 from django.forms import fields
-from utils.widgets import FrenchDateInput, SelectableTimeWidget,CheckboxSelectMultipleAsArray
+from bv.server.utils.widgets import FrenchDateInput, SelectableTimeWidget,CheckboxSelectMultipleAsArray
 from datetime import time
 from django.utils.translation import ugettext as _
 
