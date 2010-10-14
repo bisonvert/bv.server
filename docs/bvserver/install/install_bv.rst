@@ -19,6 +19,11 @@ La bdd est déjà créée (créée lors de la crétaion du profil pg).
 Installer les script PostGIS et pgRouting:
 ::
 
+
+.. XXX
+.. bisonvert.psql  -U djcoin < ../../dependencies/postgresql-8.4/parts/part/share/contrib/postgis.sql 
+.. bisonvert.psql  -U djcoin < ../../dependencies/postgresql-8.4/parts/part/share/contrib/spatial_ref_sys.sql 
+
     bv.createlang plpgsql bv
     bv.psql -f $mt/dependencies/postgis-1.3/parts/part/share/lwpostgis.sql
     bv.psql -f $mt/dependencies/postgis-1.3/parts/part/share/spatial_ref_sys.sql
@@ -34,6 +39,11 @@ Si le vous décidez de modifier le owner de la bdd, et donc de ne plus utiliser 
 
 Paramétrage de settings.py
 ==========================
+
+.. XXX
+.. le fichier ne s'appelle plus comme ca ...
+.. /home/djcoin/minitage/django/bv.server/etc/django-settings/settings-BOX-dev.py:1
+.. wrong : piston not found ..
 
 Le fichier ecov.settings.py qui est sous svn est un exemple de
 fichier de configuration pour le projet BisonVert. Il contient tous les
@@ -144,6 +154,8 @@ fichier de configuration.
 Installation du modèle de données ecov:
 ::
 
+.. XXX -> nop deal with the setting of bv.server
+
     cd $mt/django/eco-mobile-dev/src/eco-mobile/src
     bv_manage syncdb --settings=ecov.conf.<SETTINGS_FILE>
 
@@ -163,6 +175,9 @@ Importer les fichiers SQL propres au projet
 
     cd $mt/django/bisonvert-dev/src/bisonvert/src
 
+.. XXX changer partout bisonvert-dev par bv.server
+.. cd $mt/django/bv.server/ # les *sql sont la
+
 Importer les procédures perso dans la BDD:
 ::
 
@@ -178,6 +193,8 @@ Créer les champs non modélisés:
 
     bv.psql -f share/data/additional_columns.sql
 
+.. XXX: require -U <superuser>
+
 Définition des tâches périodiques
 =================================
 
@@ -191,6 +208,8 @@ Il s'agit notamment de:
 Il faut lancer ces scripts toutes les 24 heures, pour le moment l'heure a été choisie de façon arbitraire.
 Le lancement de ces scripts python passe par l'intermédiaire de scripts shell pour éviter de surcharger le fichier de crontab.
 
+
+.. XXX ils ne sont pas valables pour des versions de developement...
 Arborescence des scripts shell:
 ::
 

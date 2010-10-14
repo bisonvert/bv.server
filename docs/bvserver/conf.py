@@ -34,7 +34,7 @@ master_doc = 'index'
 
 # General substitutions.
 project = 'BisonVert'
-copyright = '2008, Makina Corpus'
+copyright = '2010, Makina Corpus'
 
 # The default replacements for |version| and |release|, also used in various
 # other places throughout the built documents.

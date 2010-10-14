@@ -14,11 +14,16 @@ PROJECT_ROOT_URL = 'http://api.bisonvert.net'
 PROJECT_NAME = 'BisonVert'
 PROJECT_NAME_URL = 'BisonVert.net'
 DATABASE_ENGINE = 'postgresql_psycopg2'
-DATABASE_NAME = 'bv'
-DATABASE_USER = 'dbbv'
-DATABASE_PASSWORD = 'bisonvert'
+# DATABASE_NAME = 'bv'
+# DATABASE_USER = 'dbbv'
+# DATABASE_PASSWORD = 'bisonvert'
+# DATABASE_HOST = 'localhost'
+# DATABASE_PORT = '5432'
+DATABASE_NAME = 'bisonvert'
+DATABASE_USER = 'bv_user'
+DATABASE_PASSWORD = 'secret'
 DATABASE_HOST = 'localhost'
-DATABASE_PORT = '5432'
+DATABASE_PORT = '5434'
 
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
@@ -149,7 +154,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.doc.XViewMiddleware',
     'django.middleware.transaction.TransactionMiddleware',
-    'utils.middleware.QueryLoggerMiddleware',
+    'bv.server.utils.middleware.QueryLoggerMiddleware',
 #    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware'
 )
 
