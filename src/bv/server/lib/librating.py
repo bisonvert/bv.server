@@ -12,12 +12,12 @@ from django.template import RequestContext, loader
 from django.utils.datastructures import SortedDict
 
 #ecov import
-from rating.forms import ReportForm
-from rating.models import TempReport, Report
+from bv.server.rating.forms import ReportForm
+from bv.server.rating.models import TempReport, Report
 from bv.server.utils.paginator import PaginatorRender
 
 # lib import
-from lib.exceptions import *
+from bv.server.lib.exceptions import *
 
 #__fixtures__ = ['accounts.json','lib_cities.json','lib_trips.json',]
 

@@ -10,7 +10,7 @@ from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
 
 from bv.server.utils.management import BaseCommand
-from rating.models import TempReport
+from bv.server.rating.models import TempReport
 
 class Command(BaseCommand):
     script_name = 'send-rating-alerts'

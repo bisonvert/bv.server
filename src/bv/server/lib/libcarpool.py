@@ -23,7 +23,7 @@ from bv.server.carpool.forms import EditTripOfferOptionsForm, EditTripDemandOpti
 
 # lib import
 from bv.server.utils.paginator import PaginatorRender
-from lib.exceptions import *
+from bv.server.lib.exceptions import *
 
 
 __fixtures__ = ['accounts.json','lib_cities.json','lib_trips.json',]

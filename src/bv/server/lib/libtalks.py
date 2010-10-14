@@ -15,12 +15,12 @@ from django.utils.translation import ugettext_lazy as _
 
 # ecov imports
 from bv.server.carpool.models import Trip
-from rating.models import TempReport
+from bv.server.rating.models import TempReport
 from talks.models import Talk, Message
 from talks.forms import ContactUserForm
 
 # lib imports
-from lib.exceptions import *
+from bv.server.lib.exceptions import *
 
 class LibTalks:
     def _get_ordering(self):

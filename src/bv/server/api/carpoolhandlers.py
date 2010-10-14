@@ -3,8 +3,8 @@ from piston.utils import rc, require_mime, require_extended
 from piston.utils import validate
 
 from bv.server.carpool.models import Trip, TripDemand, TripOffer
-from lib import LibCarpool
-from lib.exceptions import InvalidUser
+from bv.server.lib import LibCarpool
+from bv.server.lib.exceptions import InvalidUser
 
 from bv.server.carpool.forms import EditTripForm, EditTripOfferOptionsForm, \
     EditTripDemandOptionsForm

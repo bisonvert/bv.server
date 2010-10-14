@@ -2,11 +2,11 @@ from api.handlers import Handler, AnonymousHandler
 from piston.utils import rc, require_mime, require_extended
 from piston.utils import validate
 
-from rating.models import Report, TempReport
-from rating.forms import ReportForm
+from bv.server.rating.models import Report, TempReport
+from bv.server.rating.forms import ReportForm
 
-from lib import LibRating
-from lib.exceptions import *
+from bv.server.lib import LibRating
+from bv.server.lib.exceptions import *
 
 from django.contrib.gis.geos.geometry import GEOSGeometry
 from datetime import date

@@ -33,7 +33,7 @@ from bv.server.carpool.misc import get_mark_average, get_date, get_trip_search_d
 from bv.server.utils.fields import FRENCH_DATE_INPUT_FORMATS
 from bv.server.utils.paginator import PaginatorRender
 
-from lib import LibCarpool
+from bv.server.lib import LibCarpool
 import datetime
 
 _TRIP_PG = [25, 50, 100]

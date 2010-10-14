@@ -1,7 +1,7 @@
 from django.test import _doctest as doctest
 from django.test.testcases import OutputChecker, DocTestRunner
 from django.core.management import call_command
-from lib import libcarpool
+from bv.server.lib import libcarpool
 
 def suite():
     loader = DoctestLoader()

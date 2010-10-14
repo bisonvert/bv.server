@@ -2,7 +2,7 @@
 # vim: set fileencoding=utf-8 :
 
 from bv.server.utils.management import BaseCommand
-from rating.models import TempReport
+from bv.server.rating.models import TempReport
 
 class Command(BaseCommand):
     help = """Fetch all closed temp evaluations, transform them in real 
