@@ -3,7 +3,7 @@
 
 from django import forms
 from django.contrib import admin
-from pages.models import EnhancedFlatPage, Category
+from bv.server.pages.models import EnhancedFlatPage, Category
 from django.utils.translation import ugettext_lazy as _
 
 

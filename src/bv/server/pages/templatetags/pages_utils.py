@@ -1,5 +1,5 @@
 from django import template
-from pages.models import Category, EnhancedFlatPage
+from bv.server.pages.models import Category, EnhancedFlatPage
 register = template.Library()
 
 class GetPagesLinksForCategory(template.Node):

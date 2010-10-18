@@ -6,17 +6,18 @@ from piston.authentication import OAuthAuthentication, HttpBasicAuthentication
 from piston.doc import documentation_view
 
 # API imports
-from api.resource import Resource
-from api.carpoolhandlers import TripsHandler, TripsSearchHandler 
-from api.ratinghandlers import RatingsHandler, TempRatingsHandler
-from api.ratinghandlers import MyRatingsHandler, RatingsAboutMeHandler
-from api.talkshandlers import TalksHandler, MessagesHandler
-from api.usershandlers import UsersHandler
-from api.citieshandlers import CitiesHandler
-from api.cartypeshandlers import CarTypesHandler
+from bv.server.api.resource import Resource
+from bv.server.api.carpoolhandlers import TripsHandler, TripsSearchHandler 
+from bv.server.api.ratinghandlers import RatingsHandler, TempRatingsHandler
+from bv.server.api.ratinghandlers import MyRatingsHandler, RatingsAboutMeHandler
+from bv.server.api.talkshandlers import TalksHandler, MessagesHandler
+from bv.server.api.usershandlers import UsersHandler
+from bv.server.api.citieshandlers import CitiesHandler
+from bv.server.api.cartypeshandlers import CarTypesHandler
 
 # auth
-auth = [OAuthAuthentication(), HttpBasicAuthentication()]
+# auth = [OAuthAuthentication(), HttpBasicAuthentication()]
+auth = HttpBasicAuthentication()
 noauth = None
 
 # trips
@@ -36,7 +37,7 @@ cities_handler = Resource(handler=CitiesHandler) # cities
 cartypes_handler = Resource(handler=CarTypesHandler) # cartypes
 
 # Carpool URLs
-urlpatterns = patterns('api.handlers',
+urlpatterns = patterns('bv.server.api.handlers',
     # trips
     url(r'^trips/search/(?P<trip_id>\d+)/$', trip_search_handler),
     url(r'^trips/search/$', trip_search_handler),   
@@ -69,7 +70,7 @@ urlpatterns = patterns('api.handlers',
     url(r'^cartypes/$', cartypes_handler),
 )
 
-urlpatterns += patterns('api.gis_utils', 
+urlpatterns += patterns('bv.server.api.gis_utils', 
     url(r'^gis/calculate_buffer/$', 'calculate_buffer', {}, 'calculate_buffer'),
     url(r'^gis/ogcserver/$', 'ogcserver', {}, 'ogcserver'),
 )

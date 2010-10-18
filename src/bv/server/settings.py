@@ -76,7 +76,7 @@ AUTH_PROFILE_MODULE = 'accounts.UserProfile'
 
 # Custom Auth Backend : username case insensitive
 AUTHENTICATION_BACKENDS = (
-    'auth.backends.ModelBackend',
+    'bv.server.auth.backends.ModelBackend',
 )
 
 ADMINS = ()
@@ -125,12 +125,12 @@ LANGUAGES = (
 
 LOCALE_PATHS = (
     os.path.join(PROJECT_ROOT_PATH, 'templates'),
-    os.path.join(PROJECT_ROOT_PATH, '../media/locale'),
-    os.path.join(PROJECT_ROOT_PATH, '../ecov/locale'),
+    os.path.join(PROJECT_ROOT_PATH, 'media/locale'),
+    # os.path.join(PROJECT_ROOT_PATH, '../ecov/locale'),
 )
 
 USE_I18N = True
-MEDIA_ROOT = os.path.join(PROJECT_ROOT_PATH, '../media/default/') # DEFAULT
+MEDIA_ROOT = os.path.join(PROJECT_ROOT_PATH, 'media/default/') # DEFAULT
 MEDIA_URL = '/media/' # DEFAULT
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
@@ -149,12 +149,12 @@ TEMPLATE_LOADERS = (
 MIDDLEWARE_CLASSES = (
     'django.middleware.gzip.GZipMiddleware',
     'bv.server.utils.middleware.EcovSessionMiddleware',
+    'bv.server.utils.middleware.QueryLoggerMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.doc.XViewMiddleware',
     'django.middleware.transaction.TransactionMiddleware',
-    'bv.server.utils.middleware.QueryLoggerMiddleware',
 #    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware'
 )
 
@@ -171,9 +171,10 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'bv.server.utils.context_processors.client_urls',
 )
 
-ROOT_URLCONF = 'urls'
+ROOT_URLCONF = 'bv.server.urls'
 TEMPLATE_DIRS = (
-    os.path.join(PROJECT_ROOT_PATH, '../templates'),
+    #os.path.join(PROJECT_ROOT_PATH, '../templates'),
+    os.path.join(PROJECT_ROOT_PATH, 'templates'),
 )
 
 INSTALLED_APPS = (
@@ -210,12 +211,14 @@ DEFAULT_CLIENT_ROOT_URL = 'http://www.bisonvert.net',
 DEFAULT_CLIENT_URLS = {
     'talks' : {
         'add_message': '%s/talks/%s/add_message/',
-        'list': '%s/talks/list/'
+        'list': '%s/talks/'
+        # 'list': '%s/talks/list/'
     },
     'trips': {
         'mine': '%s/trips/mine/',
         'home': '%s',
-        'list': '%s/trips/list/',
+        'list': '%s/trips/',
+        # 'list': '%s/trips/list/',
     }, 
     'reports': {
         'list': '%s/ratings/',
@@ -224,7 +227,7 @@ DEFAULT_CLIENT_URLS = {
 
 # Set oauth ignore dupe models to false to be a bit noiseless with our logs.
 PISTON_IGNORE_DUPE_MODELS = True
-OAUTH_AUTH_VIEW = 'apiconsumers.views.oauth_auth_view'
+OAUTH_AUTH_VIEW = 'bv.server.apiconsumers.views.oauth_auth_view'
 DEFAULT_PAGINATION_COUNT = 10
 
 #gdal and others from minitage

@@ -4,7 +4,7 @@
 from django.conf.urls.defaults import *
 
 urlpatterns = patterns('',
-    (r'^contact/$', 'pages.views.contact', {}, 'contact_us'),
+    (r'^contact/$', 'bv.server.pages.views.contact', {}, 'contact_us'),
     (r'^contact/message_ok/$', 'django.views.generic.simple.direct_to_template',
         {
         'template': 'carpool/confirm_contact.html',

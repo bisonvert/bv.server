@@ -1,4 +1,4 @@
-from api.handlers import Handler, AnonymousHandler, paginate_items
+from bv.server.api.handlers import Handler, AnonymousHandler, paginate_items
 from piston.utils import rc, require_mime, require_extended
 from piston.utils import validate
 

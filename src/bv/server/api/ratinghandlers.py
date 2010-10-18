@@ -1,4 +1,4 @@
-from api.handlers import Handler, AnonymousHandler
+from bv.server.api.handlers import Handler, AnonymousHandler
 from piston.utils import rc, require_mime, require_extended
 from piston.utils import validate
 

@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import *
 
-urlpatterns = patterns('apiconsumers.views',
+urlpatterns = patterns('bv.server.apiconsumers.views',
     url(r'^create/$', 'create_consumer', {}, 'create'),
     url(r'^$', 'list_consumers', {}, 'list'),
     url(r'^pending/$', 'list_pending_consumers', {}, 'pending'),

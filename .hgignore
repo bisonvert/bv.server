@@ -11,9 +11,8 @@ develop-eggs/.*
 etc/paster.ini
 parts/.*
 src/bv.server.egg-info.*
-
 etc/settings-BOX.py
 log/.*log
-sys/.*
+./sys/.*
 src/bv/server/customdev.py
 minilays/*

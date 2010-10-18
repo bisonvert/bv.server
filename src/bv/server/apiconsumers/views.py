@@ -10,7 +10,7 @@ from django.conf import settings
 
 from piston.models import Consumer
 from piston.forms import OAuthAuthenticationForm
-from apiconsumers.forms import CreateOauthAccessForm
+from bv.server.apiconsumers.forms import CreateOauthAccessForm
 
 @login_required
 def create_consumer(request):

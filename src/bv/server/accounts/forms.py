@@ -13,7 +13,7 @@ from django.utils.safestring import mark_safe
 from django.conf import settings
 
 from django.contrib.auth.forms import AuthenticationForm as BaseAuthenticationForm
-from accounts.models import UserProfile, EmailValidation, ForbiddenUsername
+from bv.server.accounts.models import UserProfile, EmailValidation, ForbiddenUsername
 from bv.server.carpool.models import CarType
 from bv.server.utils.fields import FrenchDecimalField
 from bv.server.utils.widgets import NullBooleanSelect

@@ -1,9 +1,9 @@
-from api.handlers import Handler, AnonymousHandler
+from bv.server.api.handlers import Handler, AnonymousHandler
 from piston.utils import rc, require_mime, require_extended
 from piston.utils import validate
 
 from django.contrib.auth.models import User
-from accounts.models import UserProfile
+from bv.server.accounts.models import UserProfile
 
 class AnonymousUsersHandler(AnonymousHandler):
     """Handler for accessing anonymously to user informations.

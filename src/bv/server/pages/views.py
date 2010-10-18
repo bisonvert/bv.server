@@ -10,7 +10,7 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseServerError
 from django.core.mail import send_mail
 from django.template import RequestContext, Context, loader
-from pages.forms import ContactForm, AnonymousContactForm, SUBJECT_CHOICE
+from bv.server.pages.forms import ContactForm, AnonymousContactForm, SUBJECT_CHOICE
 from django.conf import settings
 
 def contact(request):

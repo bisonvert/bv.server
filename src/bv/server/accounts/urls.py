@@ -3,7 +3,7 @@
 
 from django.conf.urls.defaults import *
 
-urlpatterns = patterns('accounts.views',
+urlpatterns = patterns('bv.server.accounts.views',
     (r'^$', 'my_account', {}, 'show_user_account'),
     (r'^login/$', 'login', {'template_name':'accounts/login.html'}, 'login'),
     (r'^change_password/$', 'new_password', {}, 'new_password'),

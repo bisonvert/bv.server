@@ -12,7 +12,7 @@ from django.http import HttpResponse, Http404
 from bv.server.utils.geodjango import smart_transform
 from bv.server.carpool import MAX_DISTANCE_DRIVER, MAX_DISTANCE_PASSENGER, MAX_INTERVAL, \
     SRID_DEFAULT, SRID_TRANSFORM, str_slugify
-from api.ogcserver import WMSHandler
+from bv.server.api.ogcserver import WMSHandler
 
 def calculate_buffer(request):
     """ Calculate a buffer around a geometry """

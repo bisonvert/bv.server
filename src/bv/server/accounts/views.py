@@ -18,9 +18,9 @@ from django.shortcuts import render_to_response
 from django.db import transaction
 from django.core.mail import send_mail
 
-from accounts.forms import RegisterForm, AuthenticationForm, NewPasswordForm
-from accounts.forms import UserProfileForm, UserPreferencesForm
-from accounts.models import UserProfile
+from bv.server.accounts.forms import RegisterForm, AuthenticationForm, NewPasswordForm
+from bv.server.accounts.forms import UserProfileForm, UserPreferencesForm
+from bv.server.accounts.models import UserProfile
 
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import never_cache
@@ -133,6 +133,7 @@ def register(request):
         'accounts': True
     }
 
+    # import pdb; pdb.set_trace()
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():

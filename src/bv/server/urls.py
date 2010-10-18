@@ -8,20 +8,20 @@ from feeds import RSSFeed, AtomFeed
 admin.autodiscover()
 
 # Custom handler 500
-handler500 = 'pages.views.server_error'
+handler500 = 'bv.server.pages.views.server_error'
 js_info_dict = {'packages': ('carpool'),}
 
 urlpatterns = patterns('',
     # When the user enter the website, redirect him on his profile page
-    (r'^$', 'accounts.views.my_account', {}, 'home'),
+    (r'^$', 'bv.server.accounts.views.my_account', {}, 'home'),
 
     # API URLs
-    (r'^', include('api.urls', namespace='api')),
-    (r'^consumers/', include('apiconsumers.urls', namespace='apiconsumers')),
+    (r'^', include('bv.server.api.urls', namespace='api')),
+    (r'^consumers/', include('bv.server.apiconsumers.urls', namespace='apiconsumers')),
 
     #Include app urls
-    (r'^', include('pages.urls', namespace='pages')),
-    (r'^account/', include('accounts.urls', namespace='accounts')),
+    (r'^', include('bv.server.pages.urls', namespace='pages')),
+    (r'^account/', include('bv.server.accounts.urls', namespace='accounts')),
     (r'^admin/(.*)', admin.site.root),
 
     #Feeds
@@ -43,7 +43,7 @@ if settings.DEBUG:
     urlpatterns += patterns('',
         # create routes
         (r'^set_language/$', 'direct_to_template', {
-            'template': 'carpool/set_language.html'
+            'template': 'bv.server.carpool/set_language.html'
         }),
         # Media
         (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
