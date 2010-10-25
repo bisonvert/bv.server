@@ -82,6 +82,7 @@ def validateTripForm(operation='POST'):
         if len(request.REQUEST.items()) == 1 and request.REQUEST.get('alert', False):
             return f(self, request, *args, **kwargs)
         if  3 <= len(request.REQUEST.items()) <= 4:
+            import pdb; pdb.set_trace()
             return f(self, request, *args, **kwargs)
         
         if 'dows' in request.REQUEST.items():
@@ -221,6 +222,7 @@ class TripsHandler(CarpoolHandler):
             self.lib.switch_trip_alert(request.user, trip_id, request.REQUEST['alert'].encode().lower() == 'true')
             return rc.ALL_OK
         
+        import pdb; pdb.set_trace()
         response = self.lib.update_trip(request.user, request_to_dict(request), trip_id)
         if response['error']:
             return rc.BAD_REQUEST

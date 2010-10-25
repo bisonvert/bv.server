@@ -5,7 +5,7 @@ debug=${settings:debug}
 [composite:main]
 use=egg:Paste#urlmap
 /media/=pmedia
-/admin/media/=padminmedia
+/admin_media/=padminmedia
 /=pmain
 /threads/=watch_threads
 
@@ -51,12 +51,12 @@ use=egg:WebError#evalerror
 
 [app:projectapp]
 use=egg:dj.paste
-django_settings_module=${buildout:dsm}
+django_settings_module=bv.server.${buildout:dsm}
 
 [app:mediaapp]
 use = egg:Paste#pkg_resources
 egg = bv.server
-resource_name=media/
+resource_name=bv/server/media/default/
 
 [app:adminmediaapp]
 use = egg:Paste#pkg_resources

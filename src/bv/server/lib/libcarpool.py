@@ -288,6 +288,7 @@ class LibCarpool:
             form_demand = EditTripDemandOptionsForm(data=post_data,
                 prefix="demand")
 
+        import pdb; pdb.set_trace()
         form_trip = EditTripForm(data=post_data, instance=trip)
         
         error = False

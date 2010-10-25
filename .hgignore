@@ -16,3 +16,4 @@ log/.*log
 ./sys/.*
 src/bv/server/customdev.py
 minilays/*
+.*swp
