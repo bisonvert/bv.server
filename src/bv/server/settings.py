@@ -10,7 +10,8 @@ import datetime
 
 PROJECT_ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
 
-PROJECT_ROOT_URL = 'http://api.bisonvert.net'
+# PROJECT_ROOT_URL = 'http://api.bisonvert.net'
+PROJECT_ROOT_URL = 'http://127.0.0.1:8085'
 PROJECT_NAME = 'BisonVert'
 PROJECT_NAME_URL = 'BisonVert.net'
 DATABASE_ENGINE = 'postgresql_psycopg2'
@@ -29,7 +30,7 @@ DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 # For SQL Query logger - DEFAULT
-SQL_LOG_PATHFILE = '/path/to/sql.log'
+SQL_LOG_PATHFILE = '/home/djcoin/Desktop/pgsql.log'
 SQL_LOG = False
 
 # Path to log for cron scripts - DEFAULT
@@ -175,6 +176,8 @@ ROOT_URLCONF = 'bv.server.urls'
 TEMPLATE_DIRS = (
     #os.path.join(PROJECT_ROOT_PATH, '../templates'),
     os.path.join(PROJECT_ROOT_PATH, 'templates'),
+    os.path.join(PROJECT_ROOT_PATH, 'apiconsumers', 'templates'),
+    # os.path.join(PROJECT_ROOT_PATH, 'api','mails', 'templates'),
 )
 
 INSTALLED_APPS = (
@@ -207,7 +210,8 @@ INSTALLED_APPS = (
 # This is easilly modifiable here, and that make the separation of application
 # (eg. between "oauth server" side and "default client") invisible to the end 
 # user.
-DEFAULT_CLIENT_ROOT_URL = 'http://www.bisonvert.net',
+# DEFAULT_CLIENT_ROOT_URL = 'http://www.bisonvert.net',
+DEFAULT_CLIENT_ROOT_URL = 'http://127.0.0.1:8095',
 DEFAULT_CLIENT_URLS = {
     'talks' : {
         'add_message': '%s/talks/%s/add_message/',

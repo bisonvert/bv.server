@@ -12,4 +12,5 @@ def smart_transform(geom, to_srid, clone=True, from_srid=4326):
      """
      if not geom.srs:
          geom.srid = from_srid
-     return geom.transform(to_srid, clone=clone)
+     t = geom.transform(to_srid, clone=clone)
+     return t

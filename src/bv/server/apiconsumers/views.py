@@ -65,7 +65,8 @@ def list_consumers(request):
 def oauth_auth_view(request, token, callback, params):
     form = OAuthAuthenticationForm(initial={
         'oauth_token': token.key,
-        'oauth_callback': token.get_callback_url() or callback,
+        'oauth_callback': callback,
+        # 'oauth_callback': token.get_callback_url() or callback, # XXX changed
       })
 
     return render('authorize_token.html',{

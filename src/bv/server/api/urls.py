@@ -17,7 +17,8 @@ from bv.server.api.cartypeshandlers import CarTypesHandler
 
 # auth
 # auth = [OAuthAuthentication(), HttpBasicAuthentication()]
-auth = HttpBasicAuthentication()
+# auth = HttpBasicAuthentication()
+auth = [OAuthAuthentication()]
 noauth = None
 
 # trips

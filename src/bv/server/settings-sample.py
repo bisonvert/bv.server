@@ -15,7 +15,7 @@ DATABASE_PASSWORD = 'secret'
 DATABASE_HOST = 'localhost'
 DATABASE_PORT = '5434'
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 # For SQL Query logger - DEFAULT

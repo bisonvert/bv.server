@@ -158,8 +158,6 @@ class AnonymousTripsSearchHandler(AnonymousCarpoolHandler):
 
         """
         values = filter_tripsearch_values(request)
-        from ipdb import set_trace
-        set_trace()
         return self.lib.get_trip_results(**values)
 
 class TripsSearchHandler(CarpoolHandler):

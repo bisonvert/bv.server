@@ -133,7 +133,6 @@ def register(request):
         'accounts': True
     }
 
-    # import pdb; pdb.set_trace()
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():

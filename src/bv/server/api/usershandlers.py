@@ -40,6 +40,8 @@ class UsersHandler(Handler):
     """
     anonymous = AnonymousUsersHandler
     model = User
+    # without the exclude = () ; the id isn't serialized
+    exclude = ()
     
     def create(self, request):
         return rc.OK

@@ -5,7 +5,7 @@
 
 from django.contrib import admin
 from django.contrib.gis.admin import GeoModelAdmin
-from models import FavoritePlace, City, CarType
+from bv.server.carpool.models import FavoritePlace, City, CarType
 
 class FavoritePlaceAdmin(admin.ModelAdmin):
     list_display = ['name', 'city', 'address', 'design']

@@ -336,45 +336,44 @@ class TripQuerySet(models.query.QuerySet):
             select=SortedDict([
                 ('pourcentage_rank', """get_pourcentage_rank(
                     "carpool_tripoffer"."direction_route_proj",
-                    ST_PointFromWKB(%s, %s),
-                    ST_PointFromWKB(%s, %s)
+                    ST_GeomFromText(%s, %s),
+                    ST_GeomFromText(%s, %s)
                 )
                 """),
             ]),
+            select_params=(
+                ogr_departure.wkt, SRID_TRANSFORM,
+                ogr_arrival.wkt, SRID_TRANSFORM
+            ),
             where=[
                 """ST_DWithin(
                     "carpool_tripoffer"."simple_route_proj",
-                    ST_PointFromWKB(%s, %s),
+                    ST_GeomFromText(%s, %s),
                     "carpool_tripoffer"."radius" + %s
                 )
                 """,
                 """ST_DWithin(
                     "carpool_tripoffer"."simple_route_proj",
-                    ST_PointFromWKB(%s, %s),
+                    ST_GeomFromText(%s, %s),
                     "carpool_tripoffer"."radius" + %s
                 )
                 """,
                 """get_pourcentage_rank(
                     "carpool_tripoffer"."direction_route_proj",
-                    ST_PointFromWKB(%s, %s),
-                    ST_PointFromWKB(%s, %s)
+                    ST_GeomFromText(%s, %s),
+                    ST_GeomFromText(%s, %s)
                 ) >= %s
                 """,
             ],
             params=[
-                ogr_departure.wkb, SRID_TRANSFORM,
-                radius,
-                ogr_arrival.wkb, SRID_TRANSFORM,
-                radius,
-                ogr_departure.wkb, SRID_TRANSFORM,
-                ogr_arrival.wkb, SRID_TRANSFORM,
+                ogr_departure.wkt, SRID_TRANSFORM, radius,
+                ogr_arrival.wkt,SRID_TRANSFORM, radius,
+                ogr_departure.wkt, SRID_TRANSFORM,
+                ogr_arrival.wkt, SRID_TRANSFORM,
                 self.MAX_PERCENTAGE_RANK,
-            ],
-            select_params=(
-                ogr_departure.wkb, SRID_TRANSFORM,
-                ogr_arrival.wkb, SRID_TRANSFORM,
-            )
+            ]
         )
+
 
     def get_demands(self, route, direction_route, radius):
         """Return demands trip announces.
@@ -395,10 +394,11 @@ class TripQuerySet(models.query.QuerySet):
         ogr = smart_transform(route,SRID_TRANSFORM, from_srid=SRID_DEFAULT).ogr
         demands = self.filter(demand__isnull=False)
         demands = demands.select_related('user', 'demand')
+        print "IN DEMANDS #################"
         return demands.extra(
             select=SortedDict([
                 ('pourcentage_rank', """get_pourcentage_rank(
-                    ST_GeomFromWKB(%s, %s),
+                    ST_GeomFromText(%s, %s),
                     "carpool_trip"."departure_point",
                     "carpool_trip"."arrival_point"
                 )
@@ -406,33 +406,33 @@ class TripQuerySet(models.query.QuerySet):
             ]),
             where=[
                 """ST_DWithin(
-                    ST_GeomFromWKB(%s, %s),
+                    ST_GeomFromText(%s, %s),
                     "carpool_trip"."departure_point_proj",
                     "carpool_tripdemand"."radius" + %s
                 )
                 """,
                 """ST_DWithin(
-                    ST_GeomFromWKB(%s, %s),
+                    ST_GeomFromText(%s, %s),
                     "carpool_trip"."arrival_point_proj",
                     "carpool_tripdemand"."radius" + %s
                 )
                 """,
                 """get_pourcentage_rank(
-                    ST_GeomFromWKB(%s, %s),
+                    ST_GeomFromText(%s, %s),
                     "carpool_trip"."departure_point",
                     "carpool_trip"."arrival_point"
                 ) >= %s
                 """,
             ],
             params=[
-                ogr.wkb, SRID_TRANSFORM,
+                ogr.wkt, SRID_TRANSFORM,
                 radius,
-                ogr.wkb, SRID_TRANSFORM,
+                ogr.wkt, SRID_TRANSFORM,
                 radius,
-                direction_route.wkb, SRID_DEFAULT,
+                direction_route.wkt, SRID_DEFAULT,
                 self.MAX_PERCENTAGE_RANK,
             ],
-            select_params=(direction_route.wkb, SRID_DEFAULT)
+            select_params=(direction_route.wkt, SRID_DEFAULT)
         )
 
     def get_mark_details(self):

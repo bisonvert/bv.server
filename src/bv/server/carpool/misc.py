@@ -114,6 +114,7 @@ def sort_offers(trips, date, interval_min, interval_max, trip=None):
     demand = trip.demand if trip else None
 
     # tuple generation, sort, reverse
+
     tuple_offers = [("%04d#%09d" % (
             _get_rank(
                 tripo.pourcentage_rank,
