@@ -8,18 +8,16 @@ file at the root of the project.
 import os.path
 import datetime
 
+# ROOT_PATH : where the source are (<..>/bv.server/src/bv/server/)
+# MT_PTH    : where the whole root project is (<..>/bv.server/)
 PROJECT_ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
+PROJECT_MT_PATH = os.path.normpath(os.path.join(PROJECT_ROOT_PATH, *('../../..'.split('/'))))
 
-# PROJECT_ROOT_URL = 'http://api.bisonvert.net'
-PROJECT_ROOT_URL = 'http://127.0.0.1:8085'
+PROJECT_ROOT_URL = 'http://api.bisonvert.net'
 PROJECT_NAME = 'BisonVert'
 PROJECT_NAME_URL = 'BisonVert.net'
 DATABASE_ENGINE = 'postgresql_psycopg2'
-# DATABASE_NAME = 'bv'
-# DATABASE_USER = 'dbbv'
-# DATABASE_PASSWORD = 'bisonvert'
-# DATABASE_HOST = 'localhost'
-# DATABASE_PORT = '5432'
+
 DATABASE_NAME = 'bisonvert'
 DATABASE_USER = 'bv_user'
 DATABASE_PASSWORD = 'secret'
@@ -57,10 +55,10 @@ GOOGLE_ADSENSE_HEIGHT = ''
 GOOGLE_ADSENSE_ENABLE = False
 
 # Mapnik
-MAPNIK_CONFIGFILE = os.path.join(PROJECT_ROOT_PATH, '../ecov/ogcserver/ogcserver.conf')
+MAPNIK_CONFIGFILE = os.path.join(PROJECT_ROOT_PATH, 'ogcserver/ogcserver.conf')
 
 # Parameter to set to True in production: exclude my own trips in result of search - DEFAULT
-EXCLUDE_MY_TRIPS = False
+EXCLUDE_MY_TRIPS = True
 
 # JS extension
 JS_EXT = '-min.js' if not DEBUG else '.js'
@@ -80,17 +78,25 @@ AUTHENTICATION_BACKENDS = (
     'bv.server.auth.backends.ModelBackend',
 )
 
+
 ADMINS = ()
+MANAGERS = ADMINS
 
 # for admin messages - DEFAULT
-EMAIL_SUBJECT_PREFIX = '[Django] '
-SERVER_EMAIL = 'admin@foo.bar'
+# EMAIL_SUBJECT_PREFIX = '[Django] '
+# SERVER_EMAIL = 'admin@foo.bar'
 
 # Emails - DEFAULT
-FROM_EMAIL = 'admin@foo.bar'
-CONTACT_EMAIL = 'admin@foo.bar'
+# FROM_EMAIL = 'admin@foo.bar'
+# CONTACT_EMAIL = 'admin@foo.bar'
 
-MANAGERS = ADMINS
+# DEFAULT
+# EMAIL_HOST = 'localhost'
+# EMAIL_HOST_PASSWORD = ''
+# EMAIL_HOST_USER = ''
+# EMAIL_PORT = 1025
+# EMAIL_USE_TLS = False
+
 
 # TESTING 
 TEST_RUNNER = 'django.contrib.gis.tests.run_tests'
@@ -99,12 +105,6 @@ POSTGIS_SQL_PATH = '/usr/local/share'
 TEST_SQL_PATH = os.path.join(PROJECT_ROOT_PATH, '../share/data')
 TEST_SQL_FILES = ('procedures.sql', 'trigger.sql', 'additional_columns.sql')
 
-# DEFAULT
-EMAIL_HOST = 'localhost'
-EMAIL_HOST_PASSWORD = ''
-EMAIL_HOST_USER = ''
-EMAIL_PORT = 1025
-EMAIL_USE_TLS = False
  
 # Session configuration
 SESSION_COOKIE_AGE            = 7200 # 2 hours
@@ -174,10 +174,9 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 ROOT_URLCONF = 'bv.server.urls'
 TEMPLATE_DIRS = (
-    #os.path.join(PROJECT_ROOT_PATH, '../templates'),
     os.path.join(PROJECT_ROOT_PATH, 'templates'),
+    # contains mails templates
     os.path.join(PROJECT_ROOT_PATH, 'apiconsumers', 'templates'),
-    # os.path.join(PROJECT_ROOT_PATH, 'api','mails', 'templates'),
 )
 
 INSTALLED_APPS = (
@@ -261,8 +260,3 @@ if 'MT' in os.environ:
                 if gdalfound:
                     break
 
-# import local setings to override these ones
-try:
-    from local_settings import *
-except ImportError:
-    pass

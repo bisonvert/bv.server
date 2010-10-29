@@ -16,7 +16,7 @@ lock="${buildout:directory}/var/$name "
 [ -f $supervisorctl ] || exit 1
 
 envf="${buildout:directory}/sys/share/minitage/minitage.env"
-if [ -f "$envf" ]
+if [ -f "$envf" ];then
     source $envf
 fi
 

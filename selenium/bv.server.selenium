@@ -103,12 +103,32 @@
 </tr>
 <tr>
 	<td>click</td>
+	<td>with_autocheckout_ogcserver</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
 	<td>with_binding_mapscript</td>
 	<td></td>
 </tr>
 <tr>
-	<td>clickAndWait</td>
-	<td>submit_cgwbDownload</td>
+	<td>click</td>
+	<td>with_autocheckout_mapnik2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>with_django_piston</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>with_autocheckout_django-piston</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>with_gis_mapnik</td>
 	<td></td>
 </tr>
 

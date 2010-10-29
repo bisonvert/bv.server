@@ -5,11 +5,11 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 
-from mapnik import Style, Rule, Color, Layer, PostGIS
-from mapnik import PointSymbolizer, LineSymbolizer
-from mapnik.ogcserver.configparser import SafeConfigParser
-from mapnik.ogcserver.exceptions import ServerConfigurationError, OGCException
-from mapnik.ogcserver.WMS import BaseWMSFactory
+from mapnik2 import Style, Rule, Color, Layer, PostGIS
+from mapnik2 import PointSymbolizer, LineSymbolizer
+from mapnik2.ogcserver.configparser import SafeConfigParser
+from mapnik2.ogcserver.exceptions import ServerConfigurationError, OGCException
+from mapnik2.ogcserver.WMS import BaseWMSFactory
 
 from bv.server.carpool.models import Trip
 
