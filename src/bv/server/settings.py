@@ -16,19 +16,15 @@ PROJECT_MT_PATH = os.path.normpath(os.path.join(PROJECT_ROOT_PATH, *('../../..'.
 PROJECT_ROOT_URL = 'http://api.bisonvert.net'
 PROJECT_NAME = 'BisonVert'
 PROJECT_NAME_URL = 'BisonVert.net'
-DATABASE_ENGINE = 'postgresql_psycopg2'
 
-DATABASE_NAME = 'bisonvert'
-DATABASE_USER = 'bv_user'
-DATABASE_PASSWORD = 'secret'
-DATABASE_HOST = 'localhost'
-DATABASE_PORT = '5434'
+# Database
+# See dev.
 
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 # For SQL Query logger - DEFAULT
-SQL_LOG_PATHFILE = '/home/djcoin/Desktop/pgsql.log'
+SQL_LOG_PATHFILE = '/path/to/logs/pgsql'
 SQL_LOG = False
 
 # Path to log for cron scripts - DEFAULT
@@ -102,7 +98,7 @@ MANAGERS = ADMINS
 TEST_RUNNER = 'django.contrib.gis.tests.run_tests'
 POSTGIS_TEMPLATE = 'template_postgis'
 POSTGIS_SQL_PATH = '/usr/local/share'
-TEST_SQL_PATH = os.path.join(PROJECT_ROOT_PATH, '../share/data')
+TEST_SQL_PATH = os.path.join(PROJECT_MT_PATH, '../share/data')
 TEST_SQL_FILES = ('procedures.sql', 'trigger.sql', 'additional_columns.sql')
 
  
