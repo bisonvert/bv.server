@@ -1,5 +1,5 @@
 *.pyc
-setuptools.*
+setuptools*
 .sql
 django
 t/*
@@ -7,7 +7,7 @@ local_settings.py
 .installed.cfg
 .mr.developer.cfg
 bin/.*
-develop-eggs/.*
+develop-eggs/
 etc/paster.ini
 parts/.*
 src/bv.server.egg-info.*
@@ -21,4 +21,8 @@ src.mrdeveloper/
 src/bv.server.egg-info/
 parts/
 bin/
+sys/
+var/
+.minitage
+docs/*/build/
 
