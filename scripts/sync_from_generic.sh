@@ -85,5 +85,7 @@ sed -re "/mode/ {
     a parts+=sphinx
 }" -i buildout-dev.cfg
 
+# change the media default
+sed -re "/\[app:mediaapp\]/,/^\s*$/s#(resource_name=).*.#\1bv/server/media/default/#" -i etc/templates/wsgi/paster.ini.in
 
 # vim:set et sts=4 ts=4 tw=0:

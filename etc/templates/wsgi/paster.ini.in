@@ -5,15 +5,15 @@ debug=${settings:debug}
 [composite:main]
 use=egg:Paste#urlmap
 /media/=pmedia
-/admin_media/=padminmedia
+/admin/media/=padminmedia
 /=pmain
 /threads/=watch_threads
 
 # deliverance support
 #/deliverange=pdeliverance
-#/_themes = athemes 
+#/_themes = athemes
 #[pipeline:pdeliverance]
-#pipeline= translogger exc deliverance projectapp 
+#pipeline= translogger exc deliverance projectapp
 #[filter:fdeliverance]
 #use=egg:Deliverance
 #theme_uri = file://${locations:deliverance-themes}/layout.html
@@ -27,10 +27,10 @@ use=egg:Paste#urlmap
 pipeline= fvhm exc translogger projectapp
 
 [pipeline:pmedia]
-pipeline= translogger exc mediaapp
+pipeline= fvhm translogger exc mediaapp
 
 [pipeline:padminmedia]
-pipeline= translogger exc adminmediaapp
+pipeline= fvhm translogger exc adminmediaapp
 
 [app:watch_threads]
 use=egg:Paste#watch_threads

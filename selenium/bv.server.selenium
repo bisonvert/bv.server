@@ -33,8 +33,13 @@
 </tr>
 <tr>
 	<td>type</td>
+	<td>scm_type</td>
+	<td>git</td>
+</tr>
+<tr>
+	<td>type</td>
 	<td>uri</td>
-	<td>http://bitbucket.org/kiorky/bv.server</td>
+	<td>http://github.com/djcoin/bv.server</td>
 </tr>
 <tr>
 	<td>type</td>
