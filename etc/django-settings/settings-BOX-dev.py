@@ -8,6 +8,13 @@ file at the root of the project.
 # you can search for parameters to override inside this module.
 from bv.server.settings import *
 
+# from local_settings.py
+LOCAL_SETTINGS_DEFINED = True
+DEFAULT_CLIENT_ROOT_URL = 'http://localhost:8085'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+
 # Database
 DATABASE_ENGINE = 'postgresql_psycopg2'
 DATABASE_NAME = 'bisonvert'
@@ -24,7 +31,7 @@ SQL_LOG_PATHFILE = os.path.join(PROJECT_ROOT_PATH, 'log')
 SQL_LOG = False
 
 # Path to log for cron scripts - DEFAULT
-SCRIPTS_LOG_PATH = "/path/to/logs/cron"
+SCRIPTS_LOG_PATH = os.path.join(PROJECT_ROOT_PATH, 'cron')
 SCRIPTS_LOG_PREFIX = "instancename"
 
 # Google Maps - DEFAULT

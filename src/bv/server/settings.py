@@ -98,7 +98,7 @@ MANAGERS = ADMINS
 TEST_RUNNER = 'django.contrib.gis.tests.run_tests'
 POSTGIS_TEMPLATE = 'template_postgis'
 POSTGIS_SQL_PATH = '/usr/local/share'
-TEST_SQL_PATH = os.path.join(PROJECT_MT_PATH, '../share/data')
+TEST_SQL_PATH = os.path.join(PROJECT_MT_PATH, 'share/data')
 TEST_SQL_FILES = ('procedures.sql', 'trigger.sql', 'additional_columns.sql')
 
  
@@ -205,8 +205,7 @@ INSTALLED_APPS = (
 # This is easilly modifiable here, and that make the separation of application
 # (eg. between "oauth server" side and "default client") invisible to the end 
 # user.
-# DEFAULT_CLIENT_ROOT_URL = 'http://www.bisonvert.net',
-DEFAULT_CLIENT_ROOT_URL = 'http://127.0.0.1:8095',
+DEFAULT_CLIENT_ROOT_URL = 'http://www.bisonvert.net',
 DEFAULT_CLIENT_URLS = {
     'talks' : {
         'add_message': '%s/talks/%s/add_message/',
