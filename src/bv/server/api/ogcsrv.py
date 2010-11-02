@@ -7,9 +7,10 @@ from django.shortcuts import get_object_or_404
 
 from mapnik2 import Style, Rule, Color, Layer, PostGIS
 from mapnik2 import PointSymbolizer, LineSymbolizer
-from mapnik2.ogcserver.configparser import SafeConfigParser
-from mapnik2.ogcserver.exceptions import ServerConfigurationError, OGCException
-from mapnik2.ogcserver.WMS import BaseWMSFactory
+
+from ogcserver.configparser import SafeConfigParser
+from ogcserver.exceptions import ServerConfigurationError, OGCException
+from ogcserver.WMS import BaseWMSFactory
 
 from bv.server.carpool.models import Trip
 
@@ -93,7 +94,11 @@ class WMSHandler(object):
         if reqparams.has_key('service'):
             del reqparams['service']
         try:
-            mapnikmodule = __import__('mapnik.ogcserver.' + service)
+            import pdb; pdb.set_trace()
+            try:
+                mapnikmodule = __import__('mapnik.ogcserver.' + service)
+            except Exception, e:
+                pass
         except:
             raise OGCException('Unsupported service "%s".' % service)
         servicehandlerfactory = getattr(mapnikmodule.ogcserver,
