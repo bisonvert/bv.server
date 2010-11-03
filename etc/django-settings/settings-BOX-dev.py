@@ -17,7 +17,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Database
 DATABASE_ENGINE = 'postgresql_psycopg2'
-DATABASE_NAME = 'bisonvert'
+DATABASE_NAME = 'bvserver'
 DATABASE_USER = 'bv_user'
 DATABASE_PASSWORD = 'secret'
 DATABASE_HOST = 'localhost'
