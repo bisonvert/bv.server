@@ -1,0 +1,1 @@
+/home/sim/minitage/django/bv.server/etc/django-settings/settings-BOX-dev.py
