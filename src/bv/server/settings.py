@@ -184,6 +184,7 @@ INSTALLED_APPS = (
     'django.contrib.gis',
     'django.contrib.sites',
     'django.contrib.markup',
+    'django.contrib.flatpages',
     'piston',
     # bv's internal apps
     'bv.server.accounts',
@@ -191,10 +192,10 @@ INSTALLED_APPS = (
     'bv.server.carpool',
     'bv.server.talks',
     'bv.server.rating',
-    'bv.server.pages',
     'bv.server.utils',
     'bv.server.api',
     'bv.server.apiconsumers',
+    'bv.server.pages',
 )
 
 # OAuth is great, but user experience with it is a bit ... strange, so we 

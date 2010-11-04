@@ -2,10 +2,16 @@
 # vim: set fileencoding=utf-8 :
 
 from django import forms
+
 from django.contrib import admin
 from bv.server.pages.models import EnhancedFlatPage, Category
 from django.utils.translation import ugettext_lazy as _
 
+# from django.contrib.flatpages.models import FlatPage
+# from django.contrib.flatpages.admin import FlatpageForm, FlatPageAdmin
+# class FlatPageForm(FlagpageForm):
+# class FlatPageAdmin(FlagPageAdmin):
+#admin.site.unregister(FlatPage)
 
 class FlatPageForm(forms.ModelForm):
     url = forms.RegexField(label=_("URL"), max_length=100, regex=r'^[-\w/]+$',
