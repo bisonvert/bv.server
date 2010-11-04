@@ -1,0 +1,30 @@
+[
+ {
+  "pk": 1, 
+  "model": "accounts.userprofile", 
+  "fields": {
+   "home_address": null, 
+   "passenger_min_remaining_seats": null, 
+   "passenger_max_km_price": null, 
+   "passenger_car_type": null, 
+   "home_zipcode": null, 
+   "driver_place_for_luggage": null, 
+   "home_address2": null, 
+   "driver_car_type": null, 
+   "passenger_place_for_luggage": false, 
+   "mobile_phone": null, 
+   "home_city": null, 
+   "driver_pets_accepted": null, 
+   "alert": false, 
+   "phone": null, 
+   "user": 2, 
+   "driver_smokers_accepted": null, 
+   "passenger_pets_accepted": false, 
+   "driver_km_price": null, 
+   "language": "fr", 
+   "passenger_smokers_accepted": false, 
+   "driver_seats_available": null, 
+   "validation": null
+  }
+ }
+]

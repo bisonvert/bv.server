@@ -1,0 +1,38 @@
+[
+ {
+  "pk": 1, 
+  "model": "auth.user", 
+  "fields": {
+   "username": "bvserveradmin", 
+   "first_name": "", 
+   "last_name": "", 
+   "is_active": true, 
+   "is_superuser": true, 
+   "is_staff": true, 
+   "last_login": "2010-11-04 17:00:54", 
+   "groups": [], 
+   "user_permissions": [], 
+   "password": "sha1$a3946$a1f5cdd63e838adfd3bb58f7f810073b77056f40", 
+   "email": "admin@bvserver.net", 
+   "date_joined": "2010-11-04 16:43:23"
+  }
+ },
+ {
+  "pk": 2, 
+  "model": "auth.user", 
+  "fields": {
+   "username": "toto", 
+   "first_name": "", 
+   "last_name": "", 
+   "is_active": true, 
+   "is_superuser": false, 
+   "is_staff": false, 
+   "last_login": "2010-11-04 17:00:13", 
+   "groups": [], 
+   "user_permissions": [], 
+   "password": "sha1$d33cc$43a34adb7fa9082352e786b89099a3f4b0f0c78c", 
+   "email": "toto@toto.com", 
+   "date_joined": "2010-11-04 16:59:36"
+  }
+ } 
+]

@@ -1,0 +1,14 @@
+[
+ {
+  "pk": 1, 
+  "model": "piston.consumer", 
+  "fields": {
+   "status": "accepted", 
+   "name": "bisonvertapp", 
+   "secret": "sss", 
+   "user": 2, 
+   "key": "kkk", 
+   "description": "My nice BisonVert application."
+  }
+ }
+]
