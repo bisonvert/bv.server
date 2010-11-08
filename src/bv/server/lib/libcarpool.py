@@ -21,6 +21,8 @@ from bv.server.carpool.misc import sort_offers, sort_demands
 from bv.server.carpool.forms import EditTripOfferOptionsForm, EditTripDemandOptionsForm, \
     EditTripForm
 
+from bv.server.carpool.forms import DynamicEditTripForm, DynamicEditTripOfferOptionsForm, DynamicEditTripDemandOptionsForm
+
 # lib import
 from bv.server.utils.paginator import PaginatorRender
 from bv.server.lib.exceptions import *
@@ -76,6 +78,7 @@ class LibCarpool:
             },
         }    
         
+    ## REFACTOR : not used
     def get_trip_geometry_from_details(self, trip_details=None, departure_slug=None, 
             departure_zip=None, arrival_slug=None, arrival_zip=None):
         """Compute and return a GIS multipoint geometry, based on trip_type and 
@@ -267,29 +270,62 @@ class LibCarpool:
                 'order': ordered_by,
             }
         )
-    
-    def _add_or_edit_trip(self, user, post_data, trip_id=None):
+
+
+    def _format_dict2model(self, data, *prefixes):
+        """Replace '_' by '-' in the fields keys, so that it can be understand
+        as valid input data by forms that have prefix.
+
+        Exception will be thrown if this modification leads to keys with same name.
+        """
+        dct = {}
+        for k, v in data.iteritems():
+            for p in prefixes:
+                if k.startswith(p + '_'):
+                    print "%s will be reformated" % k
+                    k = k[:len(p)] + '-'  + k[len(p)+1:]
+                    break
+            if k not in dct:
+                dct[k] = v
+            else:
+                raise Exception("Args have the same name after being reformated _ to - : %s" % k)
+
+        return dct
+
+
+    def _add_or_edit_trip(self, user, post_data, trip_id=None,
+            formfactory={'trip'      : EditTripForm,
+                         'tripoffer' : EditTripOfferOptionsForm,
+                         'tripdemand': EditTripDemandOptionsForm}):
         """Add or edit a trip.
         
         If a trip id is specified, retreive it and edit it (save it if needed)
         If no trip id is specified, create a new new trip and process it.
-        
+
+        :post_data: can be in the form - or _ for offer and demand forms.
+                    but it needs to be prefixed by offer or demand.
         """
+
+        # XXX do not touch to these prefix, they are used in many places as hard values
+        offer_prefix = "offer"
+        demand_prefix = "demand"
+        models_data = self._format_dict2model(post_data, offer_prefix, demand_prefix)
+
+        trip_form = formfactory['trip']
+        tripoffer_form = formfactory['tripoffer']
+        tripdemand_form = formfactory['tripdemand']
+        
         if trip_id:
             trip = Trip.objects.get(id=trip_id, user=user)
-            form_offer = EditTripOfferOptionsForm(data=post_data, 
-                instance=trip.offer, prefix="offer")
-            form_demand = EditTripDemandOptionsForm(data=post_data, 
-                instance=trip.demand, prefix="demand")
+            form_offer = tripoffer_form(data=models_data, instance=trip.offer, prefix=offer_prefix)
+            form_demand = tripdemand_form(data=models_data, instance=trip.demand, prefix=demand_prefix)
         else:
             trip = Trip(user=user)
-            form_offer = EditTripOfferOptionsForm(data=post_data, 
-                prefix="offer")
-            form_demand = EditTripDemandOptionsForm(data=post_data,
-                prefix="demand")
+            form_offer = tripoffer_form(data=models_data, prefix=offer_prefix)
+            form_demand = tripdemand_form(data=models_data, prefix=demand_prefix)
 
-        import pdb; pdb.set_trace()
-        form_trip = EditTripForm(data=post_data, instance=trip)
+        form_trip = trip_form(data=models_data, instance=trip)
+
         
         error = False
         if form_trip.is_valid():
@@ -320,6 +356,7 @@ class LibCarpool:
                 if trip_type == self.TRIPDEMAND and trip.offer is not None: 
                     trip.offer.delete()
                     trip.offer = None
+
                 trip.save()
         else:
             error = True
@@ -345,10 +382,19 @@ class LibCarpool:
         
         """
         return self._add_or_edit_trip(user, post_data, trip_id)
+
+    def reduced_update_trip(self, user, post_data, trip_id):
+        """Only updates small part of the trip: radius and interval min/max"""
+
+        ff = {'trip'       : DynamicEditTripForm, 
+              'tripoffer'  : DynamicEditTripOfferOptionsForm,
+              'tripdemand' : DynamicEditTripDemandOptionsForm, 
+             }
+        return self._add_or_edit_trip(user, post_data, trip_id, formfactory=ff)
     
     def get_trip_results(self, is_offer=None, is_demand=None, offer_radius=None, 
             demand_radius=None, date=None, interval_min=None, interval_max=None, 
-            is_regular=None, dows=None, route=None, departure_point=None, 
+            is_regular=None, dows=None, offer_route=None, departure_point=None, 
             arrival_point=None, max_trips=None, trip_id=None, user=None):
         """Return a list containing the trip object, trip_offers and 
         trip_demands matching given criterias.
@@ -370,7 +416,7 @@ class LibCarpool:
             if is_offer or trip.offer:
                 is_offer = is_offer or True
                 offer_radius = offer_radius or trip.offer.radius
-                route = route or trip.offer.route
+                offer_route = offer_route or trip.offer.route
                     
             if (is_demand or trip.demand):
                 is_demand = is_demand or True
@@ -386,23 +432,23 @@ class LibCarpool:
         if is_offer:
             offer_radius = offer_radius or self.OFFER_RADIUS
             if trip_id:
-                if route is None or route.geom_type != 'MultiLineString':
+                if offer_route is None or offer_route.geom_type != 'MultiLineString':
                     raise InvalidGeometry("The trip offer route geometry is " \
                     "required and need to be a 'MultiLineString'. You gave us " \
                     "a '%(type)s' instead." % {
-                        'type': "None" if route is None else route.geom_type
+                        'type': "None" if offer_route is None else offer_route.geom_type
                     })
             else:
-                if route is None or route.geom_type != 'LineString':
+                if offer_route is None or offer_route.geom_type != 'LineString':
                     raise InvalidGeometry("The trip offer route geometry is " \
                     "required and need to be a 'LineString'. You gave us " \
                     "a '%(type)s' instead." % {
-                        'type': "None" if route is None else route.geom_type
+                        'type': "None" if offer_route is None else offer_route.geom_type
                     })
                     
         if is_demand:
             demand_radius = demand_radius or self.DEMAND_RADIUS
-        
+       
         interval_min = interval_min or self.INTERVAL_MIN
         interval_max = interval_max or self.INTERVAL_MAX
         today = datetime.date.today()
@@ -427,7 +473,7 @@ class LibCarpool:
             trip_offers = sort_offers(trip_offers, date, interval_min, interval_max, trip=trip)
 
         if is_offer:
-            trip_demands = Trip.objects.get_demands(route, get_direction_route(route), offer_radius)
+            trip_demands = Trip.objects.get_demands(offer_route, get_direction_route(offer_route), offer_radius)
             if trip_id:
                 trip_demands = trip_demands.exclude(pk=trip_id)
             trip_demands = trip_demands.get_mark_details()
@@ -481,3 +527,4 @@ class LibCarpool:
         
         """
         return get_object_or_404(Trip.objects.get_mark_details(), pk=trip_id) 
+

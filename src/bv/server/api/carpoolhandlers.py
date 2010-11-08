@@ -81,8 +81,8 @@ def validateTripForm(operation='POST'):
         errors = False
         if len(request.REQUEST.items()) == 1 and request.REQUEST.get('alert', False):
             return f(self, request, *args, **kwargs)
+        # should be removed ??
         if  3 <= len(request.REQUEST.items()) <= 4:
-            import pdb; pdb.set_trace()
             return f(self, request, *args, **kwargs)
         
         if 'dows' in request.REQUEST.items():
@@ -136,20 +136,22 @@ class AnonymousCarpoolHandler(AnonymousHandler):
     def __init__(self):
         self.lib = LibCarpool()
 
-def filter_tripsearch_values(request):
+def filter_tripsearch_values(dct):
     """Filter request values.
     
     """
     values = dict()
-    for (key, value) in request.GET.iteritems():
+    for key, value in dct.iteritems():
         if key.encode() in __valid_search_keys__:
-            if key in (u'departure_point', u'arrival_point', u'route', u'geometry'):
+            if key in (u'departure_point', u'arrival_point', u'offer_route', u'geometry'):
                 value = GEOSGeometry(value)
             if key == u'date':
                 value = date(*[int(datevalue) for datevalue in value.encode().split('-')])
             if key == u'geometry':
-                values['route'] = value
+                values['offer_route'] = value
             else:
+                if key =='interval_min' or key == 'interval_max':
+                    value = int(value)
                 values[key.encode()] = value
     return values
 
@@ -158,17 +160,18 @@ class AnonymousTripsSearchHandler(AnonymousCarpoolHandler):
         """Make a search within the list of existing trips
 
         """
-        values = filter_tripsearch_values(request)
-        return self.lib.get_trip_results(**values)
+        return self.lib.get_trip_results(*values)
 
 class TripsSearchHandler(CarpoolHandler):
     anonymous = AnonymousTripsSearchHandler
     def read(self, request, **kwargs):
         """Private search"""
+
+        values = filter_tripsearch_values(request_to_dict(request))
         if 'trip_id' in kwargs:
-            return self.lib.get_trip_results(user=request.user, **kwargs)
+            return self.lib.get_trip_results(user=request.user, **values)
         else:
-            return self.anonymous.read(AnonymousTripsSearchHandler(), request, **kwargs)
+            return self.anonymous.read(AnonymousTripsSearchHandler(), request, **values)
             
 
 class AnonymousTripsHandler(AnonymousCarpoolHandler):
@@ -183,6 +186,25 @@ class AnonymousTripsHandler(AnonymousCarpoolHandler):
         else:
             items = self.lib.list_trips()
         return paginate_items(items, start, count, request, self.count)
+
+
+class TripsUpdateHandler(CarpoolHandler):
+    """Special handler to handle small trip update.
+    Otherwise, see TripsHandler.
+    """
+    anonymous = AnonymousTripsHandler
+    # XXX remove some methods
+    allowed_methods = ('PUT')
+
+    # trip_{offer, demand} : radius ; trip : interval_{min, max}
+    def update(self, request, *args, **kwargs):
+        trip_id = kwargs.get('trip_id', None)
+        response = self.lib.reduced_update_trip(request.user, request_to_dict(request), trip_id)
+        if response['error']:
+            return rc.BAD_REQUEST
+        elif response['trip']:
+            return response['trip']
+
 
 class TripsHandler(CarpoolHandler):
     """Handler for trips: CRUD for authenticated users.
@@ -222,7 +244,6 @@ class TripsHandler(CarpoolHandler):
             self.lib.switch_trip_alert(request.user, trip_id, request.REQUEST['alert'].encode().lower() == 'true')
             return rc.ALL_OK
         
-        import pdb; pdb.set_trace()
         response = self.lib.update_trip(request.user, request_to_dict(request), trip_id)
         if response['error']:
             return rc.BAD_REQUEST

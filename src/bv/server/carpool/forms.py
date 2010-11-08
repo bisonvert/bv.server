@@ -284,6 +284,8 @@ class ChooseDepartArrivalCityForm(forms.Form):
             return self.cleaned_data['city']
         raise forms.ValidationError(_("Incorrect city."))
 
+
+
 class EditTripForm(ModelForm):
     def __init__(self, instance=None, *args, **kwargs):
         super(EditTripForm, self).__init__(instance=instance, *args, **kwargs)
@@ -572,3 +574,52 @@ class ContactForm(forms.Form):
         label=_("* Message:"),
         widget=forms.widgets.Textarea({'rows': '12', 'cols': '60'})
     )
+
+
+
+# special exclude
+
+def remove_prefix(prefix, *args):
+    if prefix:
+        length = len(prefix)
+        l = []
+        for f in args:
+            if f.startswith(prefix):
+                f = f[length:]
+            l.append(f)
+        return l
+
+def delete_unprovided_fields(form, fields2keep_keys):
+        if form.prefix:
+            # do some clean up
+            fields2keep_keys = remove_prefix(form.prefix + "-", *fields2keep_keys)
+
+        remaining_keys = list(set(form.fields.keys()) - set(fields2keep_keys))
+
+        for field in remaining_keys:
+            del form.fields[field]
+
+class DynamicEditTripForm(EditTripForm):
+
+    def __init__(self, instance=None, *args, **kwargs):
+        super(DynamicEditTripForm, self).__init__(instance=instance, *args, **kwargs)
+        kw = kwargs.get('data',{})
+        kw.setdefault('trip_type',self.fields['trip_type'].initial)
+        delete_unprovided_fields(self, kw.keys())
+
+
+class DynamicEditTripOfferOptionsForm(EditTripOfferOptionsForm):
+
+    def __init__(self, instance=None, *args, **kwargs):
+        super(DynamicEditTripOfferOptionsForm, self).__init__(instance=instance, *args, **kwargs)
+        k = kwargs.get('data',{}).keys()
+        k.append(u'steps')
+        delete_unprovided_fields(self, k)
+
+
+class DynamicEditTripDemandOptionsForm(EditTripDemandOptionsForm):
+
+    def __init__(self, instance=None, *args, **kwargs):
+        super(DynamicEditTripDemandOptionsForm, self).__init__(instance=instance, *args, **kwargs)
+        delete_unprovided_fields(self, kwargs.get('data',{}).keys())
+
