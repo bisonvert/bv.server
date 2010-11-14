@@ -7,7 +7,7 @@ from piston.doc import documentation_view
 
 # API imports
 from bv.server.api.resource import Resource
-from bv.server.api.carpoolhandlers import TripsHandler, TripsSearchHandler, TripsUpdateHandler
+from bv.server.api.carpoolhandlers import TripsHandler, TripsSearchHandler
 from bv.server.api.ratinghandlers import RatingsHandler, TempRatingsHandler
 from bv.server.api.ratinghandlers import MyRatingsHandler, RatingsAboutMeHandler
 from bv.server.api.talkshandlers import TalksHandler, MessagesHandler
@@ -25,7 +25,6 @@ auth = OAuthAuthentication()
 # trips
 trips_handler = Resource(handler=TripsHandler, authentication=auth)
 trip_search_handler = Resource(handler=TripsSearchHandler, authentication=auth)
-trips_update_handler = Resource(handler=TripsUpdateHandler, authentication=auth)
 
 # ratings
 ratings_handler = Resource(handler=RatingsHandler, authentication=auth)
@@ -46,7 +45,6 @@ urlpatterns = patterns('bv.server.api.handlers',
     url(r'^trips/search/$', trip_search_handler),   
     url(r'^trips/(?P<trip_id>[0-9a-z\_]+)/$', trips_handler),
     url(r'^trips/$', trips_handler),
-    url(r'^trips/reduced_update/(?P<trip_id>[0-9a-z\_]+)/$', trips_update_handler),
 
     
     url(r'^temp-ratings/$', tempratings_handler),

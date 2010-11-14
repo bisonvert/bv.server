@@ -391,7 +391,7 @@ class TripQuerySet(models.query.QuerySet):
         Calculations arent made from the simplified projected route
 
         """
-        ogr = smart_transform(route,SRID_TRANSFORM, from_srid=SRID_DEFAULT).ogr
+        ogr = smart_transform(route, SRID_TRANSFORM, from_srid=SRID_DEFAULT).ogr
         demands = self.filter(demand__isnull=False)
         demands = demands.select_related('user', 'demand')
         print "IN DEMANDS #################"

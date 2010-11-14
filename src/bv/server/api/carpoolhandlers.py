@@ -73,46 +73,6 @@ __valid_search_keys__ = (
     'geometry',
 )
 
-def validateTripForm(operation='POST'):
-    """Validate if the given trip is valid"""
-    @decorator
-    def wrap(f, self, request, *args, **kwargs):
-        errordict = {}
-        errors = False
-        if len(request.REQUEST.items()) == 1 and request.REQUEST.get('alert', False):
-            return f(self, request, *args, **kwargs)
-        # should be removed ??
-        if  3 <= len(request.REQUEST.items()) <= 4:
-            return f(self, request, *args, **kwargs)
-        
-        if 'dows' in request.REQUEST.items():
-            request.REQUEST.setlist(request.REQUEST.get('dows').split('-'))
-        def is_valid(form):
-            if not form.is_valid():
-                errors = False
-                for key,value in form.errors.items():
-                    errordict.setdefault(key, value)
-                return False
-            return True
-        requestdict = request_to_dict(request)
-        tripform = EditTripForm(data=requestdict)
-        offerform = EditTripOfferOptionsForm(data=requestdict, prefix='offer')
-        demandform = EditTripDemandOptionsForm(data=requestdict, prefix='demand')
-
-        is_valid(tripform)
-        if int(request.REQUEST.get('trip_type')) in (Trip.OFFER, Trip.BOTH):
-            is_valid(offerform)
-            
-        if int(request.REQUEST.get('trip_type')) in (Trip.DEMAND, Trip.BOTH):
-            is_valid(demandform)
-        
-        if not errors or request.REQUEST.get('alert',false):
-            return f(self, request, *args, **kwargs)
-        else:
-            tripform.errors = errordict
-            raise FormValidationError(tripform)
-    return wrap
-
 def request_to_dict(request):
     """Transform a request into a dict, and split the dows field into a list.
 
@@ -160,7 +120,7 @@ class AnonymousTripsSearchHandler(AnonymousCarpoolHandler):
         """Make a search within the list of existing trips
 
         """
-        return self.lib.get_trip_results(*values)
+        return self.lib.get_trip_results(**kwargs)
 
 class TripsSearchHandler(CarpoolHandler):
     anonymous = AnonymousTripsSearchHandler
@@ -186,24 +146,6 @@ class AnonymousTripsHandler(AnonymousCarpoolHandler):
         else:
             items = self.lib.list_trips()
         return paginate_items(items, start, count, request, self.count)
-
-
-class TripsUpdateHandler(CarpoolHandler):
-    """Special handler to handle small trip update.
-    Otherwise, see TripsHandler.
-    """
-    anonymous = AnonymousTripsHandler
-    # XXX remove some methods
-    allowed_methods = ('PUT')
-
-    # trip_{offer, demand} : radius ; trip : interval_{min, max}
-    def update(self, request, *args, **kwargs):
-        trip_id = kwargs.get('trip_id', None)
-        response = self.lib.reduced_update_trip(request.user, request_to_dict(request), trip_id)
-        if response['error']:
-            return rc.BAD_REQUEST
-        elif response['trip']:
-            return response['trip']
 
 
 class TripsHandler(CarpoolHandler):
@@ -234,7 +176,6 @@ class TripsHandler(CarpoolHandler):
         elif (response['trip']):
             return response['trip']
     
-    @validateTripForm()
     def update(self, request, *args, **kwargs):
         """Update an existing trip
         
