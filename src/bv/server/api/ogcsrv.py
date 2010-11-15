@@ -94,15 +94,13 @@ class WMSHandler(object):
         if reqparams.has_key('service'):
             del reqparams['service']
         try:
-            import pdb; pdb.set_trace()
             try:
-                mapnikmodule = __import__('mapnik.ogcserver.' + service)
+                mapnikmodule = __import__('ogcserver.' + service)
             except Exception, e:
-                pass
+                print "service: %s could not be imported" % service
         except:
             raise OGCException('Unsupported service "%s".' % service)
-        servicehandlerfactory = getattr(mapnikmodule.ogcserver,
-                service).ServiceHandlerFactory
+        servicehandlerfactory = getattr(mapnikmodule, service).ServiceHandlerFactory
         servicehandler = servicehandlerfactory(self.conf, self.mapfactory,
                 onlineresource, reqparams.get('version', None))
         if reqparams.has_key('version'):
