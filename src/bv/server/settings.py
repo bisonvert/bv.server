@@ -9,9 +9,9 @@ import os.path
 import datetime
 
 # ROOT_PATH : where the source are (<..>/bv.server/src/bv/server/)
-# MT_PTH    : where the whole root project is (<..>/bv.server/)
+# BASE_PATH : where the whole root project is (<..>/bv.server/)
 PROJECT_ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
-PROJECT_MT_PATH = os.path.normpath(os.path.join(PROJECT_ROOT_PATH, *('../../..'.split('/'))))
+PROJECT_BASE_PATH = os.path.normpath(os.path.join(PROJECT_ROOT_PATH, *('../../..'.split('/'))))
 
 PROJECT_ROOT_URL = 'http://api.bisonvert.net'
 PROJECT_NAME = 'BisonVert'
@@ -98,7 +98,7 @@ MANAGERS = ADMINS
 TEST_RUNNER = 'django.contrib.gis.tests.run_tests'
 POSTGIS_TEMPLATE = 'template_postgis'
 POSTGIS_SQL_PATH = '/usr/local/share'
-TEST_SQL_PATH = os.path.join(PROJECT_MT_PATH, 'share/data')
+TEST_SQL_PATH = os.path.join(PROJECT_BASE_PATH, 'share/data')
 TEST_SQL_FILES = ('procedures.sql', 'trigger.sql', 'additional_columns.sql')
 
  
