@@ -3,6 +3,7 @@
 
 """RSS Feeds"""
 
+
 from django.contrib.syndication.feeds import Feed
 from django.utils.feedgenerator import Atom1Feed
 from django.conf import settings
@@ -17,6 +18,12 @@ if _ABSOLUTE_URL.endswith('/'):
     _ABSOLUTE_URL = _ABSOLUTE_URL.strip('/')
 _RADIUS = 10000
 
+
+# check the url to types.values()
+types = {'from'   : 'au_depart_de',
+         'to'     : 'a_destination_de',
+         'results': 'resultats_annonce'}
+
 class RSSFeed(Feed):
     description = ''
     title = u'%s, service de covoiturage - Réinventons la route' % \
@@ -26,6 +33,7 @@ class RSSFeed(Feed):
     copyright   = u'Copyright (c) %s' % settings.PROJECT_NAME
 
     def get_object(self, bits):
+        import pdb; pdb.set_trace()
         def default_feed():
             # all trips
             self.link = _ABSOLUTE_URL + '/annonces_covoiturage/page1/'
@@ -45,7 +53,7 @@ class RSSFeed(Feed):
             type = bits[0]
             bit = bits[1]
 
-            if type == 'au_depart_de':
+            if type == types['from']:
                 # trips from a city
                 values = bit.split('-')
                 if len(values) < 2:
@@ -70,7 +78,7 @@ class RSSFeed(Feed):
                         _RADIUS
                 ).exclude_outdated().order_by('-modification_date')[:25]
 
-            elif type == 'a_destination_de':
+            elif type == types['to']:
                 # trips to a city
                 values = bit.split('-')
                 if len(values) < 2:
@@ -95,7 +103,7 @@ class RSSFeed(Feed):
                         _RADIUS
                 ).exclude_outdated().order_by('-modification_date')[:25]
 
-            elif type == 'resultats_annonce':
+            elif type == types['results']:
                 # result of a trip
                 try:
                     bit = int(bit)
