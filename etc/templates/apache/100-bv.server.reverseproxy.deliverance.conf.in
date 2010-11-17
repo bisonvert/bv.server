@@ -1,5 +1,5 @@
 <VirtualHost *:${reverse_proxy:port}>
-ServerAdmin     sth@makina-corpus.com
+ServerAdmin     simon.thepot@makina-corpus.com
 DocumentRoot    ${buildout:directory}
 ServerName      ${reverse_proxy:host}
 ServerAlias     www.bisonvert.net

@@ -39,7 +39,7 @@
 <tr>
 	<td>type</td>
 	<td>uri</td>
-	<td>http://github.com/djcoin/bv.server.git</td>
+	<td>https://github.com/bisonvert/bv.server.git</td>
 </tr>
 <tr>
 	<td>type</td>
@@ -49,12 +49,12 @@
 <tr>
 	<td>type</td>
 	<td>author_email</td>
-	<td>sth@makina-corpus.com</td>
+	<td>simon.thepot@makina-corpus.com</td>
 </tr>
 <tr>
 	<td>type</td>
 	<td>author</td>
-	<td>Simon Thepot &lt;sth@makina-corpus.com&gt;</td>
+	<td>Simon Thepot &lt;simon.thepot@makina-corpus.com&gt;</td>
 </tr>
 <tr>
 	<td>type</td>
