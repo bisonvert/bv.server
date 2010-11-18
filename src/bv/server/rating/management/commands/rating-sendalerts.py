@@ -9,6 +9,8 @@ import sys
 from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
 
+from django.conf import settings
+
 from bv.server.utils.management import BaseCommand
 from bv.server.rating.models import TempReport
 
@@ -35,12 +37,12 @@ class Command(BaseCommand):
         # get all temp evaluation to proceed
         tempreports = TempReport.objects.get_opened_tempreports().filter(
                 mail_sent=False)
-        
+
         for report in tempreports:
             try:
-                _send_mail(report.user1, report.user2, report.id)
+                self._send_mail(report.user1, report.user2, report.id)
                 nb_mail_sent += 1
-                _send_mail(report.user2, report.user1, report.id)
+                self._send_mail(report.user2, report.user1, report.id)
                 nb_mail_sent += 1
                 report.mail_sent = True
                 report.save()
@@ -63,23 +65,23 @@ class Command(BaseCommand):
             u"Evaluez votre partenaire de covoiturage !",
             u"""Ceci est un message automatique, veuillez ne pas y répondre.
 
-Bonjour %s,
+Bonjour %(user1)s,
 
-Vous avez négocié un trajet avec %s. Ce trajet doit à ce jour avoir été
+Vous avez négocié un trajet avec %(user2)s. Ce trajet doit à ce jour avoir été
 effectué.
 
-Vous pouvez dès à présent évaluer votre partenaire de covoiturage, en
-remplissant le formulaire à l'adresse suivante:
-%s%s
-
 Cordialement,
-L'équipe %s""" % (
-                user1.username,
-                user2.username,
-                self.get_absolute_url(),
-                reverse('rate_user', args=[tempreport_id]),
-                settings.PROJECT_NAME
-            ),
+L'équipe %(project)s""" % 
+    {'user1'   : user1.username,
+     'user2'   : user2.username,
+     'project' : settings.PROJECT_NAME},
             settings.FROM_EMAIL, [user1.email]
         )
+
+# reverse does not work
+# Vous pouvez dès à présent évaluer votre partenaire de covoiturage, en
+# remplissant le formulaire à l'adresse suivante:
+# %s%s
+# reverse('rate_user', args=[tempreport_id]),
+# self.get_absolute_url()
 

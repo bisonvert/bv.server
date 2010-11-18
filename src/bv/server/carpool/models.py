@@ -37,6 +37,7 @@ class FavoritePlace(models.Model):
 
     class Meta:
         """Meta class."""
+
         verbose_name = _("Favorite place")
         verbose_name_plural = _("Favorite places")
         ordering = ['name']
@@ -852,25 +853,26 @@ class Trip(models.Model):
             self.demand.delete()
         super(Trip, self).delete()
 
-    @permalink
-    def get_absolute_url(self):
-        """Build the announce URL."""
-        if self.regular:
-            return ('carpool:ajax_get_trip_details_regular', [
-                '-'.join([value
-                    for (key, value) in self.DOWS
-                    if key in self.dows]),
-                str_slugify(self.departure_city),
-                str_slugify(self.arrival_city),
-                str(self.id)
-            ])
-        else:
-            return ('carpool:ajax_get_trip_details_punctual', [
-                self.date.strftime("%d-%m-%Y"),
-                str_slugify(self.departure_city),
-                str_slugify(self.arrival_city),
-                str(self.id)
-            ])
+    # carpool reverse does not work
+    # @permalink
+    # def get_absolute_url(self):
+    #     """Build the announce URL."""
+    #     if self.regular:
+    #         return ('carpool:ajax_get_trip_details_regular', [
+    #             '-'.join([value
+    #                 for (key, value) in self.DOWS
+    #                 if key in self.dows]),
+    #             str_slugify(self.departure_city),
+    #             str_slugify(self.arrival_city),
+    #             str(self.id)
+    #         ])
+    #     else:
+    #         return ('carpool:ajax_get_trip_details_punctual', [
+    #             self.date.strftime("%d-%m-%Y"),
+    #             str_slugify(self.departure_city),
+    #             str_slugify(self.arrival_city),
+    #             str(self.id)
+    #         ])
 
     def __unicode__(self):
         """Unicode representation of a Trip."""

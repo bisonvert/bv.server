@@ -14,6 +14,7 @@ from random import choice
 
 _ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWYXZabcdefghijklmnopqrstuvwxyz0123456789'
 
+
 class ForbiddenUsername(models.Model):
     """
     Forbidden Usernames

@@ -2,7 +2,9 @@ from bv.server.api.handlers import Handler, AnonymousHandler, paginate_items
 from piston.utils import rc, require_mime, require_extended
 from piston.utils import validate
 
-from bv.server.lib import LibTalks, exceptions
+from bv.server.lib.libtalks import LibTalks
+from bv.server.lib import exceptions
+
 from bv.server.talks.models import Talk, Message
 from bv.server.talks.forms import ContactUserForm
 

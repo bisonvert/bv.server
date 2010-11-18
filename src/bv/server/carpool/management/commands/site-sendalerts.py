@@ -9,7 +9,6 @@ from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
 from django.conf import settings
 from django.core.mail import send_mail
-from django.conf import settings
 
 from bv.server.carpool.models import Trip
 from bv.server.utils.management import BaseCommand
@@ -39,6 +38,8 @@ class Command(BaseCommand):
             modification_date__gte=(today - datetime.timedelta(days=1))
         ).values('id')
         
+        last_trip_values = Trip.objects.all().values('id')
+
         if last_trip_values:
             last_trip_ids = [value['id'] for value in last_trip_values]
             # trips with alert = True, not outdated
@@ -57,7 +58,7 @@ class Command(BaseCommand):
         mail_log.info_log(('%s mails failure' % (self.error_mail)))
         mail_log.info_log("END")
 
-    def get_matching_trips(trip, last_trip_ids):
+    def get_matching_trips(self, trip, last_trip_ids):
         """
         Filter announces, and if there are matches, returns a list of these.
         """
@@ -111,45 +112,52 @@ class Command(BaseCommand):
             trips += trip_offers
         return trips
 
-    def send_mail(trip, match_list, log):
+    def send_mail(self, trip, match_list, log):
         """Send an e-mail, containing announces list """
         if not match_list:
             return
         try:
             subject = u"Alertes BisonVert - annonce %s" % trip.name
+
+            l = []
+            for match in match_list:
+                type = u"Offre" if match.trip_type == Trip.OFFER else (u"Demande" if match.trip_type == Trip.DEMAND else u"Indifférent")
+                name = match.get_public_name()
+                status = u"nouvelle annonce du" if match.creation_date.date() == match.modification_date.date() else u"annonce modifiée le"
+                modif_time = match.modification_date.date().strftime("%d/%m/%Y")
+                # FIXME the carpool reverse function
+                # trip_url = self.get_absolute_url() # + match.get_absolute_url()
+                l.append(u"* %s %s (%s %s)" % (type, name, status, modif_time))
+
+            annonce_str = "\n".join(l)
+
             send_mail(
                 subject,
                 u"""Ceci est un message automatique, veuillez ne pas y répondre.
 
-    Bonjour %s,
+    Bonjour %(user)s,
 
-    Voici la liste des annonces créés et/ou modifiées hier, correspondant à votre annonce %s:
+    Voici la liste des annonces créés et/ou modifiées hier, correspondant à votre annonce %(trip)s:
 
-    %s
+    %(annonce)s
 
-    Nous vous rappelons que vous pouvez consultez à tout moment la liste des annonces
-    qui correspondent à votre annonce %s à l'adresse suivante:
-    %s%s
-
-    Bon covoiturage avec %s !""" % (
-                    trip.user.username,
-                    trip.name,
-                    "\n".join([u"* %s %s (%s %s): %s%s" % (
-                        u"Offre" if match.trip_type == Trip.OFFER else (u"Demande" if match.trip_type == Trip.DEMAND else u"Indifférent"),
-                        match.get_public_name(),
-                        u"nouvelle annonce du" if match.creation_date.date() == match.modification_date.date() else u"annonce modifiée le",
-                        match.modification_date.date().strftime("%d/%m/%Y"),
-                        self.get_absolute_url(),
-                        match.get_absolute_url(),
-                    ) for match in match_list]),
-                    trip.name,
-                    self.get_absolute_url(),
-                    reverse('carpool:show_trip_results', args=[trip.id]),
-                    settings.PROJECT_NAME,
-                ),
-                settings.FROM_EMAIL,
-                [trip.user.email]
+    Bon covoiturage avec %(annonce)s !""" % {
+        'user'   : trip.user.username,
+        'trip'   : trip.name,
+        'annonce': annonce_str,
+        'project': settings.PROJECT_NAME,
+                },
+            settings.FROM_EMAIL, [trip.user.email]
             )
+
+# Nous vous rappelons que vous pouvez consultez à tout moment la liste des annonces
+# qui correspondent à votre annonce %s à l'adresse suivante:
+# %s%s
+# trip.name,
+# self.get_absolute_url(),
+# FIXME the carpool reverse function
+# reverse('carpool:show_trip_results', args=[trip.id]),
+
             self.sent_mail += 1
         except:
             self.error_mail += 1

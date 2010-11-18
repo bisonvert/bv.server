@@ -5,7 +5,7 @@ from piston.utils import validate
 from bv.server.rating.models import Report, TempReport
 from bv.server.rating.forms import ReportForm
 
-from bv.server.lib import LibRating
+from bv.server.lib.librating import LibRating
 from bv.server.lib.exceptions import *
 
 from django.contrib.gis.geos.geometry import GEOSGeometry
