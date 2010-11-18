@@ -54,7 +54,7 @@ def contact(request):
                 """ % (name, form.cleaned_data['message']),
                 email, [settings.CONTACT_EMAIL]
             )
-            return HttpResponseRedirect(reverse('confirm_contact'))
+            return HttpResponseRedirect(reverse('pages:confirm_contact'))
     else:
         if request.user.is_authenticated():
             form = ContactForm()
