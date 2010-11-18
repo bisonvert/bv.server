@@ -81,6 +81,17 @@
 
     <script src="{{ MEDIA_URL }}js/prototype.js" type="text/javascript"></script>
     <script src="{{ MEDIA_URL }}js/utils{{ JS_EXT }}" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        //<![CDATA[
+
+        var media_url = '{{ MEDIA_URL }}';
+
+        // ]]>
+    </script>
+
+
+    <script src="{{ MEDIA_URL }}js/help{{ JS_EXT }}" type="text/javascript"></script>
     <script type="text/javascript" src="{{ MEDIA_URL }}js/jsi18n/{{ LANGUAGE_CODE }}{{ JS_EXT }}"></script>
 {% block endscript %}{% endblock %}
 
