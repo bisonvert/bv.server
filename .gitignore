@@ -13,7 +13,6 @@ parts/.*
 src/bv.server.egg-info.*
 etc/settings-BOX.py
 log/.*log
-./sys/.*
 src/bv/server/customdev.py
 minilays/*
 .*swp
@@ -21,7 +20,7 @@ src.mrdeveloper/
 src/bv.server.egg-info/
 parts/
 bin/
-sys/
+/sys/
 var/
 .minitage
 docs/*/build/
