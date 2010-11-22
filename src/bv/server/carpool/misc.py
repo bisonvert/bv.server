@@ -200,8 +200,8 @@ def update_trip_details_session(request, departure_point_wkt, arrival_point_wkt)
     return date
 
 def get_common_details(parameters):
-    interval_min = min(abs(int(parameters['interval_min_radius'])), MAX_INTERVAL)
-    interval_max = min(abs(int(parameters['interval_max_radius'])), MAX_INTERVAL)
+    interval_min = min(abs(int(parameters['interval_min'])), MAX_INTERVAL)
+    interval_max = min(abs(int(parameters['interval_max'])), MAX_INTERVAL)
     departure_point = GEOSGeometry(parameters['departure_point'], srid=SRID_DEFAULT)
     arrival_point = GEOSGeometry(parameters['arrival_point'], srid=SRID_DEFAULT)
     return interval_min, interval_max, departure_point, arrival_point

@@ -394,11 +394,7 @@ class LibCarpool:
         """Return a list containing the trip object, trip_offers and 
         trip_demands matching given criterias.
         
-        :args: search criteria ;
-               if a trip_id is present it will be used to complete missing criteria
         """
-        # can be both a demand and an offer!
-
         # vars initialisation
         max_trips = max_trips or self.MAX_TRIPS
         trip = None
@@ -411,22 +407,15 @@ class LibCarpool:
                 trip = Trip.objects.get(pk=int(trip_id), user=user)
             except Trip.DoesNotExist:
                 raise InvalidUser(user)
-
-            # warning: if a trip exist ; the search type will be the inverse
-            is_offer = is_offer or not trip.offer
-            is_demand = is_demand or not trip.demand
-
-# XXX: if no offer_ settings is set ; use the demand of the trip to get one.
-# lookin for an offer
-            if is_offer:
-                offer_radius = offer_radius or trip.demand.radius
-                # offer_route = offer_route or trip.demand.route # not possible <- or demand AND offer 
-                    
-# lookin for a demand
-            if is_demand:
-                demand_radius = demand_radius or trip.offer.radius
+                
+            if is_offer or trip.offer:
+                is_offer = is_offer or True
+                offer_radius = offer_radius or trip.offer.radius
                 offer_route = offer_route or trip.offer.route
-
+                    
+            if (is_demand or trip.demand):
+                is_demand = is_demand or True
+                demand_radius = demand_radius or trip.demand.radius
             is_regular = is_regular or trip.regular
             date = date or trip.date
             dows = dows or trip.dows
@@ -435,7 +424,7 @@ class LibCarpool:
             departure_point = departure_point or trip.departure_point
             arrival_point = arrival_point or trip.arrival_point
             
-        if is_demand:
+        if is_offer:
             offer_radius = offer_radius or self.OFFER_RADIUS
             if trip_id:
                 if offer_route is None or offer_route.geom_type != 'MultiLineString':
@@ -460,7 +449,7 @@ class LibCarpool:
         today = datetime.date.today()
         date = date or today            
         
-        if is_offer:
+        if is_demand:
             trip_offers = Trip.objects.get_offers(departure_point, arrival_point, demand_radius)
             if trip_id:
                 trip_offers = trip_offers.exclude(pk=trip_id)
@@ -478,7 +467,7 @@ class LibCarpool:
             trip_offers = trip_offers.order_by('-pourcentage_rank')[:max_trips]
             trip_offers = sort_offers(trip_offers, date, interval_min, interval_max, trip=trip)
 
-        if is_demand:
+        if is_offer:
             trip_demands = Trip.objects.get_demands(offer_route, get_direction_route(offer_route), offer_radius)
             if trip_id:
                 trip_demands = trip_demands.exclude(pk=trip_id)
@@ -533,3 +522,4 @@ class LibCarpool:
         
         """
         return get_object_or_404(Trip.objects.get_mark_details(), pk=trip_id) 
+

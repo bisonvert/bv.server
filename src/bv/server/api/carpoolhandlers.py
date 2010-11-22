@@ -104,7 +104,8 @@ def filter_tripsearch_values(dct):
     for key, value in dct.iteritems():
         if key.encode() in __valid_search_keys__:
             if key in (u'departure_point', u'arrival_point', u'offer_route', u'geometry'):
-                value = GEOSGeometry(value)
+                if value: # check not empty
+                    value = GEOSGeometry(value)
             if key == u'date':
                 value = date(*[int(datevalue) for datevalue in value.encode().split('-')])
             if key == u'geometry':
@@ -120,18 +121,19 @@ class AnonymousTripsSearchHandler(AnonymousCarpoolHandler):
         """Make a search within the list of existing trips
 
         """
-        return self.lib.get_trip_results(**kwargs)
+        values = filter_tripsearch_values(request_to_dict(request))
+        return self.lib.get_trip_results(**values)
 
 class TripsSearchHandler(CarpoolHandler):
     anonymous = AnonymousTripsSearchHandler
     def read(self, request, **kwargs):
         """Private search"""
 
-        values = filter_tripsearch_values(request_to_dict(request))
         if 'trip_id' in kwargs:
+            values = filter_tripsearch_values(request_to_dict(request))
             return self.lib.get_trip_results(user=request.user, **values)
         else:
-            return self.anonymous.read(AnonymousTripsSearchHandler(), request, **values)
+            return self.anonymous.read(AnonymousTripsSearchHandler(), request, **kwargs)
             
 
 class AnonymousTripsHandler(AnonymousCarpoolHandler):
