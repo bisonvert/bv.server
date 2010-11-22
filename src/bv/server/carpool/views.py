@@ -510,8 +510,8 @@ def add_trip_from_search(request):
         else:
             trip.arrival_city = json.get('arrival').get('city')
             trip.arrival_point = GEOSGeometry(json.get('arrival').get('point'))
-        trip.interval_min = min(abs(int(json.get('interval_min_radius'))), MAX_INTERVAL)
-        trip.interval_max = min(abs(int(json.get('interval_max_radius'))), MAX_INTERVAL)
+        trip.interval_min = min(abs(int(json.get('interval_min'))), MAX_INTERVAL)
+        trip.interval_max = min(abs(int(json.get('interval_max'))), MAX_INTERVAL)
         trip.date = get_date(json.get('date'), FRENCH_DATE_INPUT_FORMATS)
         form = AddModifyTripOptionsForm(initial=model_to_dict(request.user.get_profile()), instance=trip)
     except:
@@ -700,8 +700,8 @@ def trip_results(request, trip_id):
                         checkpoints.append(checkpoint)
                 trip.departure_point = GEOSGeometry(json.get('departure').get('point'))
                 trip.arrival_point = GEOSGeometry(json.get('arrival').get('point'))
-                trip.interval_min = min(abs(int(json.get('interval_min_radius'))), MAX_INTERVAL)
-                trip.interval_max = min(abs(int(json.get('interval_max_radius'))), MAX_INTERVAL)
+                trip.interval_min = min(abs(int(json.get('interval_min'))), MAX_INTERVAL)
+                trip.interval_max = min(abs(int(json.get('interval_max'))), MAX_INTERVAL)
                 if trip.offer:
                     trip.offer.checkpointlist = checkpoints
                     trip.offer.route = GEOSGeometry(route)

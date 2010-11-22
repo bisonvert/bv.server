@@ -395,7 +395,6 @@ class TripQuerySet(models.query.QuerySet):
         ogr = smart_transform(route, SRID_TRANSFORM, from_srid=SRID_DEFAULT).ogr
         demands = self.filter(demand__isnull=False)
         demands = demands.select_related('user', 'demand')
-        print "IN DEMANDS #################"
         return demands.extra(
             select=SortedDict([
                 ('pourcentage_rank', """get_pourcentage_rank(
