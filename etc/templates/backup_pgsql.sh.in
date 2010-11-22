@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+REPOSITORY="${dumps_path}"
+DATE="$(date "+%F")"
+pgdumpall_args="${pgdumpall_args}"
+pgdump_args="${pgdump_args}"
+envf="${buildout:directory}/sys/share/minitage/minitage.env"
+kl="${backup_pgsqlkeep:output}"
+if [[ -f "$envf" ]];then source "$envf";fi
+if [[ ! -d "$REPOSITORY" ]];then mkdir -p "$REPOSITORY";fi
+if [[ "${full}" == "y" ]];then
+    allfilep="$REPOSITORY/FULLS"
+    allfile="$allfilep/$DATE-fulldump.sql"
+    if [[ ! -d "$allfilep" ]];then mkdir -p "$allfilep";fi
+    pg_dumpall $pgdumpall_args -U "${user}" -p "${port}" -h "${host}">"$allfile"
+    tar cjf "$allfile.tbz2" "$allfile"
+    rm -f "$allfile"
+    "$kl" "$allfilep"
+fi
+for db in ${databases};do
+    dfilep="$REPOSITORY/$db"
+    dfile="$dfilep/$DATE-$db.sql"
+    if [[ ! -d "$dfilep" ]];then mkdir -p "$dfilep";fi
+    pg_dump $pgdump_args -U "${user}" -p "${port}" -h "${host}" "$db">"$dfile"
+    tar cjf "$dfile.tbz2" "$dfile"
+    rm -f "$dfile"
+    "$kl" "$dfilep"
+done

@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+FPATH="$1"
+NB_TO_KEEP="${to_keep}"
+files="$(find $FPATH -type f)"
+to_keep=$( ls -t1 $files |head -n$NB_TO_KEEP)
+to_delete=""
+if [[ -z "$FPATH" ]];then
+    echo "No path to filter!"
+    exit -1
+fi
+for f in $files;do
+    keep=""
+    for g in $to_keep;do
+        if [[ "$f" == "$g" ]];then
+            keep="a"
+        fi
+    done
+    if [[ -z $keep ]];then
+        to_delete="$to_delete $f"
+    fi
+done
+if [[ -n $to_delete ]];then
+    echo rm -rf $to_delete
+    rm -rf $to_delete
+fi
