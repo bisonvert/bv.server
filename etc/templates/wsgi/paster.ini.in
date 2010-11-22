@@ -51,7 +51,7 @@ use=egg:WebError#evalerror
 
 [app:projectapp]
 use=egg:dj.paste
-django_settings_module=bv.server.${buildout:dsm}
+django_settings_module=bv.server.settings
 
 [app:mediaapp]
 use = egg:Paste#pkg_resources
