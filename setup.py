@@ -29,6 +29,7 @@ setup(
     url = 'http://bitbucket.org/bisonvert/bv.server',
     install_requires = [
             'GDAL',
+            'simplejson',
     ],
     classifiers=[
         'Development Status :: 4 - Beta',
