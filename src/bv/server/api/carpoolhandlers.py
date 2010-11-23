@@ -106,14 +106,15 @@ def filter_tripsearch_values(dct):
             if key in (u'departure_point', u'arrival_point', u'offer_route', u'geometry'):
                 if value: # check not empty
                     value = GEOSGeometry(value)
+                else:
+                    continue
+            if key == u'geometry':
+                key = 'offer_route'
             if key == u'date':
                 value = date(*[int(datevalue) for datevalue in value.encode().split('-')])
-            if key == u'geometry':
-                values['offer_route'] = value
-            else:
-                if key =='interval_min' or key == 'interval_max':
-                    value = int(value)
-                values[key.encode()] = value
+            if key =='interval_min' or key == 'interval_max':
+                value = int(value)
+            values[key.encode()] = value
     return values
 
 class AnonymousTripsSearchHandler(AnonymousCarpoolHandler):
