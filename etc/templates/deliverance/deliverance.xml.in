@@ -6,11 +6,11 @@
     -->
 
   <!-- Map domains to rules set -->
-  <match domain="localhost.com" class="deliverance" />
-  <match domain="www.bisonvert.net" class="deliverance" />
+  <match domain="bvclient.localhost" class="bvclient" />
+  <match domain="www.bisonvert.net" class="bvclient" />
 
   <!-- Rules for the bv.server -->
-  <rule class="deliverance">
+  <rule class="bvclient">
     <!-- Copy over the contents of the page body -->
     <replace content='//*[@id="content"]' theme='//*[@id="my-content-area"]' />
   </rule>
