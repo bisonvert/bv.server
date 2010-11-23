@@ -87,7 +87,7 @@ sed -re "/mode/ {
 
 # change the media default
 sed -re "/\[app:mediaapp\]/,/^\s*$/s#(resource_name=).*.#\1bv/server/media/default/#" -i etc/templates/wsgi/paster.ini.in
-sed -re "s/(extends=.*)/\1 etc\/sys\/settings-prod.cfg/g" -i buildout-prod.cfg
+sed -re "s/(cluster.cfg)/\1 etc\/sys\/settings-prod.cfg/g" -i buildout-prod.cfg
 sed -re "s/\#\s*(bac|chm)/    \1/g" -i buildout-prod.cfg
 
 # vim:set et sts=4 ts=4 tw=0:
