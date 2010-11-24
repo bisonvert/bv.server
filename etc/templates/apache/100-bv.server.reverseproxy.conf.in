@@ -19,6 +19,7 @@ ProxyRequests off
   Allow from all
 </Proxy>
 RewriteEngine  on
+RequestHeader add        X-Vhm-Host ${reverse_proxy:scheme}://${reverse_proxy:host}:${reverse_proxy:port}/
 
 # application mounted on / does not needs _vh_
 # supervisor
@@ -26,8 +27,8 @@ ProxyPass         /supervisor/ http://${hosts:supervisor}:${ports:supervisor}/
 ProxyPassReverse  /supervisor/ http://${hosts:supervisor}:${ports:supervisor}/
 
 # /-> vhmonster proxyreverse because of redirects !
-ProxyPass         / http://${hosts:front}:${ports:front}
-ProxyPassReverse  / http://${hosts:front}:${ports:front}
+ProxyPass         / http://${hosts:front}:${ports:front}/
+ProxyPassReverse  / http://${hosts:front}:${ports:front}/
 
 #RewriteLog "${buildout:directory}/var/log/apache/rewrite.log"
 #RewriteLogLevel 3

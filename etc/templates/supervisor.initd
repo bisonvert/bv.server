@@ -16,18 +16,15 @@ lock="${buildout:directory}/var/$name "
 [ -f $supervisorctl ] || exit 1
 
 envf="${buildout:directory}/sys/share/minitage/minitage.env"
-if [ -f "$envf" ];then
-    source $envf
-fi
 
 RETVAL=0
 start() {
     echo -n "Starting $name: "
     if [[ `whoami` == root ]];then
-        su $EFFECTIVE_USER -c "$supervisord"
+        su $EFFECTIVE_USER -c "if [ -f "$envf" ];then source $envf;fi;$supervisord"
     else
-        "$supervisord"
-    fi 
+      if [ -f "$envf" ];then source $envf;fi;"$supervisord"
+    fi
     RETVAL=$?
     [ $RETVAL -eq 0 ] && touch $lock
     chown $EFFECTIVE_USER $lock
@@ -40,7 +37,7 @@ stop() {
         su $EFFECTIVE_USER -c "$supervisorctl shutdown"
     else
         $supervisorctl shutdown
-    fi 
+    fi
     RETVAL=$?
     [ $RETVAL -eq 0 ] && rm -f $lock
     echo

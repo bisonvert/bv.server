@@ -42,8 +42,8 @@ ProxyPassReverse /_themes/                    http://${hosts:front}:${ports:fron
 ProxyPassReverse /.deliverance/               http://${hosts:front}:${ports:front}/.deliverance/
 
 # deliverance filtering on /
-ProxyPass         / http://${hosts:front}:${ports:front}/deliverance
-ProxyPassReverse  / http://${hosts:front}:${ports:front}/deliverance 
+ProxyPass         / http://${hosts:front}:${ports:front}/deliverance/
+ProxyPassReverse  / http://${hosts:front}:${ports:front}/deliverance/
 
 
 #RewriteLog "${buildout:directory}/var/log/apache/rewrite.log"
