@@ -19,7 +19,7 @@ ProxyRequests off
   Allow from all
 </Proxy>
 RewriteEngine  on
-RequestHeader add        X-Vhm-Host ${reverse_proxy:scheme}://${reverse_proxy:host}:${reverse_proxy:port}/
+RequestHeader add        X-Vhm-Host ${reverse_proxy:scheme}://${reverse_proxy:host}:${reverse_proxy:port}
 
 # application mounted on / does not needs _vh_
 # supervisor
