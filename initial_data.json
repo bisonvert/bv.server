@@ -79,7 +79,7 @@
   "pk": 1, 
   "model": "sites.site", 
   "fields": {
-   "domain": "88.191.227.98:8085",
+   "domain": "server.bisonvert.net:80",
    "name": "My BisonVert Server site"
   }
  }

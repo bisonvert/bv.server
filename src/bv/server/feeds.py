@@ -33,7 +33,6 @@ class RSSFeed(Feed):
     copyright   = u'Copyright (c) %s' % settings.PROJECT_NAME
 
     def get_object(self, bits):
-        import pdb; pdb.set_trace()
         def default_feed():
             # all trips
             self.link = _ABSOLUTE_URL + '/annonces_covoiturage/page1/'
