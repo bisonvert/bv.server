@@ -396,7 +396,7 @@ Bonjour %s,
 --------------------------------
 
 Pour lui répondre, vous pouvez continuer à utiliser les services %s:
-%s%s#nouveau_message
+%s#nouveau_message
 Ou bien contacter cet utilisateur directement s'il vous a communiqué son 
 adresse email ou son numéro de téléphone.
 
@@ -408,11 +408,9 @@ Bon covoiturage avec %s !""" % (
                 message_header,
                 message,
                 settings.PROJECT_NAME,
-                settings.DEFAULT_CLIENT_ROOT_URL,
                 settings.DEFAULT_CLIENT_URLS['talks']['add_message'] % (settings.DEFAULT_CLIENT_ROOT_URL, talk.id),
-                settings.DEFAULT_CLIENT_ROOT_URL,
                 settings.DEFAULT_CLIENT_URLS['talks']['list'] % (settings.DEFAULT_CLIENT_ROOT_URL),
                 settings.PROJECT_NAME,
             ),
-            settings.FROM_EMAIL, [to_user.email]
+            settings.FROM_EMAIL, [to_user.email], fail_silently=False
         )
