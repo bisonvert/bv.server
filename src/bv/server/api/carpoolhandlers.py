@@ -166,7 +166,7 @@ class TripsHandler(CarpoolHandler):
             return paginate_items(items, start, count, request, self.count)
         return self.anonymous.read(AnonymousTripsHandler(), request, trip_id, start, count)
 
-    def create(self, request):
+    def create(self, request, *args, **kwargs):
         """Create a new trip, with the given data information, and the 
         authenticated user.
         
@@ -179,11 +179,10 @@ class TripsHandler(CarpoolHandler):
         elif (response['trip']):
             return response['trip']
     
-    def update(self, request, *args, **kwargs):
+    def update(self, request, trip_id=None, *args, **kwargs):
         """Update an existing trip
         
         """
-        trip_id = kwargs.get('trip_id', None)
         if len(request.REQUEST.items()) == 1 and request.REQUEST.has_key('alert'):
             self.lib.switch_trip_alert(request.user, trip_id, request.REQUEST['alert'].encode().lower() == 'true')
             return rc.ALL_OK
