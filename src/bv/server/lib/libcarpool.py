@@ -333,13 +333,14 @@ class LibCarpool:
             trip = form_trip.save(commit=False)
             
             if trip_type != self.TRIPDEMAND : 
+                #### FIX: we should not need to provide "steps" for updates
                 if form_offer.is_valid():
                     offer = form_offer.save(commit=False)
                     offer.steps = simplejson.loads(form_offer.cleaned_data['steps'])
                     offer.save()
                     trip.offer = offer
                 else:
-                    error = form_offer.errors()
+                    error = form_offer.errors
                 
             if trip_type != self.TRIPOFFER:
                 if form_demand.is_valid():
