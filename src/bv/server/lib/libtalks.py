@@ -401,7 +401,7 @@ Ou bien contacter cet utilisateur directement s'il vous a communiqué son
 adresse email ou son numéro de téléphone.
 
 N'oubliez pas de consulter vos négociations en cours:
-%s%s
+%s
 
 Bon covoiturage avec %s !""" % (
                 to_user.username,

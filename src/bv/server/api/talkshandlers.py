@@ -54,17 +54,12 @@ class TalksHandler(BaseTalkHandler):
     fields = __talk_public_fields__
     
     @validate(CreateTalkForm)
-    def create(self, request):
+    def create(self, request, trip_id=None, *args, **kwargs):
         """Initiate the talk with another user.
         
         """
-        params = dict(request.REQUEST.items())
-        if "trip_id" in params:
-            trip_id = params['trip_id']
-        else:
-            return rc.BAD_REQUEST  
         try:
-            talk = self.lib.contact_user(request.user, trip_id, params)
+            talk = self.lib.contact_user(request.user, trip_id, dict(request.REQUEST.items()))
             return talk.id
         except exceptions.TalkAlreadyExists:
             return rc.DUPLICATE_ENTRY
@@ -145,14 +140,14 @@ class MessagesHandler(BaseTalkHandler):
                  return rc.NOT_HERE
     
     @validate(ContactUserForm)
-    def create(self, request, talk_id):
+    def create(self, request, talk_id=None):
         """Add a message
         
         """
+        params = dict(request.REQUEST.items())
         try:
-            self.lib.add_message(request.user, talk_id,
-                dict(request.REQUEST.items()))
-            return rc.ALL_OK            
+            self.lib.add_message(request.user, talk_id, params)
+            return rc.ALL_OK
         except exceptions.TalkDoesNotExist:
             return rc.NOT_HERE
         except exceptions.InvalidUser:
